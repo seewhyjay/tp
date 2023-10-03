@@ -29,11 +29,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Jia Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jrchoo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jrchoo)] [[portfolio](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=jrchoo&breakdown=true)]
 
 * Role: Developer
 * Responsibilities: Data
