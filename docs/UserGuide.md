@@ -14,11 +14,11 @@ Campus Companion (CC) is a **desktop app for tracking assignments, school events
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `campuscompanion.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Campus Companion.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar campuscompanion.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -27,7 +27,7 @@ Campus Companion (CC) is a **desktop app for tracking assignments, school events
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Campus Companion.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -74,7 +74,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the campus companion.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -88,13 +88,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the campus companion.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the campus companion.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -129,7 +129,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the campus companion.
 
 Format: `delete INDEX`
 
@@ -138,7 +138,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the campus companion.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ## Assignments 
@@ -175,7 +175,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the campus companion.
 
 Format: `clear`
 
@@ -187,14 +187,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CampusCompanion data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CampusCompanion data are saved automatically as a JSON file `[JAR file location]/data/campuscompanion.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+If your changes to the data file makes its format invalid, Campus Companion will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -206,7 +206,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Campus Companion home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
