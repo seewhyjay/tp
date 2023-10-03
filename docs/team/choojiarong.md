@@ -26,3 +26,4 @@ CampusCompanion - your all-in-one solution to manage your university life.
 
 * **Community**:
     * To be added
+  
