@@ -9,44 +9,33 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Althea Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Althea.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chuababyy)]
+[[portfolio](team/chuababyy.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
-### Jane Doe
+### Chow Yuan Jing
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seewhyjay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seewhyjay)]
+[[portfolio](team/chowyuanjing.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Integration
 
-### Johnny Doe
+### Jia Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jrchoo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jrchoo)] [[portfolio](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=jrchoo&breakdown=true)]
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Terrence
 
@@ -54,6 +43,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/Badatprogrammiing)]
 [[portfolio](team/terrence.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
+
+### Htet Wai Yan Aung
+
+<img src="images/htetwaiyanaung.png" width="200px">
+
+[[github](http://github.com/jellywaiyan)]
+[[portfolio](team/htetwaiyanaung.md)]
 
 * Role: Developer
 * Responsibilities: Testing
