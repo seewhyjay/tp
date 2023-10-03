@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/jrchoo.png" width="200px">
 
-[[github](http://github.com/jrchoo)] [[portfolio](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=jrchoo&breakdown=true)]
+[[github](http://github.com/jrchoo)] [[portfolio](team/jrchoo.md)]
 
 * Role: Developer
 * Responsibilities: Data
