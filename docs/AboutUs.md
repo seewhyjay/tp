@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jellywaiyan.png" width="200px">
 
 [[github](http://github.com/jellywaiyan)]
-[[portfolio](team/htetwaiyanaung.md)]
+[[portfolio](team/jellywaiyan.md)]
 
 * Role: Developer
 * Responsibilities: UI
