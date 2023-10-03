@@ -257,42 +257,60 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has many assignments to keep track of as a student in university
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage assignments and deadlines faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                    | I want to …​                            | So that I can…​                                        |
+| ----- |----------------------------|-----------------------------------------|--------------------------------------------------------|
+| `* * *` | new user                   | see usage instructions                  | refer to instructions when I forget how to use the App |
+| `* * *` | user                       | add a new assignment                    | keep track of what I need to complete                  |
+| `* * *` | user                       | delete an assingmnet                    | remove entries that I no longer need                   |
+| `* * *` | user                       | mark an assignment as completed         | track my progress of my assignments                    |
+| `* * *` | user                       | unmark an assignment which is completed | track my progress if I marked something wrongly        |
+| `* * *` | user with many assignments | see all the current assignments         | see all my current assignments                         |
+|`* * *`  | user                       | edit a previously added assignment      | change the requirements in the future                  |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CampusCompanion` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add an assignment**
+
+**MSS**
+
+1.  User requests to add an assignment
+2.  CampusCompanion adds the assignment and shows success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is invalid.
+
+    * 1a1. CampusCompanion shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all assignments
+2.  CampusCompanion shows a list of assignments with their details
+3.  User requests to delete a specific assignment in the list
+4.  CampusCompanion deletes the assignment
 
     Use case ends.
 
@@ -304,7 +322,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CampusCompanion shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Mark an assignment**
+
+**MSS**
+
+1.  User requests to list all assignments
+2.  CampusCompanion shows a list of assignments with their details
+3.  User requests to mark a specific assignment in the list
+4.  CampusCompanion marks the assignment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CampusCompanion shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UnMark an assignment**
+
+**MSS**
+
+1.  User requests to list all assignments
+2.  CampusCompanion shows a list of assignments with their details
+3.  User requests to unmark a specific assignment in the list
+4.  CampusCompanion unmarks the assignment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CampusCompanion shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit an assignment**
+
+**MSS**
+
+1.  User requests to list all assignments
+2.  CampusCompanion shows a list of assignments with their details
+3.  User requests to edit a specific assignment in the list
+4.  User specifies new item name for assignment
+5.  CampusCompanion changes the assignment name
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CampusCompanion shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The user did not specify a new item name. 
+
+    * 3b1. CampusCompanion shows an error message.
 
       Use case resumes at step 2.
 
@@ -351,17 +445,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an assignment
 
-1. Deleting a person while all persons are being shown
+1. Deleting an assignment while all assignments are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple assignments in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First assignment is deleted from the list. Details of the deleted assignment shown in the status message. 
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No assignment is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
