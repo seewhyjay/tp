@@ -37,12 +37,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Terrence
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/badatprogrammiing.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Badatprogrammiing)]
+[[portfolio](team/terrence.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -55,4 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/htetwaiyanaung.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
