@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Campus Companion (CC) is a **desktop app for tracking assignments, school events and internships, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CC can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -140,6 +140,38 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+## Assignments 
+
+### Adding an assignment : [coming soon]
+
+### Mark an assignment : [coming soon]
+
+### Delete an assignment : [coming soon]
+
+### Edit an assignment : [coming soon]
+
+### List all assignments : [coming soon]
+
+## School Events
+
+### Adding a school event : [coming soon]
+
+### Delete a school event : [coming soon]
+
+### Edit a school event : [coming soon]
+
+### List all school events : [coming soon]
+
+## Internships
+
+### Adding an internship : [coming soon]
+
+### Delete an internship : [coming soon]
+
+### Edit an internship : [coming soon]
+
+### List all internships : [coming soon]
 
 ### Clearing all entries : `clear`
 
