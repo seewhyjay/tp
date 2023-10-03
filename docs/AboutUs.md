@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Althea Chua
 
-<img src="images/Althea.png" width="200px">
+<img src="images/chuababyy.png" width="200px">
 
 [[github](https://github.com/chuababyy)]
 [[portfolio](team/chuababyy.md)]
