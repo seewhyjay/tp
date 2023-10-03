@@ -50,10 +50,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Terrence
 
-<img src="images/Terrence.png" width="200px">
+<img src="images/badatprogrammiing.png" width="200px">
 
 [[github](https://github.com/Badatprogrammiing)]
-[[portfolio](team/Terrence.md)]
+[[portfolio](team/terrence.md)]
 
 * Role: Developer
 * Responsibilities: Testing
