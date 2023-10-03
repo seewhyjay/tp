@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chow Yuan Jing
 
-<img src="images/chowyuanjing.png" width="200px">
+<img src="images/seewhyjay.png" width="200px">
 
 [[github](http://github.com/seewhyjay)]
 [[portfolio](team/chowyuanjing.md)]
