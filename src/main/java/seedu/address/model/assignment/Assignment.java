@@ -4,11 +4,11 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -22,32 +22,32 @@ public class Assignment {
     // Identity fields
     private final Name name;
 
-    // Data fields
-    private LocalDateTime start;
-    private LocalDateTime end;
-    private final Set<Tag> tags = new HashSet<>();
+    private EndDate enddate;
+    private Status status;
+    private Description description;
+    private PlannedFinishDate plannedFinishDate;
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, LocalDateTime start, LocalDateTime end, Set<Tag> tags) {
-        requireAllNonNull(name, start, end, tags);
+    public Assignment(Name name, EndDate end, Status status, Description description,
+                      PlannedFinishDate plannedFinishDate, Set<Tag> tags) {
+        requireAllNonNull(name, end, status, tags);
         this.name = name;
-        this.start = start;
-        this.end = end;
+        this.enddate = end;
+        this.status = status;
         this.tags.addAll(tags);
+        this.description = description;
+        this.plannedFinishDate = plannedFinishDate;
     }
 
     public Name getName() {
         return name;
     }
 
-    public LocalDateTime getStart() {
-        return start;
-    }
-
-    public LocalDateTime getEnd() {
-        return end;
+    public EndDate getEnd() {
+        return this.enddate;
     }
 
 
@@ -89,15 +89,17 @@ public class Assignment {
 
         Assignment otherAssignment = (Assignment) other;
         return name.equals(otherAssignment.name)
-                && this.start.equals(otherAssignment.start)
-                && this.end.equals(otherAssignment.end)
-                && tags.equals(otherAssignment.tags);
+                && this.enddate.equals(otherAssignment.enddate)
+                && this.status.equals(otherAssignment.status)
+                && this.tags.equals(otherAssignment.tags)
+                && this.description.equals(otherAssignment.description)
+                && this.plannedFinishDate.equals(otherAssignment.plannedFinishDate);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, start, end, tags);
+        return Objects.hash(name, enddate, status, tags, description, plannedFinishDate);
     }
 
     @Override
@@ -105,8 +107,10 @@ public class Assignment {
         DateTimeFormatter toStringFormatter = DateTimeFormatter.ofPattern("d MMM uuuu h:mm a");
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("start", start.format(toStringFormatter))
-                .add("end", end.format(toStringFormatter))
+                .add("completeness", status)
+                .add("description", description)
+                .add("plannedFinishDate", plannedFinishDate)
+                .add("end", enddate)
                 .add("tags", tags)
                 .toString();
     }
