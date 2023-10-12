@@ -21,7 +21,7 @@ public class Assignment {
     // Identity fields
     private final Name name;
 
-    private EndDate enddate;
+    private Date enddate;
     private Status status;
     private Description description;
     private PlannedFinishDate plannedFinishDate;
@@ -41,11 +41,24 @@ public class Assignment {
         this.plannedFinishDate = plannedFinishDate;
     }
 
+    /**
+     * PlannedFinishDate not specified.
+     */
+    public Assignment(Name name, EndDate end, Status status, Description description,
+                      Set<Tag> tags) {
+        requireAllNonNull(name, end, status, tags);
+        this.name = name;
+        this.enddate = end;
+        this.status = status;
+        this.tags.addAll(tags);
+        this.description = description;
+    }
+
     public Name getName() {
         return name;
     }
 
-    public EndDate getEnd() {
+    public Date getEnd() {
         return this.enddate;
     }
 

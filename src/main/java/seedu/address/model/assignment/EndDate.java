@@ -7,8 +7,10 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a task's end date.
+ * Should be instantiated in the add-date
+ * parser if date is given.
  */
-public class EndDate {
+public class EndDate extends Date {
 
     public final LocalDateTime endDate;
 
