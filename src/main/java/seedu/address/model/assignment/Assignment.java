@@ -1,8 +1,6 @@
 package seedu.address.model.assignment;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -16,7 +14,7 @@ import java.util.Set;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Assignment {
@@ -62,10 +60,10 @@ public class Assignment {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both assignments have the same name.
+     * This defines a weaker notion of equality between two assignments.
      */
-    public boolean isSamePerson(Assignment otherAssignment) {
+    public boolean isSameAssignment(Assignment otherAssignment) {
         if (otherAssignment == this) {
             return true;
         }
@@ -75,8 +73,8 @@ public class Assignment {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both assignments have the same identity and data fields.
+     * This defines a stronger notion of equality between two assignment.
      */
     @Override
     public boolean equals(Object other) {
