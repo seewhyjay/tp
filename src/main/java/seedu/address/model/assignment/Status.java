@@ -2,41 +2,46 @@ package seedu.address.model.assignment;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the completion status
+ * of a task.
+ */
 public class Status {
-  public final Boolean isCompleted;
 
-  /**
-   * Constructs a {@code Name}.
-   *
-   * @param isCompleted A valid name.
-   */
-  public Status(Boolean isCompleted) {
-    requireNonNull(isCompleted);
-    this.isCompleted = isCompleted;
-  }
+    public final Boolean isCompleted;
 
-  @Override
-  public String toString() {
-    return isCompleted ? "done" : "undone";
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (other == this) {
-      return true;
+    /**
+     * Constructs a {@code Name}.
+     *
+     * @param isCompleted A valid name.
+     */
+    public Status(Boolean isCompleted) {
+        requireNonNull(isCompleted);
+        this.isCompleted = isCompleted;
     }
 
-    // instanceof handles nulls
-    if (!(other instanceof seedu.address.model.assignment.Status)) {
-      return false;
+    @Override
+    public String toString() {
+        return isCompleted ? "done" : "undone";
     }
 
-    seedu.address.model.assignment.Status otherStatus = (seedu.address.model.assignment.Status) other;
-    return isCompleted.equals(otherStatus.isCompleted);
-  }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
 
-  @Override
-  public int hashCode() {
-    return isCompleted.hashCode();
-  }
+        // instanceof handles nulls
+        if (!(other instanceof seedu.address.model.assignment.Status)) {
+            return false;
+        }
+
+        seedu.address.model.assignment.Status otherStatus = (seedu.address.model.assignment.Status) other;
+        return isCompleted.equals(otherStatus.isCompleted);
+    }
+
+    @Override
+    public int hashCode() {
+        return isCompleted.hashCode();
+    }
 }
