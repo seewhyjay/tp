@@ -14,4 +14,9 @@ public class NoDate extends Date {
     public String toString() {
         return "";
     }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
