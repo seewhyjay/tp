@@ -23,34 +23,21 @@ public class Assignment {
     private Date enddate;
     private Status status;
     private Description description;
-    private PlannedFinishDate plannedFinishDate;
+    private Date plannedFinishDate;
     private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, EndDate end, Status status, Description description,
-                      PlannedFinishDate plannedFinishDate, Set<Tag> tags) {
-        requireAllNonNull(name, end, status, tags);
+    public Assignment(Name name, Date endDate, Status status, Description description,
+                      Date plannedFinishDate, Set<Tag> tags) {
+        requireAllNonNull(name, endDate, status, tags);
         this.name = name;
-        this.enddate = end;
+        this.enddate = endDate;
         this.status = status;
         this.tags.addAll(tags);
         this.description = description;
         this.plannedFinishDate = plannedFinishDate;
-    }
-
-    /**
-     * PlannedFinishDate not specified.
-     */
-    public Assignment(Name name, EndDate end, Status status, Description description,
-                      Set<Tag> tags) {
-        requireAllNonNull(name, end, status, tags);
-        this.name = name;
-        this.enddate = end;
-        this.status = status;
-        this.tags.addAll(tags);
-        this.description = description;
     }
 
     public Name getName() {
@@ -60,7 +47,6 @@ public class Assignment {
     public Date getEnd() {
         return this.enddate;
     }
-
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -125,5 +111,4 @@ public class Assignment {
                 .add("tags", tags)
                 .toString();
     }
-
 }

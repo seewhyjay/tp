@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Should be instantiated in the add-date
  * parser if date is given.
  */
-public class EndDate extends Date {
+public class IsoDate extends Date {
 
     public final LocalDateTime endDate;
 
@@ -19,7 +19,7 @@ public class EndDate extends Date {
      *
      * @param endDate A valid date.
      */
-    public EndDate(LocalDateTime endDate) {
+    public IsoDate(LocalDateTime endDate) {
         requireNonNull(endDate);
         this.endDate = endDate;
     }
@@ -36,11 +36,11 @@ public class EndDate extends Date {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EndDate)) {
+        if (!(other instanceof IsoDate)) {
             return false;
         }
 
-        EndDate otherEndDate = (EndDate) other;
+        IsoDate otherEndDate = (IsoDate) other;
         return endDate.equals(otherEndDate.endDate);
     }
 
