@@ -31,12 +31,11 @@ public class Description {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.model.assignment.Description)) {
+        if (!(other instanceof Description)) {
             return false;
         }
 
-        seedu.address.model.assignment.Description otherDescription =
-                (seedu.address.model.assignment.Description) other;
+        Description otherDescription = (Description) other;
         return description.equals(otherDescription.description);
     }
 

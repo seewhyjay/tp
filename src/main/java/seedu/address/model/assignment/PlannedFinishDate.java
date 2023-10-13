@@ -35,12 +35,11 @@ public class PlannedFinishDate {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.model.assignment.PlannedFinishDate)) {
+        if (!(other instanceof PlannedFinishDate)) {
             return false;
         }
 
-        seedu.address.model.assignment.PlannedFinishDate otherPlannedDate =
-                (seedu.address.model.assignment.PlannedFinishDate) other;
+        PlannedFinishDate otherPlannedDate = (PlannedFinishDate) other;
         return plannedFinishDate.equals(otherPlannedDate.plannedFinishDate);
     }
 

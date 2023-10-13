@@ -36,11 +36,11 @@ public class EndDate extends Date {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.model.assignment.EndDate)) {
+        if (!(other instanceof EndDate)) {
             return false;
         }
 
-        seedu.address.model.assignment.EndDate otherEndDate = (seedu.address.model.assignment.EndDate) other;
+        EndDate otherEndDate = (EndDate) other;
         return endDate.equals(otherEndDate.endDate);
     }
 

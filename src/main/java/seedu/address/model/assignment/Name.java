@@ -32,11 +32,11 @@ public class Name {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.model.assignment.Name)) {
+        if (!(other instanceof Name)) {
             return false;
         }
 
-        seedu.address.model.assignment.Name otherName = (seedu.address.model.assignment.Name) other;
+        Name otherName = (Name) other;
         return taskName.equals(otherName.taskName);
     }
 

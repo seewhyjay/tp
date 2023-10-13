@@ -32,11 +32,11 @@ public class Status {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.model.assignment.Status)) {
+        if (!(other instanceof Status)) {
             return false;
         }
 
-        seedu.address.model.assignment.Status otherStatus = (seedu.address.model.assignment.Status) other;
+        Status otherStatus = (Status) other;
         return isCompleted.equals(otherStatus.isCompleted);
     }
 
