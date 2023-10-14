@@ -1,12 +1,13 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.person.Prefix;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.person.Prefix;
 
 public class ArgumentTokenizerTest {
 
