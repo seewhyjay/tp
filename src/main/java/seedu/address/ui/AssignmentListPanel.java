@@ -8,40 +8,40 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.assignment.Assignment;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
+public class AssignmentListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(AssignmentListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Assignment> assignmentListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public AssignmentListPanel(ObservableList<Assignment> assignmentList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        assignmentListView.setItems(assignmentList);
+        assignmentListView.setCellFactory(listView -> new AssignmentListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class AssignmentListViewCell extends ListCell<Assignment> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Assignment assignment, boolean empty) {
+            super.updateItem(assignment, empty);
 
-            if (empty || person == null) {
+            if (empty || assignment == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new AssignmentCard(assignment, getIndex() + 1).getRoot());
             }
         }
     }

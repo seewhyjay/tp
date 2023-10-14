@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a task's end date.
@@ -11,6 +12,19 @@ import java.time.format.DateTimeFormatter;
  * parser if date is given.
  */
 public class IsoDate extends Date {
+
+    public final static String DATE_FORMAT = "yyyy-MM-dd HH:mm";
+
+    public static boolean isValidIsoDate(String date)
+    {
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            df.parse(date);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
 
     public final LocalDateTime endDate;
 

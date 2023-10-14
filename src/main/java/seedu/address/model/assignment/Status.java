@@ -20,6 +20,10 @@ public class Status {
         this.isCompleted = isCompleted;
     }
 
+    public static boolean isValidStatus(String date) {
+        return date.equals("done") || date.equals("undone");
+    }
+
     @Override
     public String toString() {
         return isCompleted ? "done" : "undone";
