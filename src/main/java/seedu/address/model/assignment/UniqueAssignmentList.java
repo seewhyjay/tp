@@ -11,18 +11,27 @@ import javafx.collections.ObservableList;
 import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
 import seedu.address.model.assignment.exceptions.DuplicateAssignmentException;
 
+/**
+ * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ */
 public class UniqueAssignmentList implements Iterable<Assignment> {
 
     private final ObservableList<Assignment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Assignment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Returns true if the list contains an equivalent assignment as the given argument.
+     */
     public boolean contains(Assignment toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameAssignment);
     }
 
-
+    /**
+     * Adds a assignment to the list.
+     * The person must not already exist in the list.
+     */
     public void add(Assignment toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -31,6 +40,12 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the person {@code target} in the list with {@code editedAssignment}.
+     * {@code target} must exist in the list.
+     * The assignment identity of {@code editedPerson} must not be
+     * the same as another existing assignment in the list.
+     */
     public void setAssignment(Assignment target, Assignment editedAssignment) {
         requireAllNonNull(target, editedAssignment);
 
@@ -46,6 +61,10 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
         internalList.set(index, editedAssignment);
     }
 
+    /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
     public void remove(Assignment toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -102,12 +121,12 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code assignments} contains only unique assignments.
      */
-    private boolean assignmentsAreUnique(List<Assignment> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameAssignment(persons.get(j))) {
+    private boolean assignmentsAreUnique(List<Assignment> assignments) {
+        for (int i = 0; i < assignments.size() - 1; i++) {
+            for (int j = i + 1; j < assignments.size(); j++) {
+                if (assignments.get(i).isSameAssignment(assignments.get(j))) {
                     return false;
                 }
             }

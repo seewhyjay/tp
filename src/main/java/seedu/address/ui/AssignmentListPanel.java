@@ -11,17 +11,17 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of assignments.
  */
 public class AssignmentListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "AssignmentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(AssignmentListPanel.class);
 
     @FXML
     private ListView<Assignment> assignmentListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code AssignmentListPanel} with the given {@code ObservableList}.
      */
     public AssignmentListPanel(ObservableList<Assignment> assignmentList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class AssignmentListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Assignment} using a {@code AssignmentCard}.
      */
     class AssignmentListViewCell extends ListCell<Assignment> {
         @Override

@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -126,7 +126,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Assignment> getFilteredAssignmentList() {return filteredAssignments; }
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return filteredAssignments;
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

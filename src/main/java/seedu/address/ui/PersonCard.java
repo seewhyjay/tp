@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Assignment}.
+ * An UI component that displays information of a {@code Person}.
  */
-public class AssignmentCard extends UiPart<Region> {
+public class PersonCard extends UiPart<Region> {
 
-    private static final String FXML = "AssignmentListCard.fxml";
+    private static final String FXML = "PersonListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +24,7 @@ public class AssignmentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Assignment assignment;
+    public final Person person;
 
     @FXML
     private HBox cardPane;
@@ -33,29 +33,26 @@ public class AssignmentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label description;
+    private Label phone;
     @FXML
-    private Label endDate;
+    private Label address;
     @FXML
-    private Label status;
-    @FXML
-    private Label plannedFinishDate;
+    private Label email;
     @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public AssignmentCard(Assignment assignment, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex) {
         super(FXML);
-        this.assignment = assignment;
+        this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(assignment.getName().toString());
-        description.setText(assignment.getDescription().toString());
-        endDate.setText(assignment.getEnd().toString());
-        status.setText(assignment.getStatus().toString());
-        plannedFinishDate.setText(assignment.getPlannedFinishDate().toString());
-        assignment.getTags().stream()
+        name.setText(person.getName().fullName);
+        phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
+        person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

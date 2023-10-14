@@ -52,11 +52,17 @@ public class Assignment {
         return this.enddate;
     }
 
-    public Status getStatus() { return status; }
+    public Status getStatus() {
+        return status;
+    }
 
-    public Description getDescription() { return description; }
+    public Description getDescription() {
+        return description;
+    }
 
-    public Date getPlannedFinishDate() { return plannedFinishDate; }
+    public Date getPlannedFinishDate() {
+        return plannedFinishDate;
+    }
 
 
     /**

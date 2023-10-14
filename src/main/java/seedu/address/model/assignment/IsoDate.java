@@ -13,19 +13,9 @@ import java.time.format.DateTimeParseException;
  */
 public class IsoDate extends Date {
 
-    public final static String DATE_FORMAT = "yyyy-MM-dd HH:mm";
-    public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
+    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
-    public static boolean isValidIsoDate(String date)
-    {
-        try {
-            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            df.parse(date);
-            return true;
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
+    public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
 
     public final LocalDateTime endDate;
 
@@ -37,6 +27,20 @@ public class IsoDate extends Date {
     public IsoDate(LocalDateTime endDate) {
         requireNonNull(endDate);
         this.endDate = endDate;
+    }
+
+    /**
+     * @param date to be verified
+     * @return true if valid date, false otherwise
+     */
+    public static boolean isValidIsoDate(String date) {
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            df.parse(date);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     @Override

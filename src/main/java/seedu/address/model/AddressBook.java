@@ -119,6 +119,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
 
+    /**
+     * @param assignment to be checked
+     * @return true if assignment is present, false otherwise
+     */
     // Assignments
     public boolean hasAssignment(Assignment assignment) {
         requireNonNull(assignment);

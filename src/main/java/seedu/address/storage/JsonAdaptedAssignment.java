@@ -17,6 +17,7 @@ import seedu.address.model.assignment.Date;
 import seedu.address.model.assignment.Description;
 import seedu.address.model.assignment.IsoDate;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.NoDate;
 import seedu.address.model.assignment.Status;
 import seedu.address.model.tag.Tag;
 
@@ -25,7 +26,7 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedAssignment {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
 
     private final String name;
     private final String description;
@@ -35,7 +36,7 @@ class JsonAdaptedAssignment {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
      */
     @JsonCreator
     public JsonAdaptedAssignment(@JsonProperty("name") String name, @JsonProperty("description") String description,
@@ -53,11 +54,11 @@ class JsonAdaptedAssignment {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Assignment} into this class for Jackson use.
      */
     public JsonAdaptedAssignment(Assignment source) {
-       this.name = source.getName().toString();
-       this.description = source.getDescription().toString();
+        this.name = source.getName().toString();
+        this.description = source.getDescription().toString();
         this.status = source.getStatus().isCompleted();
         this.endDate = source.getEnd().toSaveData();
         this.plannedFinishDate = source.getPlannedFinishDate().toSaveData();
@@ -67,14 +68,14 @@ class JsonAdaptedAssignment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted assignment object into the model's {@code Assignment} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Assignment toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> assignmentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            assignmentTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -91,7 +92,8 @@ class JsonAdaptedAssignment {
         final Status modelStatus = new Status(status);
 
         if (endDate == null) {
-            throw new IllegalValueException("EndDate Null" + String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException("EndDate Null"
+                    + String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
         if (!IsoDate.isValidIsoDate(endDate)) {
             throw new IllegalValueException("EndDate Not Valid" + IsoDate.MESSAGE_CONSTRAINTS);
@@ -103,10 +105,18 @@ class JsonAdaptedAssignment {
         if (!plannedFinishDate.equals("") && !IsoDate.isValidIsoDate(plannedFinishDate)) {
             throw new IllegalValueException("PlannedFinishDate" + IsoDate.MESSAGE_CONSTRAINTS);
         }
-        final Date modelPlannedFinishDate = new IsoDate(LocalDateTime.parse(endDate,
-                DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Assignment(modelName, modelEndDate, modelStatus, modelDescription, modelPlannedFinishDate, modelTags);
+        final Date modelPlannedFinishDate;
+
+        if (plannedFinishDate.equals("")) {
+            modelPlannedFinishDate = new NoDate();
+        } else {
+            modelPlannedFinishDate = new IsoDate(LocalDateTime.parse(plannedFinishDate,
+                    DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
+        }
+
+        final Set<Tag> modelTags = new HashSet<>(assignmentTags);
+        return new Assignment(modelName, modelEndDate, modelStatus,
+                modelDescription, modelPlannedFinishDate, modelTags);
     }
 }
