@@ -14,6 +14,7 @@ import java.time.format.DateTimeParseException;
 public class IsoDate extends Date {
 
     public final static String DATE_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
 
     public static boolean isValidIsoDate(String date)
     {
@@ -61,5 +62,10 @@ public class IsoDate extends Date {
     @Override
     public int hashCode() {
         return endDate.hashCode();
+    }
+
+    @Override
+    public String toSaveData() {
+        return endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 }

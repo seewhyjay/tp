@@ -8,7 +8,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Status {
 
-    public final Boolean isCompleted;
+    public static final String MESSAGE_CONSTRAINTS = "done or undone";
+    private final Boolean isCompleted;
 
     /**
      * Constructs a {@code Name}.
@@ -22,6 +23,10 @@ public class Status {
 
     public static boolean isValidStatus(String date) {
         return date.equals("done") || date.equals("undone");
+    }
+
+    public Boolean isCompleted() {
+        return this.isCompleted;
     }
 
     @Override

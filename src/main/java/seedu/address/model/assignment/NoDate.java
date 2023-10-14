@@ -11,6 +11,11 @@ public class NoDate extends Date {
     }
 
     @Override
+    public String toSaveData() {
+        return "";
+    }
+
+    @Override
     public String toString() {
         return "";
     }
