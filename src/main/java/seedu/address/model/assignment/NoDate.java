@@ -12,7 +12,7 @@ public class NoDate extends Date {
 
     @Override
     public String toSaveData() {
-        return "";
+        return null;
     }
 
     @Override

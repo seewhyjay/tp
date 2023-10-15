@@ -22,10 +22,12 @@ public class ParserUtil {
      * @return a name object
      * @throws ParseException
      */
-    // Validation required?
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (!Name.isValidTaskName(name)) {
+            throw new ParseException("Name cannot be empty");
+        }
         return new Name(trimmedName);
     }
 
@@ -34,10 +36,11 @@ public class ParserUtil {
      * @return a description object
      * @throws ParseException
      */
-    // Validation required?
-    public static Description parseDescription(String description) throws ParseException {
+    // Validation required? Currently, d/ is a valid input
+    public static Description parseDescription(String description) {
         requireNonNull(description);
-        return new Description(description.trim());
+        String trimmedDescription = description.trim();
+        return new Description(trimmedDescription);
     }
 
     /**

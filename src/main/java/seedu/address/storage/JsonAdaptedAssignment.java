@@ -81,6 +81,11 @@ class JsonAdaptedAssignment {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+
+        if (!Name.isValidTaskName(name)) {
+            throw new IllegalValueException("Name Not Valid " + Name.MESSAGE_CONSTRAINTS);
+        }
+
         final Name modelName = new Name(name);
 
         final Description modelDescription = new Description(description);
@@ -95,20 +100,22 @@ class JsonAdaptedAssignment {
             throw new IllegalValueException("EndDate Null"
                     + String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
+
         if (!IsoDate.isValidIsoDate(endDate)) {
-            throw new IllegalValueException("EndDate Not Valid" + IsoDate.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException("EndDate Not Valid " + IsoDate.MESSAGE_CONSTRAINTS);
         }
+
         final Date modelEndDate = new IsoDate(LocalDateTime.parse(endDate,
                 DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
 
 
-        if (!plannedFinishDate.equals("") && !IsoDate.isValidIsoDate(plannedFinishDate)) {
+        if (plannedFinishDate != null && !IsoDate.isValidIsoDate(plannedFinishDate)) {
             throw new IllegalValueException("PlannedFinishDate" + IsoDate.MESSAGE_CONSTRAINTS);
         }
 
         final Date modelPlannedFinishDate;
 
-        if (plannedFinishDate.equals("")) {
+        if (plannedFinishDate == null) {
             modelPlannedFinishDate = new NoDate();
         } else {
             modelPlannedFinishDate = new IsoDate(LocalDateTime.parse(plannedFinishDate,

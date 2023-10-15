@@ -7,6 +7,11 @@ import static java.util.Objects.requireNonNull;
  */
 public class Name {
 
+    public static final String MESSAGE_CONSTRAINTS = "Empty string not allowed";
+
+    // Matches everything except empty string
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
+
     public final String taskName;
 
     /**
@@ -19,6 +24,13 @@ public class Name {
         this.taskName = taskName;
     }
 
+    /**
+     * @param taskName be verified
+     * @return true when not an empty string, false otherwise
+     */
+    public static boolean isValidTaskName(String taskName) {
+        return taskName.matches(VALIDATION_REGEX);
+    }
 
     @Override
     public String toString() {
