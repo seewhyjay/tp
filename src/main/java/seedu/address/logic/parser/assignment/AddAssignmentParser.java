@@ -35,7 +35,7 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
                 PREFIX_STATUS, PREFIX_ENDDATE, PREFIX_PLANNEDFINISHDATE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_STATUS, PREFIX_ENDDATE)
+        if (!arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_ENDDATE)
                 || !argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
         }
@@ -49,7 +49,9 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         Description description = ParserUtil.parseDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION)
                 .orElseGet(() -> ""));
 
-        Status status = ParserUtil.parseStatus(argumentMultimap.getValue(PREFIX_STATUS).get());
+        Status status = argumentMultimap.getValue(PREFIX_STATUS).isEmpty()
+                ? new Status(false)
+                : ParserUtil.parseStatus(argumentMultimap.getValue(PREFIX_STATUS).get());
 
         Date endDate = ParserUtil.parseDate(argumentMultimap.getValue(PREFIX_ENDDATE).get());
 
