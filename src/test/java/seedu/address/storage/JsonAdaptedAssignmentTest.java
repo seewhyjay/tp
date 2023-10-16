@@ -16,7 +16,7 @@ public class JsonAdaptedAssignmentTest {
     private String validName = "task1";
     private String validDescription = "description";
     private boolean validStatus = true;
-    private String validDate = "2023-10-15 23:59";
+    private String validDate = "2025-10-15 23:59";
 
     @Test
     public void toModel_validAssignment_doesNotThrow() {
