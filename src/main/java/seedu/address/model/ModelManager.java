@@ -114,6 +114,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //====== Filtered Assignment List Accessors==========================
+    @Override
+    public void markAsComplete(Assignment toMark) {
+        addressBook.markAssignment(toMark);
+    }
+
     @Override
     public boolean hasAssignment(Assignment assignment) {
         return addressBook.hasAssignment(assignment);

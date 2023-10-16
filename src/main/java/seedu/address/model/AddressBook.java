@@ -142,6 +142,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         assignments.remove(key);
     }
 
+    public void markAssignment(Assignment toMark) {
+        requireNonNull(toMark);
+        assignments.mark(toMark);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

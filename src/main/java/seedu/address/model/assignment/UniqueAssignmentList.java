@@ -72,6 +72,16 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
         }
     }
 
+    public void mark(Assignment toMark) {
+        requireNonNull(toMark);
+        int index = internalList.indexOf(toMark);
+        if (index == -1) {
+            throw new AssignmentNotFoundException();
+        }
+        internalList.get(index).mark();
+        internalList.set(index, internalList.get(index));
+    }
+
     public void setAssignments(UniqueAssignmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
