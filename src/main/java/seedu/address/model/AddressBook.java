@@ -142,9 +142,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         assignments.remove(key);
     }
 
-    public void mark(Assignment assignment) {
-        requireNonNull(assignment);
-        return assignmentList.mark(assignment);
+    public void markAssignment(Assignment toMark) {
+        requireNonNull(toMark);
+        assignments.mark(toMark);
     }
 
     @Override

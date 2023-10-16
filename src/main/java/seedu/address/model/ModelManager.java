@@ -121,8 +121,8 @@ public class ModelManager implements Model {
     };
 
     @Override
-    public void markAsComplete(Assignment assignment) {
-        addressBook.mark(assignment);
+    public void markAsComplete(Assignment toMark) {
+        addressBook.markAssignment(toMark);
     }
 
     @Override

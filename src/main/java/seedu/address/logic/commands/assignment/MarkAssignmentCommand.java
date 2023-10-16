@@ -13,7 +13,6 @@ import seedu.address.model.person.Person;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Adds a person to the address book.
@@ -51,7 +50,7 @@ public class MarkAssignmentCommand extends AssignmentCommand {
         }
         Assignment assignmentToMark = lastShownList.get(targetIndex.getZeroBased());
 
-        if (assignmentToMark.getStatus().getIsDone()) {
+        if (assignmentToMark.getStatus().isCompleted()) {
             throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_COMPLETE);
         }
 
