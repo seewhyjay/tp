@@ -135,11 +135,6 @@ public class ModelManager implements Model {
         return filteredAssignments;
     }
 
-    @Override
-    public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
-        requireNonNull(predicate);
-        filteredAssignments.setPredicate(predicate);
-    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
