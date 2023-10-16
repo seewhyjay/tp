@@ -1,8 +1,14 @@
 package seedu.address.logic.commands.assignment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDDATE;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_PLANNEDFINISHDATE;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,7 +24,14 @@ public class AddAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "add-a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": add-a n/NAME [d/DESCRIPTION] s/STATUS e/ENDDATE [p/PLANNEDFINISHDATE] [t/TAG]";
+            + ": Adds an assignment to the app. "
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "]\n"
+            + PREFIX_STATUS + "STATUS "
+            + PREFIX_ENDDATE + "YYYY-MM-DD HH:mm "
+            + "[" + PREFIX_PLANNEDFINISHDATE + "YYYY-MM-DD HH:mm " + "]\n"
+            + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
 
@@ -43,7 +56,7 @@ public class AddAssignmentCommand extends Command {
         }
 
         model.addAssignment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, "Assignment"));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override
