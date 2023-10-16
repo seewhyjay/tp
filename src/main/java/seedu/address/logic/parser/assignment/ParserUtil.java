@@ -52,9 +52,9 @@ public class ParserUtil {
         requireNonNull(status);
         String trimmedStatus = status.trim();
         if (!Status.isValidStatus(status)) {
-            throw new ParseException("Enter a valid status input: s/done, s/undone");
+            throw new ParseException("Enter a valid status input: s/complete, s/incomplete");
         }
-        return new Status(trimmedStatus.equals("done"));
+        return new Status(trimmedStatus.equals("complete"));
     }
 
     /**
