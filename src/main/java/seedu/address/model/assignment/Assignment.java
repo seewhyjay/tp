@@ -17,13 +17,17 @@ import seedu.address.model.tag.Tag;
  */
 public class Assignment {
 
-    // Identity fields
+
     private final Name name;
 
     private Date enddate;
+
     private Status status;
+
     private Description description;
+
     private Date plannedFinishDate;
+
     private Set<Tag> tags = new HashSet<>();
 
     /**
@@ -47,6 +51,19 @@ public class Assignment {
     public Date getEnd() {
         return this.enddate;
     }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Description getDescription() {
+        return description;
+    }
+
+    public Date getPlannedFinishDate() {
+        return plannedFinishDate;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
