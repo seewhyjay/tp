@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    private final FilteredList<Assignment> filteredAssignments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -144,5 +147,14 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+    //====== Filtered Assignment List ===============================================
+    @Override
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return filteredAssignments;
+    };
 
+    @Override
+    public void markAsComplete(Assignment assignment) {
+        addressBook.mark(assignment);
+    }
 }

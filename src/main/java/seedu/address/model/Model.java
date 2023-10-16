@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.assignment.Assignment;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the filtered assignment list */
+    ObservableList<Assignment> getFilteredAssignmentList();
+
+    /**
+     * Marks the given assignment as complete.
+     * The assignment must exist in Campus Companion.
+     */
+    void markAsComplete(Assignment assignment);
 }
