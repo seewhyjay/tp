@@ -22,7 +22,7 @@ public class Status {
     }
 
     public static boolean isValidStatus(String date) {
-        return date.equals("done") || date.equals("undone");
+        return date.equals("complete") || date.equals("incomplete");
     }
 
     public Boolean isCompleted() {
@@ -31,7 +31,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return isCompleted ? "done" : "undone";
+        return isCompleted ? "complete" : "incomplete";
     }
 
     @Override
