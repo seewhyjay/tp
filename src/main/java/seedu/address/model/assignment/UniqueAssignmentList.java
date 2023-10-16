@@ -72,6 +72,10 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
         }
     }
 
+    /**
+     * Mark an assignment as complete
+     * @param toMark assignment to be marked
+     */
     public void mark(Assignment toMark) {
         requireNonNull(toMark);
         int index = internalList.indexOf(toMark);
