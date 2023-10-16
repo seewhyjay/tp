@@ -91,6 +91,8 @@ public interface Model {
 
     void addAssignment(Assignment assignment);
 
+    void deleteAssignment(Assignment target);
+
     ObservableList<Assignment> getFilteredAssignmentList();
 
     /**

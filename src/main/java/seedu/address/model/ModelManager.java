@@ -120,6 +120,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteAssignment(Assignment target) {
+        addressBook.removeAssignment(target);
+    }
+
+    @Override
     public void addAssignment(Assignment assignment) {
         requireNonNull(assignment);
         addressBook.addAssignment(assignment);

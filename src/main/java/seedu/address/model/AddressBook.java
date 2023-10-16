@@ -138,6 +138,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         assignments.add(assignment);
     }
 
+    public void removeAssignment(Assignment key) {
+        assignments.remove(key);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

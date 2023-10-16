@@ -14,12 +14,14 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.commands.assignment.AddAssignmentCommand;
+import seedu.address.logic.commands.assignment.DeleteAssignmentCommand;
 import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.commands.person.EditCommand;
 import seedu.address.logic.commands.person.FindCommand;
 import seedu.address.logic.commands.person.ListCommand;
 import seedu.address.logic.parser.assignment.AddAssignmentParser;
+import seedu.address.logic.parser.assignment.DeleteAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.AddCommandParser;
 import seedu.address.logic.parser.person.DeleteCommandParser;
@@ -89,6 +91,9 @@ public class AddressBookParser {
 
         case ListAssignmentCommand.COMMAND_WORD:
             return new ListAssignmentCommand();
+            
+        case DeleteAssignmentCommand.COMMAND_WORD:
+            return new DeleteAssignmentParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

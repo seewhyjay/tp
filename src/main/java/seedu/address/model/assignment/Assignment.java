@@ -16,18 +16,11 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Assignment {
-
-
     private final Name name;
-
     private Date enddate;
-
     private Status status;
-
     private Description description;
-
     private Date plannedFinishDate;
-
     private Set<Tag> tags = new HashSet<>();
 
     /**
