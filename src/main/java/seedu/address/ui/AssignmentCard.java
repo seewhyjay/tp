@@ -51,10 +51,10 @@ public class AssignmentCard extends UiPart<Region> {
         this.assignment = assignment;
         id.setText(displayedIndex + ". ");
         name.setText(assignment.getName().toString());
-        description.setText(assignment.getDescription().toString());
-        endDate.setText(assignment.getEnd().toString());
-        status.setText(assignment.getStatus().toString());
-        plannedFinishDate.setText(assignment.getPlannedFinishDate().toString());
+        description.setText("Description: " + assignment.getDescription().toString());
+        endDate.setText("Deadline: " + assignment.getEnd().toString());
+        status.setText("Status: " + assignment.getStatus().toString());
+        plannedFinishDate.setText("Plan to finish by: " + assignment.getPlannedFinishDate().toString());
         assignment.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
