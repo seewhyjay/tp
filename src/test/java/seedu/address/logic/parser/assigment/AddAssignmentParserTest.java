@@ -107,72 +107,74 @@ public class AddAssignmentParserTest {
     public void parse_multipleName_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/1111-11-11 23:59 "
                 + "d/description p/1111-11-11 11:11 t/cs2100 n/task2";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Multiple values specified for the following single-valued field(s): n/");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): n/");
     }
 
     @Test
     public void parse_multipleStatus_fail() throws ParseException {
         String invalidInput = " n/task1 s/incomplete s/complete e/1111-11-11 23:59 "
                 + "d/description p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Multiple values specified for the following single-valued field(s): s/");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): s/");
     }
 
     @Test
     public void parse_multipleEndDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/1111-11-11 23:59 e/1111-11-11 11:11 "
                 + "d/description p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Multiple values specified for the following single-valued field(s): e/");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): e/");
     }
 
     @Test
     public void parse_multipleDescription_fail() throws ParseException {
         String invalidInput = " n/task1 s/incomplete e/1111-11-11 23:59 "
                 + "d/description d/description1 d/description3 p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Multiple values specified for the following single-valued field(s): d/");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): d/");
     }
 
     @Test
     public void parse_invalidName_fail() throws ParseException {
         String invalidInput = " n/ s/complete e/1111-11-11 23:59 d/description p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Name cannot be empty");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Name cannot be empty");
     }
 
     @Test
     public void parse_invalidDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/1111-11-11 25:59 d/description p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Enter date in yyyy-mm-dd HH:mm format");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Enter date in yyyy-mm-dd HH:mm format");
     }
 
     @Test
     public void parse_invalidStatus_fail() throws ParseException {
         String invalidInput = " n/task1 s/completee e/1111-11-11 23:59 d/description p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Enter a valid status input: s/done, s/undone");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Enter a valid status input: s/complete, s/incomplete");
     }
 
     @Test
     public void parse_invalidPlannedDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/1111-11-11 23:59 d/description p/1111-11-1 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput),
-                "Enter date in yyyy-mm-dd HH:mm format");
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(e.getMessage(), "Enter date in yyyy-mm-dd HH:mm format");
     }
 
     @Test
     public void parse_missingName_fail() throws ParseException {
         String invalidInput = " s/complete e/1111-11-11 23:59 d/description p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput), invalidCommandMessage);
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(invalidCommandMessage, e.getMessage());
     }
 
 
     @Test
     public void parse_missingEndDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete d/description p/1111-11-11 11:11 t/cs2100";
-        assertThrows(ParseException.class, () -> parser.parse(invalidInput), invalidCommandMessage);
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertEquals(invalidCommandMessage, e.getMessage());
     }
 }
