@@ -116,11 +116,6 @@ public class ModelManager implements Model {
 
     //====== Filtered Assignment List Accessors==========================
     @Override
-    public ObservableList<Assignment> getFilteredAssignmentList() {
-        return filteredAssignments;
-    };
-
-    @Override
     public void markAsComplete(Assignment toMark) {
         addressBook.markAssignment(toMark);
     }

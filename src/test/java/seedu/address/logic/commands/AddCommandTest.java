@@ -160,6 +160,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void markAsComplete(Assignment toMark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -176,6 +181,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

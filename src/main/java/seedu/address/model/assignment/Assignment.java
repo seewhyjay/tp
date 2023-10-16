@@ -57,6 +57,9 @@ public class Assignment {
         return plannedFinishDate;
     }
 
+    public void mark() {
+        this.status = new Status(true);
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
