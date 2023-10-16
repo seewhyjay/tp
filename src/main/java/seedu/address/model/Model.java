@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
@@ -86,6 +86,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    boolean hasAssignment(Assignment assignment);
+
+    void addAssignment(Assignment assignment);
+
+    void deleteAssignment(Assignment target);
+
     /** Returns an unmodifiable view of the filtered assignment list */
     ObservableList<Assignment> getFilteredAssignmentList();
 
@@ -93,5 +99,5 @@ public interface Model {
      * Marks the given assignment as complete.
      * The assignment must exist in Campus Companion.
      */
-    void markAsComplete(Assignment assignment);
+    void markAsComplete(Assignment target);
 }

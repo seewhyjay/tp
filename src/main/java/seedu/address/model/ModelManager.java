@@ -23,7 +23,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
     private final FilteredList<Assignment> filteredAssignments;
 
     /**
@@ -37,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
     }
 
     public ModelManager() {
@@ -114,6 +114,33 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //====== Filtered Assignment List Accessors==========================
+    @Override
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return filteredAssignments;
+    };
+
+    @Override
+    public void markAsComplete(Assignment assignment) {
+        addressBook.mark(assignment);
+    }
+
+    @Override
+    public boolean hasAssignment(Assignment assignment) {
+        return addressBook.hasAssignment(assignment);
+    }
+
+    @Override
+    public void deleteAssignment(Assignment target) {
+        addressBook.removeAssignment(target);
+    }
+
+    @Override
+    public void addAssignment(Assignment assignment) {
+        requireNonNull(assignment);
+        addressBook.addAssignment(assignment);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -145,16 +172,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
-    }
-    //====== Filtered Assignment List ===============================================
-    @Override
-    public ObservableList<Assignment> getFilteredAssignmentList() {
-        return filteredAssignments;
-    };
-
-    @Override
-    public void markAsComplete(Assignment assignment) {
-        addressBook.mark(assignment);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredAssignments.equals(otherModelManager.filteredAssignments);
     }
 }
