@@ -17,7 +17,7 @@ import seedu.address.model.assignment.Assignment;
 
 /**
  * Adds an assignment to the
- * current list of assignments when executed
+ * current list of assignments when executed.
  */
 public class AddAssignmentCommand extends Command {
 

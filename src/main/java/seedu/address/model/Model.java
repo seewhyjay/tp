@@ -93,7 +93,14 @@ public interface Model {
 
     void deleteAssignment(Assignment target);
 
+    /** Returns an unmodifiable view of the filtered assignment list */
     ObservableList<Assignment> getFilteredAssignmentList();
+
+    /**
+     * Marks the given assignment as complete.
+     * The assignment must exist in Campus Companion.
+     */
+    void markAsComplete(Assignment target);
 
     /**
      * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.
