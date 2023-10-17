@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
 
 /**
@@ -107,4 +108,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
+
+    /**
+     * Edits the description of an assignment.
+     * The assignment must exist in Campus Companion.
+     */
+    void editAssignment(Assignment assignment, Description newDescription);
 }
