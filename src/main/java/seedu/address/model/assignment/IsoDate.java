@@ -2,6 +2,7 @@ package seedu.address.model.assignment;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -14,6 +15,8 @@ import java.time.format.DateTimeParseException;
 public class IsoDate extends Date {
 
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
+
+    public static final String DATE_FORMAT_WITHOUT_TIME = "yyyy-MM-dd";
 
     public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
 
@@ -36,7 +39,35 @@ public class IsoDate extends Date {
     public static boolean isValidIsoDate(String date) {
         try {
             DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            df.parse(date);
+            LocalDateTime d = LocalDateTime.parse(date, df);
+            return !d.isBefore(LocalDateTime.now());
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * @param date to be verified
+     * @return true if valid date, false otherwise
+     */
+    public static boolean isValidIsoDateWithoutTime(String date) {
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME);
+            LocalDate d = LocalDate.parse(date, df);
+            return !d.isBefore(LocalDate.now());
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * @param date to be verified
+     * @return true if valid date, false otherwise
+     */
+    public static boolean isValidSavedDate(String date) {
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            LocalDateTime.parse(date, df);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -72,4 +103,5 @@ public class IsoDate extends Date {
     public String toSaveData() {
         return endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
+
 }

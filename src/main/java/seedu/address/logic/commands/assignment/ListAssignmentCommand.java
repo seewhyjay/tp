@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.assignment;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENTS;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENTS;
 
 /**
  * Lists all persons in the address book to the user.
@@ -22,5 +22,5 @@ public class ListAssignmentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENTS);
         return new CommandResult(MESSAGE_SUCCESS);
-}
+    }
 }

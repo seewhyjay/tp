@@ -13,14 +13,21 @@ import org.junit.jupiter.api.Test;
 public class IsoDateTest {
 
     private String invalidDate = "1111-11-40 11:50";
+    private String invalidDate2 = "1111-11-40";
 
-    private String validDate = "1111-11-11 11:50";
-    private String validDate2 = "1111-11-11 11:51";
+    private String validDate = "2025-11-11 11:50";
+    private String validDate2 = "2025-11-11 11:51";
+    private String validDate3 = "2025-11-11";
 
     @Test
     public void isValidDate() {
+        // Date with time
         assertTrue(IsoDate.isValidIsoDate(validDate));
         assertFalse(IsoDate.isValidIsoDate(invalidDate));
+
+        //Date without time
+        assertTrue(IsoDate.isValidIsoDateWithoutTime(validDate3));
+        assertFalse(IsoDate.isValidIsoDateWithoutTime(invalidDate2));
     }
 
     @Test

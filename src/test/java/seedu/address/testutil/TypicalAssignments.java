@@ -1,5 +1,16 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DEADLINE_ASSIGNMENT;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DESCRIPTION_ASSIGNMENT;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DESCRIPTION_PROJECT;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_NAME_ASSIGNMENT;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_NAME_PROJECT;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_PLANNED_DATE;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_STATUS_DONE;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_STATUS_UNDONE;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_TAG_ASSIGNMENT;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_TAG_PROJECT;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,18 +21,23 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.IsoDate;
 
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_NAME_ASSIGNMENT;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_NAME_PROJECT;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_STATUS_UNDONE;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_STATUS_DONE;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DEADLINE_ASSIGNMENT;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_PLANNED_DATE;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DESCRIPTION_ASSIGNMENT;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DESCRIPTION_PROJECT;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_TAG_ASSIGNMENT;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_TAG_PROJECT;
-
+/**
+ * Typical Assignments
+ */
 public class TypicalAssignments {
+
+    // Manually added - Assignment's details found in {@code CommandAssignmentTestUtil}
+    public static final Assignment ASSIGNMENT5 = new AssignmentBuilder().withName(VALID_NAME_ASSIGNMENT)
+            .withStatus(VALID_STATUS_DONE).withDescription(VALID_DESCRIPTION_ASSIGNMENT)
+            .withDeadline(VALID_DEADLINE_ASSIGNMENT)
+            .withPlannedDate(VALID_PLANNED_DATE)
+            .withTags(VALID_TAG_ASSIGNMENT).build();
+    public static final Assignment ASSIGNMENT6 = new AssignmentBuilder().withName(VALID_NAME_PROJECT)
+            .withStatus(VALID_STATUS_UNDONE).withDescription(VALID_DESCRIPTION_PROJECT)
+            .withDeadline(VALID_DEADLINE_ASSIGNMENT)
+            .withPlannedDate(VALID_PLANNED_DATE)
+            .withTags(VALID_TAG_PROJECT).build();
+
     private static final LocalDateTime exampleDate1 =
             LocalDateTime.parse("2023-11-29 18:00", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
 
@@ -52,18 +68,6 @@ public class TypicalAssignments {
             .withDeadline(exampleDate4)
             .withPlannedDate(exampleDate4)
             .withTags("Milestone").build();
-
-    // Manually added - Assignment's details found in {@code CommandAssignmentTestUtil}
-    public static final Assignment ASSIGNMENT5 = new AssignmentBuilder().withName(VALID_NAME_ASSIGNMENT)
-            .withStatus(VALID_STATUS_DONE).withDescription(VALID_DESCRIPTION_ASSIGNMENT)
-            .withDeadline(VALID_DEADLINE_ASSIGNMENT)
-            .withPlannedDate(VALID_PLANNED_DATE)
-            .withTags(VALID_TAG_ASSIGNMENT).build();
-    public static final Assignment ASSIGNMENT6 = new AssignmentBuilder().withName(VALID_NAME_PROJECT)
-            .withStatus(VALID_STATUS_UNDONE).withDescription(VALID_DESCRIPTION_PROJECT)
-            .withDeadline(VALID_DEADLINE_ASSIGNMENT)
-            .withPlannedDate(VALID_PLANNED_DATE)
-            .withTags(VALID_TAG_PROJECT).build();
 
     private TypicalAssignments() {} // prevents instantiation
 

@@ -68,10 +68,19 @@ public class ParserUtil {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!IsoDate.isValidIsoDate(date)) {
-            throw new ParseException("Enter date in yyyy-mm-dd HH:mm format");
+
+        if (IsoDate.isValidIsoDate(trimmedDate)) {
+            return new IsoDate(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
-        return new IsoDate(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
+
+        if (IsoDate.isValidIsoDateWithoutTime(trimmedDate)) {
+            return new IsoDate(LocalDateTime.parse(date + " 23:59",
+                    DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
+        }
+
+        throw new ParseException("Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) format "
+                + "and given date must not be before today's date");
+
     }
 
     /**

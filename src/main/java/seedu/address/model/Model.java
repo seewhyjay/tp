@@ -86,7 +86,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-    void updateFilteredAssignmentList(Predicate<Assignment> predicate);
 
     boolean hasAssignment(Assignment assignment);
 

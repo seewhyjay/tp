@@ -101,7 +101,7 @@ class JsonAdaptedAssignment {
                     + String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
 
-        if (!IsoDate.isValidIsoDate(endDate)) {
+        if (!IsoDate.isValidSavedDate(endDate)) {
             throw new IllegalValueException("EndDate Not Valid " + IsoDate.MESSAGE_CONSTRAINTS);
         }
 
@@ -109,7 +109,7 @@ class JsonAdaptedAssignment {
                 DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
 
 
-        if (plannedFinishDate != null && !IsoDate.isValidIsoDate(plannedFinishDate)) {
+        if (plannedFinishDate != null && !IsoDate.isValidSavedDate(plannedFinishDate)) {
             throw new IllegalValueException("PlannedFinishDate" + IsoDate.MESSAGE_CONSTRAINTS);
         }
 

@@ -142,6 +142,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         assignments.remove(key);
     }
 
+    /**
+     * Mark an assignment as complete
+     * @param toMark the assignment to be marked
+     */
     public void markAssignment(Assignment toMark) {
         requireNonNull(toMark);
         assignments.mark(toMark);
