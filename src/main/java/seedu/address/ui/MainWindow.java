@@ -1,14 +1,20 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -31,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private YearMonth selectedCalendarView = YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth());
 
     // Independent Ui parts residing in this Ui container
 
@@ -77,6 +84,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane selectedListPanelPlaceholder;
 
+    @FXML
+    private GridPane calendar;
+
+    @FXML
+    private Label calendarDate;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -150,6 +162,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        initCalender();
     }
 
     /**
@@ -241,5 +255,58 @@ public class MainWindow extends UiPart<Stage> {
     public void handleSetAssignmentView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+    }
+
+    private void initCalender() {
+        calendar.setMinWidth(Region.USE_COMPUTED_SIZE);
+        int currDay = 1;
+        int lengthOfMonth = selectedCalendarView.lengthOfMonth();
+        calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
+        for (int i = 0; i < 5; i += 1) {
+            for (int j = 0; j < 7; j += 1) {
+                Label day = new Label(Integer.toString(currDay));
+                day.getStyleClass().add("cal-day");
+                day.setMaxWidth(Double.MAX_VALUE);
+                day.setAlignment(Pos.CENTER);
+                LocalDate currDate = LocalDate.now();
+
+                if (selectedCalendarView.getMonth().equals(currDate.getMonth())
+                        && selectedCalendarView.getYear() == currDate.getYear()
+                        && currDate.getDayOfMonth() == currDay) {
+                    day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
+                }
+
+                if (currDay > lengthOfMonth) {
+                    day.setVisible(false);
+                }
+                calendar.add(day, j, i, 1, 1);
+                currDay += 1;
+            }
+        }
+    }
+
+    private void addMonth(long monthsToAdd) {
+        selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
+    }
+
+
+    /**
+     * Shows previous month when button is clicked
+     */
+    @FXML
+    public void handleCalendarLeftClick() {
+        addMonth(-1);
+        calendar.getChildren().clear();
+        initCalender();
+    }
+
+    /**
+     * Shows next month when button is clicked
+     */
+    @FXML
+    public void handleCalendarRightClick() {
+        addMonth(1);
+        calendar.getChildren().clear();
+        initCalender();
     }
 }
