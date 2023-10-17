@@ -16,6 +16,7 @@ import seedu.address.logic.commands.assignment.AddAssignmentCommand;
 import seedu.address.logic.commands.assignment.DeleteAssignmentCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
+import seedu.address.logic.commands.assignment.FindAssignmentCommand;
 import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.commands.person.EditCommand;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.person.ListCommand;
 import seedu.address.logic.parser.assignment.AddAssignmentParser;
 import seedu.address.logic.parser.assignment.DeleteAssignmentParser;
 import seedu.address.logic.parser.assignment.MarkAssignmentParser;
+import seedu.address.logic.parser.assignment.FindAssignmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.AddCommandParser;
 import seedu.address.logic.parser.person.DeleteCommandParser;
@@ -64,45 +66,49 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        case AddAssignmentCommand.COMMAND_WORD:
-            return new AddAssignmentParser().parse(arguments);
+            case AddAssignmentCommand.COMMAND_WORD:
+                return new AddAssignmentParser().parse(arguments);
 
-        case MarkAssignmentCommand.COMMAND_WORD:
-            return new MarkAssignmentParser().parse(arguments);
+            case MarkAssignmentCommand.COMMAND_WORD:
+                return new MarkAssignmentParser().parse(arguments);
 
-        case ListAssignmentCommand.COMMAND_WORD:
-            return new ListAssignmentCommand();
+            case ListAssignmentCommand.COMMAND_WORD:
+                return new ListAssignmentCommand();
 
-        case DeleteAssignmentCommand.COMMAND_WORD:
-            return new DeleteAssignmentParser().parse(arguments);
+            case DeleteAssignmentCommand.COMMAND_WORD:
+                return new DeleteAssignmentParser().parse(arguments);
 
-        default:
-            logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case FindAssignmentCommand.COMMAND_WORD:
+                return new FindAssignmentCommandParser().parse(arguments);
+
+
+            default:
+                logger.finer("This user input caused a ParseException: " + userInput);
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
