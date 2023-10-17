@@ -8,16 +8,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.assignment.AddAssignmentCommand;
+import seedu.address.logic.commands.assignment.DeleteAssignmentCommand;
+import seedu.address.logic.commands.assignment.ListAssignmentCommand;
+import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
+import seedu.address.logic.commands.person.AddCommand;
+import seedu.address.logic.commands.person.DeleteCommand;
+import seedu.address.logic.commands.person.EditCommand;
+import seedu.address.logic.commands.person.FindCommand;
+import seedu.address.logic.commands.person.ListCommand;
+import seedu.address.logic.parser.assignment.AddAssignmentParser;
+import seedu.address.logic.parser.assignment.DeleteAssignmentParser;
+import seedu.address.logic.parser.assignment.MarkAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.person.AddCommandParser;
+import seedu.address.logic.parser.person.DeleteCommandParser;
+import seedu.address.logic.parser.person.EditCommandParser;
+import seedu.address.logic.parser.person.FindCommandParser;
 
 /**
  * Parses user input.
@@ -76,6 +87,18 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddAssignmentCommand.COMMAND_WORD:
+            return new AddAssignmentParser().parse(arguments);
+
+        case MarkAssignmentCommand.COMMAND_WORD:
+            return new MarkAssignmentParser().parse(arguments);
+
+        case ListAssignmentCommand.COMMAND_WORD:
+            return new ListAssignmentCommand();
+
+        case DeleteAssignmentCommand.COMMAND_WORD:
+            return new DeleteAssignmentParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

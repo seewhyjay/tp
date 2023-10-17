@@ -8,7 +8,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -31,8 +33,15 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+
+    // Assignments
+    private AssignmentListPanel assignmentListPanel;
+
+    // Persons
     private PersonListPanel personListPanel;
+
     private ResultDisplay resultDisplay;
+
     private HelpWindow helpWindow;
 
     @FXML
@@ -42,13 +51,32 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private VBox personList;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private VBox assignmentList;
+
+    @FXML
+    private StackPane assignmentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private HBox viewSwitcher;
+
+    @FXML
+    private VBox selectedList;
+
+    @FXML
+    private StackPane selectedListPanelPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -111,7 +139,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
+        selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +192,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public AssignmentListPanel getAssignmentListPanel() {
+        return assignmentListPanel;
     }
 
     /**
@@ -192,5 +221,25 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Display a list of person when
+     * button is clicked
+     */
+    @FXML
+    public void handleSetPersonView() {
+        selectedListPanelPlaceholder.getChildren().clear();
+        selectedListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    /**
+     * Display a list of assignment
+     * when button is clicked
+     */
+    @FXML
+    public void handleSetAssignmentView() {
+        selectedListPanelPlaceholder.getChildren().clear();
+        selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
     }
 }

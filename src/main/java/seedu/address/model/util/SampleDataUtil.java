@@ -1,11 +1,18 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Description;
+import seedu.address.model.assignment.IsoDate;
+import seedu.address.model.assignment.NoDate;
+import seedu.address.model.assignment.Status;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,10 +47,31 @@ public class SampleDataUtil {
         };
     }
 
+    private static Assignment[] getSampleAssignments() {
+        return new Assignment[] {
+            new Assignment(new seedu.address.model.assignment.Name("task1"),
+                    new IsoDate(LocalDateTime.parse("2024-11-11 23:59",
+                            DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
+                    new Status(true), new Description("description"),
+                    new IsoDate(LocalDateTime.parse("2024-11-11 11:11",
+                            DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
+                    Set.of(new Tag("cs2100"))),
+            new Assignment(new seedu.address.model.assignment.Name("task2"),
+                    new IsoDate(LocalDateTime.parse("2024-11-11 23:59",
+                            DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
+                    new Status(true), new Description("description"),
+                    new NoDate(), Set.of(new Tag("cs2103"))),
+
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Assignment assignment : getSampleAssignments()) {
+            sampleAb.addAssignment(assignment);
         }
         return sampleAb;
     }
@@ -56,5 +84,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
