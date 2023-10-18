@@ -257,7 +257,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void initCalendar() {
-        handleCalenderChange(0);
+        handleCalendarChange(0);
     }
 
     private void addDaysIndicator(GridPane calendar) {
@@ -316,7 +316,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void handleCalenderChange(int monthsToAdd) {
+    private void handleCalendarChange(int monthsToAdd) {
         // Updating calendar by on the button pressed by user
         selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
 
@@ -382,7 +382,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleCalendarLeftClick() {
         calendar.getChildren().clear();
-        handleCalenderChange(-1);
+        handleCalendarChange(-1);
     }
 
     /**
@@ -392,6 +392,6 @@ public class MainWindow extends UiPart<Stage> {
     public void handleCalendarRightClick() {
 
         calendar.getChildren().clear();
-        handleCalenderChange(1);
+        handleCalendarChange(1);
     }
 }
