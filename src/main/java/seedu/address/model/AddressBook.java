@@ -34,7 +34,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         assignments = new UniqueAssignmentList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -145,15 +146,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Mark an assignment as complete
+     *
      * @param toMark the assignment to be marked
      */
     public void markAssignment(Assignment toMark) {
         requireNonNull(toMark);
         assignments.mark(toMark);
     }
-  
-    /** 
+
+    /**
      * UnMark an assignment and set its status as incomplete
+     *
      * @param toUnMark the assignment to be marked
      */
     public void unMarkAssignment(Assignment toUnMark) {
@@ -163,6 +166,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Edits the target assignment's description
+     *
      * @param newDescription The input description
      */
     public void editAssignment(Assignment assignment, Description newDescription) {
