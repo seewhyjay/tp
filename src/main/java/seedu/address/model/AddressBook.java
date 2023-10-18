@@ -152,6 +152,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         assignments.mark(toMark);
     }
 
+    /**
+     * Edits the target assignment's description
+     * @param newDescription The input description
+     */
     public void editAssignment(Assignment assignment, Description newDescription) {
         requireNonNull(assignment);
         assignments.edit(assignment, newDescription);

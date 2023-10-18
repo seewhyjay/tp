@@ -2,11 +2,7 @@ package seedu.address.logic.commands.assignment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_PLANNEDFINISHDATE;
-import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
 
 import java.util.List;
 
@@ -23,7 +19,7 @@ import seedu.address.model.assignment.Description;
 /**
  * A command that edits the description of an assignment when executed.
  */
-public class EditAssignmentCommand extends Command{
+public class EditAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "edit-a";
 
@@ -39,7 +35,11 @@ public class EditAssignmentCommand extends Command{
     private final Index index;
     private final Description newDescription;
 
-
+    /**
+     * The constructor for an EditAssignmentCommand
+     * @param index The index of the assignment to be edited
+     * @param newDescription The new description for the target assignment
+     */
     public EditAssignmentCommand(Index index, Description newDescription) {
         this.index = index;
         this.newDescription = newDescription;
