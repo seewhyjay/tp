@@ -57,14 +57,7 @@ jobs:
           ./gradlew shadowJar
 
       - name: Upload jar file as artifact
-        if: runner.os == 'Linux'
-        uses: gavv/pull-request-artifacts@v2
+        uses: actions/upload-artifact@v3
         with:
-          # Commit hash that triggered PR
-          commit: ${{ github.event.pull_request.head.sha }}
-
-          # Token for current repo (used to post PR comment)
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-          artifacts: |
-            build/libs/CampusCompanion.jar
+          name: CampusCompanion executable
+          path: build/libs/CampusCompanion.jar
