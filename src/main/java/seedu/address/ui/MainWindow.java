@@ -2,9 +2,13 @@ package seedu.address.ui;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,6 +18,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -23,6 +28,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.Assignment;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,6 +38,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    private static final int maxNumOfNamesToDisplay = 2;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -228,11 +237,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } finally {
+            handleCalendarChange(0);
         }
     }
 
@@ -316,7 +328,27 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void addNamesToCell(VBox vbox, LinkedList<String> names) {
+        int currCount = 0;
+
+        for (String name : names) {
+            if (currCount >= maxNumOfNamesToDisplay) {
+                break;
+            }
+            Label l = new Label(name);
+            l.setWrapText(true);
+            l.setMaxWidth(500000);
+            l.setStyle("-fx-text-fill: #ebebeb; -fx-background-color: #262626; "
+                    + "-fx-background-radius: 0.5em; -fx-max-height: 30;");
+            vbox.getChildren().add(l);
+            currCount += 1;
+        }
+    }
+
     private void handleCalendarChange(int monthsToAdd) {
+        // Reset calendar
+        calendar.getChildren().clear();
+
         // Updating calendar by on the button pressed by user
         selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
 
@@ -327,12 +359,26 @@ public class MainWindow extends UiPart<Stage> {
 
         LocalDate newMonthDate = selectedCalendarView.atDay(1);
         LocalDate endOfMonthDate = selectedCalendarView.atEndOfMonth();
+        HashMap<LocalDate, LinkedList<String>> dateToNameMap = getDateToTasksMap();
 
         // Loop through the entire calendar array
         while (rowIndex <= 6) {
             int columnIndex = dayToIndex(newMonthDate.getDayOfWeek());
             int val = newMonthDate.getDayOfMonth();
+            VBox dayContainer = new VBox();
+            dayContainer.setSpacing(3);
+            dayContainer.getStyleClass().add("h-pane");
+
+            calendar.add(dayContainer, columnIndex, rowIndex, 1, 1);
+
             Label day = new Label(Integer.toString(val));
+            VBox.setVgrow(day, Priority.ALWAYS);
+            dayContainer.getChildren().add(day);
+
+            // Assigning assignment names to current month only
+            if (dateToNameMap.containsKey(newMonthDate) && !newMonthDate.isAfter(endOfMonthDate)) {
+                addNamesToCell(dayContainer, dateToNameMap.get(newMonthDate));
+            }
 
             // Setting styles accordingly
             if (!newMonthDate.isAfter(endOfMonthDate)) {
@@ -342,10 +388,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (newMonthDate.equals(LocalDate.now())) {
-                day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
+                day.setStyle("-fx-text-fill: #BB66FC;");
             }
-
-            calendar.add(day, columnIndex, rowIndex, 1, 1);
 
             // Check if end of calendar column (Saturday)
             // if yes, move on to the next row (Sunday)
@@ -361,27 +405,45 @@ public class MainWindow extends UiPart<Stage> {
         // If columnIndex == 6, it means all the days are filed
         if (columnIndex != 6) {
             while (columnIndex >= 0) {
+                VBox dayContainer = new VBox();
+                dayContainer.setSpacing(3);
+                dayContainer.getStyleClass().add("h-pane");
                 Label day = new Label(Integer.toString(prevMonthDate.getDayOfMonth()));
-
-                if (prevMonthDate.equals(LocalDate.now())) {
-                    day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
-                }
-
                 prevMonthDate = prevMonthDate.plusDays(-1);
                 day.getStyleClass().add("cal-disabled");
-                calendar.add(day, columnIndex, 1, 1, 1);
+                dayContainer.getChildren().add(day);
+                calendar.add(dayContainer, columnIndex, 1, 1, 1);
                 columnIndex -= 1;
             }
         }
     }
 
+    private HashMap<LocalDate, LinkedList<String>> getDateToTasksMap() {
+        HashMap<LocalDate, LinkedList<String>> map = new HashMap<>();
+        ObservableList<Assignment> assignments = logic.getFilteredAssignmentList();
+        for (Assignment a : assignments) {
 
+            // Return an empty date if somehow a plannedDate Managed to get in
+            LocalDate endDate = a.getEnd().getDate().map(LocalDateTime::toLocalDate)
+                    .orElse(LocalDate.MIN);
+
+            if (!map.containsKey(endDate)) {
+                LinkedList<String> names = new LinkedList<>();
+                names.add(a.getName().taskName);
+                map.put(endDate, names);
+            } else {
+                map.get(endDate).add(a.getName().taskName);
+            }
+        }
+
+        return map;
+    }
+    
     /**
      * Shows previous month when button is clicked
      */
     @FXML
     public void handleCalendarLeftClick() {
-        calendar.getChildren().clear();
         handleCalendarChange(-1);
     }
 
@@ -390,8 +452,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleCalendarRightClick() {
-
-        calendar.getChildren().clear();
         handleCalendarChange(1);
     }
 }

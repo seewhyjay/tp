@@ -410,7 +410,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #262626;
-    -fx-padding: 23 3 23 3;
+    -fx-padding: 7 0 7 0;
     -fx-alignment: center;
     -fx-max-width: 50000000;
 }
@@ -419,7 +419,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Arial";
     -fx-text-fill: #ebebeb;
-    -fx-padding: 23 3 23 3;
+    -fx-padding: 7 0 7 0;
     -fx-alignment: center ;
     -fx-max-width: 50000000;
     -fx-font-weight: 700;
@@ -427,5 +427,13 @@
 
 #calendar > .bold {
     -fx-font-weight: 800;
+}
+
+.h-pane > .label {
+    -fx-alignment: top-center;
+}
+
+.h-pane {
+
 }
 
