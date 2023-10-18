@@ -67,7 +67,7 @@ jobs:
             ![badge]
 
             Build Successful! You can find a link to the downloadable artifact below.
-            
+
             | Name     | Link                    |
             | -------- | ----------------------- |
             | Commit   | ${{ env.HEAD_SHA }}     |
