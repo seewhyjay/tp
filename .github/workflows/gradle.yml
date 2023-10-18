@@ -51,16 +51,20 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Run shadowJar and upload jar file as artifact
+      - name: Run shadowJar
         if: runner.os == 'Linux'
-        uses: gavv/pull-request-artifacts@v2
         run:
           ./gradlew shadowJar
+
+      - name: Upload jar file as artifact
+        if: runner.os == 'Linux'
+        uses: gavv/pull-request-artifacts@v2
         with:
           # Commit hash that triggered PR
           commit: ${{ github.event.pull_request.head.sha }}
 
           # Token for current repo (used to post PR comment)
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+
           artifacts: |
             build/libs/CampusCompanion.jar
