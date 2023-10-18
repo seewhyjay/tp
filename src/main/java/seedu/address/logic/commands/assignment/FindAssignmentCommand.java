@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.assignment;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
@@ -7,7 +9,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all assignments in address book whose name contains any of the argument keywords.

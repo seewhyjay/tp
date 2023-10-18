@@ -1,22 +1,25 @@
 package seedu.address.logic.commands.assignment;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT3;
+import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT5;
+import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.person.FindCommand;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
 
-import java.util.Arrays;
-import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT1;
-import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT2;
-import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT3;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -53,7 +56,7 @@ public class FindAssignmentCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noAssignmentsFound() {
         String expectedMessage = String.format(MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, 0);
         AssignmentNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindAssignmentCommand command = new FindAssignmentCommand(predicate);
@@ -63,13 +66,14 @@ public class FindAssignmentCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, 3);
-        AssignmentNameContainsKeywordsPredicate predicate = preparePredicate("CS2100");
+    public void execute_multipleKeywords_multipleAssignmentsFound() {
+        String expectedMessage = String.format(MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, 2);
+        AssignmentNameContainsKeywordsPredicate predicate = preparePredicate("CS2105");
         FindAssignmentCommand command = new FindAssignmentCommand(predicate);
         expectedModel.updateFilteredAssignmentList(predicate);
+        System.out.println(expectedModel.getFilteredAssignmentList());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ASSIGNMENT1, ASSIGNMENT2, ASSIGNMENT3), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ASSIGNMENT3, ASSIGNMENT5), model.getFilteredAssignmentList());
     }
 
     @Test
