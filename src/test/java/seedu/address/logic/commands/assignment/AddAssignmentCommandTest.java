@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AssignmentBuilder;
 
@@ -93,6 +94,16 @@ public class AddAssignmentCommandTest {
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editAssignment(Assignment a, Description d) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markAsIncomplete(Assignment a) {
             throw new AssertionError("This method should not be called.");
         }
 

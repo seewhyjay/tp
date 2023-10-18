@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.control.ToggleButton?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="850" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -109,9 +110,9 @@
                   </rowConstraints>
                 </GridPane>
                 <HBox styleClass="calendarControls">
-                  <Button alignment="BOTTOM_RIGHT" onAction="#handleCalendarLeftClick">Left</Button>
+                  <ToggleButton alignment="BOTTOM_RIGHT" onAction="#handleCalendarLeftClick">Left</ToggleButton>
                   <Label maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-                  <Button alignment="CENTER_RIGHT" onAction="#handleCalendarRightClick">Right</Button>
+                  <ToggleButton alignment="CENTER_RIGHT" onAction="#handleCalendarRightClick">Right</ToggleButton>
                 </HBox>
               </VBox>
             </HBox>

@@ -85,7 +85,7 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
         internalList.get(index).mark();
         internalList.set(index, internalList.get(index));
     }
-  
+
     /**
      * UnMarks an assignment and sets its status as incomplete.
      * The assignment must exist in the list.
