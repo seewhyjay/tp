@@ -5,6 +5,7 @@ on:
   pull_request:
     # Your branch, usually "main" or "master"
     branches: [ "main" ]
+  push:
 
 jobs:
   # Main job
