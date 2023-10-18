@@ -438,7 +438,7 @@ public class MainWindow extends UiPart<Stage> {
 
         return map;
     }
-    
+
     /**
      * Shows previous month when button is clicked
      */
