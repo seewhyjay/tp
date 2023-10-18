@@ -14,26 +14,29 @@ import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 
 /**
- * Marks an assignment in the assignment list as complete.
+ * Un-marks an assignment in the assignment list,
+ * or rather, sets the assignment status as incomplete.
  */
-public class MarkAssignmentCommand extends Command {
+public class UnMarkAssignmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark-a";
+    public static final String COMMAND_WORD = "unmark-a";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an assignment as completed, "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks an assignment, "
+            + "and sets it's status as incomplete, "
             + "identified by the index number used in the displayed assignments list."
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_ASSIGNMENT_SUCCESS = "This assignment has been marked as complete: %1$s";
-    public static final String MESSAGE_ASSIGNMENT_ALREADY_COMPLETE = "This assignment is already completed.";
+    public static final String MESSAGE_UNMARK_ASSIGNMENT_SUCCESS = "This assignment has been"
+        + " marked as incomplete: %1$s";
+    public static final String MESSAGE_ASSIGNMENT_ALREADY_INCOMPLETE = "This assignment is already incomplete.";
 
     private final Index targetIndex;
 
     /**
-     * Creates a MarkAssignmentCommand to mark the specified {@code Assignment}
+     * Creates an UnMarkAssignmentCommand to unmark the specified {@code Assignment}
      */
-    public MarkAssignmentCommand(Index targetIndex) {
+    public UnMarkAssignmentCommand(Index targetIndex) {
         requireNonNull(targetIndex);
 
         this.targetIndex = targetIndex;
@@ -47,14 +50,14 @@ public class MarkAssignmentCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
-        Assignment assignmentToMark = lastShownList.get(targetIndex.getZeroBased());
+        Assignment assignmentToUnMark = lastShownList.get(targetIndex.getZeroBased());
 
-        if (assignmentToMark.getStatus().isCompleted()) {
-            throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_COMPLETE);
+        if (!assignmentToUnMark.getStatus().isCompleted()) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_INCOMPLETE);
         }
 
-        model.markAsComplete(assignmentToMark);
-        return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_SUCCESS, Messages.format(assignmentToMark)));
+        model.markAsIncomplete(assignmentToUnMark);
+        return new CommandResult(String.format(MESSAGE_UNMARK_ASSIGNMENT_SUCCESS, Messages.format(assignmentToUnMark)));
     }
 
     @Override
@@ -64,18 +67,18 @@ public class MarkAssignmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkAssignmentCommand)) {
+        if (!(other instanceof UnMarkAssignmentCommand)) {
             return false;
         }
 
-        MarkAssignmentCommand otherMarkAssignmentCommand = (MarkAssignmentCommand) other;
-        return targetIndex.equals(otherMarkAssignmentCommand.targetIndex);
+        UnMarkAssignmentCommand otherUnMarkAssignmentCommand = (UnMarkAssignmentCommand) other;
+        return targetIndex.equals(otherUnMarkAssignmentCommand.targetIndex);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("mark", targetIndex)
+                .add("unmark", targetIndex)
                 .toString();
     }
 }
