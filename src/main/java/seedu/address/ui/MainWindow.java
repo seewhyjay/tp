@@ -260,41 +260,41 @@ public class MainWindow extends UiPart<Stage> {
         handleCalenderChange(0);
     }
 
-    private void addDaysIndicator(GridPane calender) {
+    private void addDaysIndicator(GridPane calendar) {
         Label sun = new Label("Sun");
         sun.getStyleClass().add("cal-enabled");
         sun.getStyleClass().add("bold");
-        calender.add(sun, 0, 0, 1, 1);
+        calendar.add(sun, 0, 0, 1, 1);
 
         Label mon = new Label("Mo");
         mon.getStyleClass().add("cal-enabled");
         mon.getStyleClass().add("bold");
-        calender.add(mon, 1, 0, 1, 1);
+        calendar.add(mon, 1, 0, 1, 1);
 
         Label tues = new Label("Tu");
         tues.getStyleClass().add("cal-enabled");
         tues.getStyleClass().add("bold");
-        calender.add(tues, 2, 0, 1, 1);
+        calendar.add(tues, 2, 0, 1, 1);
 
         Label wed = new Label("Wed");
         wed.getStyleClass().add("cal-enabled");
         wed.getStyleClass().add("bold");
-        calender.add(wed, 3, 0, 1, 1);
+        calendar.add(wed, 3, 0, 1, 1);
 
         Label thurs = new Label("Th");
         thurs.getStyleClass().add("cal-enabled");
         thurs.getStyleClass().add("bold");
-        calender.add(thurs, 4, 0, 1, 1);
+        calendar.add(thurs, 4, 0, 1, 1);
 
         Label fri = new Label("Fri");
         fri.getStyleClass().add("cal-enabled");
         fri.getStyleClass().add("bold");
-        calender.add(fri, 5, 0, 1, 1);
+        calendar.add(fri, 5, 0, 1, 1);
 
         Label sat = new Label("Sat");
         sat.getStyleClass().add("cal-enabled");
         sat.getStyleClass().add("bold");
-        calender.add(sat, 6, 0, 1, 1);
+        calendar.add(sat, 6, 0, 1, 1);
     }
 
 

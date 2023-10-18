@@ -86,7 +86,6 @@
                   <rowConstraints>
                     <RowConstraints/>
                   </rowConstraints>
-
                 </GridPane>
 
                 <GridPane fx:id="calendar" minWidth="-1">
