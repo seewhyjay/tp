@@ -76,7 +76,7 @@ public class AddAssignmentCommandTest {
         // null -> returns false
         assertFalse(addOneCommand.equals(null));
 
-        // different person -> returns false
+        // different assignment -> returns false
         assertFalse(addOneCommand.equals(addTwoCommand));
     }
 
@@ -121,6 +121,7 @@ public class AddAssignmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        // Need this cus otherwise this is a abstract class - unless want to change the Model class
         @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
@@ -197,9 +198,9 @@ public class AddAssignmentCommandTest {
     private class ModelStubWithAssignment extends ModelStub {
         private final Assignment assignment;
 
-        ModelStubWithAssignment(Assignment person) {
-            requireNonNull(person);
-            this.assignment = person;
+        ModelStubWithAssignment(Assignment assignment) {
+            requireNonNull(assignment);
+            this.assignment = assignment;
         }
 
         @Override
@@ -210,7 +211,7 @@ public class AddAssignmentCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the assignment being added.
      */
     private class ModelStubAcceptingAssignmentAdded extends ModelStub {
         final ArrayList<Assignment> assignmentsAdded = new ArrayList<>();
