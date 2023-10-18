@@ -162,7 +162,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        initCalender();
+        initCalendar();
     }
 
     /**
@@ -256,7 +256,7 @@ public class MainWindow extends UiPart<Stage> {
         selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
     }
 
-    private void initCalender() {
+    private void initCalendar() {
         handleCalenderChange(0);
     }
 
