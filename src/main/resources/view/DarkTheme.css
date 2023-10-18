@@ -176,6 +176,7 @@
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
+    -fx-border-radius: 2em;
 }
 
 .list-cell .label {
@@ -409,7 +410,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #262626;
-    -fx-padding: 23 18 23 18;
+    -fx-padding: 23 3 23 3;
     -fx-alignment: center;
     -fx-max-width: 50000000;
 }
@@ -418,7 +419,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Arial";
     -fx-text-fill: #ebebeb;
-    -fx-padding: 23 18 23 18;
+    -fx-padding: 23 3 23 3;
     -fx-alignment: center ;
     -fx-max-width: 50000000;
     -fx-font-weight: 700;
@@ -427,3 +428,4 @@
 #calendar > .bold {
     -fx-font-weight: 800;
 }
+
