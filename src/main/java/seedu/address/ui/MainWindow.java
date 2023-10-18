@@ -1,12 +1,12 @@
 package seedu.address.ui;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -14,7 +14,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -258,35 +257,122 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void initCalender() {
-        calendar.setMinWidth(Region.USE_COMPUTED_SIZE);
-        int currDay = 1;
-        int lengthOfMonth = selectedCalendarView.lengthOfMonth();
-        calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
-        for (int i = 0; i < 5; i += 1) {
-            for (int j = 0; j < 7; j += 1) {
-                Label day = new Label(Integer.toString(currDay));
-                day.getStyleClass().add("cal-day");
-                day.setMaxWidth(Double.MAX_VALUE);
-                day.setAlignment(Pos.CENTER);
-                LocalDate currDate = LocalDate.now();
+        handleCalenderChange(0);
+    }
 
-                if (selectedCalendarView.getMonth().equals(currDate.getMonth())
-                        && selectedCalendarView.getYear() == currDate.getYear()
-                        && currDate.getDayOfMonth() == currDay) {
-                    day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
-                }
+    private void addDaysIndicator(GridPane calender) {
+        Label sun = new Label("Sun");
+        sun.getStyleClass().add("cal-enabled");
+        sun.getStyleClass().add("bold");
+        calender.add(sun, 0, 0, 1, 1);
 
-                if (currDay > lengthOfMonth) {
-                    day.setVisible(false);
-                }
-                calendar.add(day, j, i, 1, 1);
-                currDay += 1;
-            }
+        Label mon = new Label("Mo");
+        mon.getStyleClass().add("cal-enabled");
+        mon.getStyleClass().add("bold");
+        calender.add(mon, 1, 0, 1, 1);
+
+        Label tues = new Label("Tu");
+        tues.getStyleClass().add("cal-enabled");
+        tues.getStyleClass().add("bold");
+        calender.add(tues, 2, 0, 1, 1);
+
+        Label wed = new Label("Wed");
+        wed.getStyleClass().add("cal-enabled");
+        wed.getStyleClass().add("bold");
+        calender.add(wed, 3, 0, 1, 1);
+
+        Label thurs = new Label("Th");
+        thurs.getStyleClass().add("cal-enabled");
+        thurs.getStyleClass().add("bold");
+        calender.add(thurs, 4, 0, 1, 1);
+
+        Label fri = new Label("Fri");
+        fri.getStyleClass().add("cal-enabled");
+        fri.getStyleClass().add("bold");
+        calender.add(fri, 5, 0, 1, 1);
+
+        Label sat = new Label("Sat");
+        sat.getStyleClass().add("cal-enabled");
+        sat.getStyleClass().add("bold");
+        calender.add(sat, 6, 0, 1, 1);
+    }
+
+
+    private int dayToIndex(DayOfWeek d) {
+        if (d == DayOfWeek.SUNDAY) {
+            return 0;
+        } else if (d == DayOfWeek.MONDAY) {
+            return 1;
+        } else if (d == DayOfWeek.TUESDAY) {
+            return 2;
+        } else if (d == DayOfWeek.WEDNESDAY) {
+            return 3;
+        } else if (d == DayOfWeek.THURSDAY) {
+            return 4;
+        } else if (d == DayOfWeek.FRIDAY) {
+            return 5;
+        } else {
+            return 6;
         }
     }
 
-    private void addMonth(long monthsToAdd) {
+    private void handleCalenderChange(int monthsToAdd) {
+        // Updating calendar by on the button pressed by user
         selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
+
+        calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
+        addDaysIndicator(calendar);
+
+        int rowIndex = 1;
+
+        LocalDate newMonthDate = selectedCalendarView.atDay(1);
+        LocalDate endOfMonthDate = selectedCalendarView.atEndOfMonth();
+
+        // Loop through the entire calendar array
+        while (rowIndex <= 6) {
+            int columnIndex = dayToIndex(newMonthDate.getDayOfWeek());
+            int val = newMonthDate.getDayOfMonth();
+            Label day = new Label(Integer.toString(val));
+
+            // Setting styles accordingly
+            if (!newMonthDate.isAfter(endOfMonthDate)) {
+                day.getStyleClass().add("cal-enabled");
+            } else {
+                day.getStyleClass().add("cal-disabled");
+            }
+
+            if (newMonthDate.equals(LocalDate.now())) {
+                day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
+            }
+
+            calendar.add(day, columnIndex, rowIndex, 1, 1);
+
+            // Check if end of calendar column (Saturday)
+            // if yes, move on to the next row (Sunday)
+            if (columnIndex == 6) {
+                rowIndex += 1;
+            }
+            newMonthDate = newMonthDate.plusDays(1);
+        }
+
+        LocalDate prevMonthDate = selectedCalendarView.plusMonths(-1).atEndOfMonth();
+        int columnIndex = dayToIndex(prevMonthDate.getDayOfWeek());
+
+        // If columnIndex == 6, it means all the days are filed
+        if (columnIndex != 6) {
+            while (columnIndex >= 0) {
+                Label day = new Label(Integer.toString(prevMonthDate.getDayOfMonth()));
+
+                if (prevMonthDate.equals(LocalDate.now())) {
+                    day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
+                }
+
+                prevMonthDate = prevMonthDate.plusDays(-1);
+                day.getStyleClass().add("cal-disabled");
+                calendar.add(day, columnIndex, 1, 1, 1);
+                columnIndex -= 1;
+            }
+        }
     }
 
 
@@ -295,9 +381,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleCalendarLeftClick() {
-        addMonth(-1);
         calendar.getChildren().clear();
-        initCalender();
+        handleCalenderChange(-1);
     }
 
     /**
@@ -305,8 +390,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleCalendarRightClick() {
-        addMonth(1);
+
         calendar.getChildren().clear();
-        initCalender();
+        handleCalenderChange(1);
     }
 }

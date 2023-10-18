@@ -71,12 +71,6 @@
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
-.cal-day {
-    -fx-font-size: 18pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #ebebeb;
-    -fx-padding: 18 18 18 18;
-}
 
 .label-bright {
     -fx-font-size: 11pt;
@@ -408,4 +402,27 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.cal-disabled {
+    -fx-font-size: 18pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #262626;
+    -fx-padding: 23 18 23 18;
+    -fx-alignment: center;
+    -fx-max-width: 50000000;
+}
+
+.cal-enabled {
+    -fx-font-size: 18pt;
+    -fx-font-family: "Arial";
+    -fx-text-fill: #ebebeb;
+    -fx-padding: 23 18 23 18;
+    -fx-alignment: center ;
+    -fx-max-width: 50000000;
+    -fx-font-weight: 700;
+}
+
+#calendar > .bold {
+    -fx-font-weight: 800;
 }
