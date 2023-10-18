@@ -151,6 +151,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(toMark);
         assignments.mark(toMark);
     }
+  
+    /** 
+     * UnMark an assignment and set its status as incomplete
+     * @param toUnMark the assignment to be marked
+     */
+    public void unMarkAssignment(Assignment toUnMark) {
+        requireNonNull(toUnMark);
+        assignments.unMark(toUnMark);
+    }
 
     /**
      * Edits the target assignment's description
