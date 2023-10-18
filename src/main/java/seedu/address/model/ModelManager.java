@@ -121,6 +121,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markAsIncomplete(Assignment toUnMark) {
+        addressBook.unMarkAssignment(toUnMark);
+    }
+
+    @Override
     public boolean hasAssignment(Assignment assignment) {
         return addressBook.hasAssignment(assignment);
     }

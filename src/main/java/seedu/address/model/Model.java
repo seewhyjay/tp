@@ -103,6 +103,12 @@ public interface Model {
     void markAsComplete(Assignment target);
 
     /**
+     * Marks the given assignment as incomplete (UnMarks the assignment).
+     * The assignment must exist in Campus Companion.
+     */
+    void markAsIncomplete(Assignment toUnMark);
+
+    /**
      * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */

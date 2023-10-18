@@ -12,7 +12,7 @@ import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
 import seedu.address.model.assignment.exceptions.DuplicateAssignmentException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of assignments that enforces uniqueness between its elements and does not allow nulls.
  */
 public class UniqueAssignmentList implements Iterable<Assignment> {
 
@@ -29,8 +29,8 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     }
 
     /**
-     * Adds a assignment to the list.
-     * The person must not already exist in the list.
+     * Adds an assignment to the list.
+     * The assignment must not already exist in the list.
      */
     public void add(Assignment toAdd) {
         requireNonNull(toAdd);
@@ -41,7 +41,7 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedAssignment}.
+     * Replaces the assignment {@code target} in the list with {@code editedAssignment}.
      * {@code target} must exist in the list.
      * The assignment identity of {@code editedPerson} must not be
      * the same as another existing assignment in the list.
@@ -62,8 +62,8 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the assignment person from the list.
+     * The assignment must exist in the list.
      */
     public void remove(Assignment toRemove) {
         requireNonNull(toRemove);
@@ -73,8 +73,8 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     }
 
     /**
-     * Mark an assignment as complete
-     * @param toMark assignment to be marked
+     * Mark an assignment as complete.
+     * The assignment must exist in the list.
      */
     public void mark(Assignment toMark) {
         requireNonNull(toMark);
@@ -83,6 +83,20 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
             throw new AssignmentNotFoundException();
         }
         internalList.get(index).mark();
+        internalList.set(index, internalList.get(index));
+    }
+
+    /**
+     * UnMarks an assignment and sets its status as incomplete.
+     * The assignment must exist in the list.
+     */
+    public void unMark(Assignment toUnMark) {
+        requireNonNull(toUnMark);
+        int index = internalList.indexOf(toUnMark);
+        if (index == -1) {
+            throw new AssignmentNotFoundException();
+        }
+        internalList.get(index).unMark();
         internalList.set(index, internalList.get(index));
     }
 
