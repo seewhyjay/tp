@@ -17,8 +17,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="700" minHeight="600" onCloseRequest="#handleExit">
+         title="Address App" minWidth="700" minHeight="700" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png"/>
   </icons>
@@ -28,6 +29,8 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
+
+      <ScrollPane fitToHeight="true" fitToWidth="true">
 
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
@@ -61,11 +64,10 @@
         </HBox>
 
 
-        <VBox fx:id="selectedList" styleClass="pane-with-border" minWidth="340" prefWidth="400" VBox.vgrow="ALWAYS">
+        <VBox fx:id="selectedList" styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS" >
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-
 
             <GridPane VBox.vgrow="ALWAYS">
               <columnConstraints>
@@ -110,10 +112,12 @@
                 </HBox>
               </VBox>
             </GridPane>
+
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
+      </ScrollPane>
     </Scene>
   </scene>
 </fx:root>
