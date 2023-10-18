@@ -2,9 +2,7 @@ package seedu.address.logic.parser.assignment;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
@@ -29,7 +27,7 @@ public class EditAssignmentParser {
      */
     public EditAssignmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_DESCRIPTION);
-        if (!arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_ENDDATE)
+        if (!arePrefixesPresent(argumentMultimap, PREFIX_INDEX, PREFIX_DESCRIPTION)
                 || !argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAssignmentCommand.MESSAGE_USAGE));
