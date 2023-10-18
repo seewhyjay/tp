@@ -105,7 +105,7 @@ class JsonAdaptedAssignment {
             throw new IllegalValueException("EndDate Not Valid " + IsoDate.MESSAGE_CONSTRAINTS);
         }
 
-        final Date modelEndDate = new IsoDate(LocalDateTime.parse(endDate,
+        final IsoDate modelEndDate = new IsoDate(LocalDateTime.parse(endDate,
                 DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
 
 

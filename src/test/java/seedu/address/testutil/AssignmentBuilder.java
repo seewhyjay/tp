@@ -27,7 +27,7 @@ public class AssignmentBuilder {
 
     private Name name;
     private Status status;
-    private Date deadline;
+    private IsoDate deadline;
     private Date plannedEndDate;
     private Description description;
     private Set<Tag> tags;
