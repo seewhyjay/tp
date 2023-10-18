@@ -409,7 +409,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #262626;
-    -fx-padding: 23 18 23 18;
+    -fx-padding: 23 0 23 0;
     -fx-alignment: center;
     -fx-max-width: 50000000;
 }
@@ -418,7 +418,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Arial";
     -fx-text-fill: #ebebeb;
-    -fx-padding: 23 18 23 18;
+    -fx-padding: 23 0 23 0;
     -fx-alignment: center ;
     -fx-max-width: 50000000;
     -fx-font-weight: 700;
