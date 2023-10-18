@@ -110,7 +110,7 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     public void edit(Assignment assignment, Description newDescription) {
         requireNonNull(assignment);
         int index = internalList.indexOf(assignment);
-        if (index < 1) {
+        if (index < 0) {
             throw new AssignmentNotFoundException();
         }
         Assignment assignmentToEdit = internalList.get(index);
