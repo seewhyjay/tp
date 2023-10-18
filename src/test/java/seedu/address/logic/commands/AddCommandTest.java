@@ -164,7 +164,7 @@ public class AddCommandTest {
         public void markAsComplete(Assignment toMark) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void markAsIncomplete(Assignment toUnMark) {
             throw new AssertionError("This method should not be called.");
@@ -174,7 +174,7 @@ public class AddCommandTest {
         public void editAssignment(Assignment assignment, Description newDescription) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");

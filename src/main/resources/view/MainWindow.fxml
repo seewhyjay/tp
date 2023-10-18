@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -14,12 +13,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Address App" minWidth="850" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/address_book_32.png"/>
   </icons>
-  <scene>
+  <scene >
     <Scene>
       <stylesheets>
         <URL value="@DarkTheme.css" />
@@ -57,13 +60,62 @@
           <Button text="Assignment" onAction="#handleSetAssignmentView"/>
         </HBox>
 
-        <VBox fx:id="selectedList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+
+        <VBox fx:id="selectedList" styleClass="pane-with-border" minWidth="340" prefWidth="400" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="selectedListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
 
+
+            <HBox VBox.vgrow="ALWAYS">
+              <StackPane GridPane.columnIndex="0" GridPane.columnSpan="4" fx:id="selectedListPanelPlaceholder" minWidth="300" HBox.hgrow="ALWAYS"/>
+              <VBox GridPane.columnIndex="4">
+                <Label id="calendarHeader" text="Your Calendar" maxWidth="Infinity"/>
+                <Label fx:id="calendarDate" text="PLACEHOLDER" maxWidth="Infinity"/>
+                <GridPane>
+                  <columnConstraints>
+                    <ColumnConstraints  hgrow="ALWAYS" />
+                    <ColumnConstraints  hgrow="ALWAYS" />
+                    <ColumnConstraints  hgrow="ALWAYS" />
+                    <ColumnConstraints  hgrow="ALWAYS" />
+                    <ColumnConstraints  hgrow="ALWAYS" />
+                    <ColumnConstraints  hgrow="ALWAYS" />
+                    <ColumnConstraints  hgrow="ALWAYS" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints/>
+                  </rowConstraints>
+
+                </GridPane>
+
+                <GridPane fx:id="calendar" minWidth="-1">
+                  <columnConstraints>
+                    <ColumnConstraints  hgrow="ALWAYS"/>
+                    <ColumnConstraints  hgrow="ALWAYS"/>
+                    <ColumnConstraints  hgrow="ALWAYS"/>
+                    <ColumnConstraints  hgrow="ALWAYS"/>
+                    <ColumnConstraints  hgrow="ALWAYS"/>
+                    <ColumnConstraints  hgrow="ALWAYS"/>
+                    <ColumnConstraints  hgrow="ALWAYS"/>
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints vgrow="ALWAYS"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                  </rowConstraints>
+                </GridPane>
+                <HBox styleClass="calendarControls">
+                  <Button alignment="BOTTOM_RIGHT" onAction="#handleCalendarLeftClick">Left</Button>
+                  <Label maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                  <Button alignment="CENTER_RIGHT" onAction="#handleCalendarRightClick">Right</Button>
+                </HBox>
+              </VBox>
+            </HBox>
+        </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
