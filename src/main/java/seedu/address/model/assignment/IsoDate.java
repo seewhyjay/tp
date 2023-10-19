@@ -100,7 +100,7 @@ public class IsoDate extends Date {
      * @param date User input of a date without timing to be verified.
      * @return True if valid date (ie after today's date). False otherwise.
      */
-    public static boolean isValidIsoDateWithoutTimeBeforeCurrent(String date) {
+    public static boolean isValidIsoDateWithoutTimeAfterCurrent(String date) {
         try {
             DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME);
             LocalDate d = LocalDate.parse(date, df);

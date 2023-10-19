@@ -77,7 +77,7 @@ public class ParserUtil {
             return new IsoDate(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
 
-        if (IsoDate.isValidIsoDateWithoutTimeBeforeCurrent(trimmedDate)) {
+        if (IsoDate.isValidIsoDateWithoutTimeAfterCurrent(trimmedDate)) {
             return new IsoDate(LocalDateTime.parse(date + " 23:59",
                     DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
