@@ -3,6 +3,7 @@ package seedu.address.logic.commands.assignment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
@@ -25,6 +26,26 @@ import seedu.address.model.assignment.Assignment;
 public class UnMarkAssignmentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void execute_unMark_success() {
+        Assignment assignmentToUnMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        model.markAsComplete(assignmentToUnMark);
+        assertTrue(assignmentToUnMark.getStatus().toString().equals("complete"));
+        model.markAsIncomplete(assignmentToUnMark);
+        assertTrue(assignmentToUnMark.getStatus().toString().equals("incomplete"));
+    }
+
+    @Test
+    public void execute_unMarkIncompletAssignment_throwsCommandException() {
+        Assignment assignmentToUnMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        UnMarkAssignmentCommand markCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+
+        model.markAsIncomplete(assignmentToUnMark);
+        assertCommandFailure(markCommand, model,
+                String.format(UnMarkAssignmentCommand.MESSAGE_ASSIGNMENT_ALREADY_INCOMPLETE));
+    }
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);

@@ -31,7 +31,7 @@ public class CommandAssignmentTestUtil {
     public static final String VALID_NAME_PROJECT = "CS2103T Quiz";
     public static final String VALID_DESCRIPTION_ASSIGNMENT = "Assignment until K-maps";
     public static final String VALID_DESCRIPTION_PROJECT = "Lecture Quiz";
-    public static final Boolean VALID_STATUS_DONE = false;
+    public static final Boolean VALID_STATUS_DONE = true;
     public static final Boolean VALID_STATUS_UNDONE = false;
     public static final LocalDateTime VALID_DEADLINE_ASSIGNMENT =
             LocalDateTime.parse("2023-11-31 18:45", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));

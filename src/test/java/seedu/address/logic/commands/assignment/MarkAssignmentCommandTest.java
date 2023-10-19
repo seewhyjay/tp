@@ -3,7 +3,7 @@ package seedu.address.logic.commands.assignment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
@@ -28,19 +28,20 @@ public class MarkAssignmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_mark_success() {
+        Assignment assignmentToMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        model.markAsComplete(assignmentToMark);
+        assertTrue(assignmentToMark.getStatus().toString().equals("complete"));
+    }
+
+    @Test
+    public void execute_markAlreadyCompletedAssignment_throwsCommandException() {
         Assignment assignmentToMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         MarkAssignmentCommand markCommand = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
 
-        String expectedMessage = String.format(MarkAssignmentCommand.MESSAGE_MARK_ASSIGNMENT_SUCCESS,
-                Messages.format(assignmentToMark));
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.markAsComplete(assignmentToMark);
-
-        System.out.println(model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased()));
-        System.out.println(expectedModel.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased()));
-        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+        model.markAsComplete(assignmentToMark);
+        assertCommandFailure(markCommand, model,
+                String.format(MarkAssignmentCommand.MESSAGE_ASSIGNMENT_ALREADY_COMPLETE));
     }
 
     @Test
