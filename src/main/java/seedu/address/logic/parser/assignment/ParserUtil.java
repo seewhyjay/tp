@@ -73,7 +73,7 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
 
-        if (IsoDate.isValidDateBeforeToday(trimmedDate)) {
+        if (IsoDate.isValidDateNotBeforeToday(trimmedDate)) {
             return new IsoDate(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
 
@@ -102,7 +102,7 @@ public class ParserUtil {
             return new IsoDate(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
 
-        throw new ParseException("Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format");
+        throw new ParseException(IsoDate.MESSAGE_CONSTRAINTS);
     }
 
     /**

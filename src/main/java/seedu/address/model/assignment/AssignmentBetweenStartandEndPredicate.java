@@ -40,15 +40,15 @@ public class AssignmentBetweenStartandEndPredicate implements Predicate<Assignme
             return false;
         }
 
-        AssignmentBetweenStartandEndPredicate otherAssignmentDateBeforeCompare =
+        AssignmentBetweenStartandEndPredicate otherAssignmentToCompare =
                 (AssignmentBetweenStartandEndPredicate) other;
-        return dates.equals(otherAssignmentDateBeforeCompare.dates);
+        return dates.equals(otherAssignmentToCompare.dates);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("Start Date", dates.get(0))
-                .add("End Date", dates.get(0)).toString();
+                .add("End Date", dates.get(1)).toString();
     }
 }

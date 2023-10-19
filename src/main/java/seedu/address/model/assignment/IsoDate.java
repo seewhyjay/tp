@@ -15,7 +15,7 @@ public class IsoDate extends Date {
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
     public static final String DATE_FORMAT_WITHOUT_TIME = "yyyy-MM-dd";
 
-    public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
+    public static final String MESSAGE_CONSTRAINTS = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format";
 
     public final LocalDateTime endDate;
 
@@ -35,7 +35,7 @@ public class IsoDate extends Date {
      * @param date User input of a date to be verified against today's date.
      * @return True if valid date (ie after today's date). False otherwise.
      */
-    public static boolean isValidDateBeforeToday(String date) {
+    public static boolean isValidDateNotBeforeToday(String date) {
         try {
             DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDateTime d = LocalDateTime.parse(date, df);

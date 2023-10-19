@@ -25,7 +25,7 @@ public class ListAssignmentCommand extends AssignmentCommand {
             + "Parameters: "
             + "[" + PREFIX_STARTFILTER + "YYYY-MM-DD HH:mm" + "]\n"
             + "[" + PREFIX_ENDFILTER + "YYYY-MM-DD HH:mm" + "]\n"
-            + "Example: " + COMMAND_WORD + "list-a s/2023-06-18 e/2023-07-18";
+            + "Example: " + COMMAND_WORD + " s/2023-06-18 e/2023-07-18";
 
     private final Predicate<Assignment> predicate;
 
@@ -43,5 +43,25 @@ public class ListAssignmentCommand extends AssignmentCommand {
         model.updateFilteredAssignmentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListAssignmentCommand)) {
+            return false;
+        }
+
+        ListAssignmentCommand otherCommand = (ListAssignmentCommand) other;
+        return predicate.equals(otherCommand.predicate);
+    }
+
+    @Override
+    public String toString() {
+        return this.predicate.toString();
     }
 }

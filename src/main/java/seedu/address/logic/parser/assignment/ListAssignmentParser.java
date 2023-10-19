@@ -51,7 +51,7 @@ public class ListAssignmentParser implements Parser<ListAssignmentCommand> {
         parseDateForList(startFilter);
         parseDateForList(endFilter);
 
-        String[] dates = new String[]{startFilter, endFilter};
+        String[] dates = new String[] {startFilter, endFilter};
 
         AssignmentBetweenStartandEndPredicate predicate =
                 new AssignmentBetweenStartandEndPredicate(Arrays.asList(dates));
