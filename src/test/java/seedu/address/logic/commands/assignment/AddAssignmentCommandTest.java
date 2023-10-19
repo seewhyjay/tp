@@ -103,11 +103,6 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void markAsIncomplete(Assignment a) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }

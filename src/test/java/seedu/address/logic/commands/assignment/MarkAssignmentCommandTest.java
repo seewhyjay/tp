@@ -28,7 +28,7 @@ public class MarkAssignmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_markAsComplete_success() {
+    public void execute_mark_success() {
         Assignment assignmentToMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         model.markAsComplete(assignmentToMark);
         assertTrue(assignmentToMark.getStatus().toString().equals("complete"));
