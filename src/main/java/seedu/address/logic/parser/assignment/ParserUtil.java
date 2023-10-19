@@ -94,15 +94,15 @@ public class ParserUtil {
      * @return a date object
      * @throws ParseException when not in yyyy-mm-dd HH:mm format
      */
-    public static Date parseDateForList(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
+    public static Date parseDateForList(String startDate, String endDate) throws ParseException {
+        requireNonNull(startDate, endDate);
 
-        if (IsoDate.isValidIsoDate(trimmedDate)) {
-            return new IsoDate(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
+        if (!IsoDate.isValidIsoDate(startDate) || !IsoDate.isValidIsoDate(endDate) ||
+                IsoDate.isDateBefore(endDate, startDate)) {
+            throw new ParseException(IsoDate.MESSAGE_CONSTRAINTS);
         }
 
-        throw new ParseException(IsoDate.MESSAGE_CONSTRAINTS);
+        return new IsoDate(LocalDateTime.parse(startDate, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
     }
 
     /**

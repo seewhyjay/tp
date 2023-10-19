@@ -23,8 +23,8 @@ public class AssignmentBetweenStartandEndPredicate implements Predicate<Assignme
         String startDate = dates.get(0);
         String endDate = dates.get(1);
 
-        boolean isStartBeforeCompare = isDateBefore(startDate, compareDate); // True if valid
-        boolean isEndAfterCompare = isDateBefore(compareDate, endDate); // True if valid
+        boolean isStartBeforeCompare = !isDateBefore(compareDate, startDate); // True if valid
+        boolean isEndAfterCompare = !isDateBefore(endDate, compareDate); // True if valid
 
         return isStartBeforeCompare && isEndAfterCompare;
     }

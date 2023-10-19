@@ -48,8 +48,7 @@ public class ListAssignmentParser implements Parser<ListAssignmentCommand> {
         }
 
         // To verify the date format is correct - if invalid, this will throw ParseException
-        parseDateForList(startFilter);
-        parseDateForList(endFilter);
+        parseDateForList(startFilter, endFilter);
 
         String[] dates = new String[] {startFilter, endFilter};
 

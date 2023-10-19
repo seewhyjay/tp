@@ -122,4 +122,12 @@ public class ListAssignmentParserTest {
         assertParseFailure(parser, invalidInput, IsoDate.MESSAGE_CONSTRAINTS);
     }
 
+    @Test
+    public void parse_invalidPrefix_fail() throws ParseException {
+        String invalidInput = " adegf";
+        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
+        assertParseFailure(parser, invalidInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListAssignmentCommand.MESSAGE_USAGE));
+    }
+
 }
