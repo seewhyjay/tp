@@ -153,6 +153,11 @@ public class ModelManager implements Model {
         return filteredAssignments;
     }
 
+    @Override
+    public ObservableList<Assignment> getUnfilteredAssignmentList() {
+        return addressBook.getAssignmentList();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

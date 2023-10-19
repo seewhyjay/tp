@@ -97,6 +97,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered assignment list */
     ObservableList<Assignment> getFilteredAssignmentList();
 
+    ObservableList<Assignment> getUnfilteredAssignmentList();
+
     /**
      * Marks the given assignment as complete.
      * The assignment must exist in Campus Companion.

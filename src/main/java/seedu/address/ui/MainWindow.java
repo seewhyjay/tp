@@ -163,7 +163,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        calendar = new Calendar(logic.getFilteredAssignmentList());
+        calendar = new Calendar(logic.getUnfilteredAssignmentList());
         calendarContainer.getChildren().add(calendar.getRoot());
     }
 
