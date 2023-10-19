@@ -8,7 +8,6 @@ import java.util.Optional;
  * if no date is given
  */
 public class NoDate extends Date {
-
     @Override
     public Optional<LocalDateTime> getDate() {
         return Optional.ofNullable(null);
