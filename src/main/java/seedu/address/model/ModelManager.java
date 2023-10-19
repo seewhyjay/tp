@@ -137,6 +137,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortAssignments() {
+        addressBook.sortAssignments();
+    }
+
+    @Override
     public void addAssignment(Assignment assignment) {
         requireNonNull(assignment);
         addressBook.addAssignment(assignment);

@@ -110,4 +110,19 @@ public class IsoDate extends Date {
         return endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
+    @Override
+    public int compareTo(Date o) {
+        if (o instanceof IsoDate) {
+            IsoDate other = (IsoDate) o;
+            if (this.endDate.isEqual(other.endDate)) {
+                return 0;
+            } else if (this.endDate.isAfter(other.endDate)) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } else {
+            return 0;
+        }
+    }
 }

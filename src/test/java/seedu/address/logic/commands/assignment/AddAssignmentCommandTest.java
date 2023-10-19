@@ -206,6 +206,11 @@ public class AddAssignmentCommandTest {
         public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortAssignments() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -32,4 +32,9 @@ public class NoDate extends Date {
     public int hashCode() {
         return 0;
     }
+
+    @Override
+    public int compareTo(Date o) {
+        return 0;
+    }
 }
