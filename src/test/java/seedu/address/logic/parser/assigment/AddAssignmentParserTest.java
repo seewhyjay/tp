@@ -2,6 +2,8 @@ package seedu.address.logic.parser.assigment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.assignment.AddAssignmentCommand.MESSAGE_USAGE;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,11 +25,6 @@ import seedu.address.model.tag.Tag;
 // LAZY TO MAKE UNIT TEST WITH CURRENT DATE WITH AND WITHOUT TIME, BUT I USER TESTED IT!!!!!!!!!
 public class AddAssignmentParserTest {
     private final AddAssignmentParser parser = new AddAssignmentParser();
-
-    private final String invalidCommandMessage = "Invalid command format! \n"
-            + "add-a: Adds an assignment to the app. Parameters: n/NAME [d/DESCRIPTION]\n"
-            + "s/STATUS e/YYYY-MM-DD HH:mm [p/YYYY-MM-DD HH:mm ]\n"
-            + "Example: add-a";
 
     @Test
     public void parse_allFieldsPresentSingleTag_success() throws ParseException {
@@ -213,13 +210,13 @@ public class AddAssignmentParserTest {
     public void parse_missingName_fail() throws ParseException {
         String invalidInput = " s/complete e/2025-11-11 23:59 d/description p/2025-11-11 11:11 t/cs2100";
         ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(invalidCommandMessage, e.getMessage());
+        assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), e.getMessage());
     }
 
     @Test
     public void parse_missingEndDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete d/description p/2025-11-11 11:11 t/cs2100";
         ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(invalidCommandMessage, e.getMessage());
+        assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), e.getMessage());
     }
 }

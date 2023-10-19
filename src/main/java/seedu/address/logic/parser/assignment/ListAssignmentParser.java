@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.assignment.ParserUtil.parseDateForList;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.assignment.AddAssignmentCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -25,7 +24,8 @@ public class ListAssignmentParser implements Parser<ListAssignmentCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STARTFILTER, PREFIX_ENDFILTER);
 
         if (!argumentMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListAssignmentCommand.MESSAGE_USAGE));
         }
 
         argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STARTFILTER, PREFIX_ENDFILTER);

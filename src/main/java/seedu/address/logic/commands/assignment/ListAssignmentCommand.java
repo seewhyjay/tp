@@ -27,8 +27,6 @@ public class ListAssignmentCommand extends AssignmentCommand {
             + "[" + PREFIX_ENDFILTER + "YYYY-MM-DD HH:mm" + "]\n"
             + "Example: " + COMMAND_WORD + "list-a s/2023-06-18 e/2023-07-18";
 
-    public static final String MESSAGE_SUCCESS = "Listed all assignments %1$s";
-
     private final Predicate<Assignment> predicate;
 
     public ListAssignmentCommand() {
