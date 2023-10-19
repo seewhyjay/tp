@@ -17,10 +17,17 @@ public class JsonAdaptedAssignmentTest {
     private String validDescription = "description";
     private boolean validStatus = true;
     private String validDate = "2025-10-15 23:59";
+    private String validDate1 = "2022-10-15 23:59";
 
     @Test
     public void toModel_validAssignment_doesNotThrow() {
         assertDoesNotThrow(() -> new JsonAdaptedAssignment(validName, validDescription, validStatus, validDate,
+                validDate, List.of(new JsonAdaptedTag("cs2100"))).toModelType());
+    }
+
+    @Test
+    public void toModel_validAssignmentDateBeforeNow_doesNotThrow() {
+        assertDoesNotThrow(() -> new JsonAdaptedAssignment(validName, validDescription, validStatus, validDate1,
                 validDate, List.of(new JsonAdaptedTag("cs2100"))).toModelType());
     }
 
