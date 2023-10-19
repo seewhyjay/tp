@@ -21,7 +21,7 @@ public class IsoDate extends Date {
 
     public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
 
-    public final LocalDateTime endDate;
+    private final LocalDateTime endDate;
 
     /**
      * Constructs a {@code EndDate}.

@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="800" minHeight="700" onCloseRequest="#handleExit">
   <icons>
@@ -78,35 +79,7 @@
                   <RowConstraints vgrow="ALWAYS"/>
                 </rowConstraints>
                 <StackPane GridPane.columnIndex="0"  fx:id="selectedListPanelPlaceholder" minWidth="300" />
-                <VBox GridPane.columnIndex="1" GridPane.columnSpan="4">
-                  <Label id="calendarHeader" text="Your Calendar" maxWidth="Infinity"/>
-                  <Label fx:id="calendarDate" text="PLACEHOLDER" maxWidth="Infinity"/>
-                  <GridPane fx:id="calendar" minWidth="-1">
-                    <columnConstraints>
-                      <ColumnConstraints  hgrow="ALWAYS" percentWidth="14.28571428571429"/>
-                      <ColumnConstraints  hgrow="ALWAYS" percentWidth="14.28571428571429"/>
-                      <ColumnConstraints  hgrow="ALWAYS" percentWidth="14.28571428571429"/>
-                      <ColumnConstraints  hgrow="ALWAYS" percentWidth="14.28571428571429"/>
-                      <ColumnConstraints  hgrow="ALWAYS" percentWidth="14.28571428571429"/>
-                      <ColumnConstraints  hgrow="ALWAYS" percentWidth="14.28571428571429"/>
-                      <ColumnConstraints  hgrow="ALWAYS" percentWidth="14.28571428571429"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints vgrow="ALWAYS" prefHeight="125"/>
-                      <RowConstraints vgrow="ALWAYS" prefHeight="125"/>
-                      <RowConstraints vgrow="ALWAYS" prefHeight="125"/>
-                      <RowConstraints vgrow="ALWAYS" prefHeight="125"/>
-                      <RowConstraints vgrow="ALWAYS" prefHeight="125"/>
-                      <RowConstraints vgrow="ALWAYS" prefHeight="125"/>
-                      <RowConstraints vgrow="ALWAYS" prefHeight="125"/>
-                    </rowConstraints>
-                  </GridPane>
-                  <HBox styleClass="calendarControls">
-                    <Button alignment="BOTTOM_RIGHT" onAction="#handleCalendarLeftClick">Left</Button>
-                    <Label maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-                    <Button alignment="CENTER_RIGHT" onAction="#handleCalendarRightClick">Right</Button>
-                  </HBox>
-                </VBox>
+                <VBox fx:id="calendarContainer" GridPane.columnIndex="1"/>
               </GridPane>
           </VBox>
 
