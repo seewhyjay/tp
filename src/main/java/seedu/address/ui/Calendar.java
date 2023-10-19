@@ -45,7 +45,7 @@ public class Calendar extends UiPart<Region> {
     }
 
     @FXML
-    public void handleCalendarLeftClick() {
+    private void handleCalendarLeftClick() {
         handleCalendarChange(-1);
     }
 
@@ -53,7 +53,7 @@ public class Calendar extends UiPart<Region> {
      * Shows next month when button is clicked
      */
     @FXML
-    public void handleCalendarRightClick() {
+    private void handleCalendarRightClick() {
         handleCalendarChange(1);
     }
 

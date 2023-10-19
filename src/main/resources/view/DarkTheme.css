@@ -197,6 +197,7 @@
 
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-radius: 0.8em;
 }
 
 .pane-with-border {
@@ -375,9 +376,6 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #ebebeb;
@@ -433,7 +431,4 @@
     -fx-alignment: top-center;
 }
 
-.h-pane {
-
-}
 
