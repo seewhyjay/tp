@@ -110,6 +110,11 @@ public interface Model {
     void markAsIncomplete(Assignment toUnMark);
 
     /**
+     * Sorts UniqueAssignmentList by endDate
+     */
+    void sortAssignments();
+
+    /**
      * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */

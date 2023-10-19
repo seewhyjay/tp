@@ -155,6 +155,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Sort assignments by endDate
+     */
+    public void sortAssignments() {
+        assignments.sortAssignments();
+    }
+
+    /**
      * UnMark an assignment and set its status as incomplete
      *
      * @param toUnMark the assignment to be marked
