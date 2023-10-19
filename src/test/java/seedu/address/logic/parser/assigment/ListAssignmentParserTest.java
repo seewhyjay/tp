@@ -1,36 +1,27 @@
 package seedu.address.logic.parser.assigment;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITH_TIME_EARLIER;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITH_TIME_LATER;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITHOUT_TIME_EARLIER;
-import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITHOUT_TIME_LATER;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_INFINITE_EARLY;
 import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_INFINITE_LATE;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITHOUT_TIME_EARLIER;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITHOUT_TIME_LATER;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITH_TIME_EARLIER;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DATE_WITH_TIME_LATER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STARTFILTER;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDFILTER;
-import static seedu.address.logic.commands.assignment.ListAssignmentCommand.COMMAND_WORD;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.assignment.AddAssignmentCommand.MESSAGE_USAGE;
-import static seedu.address.logic.parser.person.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STARTFILTER;
 
 import java.util.Arrays;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
-import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.parser.assignment.ListAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignment.*;
+import seedu.address.model.assignment.AssignmentBetweenStartandEndPredicate;
+import seedu.address.model.assignment.IsoDate;
 
 public class ListAssignmentParserTest {
     private final ListAssignmentParser parser = new ListAssignmentParser();
@@ -63,8 +54,8 @@ public class ListAssignmentParserTest {
         String validInput = " " + PREFIX_STARTFILTER + VALID_DATE_WITHOUT_TIME_EARLIER + " "
                 + PREFIX_ENDFILTER + VALID_DATE_WITHOUT_TIME_LATER;
 
-        String[] dates = new String[] {VALID_DATE_WITHOUT_TIME_EARLIER + " 00:00",
-                VALID_DATE_WITHOUT_TIME_LATER + " 23:59"};
+        String[] dates = new String[]
+            {VALID_DATE_WITHOUT_TIME_EARLIER + " 00:00", VALID_DATE_WITHOUT_TIME_LATER + " 23:59"};
         AssignmentBetweenStartandEndPredicate predicate =
                 new AssignmentBetweenStartandEndPredicate(Arrays.asList(dates));
 

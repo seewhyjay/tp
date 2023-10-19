@@ -4,19 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.assignment.AssignmentBetweenStartandEndPredicate;
-import seedu.address.logic.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.assignment.AssignmentBetweenStartandEndPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -45,7 +44,7 @@ public class ListAssignmentCommandTest {
     @Test
     public void execute_listIsFiltered_showsFilteredList() {
         String[] dates = new String[] {"2023-11-31 18:45", "2024-11-31 18:45"};
-        List<String> datesAsList= Arrays.asList(dates);
+        List<String> datesAsList = Arrays.asList(dates);
 
         CommandResult commandResult =
                 new ListAssignmentCommand(new AssignmentBetweenStartandEndPredicate(datesAsList)).execute(model);

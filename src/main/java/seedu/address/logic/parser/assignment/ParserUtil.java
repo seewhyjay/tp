@@ -90,15 +90,16 @@ public class ParserUtil {
      * Parses {@code date} into a {@code Date} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      *
-     * @param date to be parsed
+     * @param startDate to be parsed
+     * @param endDate to be parsed
      * @return a date object
      * @throws ParseException when not in yyyy-mm-dd HH:mm format
      */
     public static Date parseDateForList(String startDate, String endDate) throws ParseException {
         requireNonNull(startDate, endDate);
 
-        if (!IsoDate.isValidIsoDate(startDate) || !IsoDate.isValidIsoDate(endDate) ||
-                IsoDate.isDateBefore(endDate, startDate)) {
+        if (!IsoDate.isValidIsoDate(startDate) || !IsoDate.isValidIsoDate(endDate)
+                || IsoDate.isDateBefore(endDate, startDate)) {
             throw new ParseException(IsoDate.MESSAGE_CONSTRAINTS);
         }
 
