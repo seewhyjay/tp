@@ -10,16 +10,16 @@ import java.util.Optional;
 
 /**
  * Represents a task's end date.
- * Should be instantiated in the add-date
- * parser if date is given.
  */
 public class IsoDate extends Date {
 
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
-
     public static final String DATE_FORMAT_WITHOUT_TIME = "yyyy-MM-dd";
 
-    public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
+    public static final String MESSAGE_CONSTRAINTS = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format.";
+
+    public static final String MESSAGE_CONSTRAINTS_LIST =
+            MESSAGE_CONSTRAINTS + " Start date must be before end date.";
 
     private final LocalDateTime endDate;
 
@@ -34,10 +34,12 @@ public class IsoDate extends Date {
     }
 
     /**
-     * @param date to be verified
-     * @return true if valid date, false otherwise
+     * Compares if a given date is after today's date.
+     *
+     * @param date User input of a date to be verified against today's date.
+     * @return True if valid date (ie after today's date). False otherwise.
      */
-    public static boolean isValidIsoDate(String date) {
+    public static boolean isValidDateNotBeforeToday(String date) {
         try {
             DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDateTime d = LocalDateTime.parse(date, df);
@@ -48,10 +50,61 @@ public class IsoDate extends Date {
     }
 
     /**
-     * @param date to be verified
-     * @return true if valid date, false otherwise
+     * Compares if a given start date is before an end date.
+     *
+     * @param startDate Start Date to be compared against {@param endDate}.
+     * @param endDate End Date to be compared against {@param startDate}.
+     * @return True if {@param startDate} is before {@param endDate}.
+     */
+    public static boolean isDateBefore(String startDate, String endDate) {
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            LocalDateTime startDateFilter = LocalDateTime.parse(startDate, df);
+            LocalDateTime endDateFilter = LocalDateTime.parse(endDate, df);
+
+            return startDateFilter.isBefore(endDateFilter);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if a {@code date} is of the format {@code DATE_FORMAT}
+     *
+     * @param date The date to be checked.
+     * @return True if the date is of the format. False otherwise.
+     */
+    public static boolean isValidIsoDate(String date) {
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            LocalDate d = LocalDate.parse(date, df);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if a {@code date} is of the format {@code DATE_FORMAT_WITHOUT_TIME}
+     *
+     * @param date The date to be checked.
+     * @return True if the date is of the format. False otherwise.
      */
     public static boolean isValidIsoDateWithoutTime(String date) {
+        try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME);
+            LocalDate d = LocalDate.parse(date, df);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * @param date User input of a date without timing to be verified.
+     * @return True if valid date (ie after today's date). False otherwise.
+     */
+    public static boolean isValidIsoDateWithoutTimeAfterCurrent(String date) {
         try {
             DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME);
             LocalDate d = LocalDate.parse(date, df);
@@ -73,6 +126,10 @@ public class IsoDate extends Date {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    public String toParseString() {
+        return endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
     @Override

@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -13,6 +16,7 @@ import seedu.address.model.assignment.Description;
 import seedu.address.model.assignment.IsoDate;
 import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Status;
+import seedu.address.model.tag.Tag;
 
 /**
  * Utility parser for assignments
@@ -65,22 +69,41 @@ public class ParserUtil {
      * @return a date object
      * @throws ParseException when not in yyyy-mm-dd HH:mm format
      */
-    public static Date parseDate(String date) throws ParseException {
+    public static Date parseDateForAdd(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
 
-        if (IsoDate.isValidIsoDate(trimmedDate)) {
+        if (IsoDate.isValidDateNotBeforeToday(trimmedDate)) {
             return new IsoDate(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
 
-        if (IsoDate.isValidIsoDateWithoutTime(trimmedDate)) {
+        if (IsoDate.isValidIsoDateWithoutTimeAfterCurrent(trimmedDate)) {
             return new IsoDate(LocalDateTime.parse(date + " 23:59",
                     DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
 
         throw new ParseException("Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) format "
                 + "and given date must not be before today's date");
+    }
 
+    /**
+     * Parses {@code date} into a {@code Date} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @param startDate to be parsed
+     * @param endDate to be parsed
+     * @return a date object
+     * @throws ParseException when not in yyyy-mm-dd HH:mm format
+     */
+    public static Date parseDateForList(String startDate, String endDate) throws ParseException {
+        requireNonNull(startDate, endDate);
+
+        if (!IsoDate.isValidIsoDate(startDate) || !IsoDate.isValidIsoDate(endDate)
+                || IsoDate.isDateBefore(endDate, startDate)) {
+            throw new ParseException(IsoDate.MESSAGE_CONSTRAINTS_LIST);
+        }
+
+        return new IsoDate(LocalDateTime.parse(startDate, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
     }
 
     /**
@@ -94,5 +117,32 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
     }
 }

@@ -22,12 +22,12 @@ public class IsoDateTest {
     @Test
     public void isValidDate() {
         // Date with time
-        assertTrue(IsoDate.isValidIsoDate(validDate));
-        assertFalse(IsoDate.isValidIsoDate(invalidDate));
+        assertTrue(IsoDate.isValidDateNotBeforeToday(validDate));
+        assertFalse(IsoDate.isValidDateNotBeforeToday(invalidDate));
 
         //Date without time
-        assertTrue(IsoDate.isValidIsoDateWithoutTime(validDate3));
-        assertFalse(IsoDate.isValidIsoDateWithoutTime(invalidDate2));
+        assertTrue(IsoDate.isValidIsoDateWithoutTimeAfterCurrent(validDate3));
+        assertFalse(IsoDate.isValidIsoDateWithoutTimeAfterCurrent(invalidDate2));
     }
 
     @Test

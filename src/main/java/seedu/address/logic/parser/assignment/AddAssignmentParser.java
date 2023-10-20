@@ -6,7 +6,8 @@ import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_PLANNEDFINISHDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.person.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.assignment.ParserUtil.parseTags;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -20,6 +21,7 @@ import seedu.address.logic.parser.person.Prefix;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Date;
 import seedu.address.model.assignment.Description;
+import seedu.address.model.assignment.IsoDate;
 import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.NoDate;
 import seedu.address.model.assignment.Status;
@@ -43,8 +45,7 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_STATUS,
                 PREFIX_ENDDATE, PREFIX_PLANNEDFINISHDATE);
 
-        Name name = ParserUtil.parseName(argumentMultimap
-                .getValue(seedu.address.logic.parser.person.CliSyntax.PREFIX_NAME).get());
+        Name name = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_NAME).get());
 
         Description description = ParserUtil.parseDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION)
                 .orElseGet(() -> ""));
@@ -53,14 +54,14 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
                 ? new Status(false)
                 : ParserUtil.parseStatus(argumentMultimap.getValue(PREFIX_STATUS).get());
 
-        Date endDate = ParserUtil.parseDate(argumentMultimap.getValue(PREFIX_ENDDATE).get());
+        // Can cast it as IsoDate because already verified there is going to be a PREFIX_ENDDATE
+        IsoDate endDate = (IsoDate) ParserUtil.parseDateForAdd(argumentMultimap.getValue(PREFIX_ENDDATE).get());
 
         Date plannedFinishDate = argumentMultimap.getValue(PREFIX_PLANNEDFINISHDATE).isEmpty()
                 ? new NoDate()
-                : ParserUtil.parseDate(argumentMultimap.getValue(PREFIX_PLANNEDFINISHDATE).get());
+                : ParserUtil.parseDateForAdd(argumentMultimap.getValue(PREFIX_PLANNEDFINISHDATE).get());
 
-        Set<Tag> tagList = seedu.address.logic.parser.person.ParserUtil
-                .parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
 
         Assignment assignment = new Assignment(name, endDate, status, description, plannedFinishDate, tagList);
 

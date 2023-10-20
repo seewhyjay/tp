@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "done or undone";
+    public static final String MESSAGE_CONSTRAINTS = "complete or incomplete";
     private final Boolean isCompleted;
 
     /**

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
@@ -14,14 +13,14 @@ import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
  * Finds and lists all assignments in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindAssignmentCommand extends Command {
+public class FindAssignmentCommand extends AssignmentCommand {
 
     public static final String COMMAND_WORD = "find-a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignment whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " CS2103T";
 
     private final AssignmentNameContainsKeywordsPredicate predicate;
 

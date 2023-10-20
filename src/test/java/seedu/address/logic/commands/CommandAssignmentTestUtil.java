@@ -33,6 +33,12 @@ public class CommandAssignmentTestUtil {
     public static final String VALID_DESCRIPTION_PROJECT = "Lecture Quiz";
     public static final Boolean VALID_STATUS_DONE = true;
     public static final Boolean VALID_STATUS_UNDONE = false;
+    public static final String VALID_DATE_WITH_TIME_EARLIER = "2024-06-11 18:00";
+    public static final String VALID_DATE_WITH_TIME_LATER = "2026-06-11 18:00";
+    public static final String VALID_DATE_WITHOUT_TIME_EARLIER = "2023-12-11";
+    public static final String VALID_DATE_WITHOUT_TIME_LATER = "2025-11-11";
+    public static final String VALID_DATE_INFINITE_EARLY = "1900-01-01 00:00";
+    public static final String VALID_DATE_INFINITE_LATE = "9999-12-31 23:59";
     public static final LocalDateTime VALID_DEADLINE_ASSIGNMENT =
             LocalDateTime.parse("2023-11-31 18:45", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
     public static final LocalDateTime VALID_PLANNED_DATE =
@@ -103,6 +109,7 @@ public class CommandAssignmentTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the assignment at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -113,6 +120,6 @@ public class CommandAssignmentTestUtil {
         Assignment assignment = model.getFilteredAssignmentList().get(targetIndex.getZeroBased());
         final String name = assignment.getName().toString();
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredAssignmentList().size());
     }
 }
