@@ -22,7 +22,7 @@ import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
 
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindAssignmentCommand}.
  */
 public class FindAssignmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
