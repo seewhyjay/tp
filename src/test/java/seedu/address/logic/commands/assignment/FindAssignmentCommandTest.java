@@ -22,7 +22,7 @@ import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
 
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindAssignmentCommand}.
  */
 public class FindAssignmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -71,7 +71,6 @@ public class FindAssignmentCommandTest {
         AssignmentNameContainsKeywordsPredicate predicate = preparePredicate("CS2105");
         FindAssignmentCommand command = new FindAssignmentCommand(predicate);
         expectedModel.updateFilteredAssignmentList(predicate);
-        System.out.println(expectedModel.getFilteredAssignmentList());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ASSIGNMENT3, ASSIGNMENT5), model.getFilteredAssignmentList());
     }
