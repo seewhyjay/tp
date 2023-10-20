@@ -60,6 +60,10 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_DESCRIPTION_1 = "Complete by wed";
+    public static final String VALID_TAG_ASSIGN_1 = "VALIDTAG";
+    public static final String VALID_NAME_ASSIGN_1 = "CS2100 Assignment 3";
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
