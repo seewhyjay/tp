@@ -14,7 +14,7 @@ public class SortAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "sort-a";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all assignments by date";
+    public static final String MESSAGE_SUCCESS = "Sorted all assignments by date!";
 
 
     @Override
