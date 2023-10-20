@@ -47,8 +47,8 @@ public class AssignmentTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Assignment aliceCopy = new AssignmentBuilder(ASSIGNMENT1).build();
-        assertTrue(ASSIGNMENT1.equals(aliceCopy));
+        Assignment assignmentCopy = new AssignmentBuilder(ASSIGNMENT1).build();
+        assertTrue(ASSIGNMENT1.equals(assignmentCopy));
 
         // same object -> returns true
         assertTrue(ASSIGNMENT1.equals(ASSIGNMENT1));
