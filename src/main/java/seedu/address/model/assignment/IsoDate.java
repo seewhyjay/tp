@@ -15,7 +15,10 @@ public class IsoDate extends Date {
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
     public static final String DATE_FORMAT_WITHOUT_TIME = "yyyy-MM-dd";
 
-    public static final String MESSAGE_CONSTRAINTS = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format";
+    public static final String MESSAGE_CONSTRAINTS = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format.";
+
+    public static final String MESSAGE_CONSTRAINTS_LIST =
+            MESSAGE_CONSTRAINTS + " Start date must be before end date.";
 
     public final LocalDateTime endDate;
 

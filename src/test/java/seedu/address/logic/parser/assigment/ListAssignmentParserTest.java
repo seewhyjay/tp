@@ -110,7 +110,7 @@ public class ListAssignmentParserTest {
     public void parse_invalidDateFormat_fail() throws ParseException {
         String invalidInput = " s/200 e/22";
         ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertParseFailure(parser, invalidInput, IsoDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, invalidInput, IsoDate.MESSAGE_CONSTRAINTS_LIST);
     }
 
     @Test

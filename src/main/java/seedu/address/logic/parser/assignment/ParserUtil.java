@@ -100,7 +100,7 @@ public class ParserUtil {
 
         if (!IsoDate.isValidIsoDate(startDate) || !IsoDate.isValidIsoDate(endDate)
                 || IsoDate.isDateBefore(endDate, startDate)) {
-            throw new ParseException(IsoDate.MESSAGE_CONSTRAINTS);
+            throw new ParseException(IsoDate.MESSAGE_CONSTRAINTS_LIST);
         }
 
         return new IsoDate(LocalDateTime.parse(startDate, DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
