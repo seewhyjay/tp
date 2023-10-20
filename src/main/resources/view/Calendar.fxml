@@ -33,8 +33,8 @@
     </GridPane>
 
     <HBox styleClass="calendarControls">
-        <ToggleButton alignment="BOTTOM_RIGHT" onAction="#handleCalendarLeftClick">Left</ToggleButton>
+        <ToggleButton alignment="BOTTOM_RIGHT" onAction="#handleCalendarLeftClick">Previous</ToggleButton>
         <Label maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-        <ToggleButton alignment="CENTER_RIGHT" onAction="#handleCalendarRightClick">Right</ToggleButton>
+        <ToggleButton alignment="CENTER_RIGHT" onAction="#handleCalendarRightClick">Next</ToggleButton>
     </HBox>
 </VBox>
