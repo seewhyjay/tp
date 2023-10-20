@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Optional;
 
 /**
  * Represents a task's end date.
@@ -20,7 +21,7 @@ public class IsoDate extends Date {
 
     public static final String MESSAGE_CONSTRAINTS = "yyyy-MM-dd HH:mm\"";
 
-    public final LocalDateTime endDate;
+    private final LocalDateTime endDate;
 
     /**
      * Constructs a {@code EndDate}.
@@ -72,6 +73,11 @@ public class IsoDate extends Date {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    @Override
+    public Optional<LocalDateTime> getDate() {
+        return Optional.of(endDate);
     }
 
     @Override

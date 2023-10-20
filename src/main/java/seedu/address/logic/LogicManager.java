@@ -91,4 +91,10 @@ public class LogicManager implements Logic {
     public ObservableList<Assignment> getFilteredAssignmentList() {
         return model.getFilteredAssignmentList();
     }
+
+    @Override
+    public ObservableList<Assignment> getUnfilteredAssignmentList() {
+        return model.getUnfilteredAssignmentList();
+    }
+
 }
