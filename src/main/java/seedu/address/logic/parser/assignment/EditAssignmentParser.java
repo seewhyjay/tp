@@ -32,6 +32,9 @@ public class EditAssignmentParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAssignmentCommand.MESSAGE_USAGE));
         }
+
+        argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_DESCRIPTION);
+
         Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
         Description newDescription = ParserUtil.parseDescription(
                 argumentMultimap.getValue(PREFIX_DESCRIPTION).get());
