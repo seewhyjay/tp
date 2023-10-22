@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Description {
 
-    public final String description;
+    private final String description;
 
     /**
      * Constructs a {@code Description}.

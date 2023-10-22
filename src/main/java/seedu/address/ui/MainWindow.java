@@ -246,7 +246,7 @@ public class MainWindow extends UiPart<Stage> {
      * button is clicked
      */
     @FXML
-    public void handleSetPersonView() {
+    private void handleSetPersonView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
@@ -256,7 +256,7 @@ public class MainWindow extends UiPart<Stage> {
      * when button is clicked
      */
     @FXML
-    public void handleSetAssignmentView() {
+    private void handleSetAssignmentView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
     }

@@ -20,7 +20,7 @@ public class AssignmentNameContainsKeywordsPredicate implements Predicate<Assign
     @Override
     public boolean test(Assignment assignment) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(assignment.getName().taskName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(assignment.getName().getName(), keyword));
     }
 
     @Override

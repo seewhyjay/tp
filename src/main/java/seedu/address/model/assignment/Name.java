@@ -12,7 +12,7 @@ public class Name {
     // Matches everything except empty string
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
 
-    public final String taskName;
+    private final String name;
 
     /**
      * Constructs a {@code Name}.
@@ -21,7 +21,11 @@ public class Name {
      */
     public Name(String taskName) {
         requireNonNull(taskName);
-        this.taskName = taskName;
+        this.name = taskName;
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**
@@ -34,7 +38,7 @@ public class Name {
 
     @Override
     public String toString() {
-        return taskName;
+        return name;
     }
 
     @Override
@@ -49,11 +53,11 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return taskName.equals(otherName.taskName);
+        return name.equals(otherName.name);
     }
 
     @Override
     public int hashCode() {
-        return taskName.hashCode();
+        return name.hashCode();
     }
 }

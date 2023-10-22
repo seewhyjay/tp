@@ -3,8 +3,8 @@ package seedu.address.model.assignment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ASSIGN_1;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_DESCRIPTION_ASSIGNMENT;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.VALID_TAG_ASSIGNMENT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT1;
 import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT2;
@@ -41,7 +41,8 @@ public class UniqueAssignmentListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueAssignmentList.add(ASSIGNMENT1);
-        Assignment editedAssignment = new AssignmentBuilder(ASSIGNMENT1).withDescription(VALID_DESCRIPTION_1).build();
+        Assignment editedAssignment = new AssignmentBuilder(ASSIGNMENT1)
+                .withDescription(VALID_DESCRIPTION_ASSIGNMENT).build();
         assertTrue(uniqueAssignmentList.contains(editedAssignment));
     }
 
@@ -86,8 +87,8 @@ public class UniqueAssignmentListTest {
     public void setAssignment_editedAssignmentHasSameIdentity_success() {
         uniqueAssignmentList.add(ASSIGNMENT1);
         Assignment editedAssignment = new AssignmentBuilder(ASSIGNMENT1)
-                .withDescription(VALID_DESCRIPTION_1)
-                .withTags(VALID_TAG_ASSIGN_1)
+                .withDescription(VALID_DESCRIPTION_ASSIGNMENT)
+                .withTags(VALID_TAG_ASSIGNMENT)
                 .build();
         uniqueAssignmentList.setAssignment(ASSIGNMENT1, editedAssignment);
         UniqueAssignmentList expectedUniqueAssignmentList = new UniqueAssignmentList();

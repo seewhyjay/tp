@@ -24,6 +24,14 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_DATE = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd "
+            + "(default 23:59) format and given date must not be before today's date";
+
+
+    public static final String MESSAGE_INVALID_NAME = "Name cannot be empty";
+
+    public static final String MESSAGE_INVALID_STATUS = "Enter a valid status input: s/complete, s/incomplete";
+
     /**
      * @param name the taskname
      * @return a name object
@@ -33,7 +41,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidTaskName(name)) {
-            throw new ParseException("Name cannot be empty");
+            throw new ParseException(MESSAGE_INVALID_NAME);
         }
         return new Name(trimmedName);
     }
@@ -59,7 +67,7 @@ public class ParserUtil {
         requireNonNull(status);
         String trimmedStatus = status.trim();
         if (!Status.isValidStatus(status)) {
-            throw new ParseException("Enter a valid status input: s/complete, s/incomplete");
+            throw new ParseException(MESSAGE_INVALID_STATUS);
         }
         return new Status(trimmedStatus.equals("complete"));
     }
@@ -82,8 +90,7 @@ public class ParserUtil {
                     DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
 
-        throw new ParseException("Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) format "
-                + "and given date must not be before today's date");
+        throw new ParseException(MESSAGE_INVALID_DATE);
     }
 
     /**

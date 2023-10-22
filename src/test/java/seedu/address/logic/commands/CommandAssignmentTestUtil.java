@@ -63,6 +63,8 @@ public class CommandAssignmentTestUtil {
     public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "11-22-2021"; // wrong format
     public static final String INVALID_PLANNED_DESC = " " + PREFIX_PLANNEDFINISHDATE + "11-22-2021"; // wrong format
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "CS2103T*"; // '*' not allowed in tags
+    public static final String INVALID_NAME_EMPTY = " ";
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
