@@ -33,7 +33,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.checkValidOperation(View.PERSONS);
+        model.checkValidOperationWith(View.PERSONS);
 
         model.updateFilteredPersonList(predicate);
         return new CommandResult(

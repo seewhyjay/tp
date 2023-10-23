@@ -40,7 +40,7 @@ public class ListAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setView(withCorrectViewNeeded);
+        model.setView(correctViewNeeded);
 
         model.updateFilteredAssignmentList(predicate);
         return new CommandResult(

@@ -54,7 +54,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.checkValidOperation(View.PERSONS);
+        model.checkValidOperationWith(View.PERSONS);
 
 
         if (model.hasPerson(toAdd)) {

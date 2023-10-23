@@ -34,7 +34,7 @@ public interface Model {
      * @param correctView the view that this command should be executed in
      * @throws CommandException if current view is different from correct view
      */
-    void checkValidOperation(View correctView) throws CommandException;
+    void checkValidOperationWith(View correctView) throws CommandException;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

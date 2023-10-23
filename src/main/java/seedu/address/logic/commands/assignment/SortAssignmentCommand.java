@@ -21,7 +21,7 @@ public class SortAssignmentCommand extends AssignmentCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.checkValidOperation(withCorrectViewNeeded);
+        model.checkValidOperationWith(correctViewNeeded);
 
         model.sortAssignments();
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENTS);

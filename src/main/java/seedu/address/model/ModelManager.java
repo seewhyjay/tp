@@ -77,7 +77,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void checkValidOperation(View correctView) throws CommandException {
+    public void checkValidOperationWith(View correctView) throws CommandException {
         View currView = selectedView.get(0);
         if (correctView != currView) {
             throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView + MESSAGE_WRONG_VIEW_SECOND_HALF);

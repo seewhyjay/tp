@@ -11,7 +11,7 @@ import seedu.address.model.View;
  */
 public abstract class AssignmentCommand extends Command {
 
-    public final View withCorrectViewNeeded = View.ASSIGNMENT;
+    public final View correctViewNeeded = View.ASSIGNMENT;
     /**
      * Executes the command and returns the result message.
      *

@@ -114,7 +114,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void checkValidOperation(View v) throws CommandException {
+        public void checkValidOperationWith(View v) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -263,7 +263,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void checkValidOperation(View correctView) throws CommandException {
+        public void checkValidOperationWith(View correctView) throws CommandException {
             if (correctView != v) {
                 throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
                         + MESSAGE_WRONG_VIEW_SECOND_HALF);
@@ -291,7 +291,7 @@ public class AddAssignmentCommandTest {
         private final ArrayList<Assignment> assignmentsAdded = new ArrayList<>();
 
         @Override
-        public void checkValidOperation(View correctView) throws CommandException {
+        public void checkValidOperationWith(View correctView) throws CommandException {
             if (correctView != v) {
                 throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
                         + MESSAGE_WRONG_VIEW_SECOND_HALF);
