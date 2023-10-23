@@ -22,7 +22,6 @@ import seedu.address.logic.commands.assignment.EditAssignmentCommand;
 import seedu.address.logic.commands.assignment.FindAssignmentCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
-import seedu.address.logic.commands.assignment.SortAssignmentCommand;
 import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
 import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.commands.person.DeleteCommand;
@@ -195,19 +194,6 @@ public class AddressBookParserTest {
     public void parseCommandWrongViewListA_success() throws Exception {
         assertTrue(parser.parseCommand(ListAssignmentCommand.COMMAND_WORD, verifierFalse)
                 instanceof ListAssignmentCommand);
-    }
-
-    @Test
-    public void parseCommandCorrectViewSortA_success() throws Exception {
-        assertTrue(parser.parseCommand(SortAssignmentCommand.COMMAND_WORD, verifierTrue)
-                instanceof SortAssignmentCommand);
-    }
-
-    @Test
-    public void parseCommandWrongViewSortA_failure() throws Exception {
-        assertThrows(ParseException.class,
-                MESSAGE_WRONG_VIEW_FIRST_HALF + View.ASSIGNMENTS + MESSAGE_WRONG_VIEW_SECOND_HALF, () ->
-                        parser.parseCommand(SortAssignmentCommand.COMMAND_WORD, verifierFalse));
     }
 
     @Test
