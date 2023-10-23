@@ -29,7 +29,7 @@ public class EditAssignmentCommandTest {
 
     @BeforeEach
     public void init() {
-        model.setView(View.ASSIGNMENT);
+        model.setView(View.ASSIGNMENTS);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class EditAssignmentCommandTest {
         model.setView(View.PERSONS);
         EditAssignmentCommand editCommand = new EditAssignmentCommand(INDEX_FIRST_ASSIGNMENT, new Description(""));
         CommandTestUtil.assertCommandFailure(editCommand, model, Model.MESSAGE_WRONG_VIEW_FIRST_HALF
-                + View.ASSIGNMENT + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
+                + View.ASSIGNMENTS + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
     }
 
     @Test

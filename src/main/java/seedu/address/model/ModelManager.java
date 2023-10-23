@@ -58,7 +58,7 @@ public class ModelManager implements Model {
     //=========== Views =====================================================================================
 
     private void initView() {
-        selectedView.add(View.ASSIGNMENT);
+        selectedView.add(View.ASSIGNMENTS);
     }
 
     @Override

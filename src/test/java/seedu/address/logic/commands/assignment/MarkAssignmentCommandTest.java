@@ -31,7 +31,7 @@ public class MarkAssignmentCommandTest {
 
     @BeforeEach
     public void init() {
-        model.setView(View.ASSIGNMENT);
+        model.setView(View.ASSIGNMENTS);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class MarkAssignmentCommandTest {
         model.setView(View.PERSONS);
         MarkAssignmentCommand markCommand = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
         CommandTestUtil.assertCommandFailure(markCommand, model, Model.MESSAGE_WRONG_VIEW_FIRST_HALF
-                + View.ASSIGNMENT + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
+                + View.ASSIGNMENTS + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
     }
 
     @Test

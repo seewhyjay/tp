@@ -8,11 +8,11 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -83,7 +83,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private HBox viewSwitcher;
+    private Label currViewHeader;
 
     @FXML
     private VBox selectedList;
@@ -96,8 +96,9 @@ public class MainWindow extends UiPart<Stage> {
         if (change.wasReplaced()) {
             ObservableList<? extends View> selectedView = change.getList();
             View v = selectedView.get(0);
+            setViewHeaderName(v.toString());
             switch (v) {
-            case ASSIGNMENT:
+            case ASSIGNMENTS:
                 handleSetAssignmentView();
                 break;
             case PERSONS:
@@ -107,7 +108,7 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             }
 
-            if (selectedView.get(0) == View.ASSIGNMENT) {
+            if (selectedView.get(0) == View.ASSIGNMENTS) {
                 handleSetAssignmentView();
             } else if (selectedView.get(0) == View.PERSONS) {
                 handleSetPersonView();
@@ -136,6 +137,11 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         init();
+    }
+
+    private void setViewHeaderName(String header) {
+        String newHeader = header.charAt(0) + header.substring(1).toLowerCase();
+        currViewHeader.setText(newHeader);
     }
 
     private void init() {

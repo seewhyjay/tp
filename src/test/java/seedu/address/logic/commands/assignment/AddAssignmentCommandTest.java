@@ -69,7 +69,7 @@ public class AddAssignmentCommandTest {
         modelStub.setView(View.PERSONS);
 
         assertThrows(CommandException.class,
-                Model.MESSAGE_WRONG_VIEW_FIRST_HALF + View.ASSIGNMENT
+                Model.MESSAGE_WRONG_VIEW_FIRST_HALF + View.ASSIGNMENTS
                         + Model.MESSAGE_WRONG_VIEW_SECOND_HALF, () -> addCommand.execute(modelStub));
     }
 
@@ -253,7 +253,7 @@ public class AddAssignmentCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithAssignment extends ModelStub {
-        private View v = View.ASSIGNMENT;
+        private View v = View.ASSIGNMENTS;
 
         private final Assignment assignment;
 
@@ -286,7 +286,7 @@ public class AddAssignmentCommandTest {
      * A Model stub that always accept the assignment being added.
      */
     private class ModelStubAcceptingAssignmentAdded extends ModelStub {
-        private View v = View.ASSIGNMENT;
+        private View v = View.ASSIGNMENTS;
 
         private final ArrayList<Assignment> assignmentsAdded = new ArrayList<>();
 

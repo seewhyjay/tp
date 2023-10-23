@@ -31,7 +31,7 @@ public class UnMarkAssignmentCommandTest {
 
     @BeforeEach
     public void init() {
-        model.setView(View.ASSIGNMENT);
+        model.setView(View.ASSIGNMENTS);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class UnMarkAssignmentCommandTest {
         model.setView(View.PERSONS);
         UnMarkAssignmentCommand unMarkCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
         CommandTestUtil.assertCommandFailure(unMarkCommand, model, Model.MESSAGE_WRONG_VIEW_FIRST_HALF
-                + View.ASSIGNMENT + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
+                + View.ASSIGNMENTS + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
     }
 
     @Test

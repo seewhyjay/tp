@@ -32,7 +32,7 @@ public class FindAssignmentCommandTest {
 
     @BeforeEach
     public void init() {
-        model.setView(View.ASSIGNMENT);
+        model.setView(View.ASSIGNMENTS);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class FindAssignmentCommandTest {
         AssignmentNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindAssignmentCommand findCommand = new FindAssignmentCommand(predicate);
         CommandTestUtil.assertCommandFailure(findCommand, model, Model.MESSAGE_WRONG_VIEW_FIRST_HALF
-                + View.ASSIGNMENT + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
+                + View.ASSIGNMENTS + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
     }
 
     @Test
