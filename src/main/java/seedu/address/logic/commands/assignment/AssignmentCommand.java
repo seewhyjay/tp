@@ -4,12 +4,14 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.View;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class AssignmentCommand extends Command {
 
+    public final View withCorrectViewNeeded = View.ASSIGNMENT;
     /**
      * Executes the command and returns the result message.
      *

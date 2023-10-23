@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentBetweenStartandEndPredicate;
 
@@ -41,7 +40,7 @@ public class ListAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setView(View.ASSIGNMENT);
+        model.setView(withCorrectViewNeeded);
 
         model.updateFilteredAssignmentList(predicate);
         return new CommandResult(

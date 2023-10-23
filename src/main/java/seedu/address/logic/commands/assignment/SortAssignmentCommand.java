@@ -3,16 +3,14 @@ package seedu.address.logic.commands.assignment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENTS;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.View;
 
 /**
  * Lists all persons in the address book to the user.
  */
-public class SortAssignmentCommand extends Command {
+public class SortAssignmentCommand extends AssignmentCommand {
 
     public static final String COMMAND_WORD = "sort-a";
 
@@ -23,7 +21,7 @@ public class SortAssignmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.checkValidOperation(View.ASSIGNMENT);
+        model.checkValidOperation(withCorrectViewNeeded);
 
         model.sortAssignments();
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENTS);
