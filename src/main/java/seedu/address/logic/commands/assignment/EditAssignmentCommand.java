@@ -12,6 +12,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Description;
 
@@ -47,6 +48,8 @@ public class EditAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.checkValidOperation(View.ASSIGNMENT);
+
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

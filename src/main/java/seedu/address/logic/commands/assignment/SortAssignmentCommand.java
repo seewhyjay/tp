@@ -5,7 +5,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENTS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.View;
 
 /**
  * Lists all persons in the address book to the user.
@@ -18,8 +20,11 @@ public class SortAssignmentCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        model.checkValidOperation(View.ASSIGNMENT);
+
         model.sortAssignments();
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENTS);
         return new CommandResult(MESSAGE_SUCCESS);

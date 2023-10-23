@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -23,6 +24,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
@@ -93,6 +95,26 @@ public class AddCommandTest {
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void checkValidOperation(View v) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeViewChangeListener(ListChangeListener<View> listener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addViewChangeListener(ListChangeListener<View> listener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setView(View v) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -215,11 +237,26 @@ public class AddCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
+        private View v = View.PERSONS;
+
         private final Person person;
 
         ModelStubWithPerson(Person person) {
             requireNonNull(person);
             this.person = person;
+        }
+
+        @Override
+        public void checkValidOperation(View correctView) throws CommandException {
+            if (correctView != v) {
+                throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
+                        + MESSAGE_WRONG_VIEW_SECOND_HALF);
+            }
+        }
+
+        @Override
+        public void setView(View v) {
+            this.v = v;
         }
 
         @Override
@@ -234,6 +271,21 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+
+        private View v = View.PERSONS;
+
+        @Override
+        public void checkValidOperation(View correctView) throws CommandException {
+            if (correctView != v) {
+                throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
+                        + MESSAGE_WRONG_VIEW_SECOND_HALF);
+            }
+        }
+
+        @Override
+        public void setView(View v) {
+            this.v = v;
+        }
 
         @Override
         public boolean hasPerson(Person person) {

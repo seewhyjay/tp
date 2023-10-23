@@ -12,13 +12,15 @@ import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collections;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.View;
 import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
-
 
 
 /**
@@ -27,6 +29,11 @@ import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
 public class FindAssignmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @BeforeEach
+    public void init() {
+        model.setView(View.ASSIGNMENT);
+    }
 
     @Test
     public void equals() {
@@ -53,6 +60,15 @@ public class FindAssignmentCommandTest {
 
         // different assignment -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    @Test
+    public void execute_wrongOnWrongViewValidInput_throwsCommandException() {
+        model.setView(View.PERSONS);
+        AssignmentNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindAssignmentCommand findCommand = new FindAssignmentCommand(predicate);
+        CommandTestUtil.assertCommandFailure(findCommand, model, Model.MESSAGE_WRONG_VIEW_FIRST_HALF
+                + View.ASSIGNMENT + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
     }
 
     @Test

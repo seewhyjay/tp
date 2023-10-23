@@ -7,10 +7,13 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
@@ -20,10 +23,17 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
     private final AddressBook addressBook;
+
     private final UserPrefs userPrefs;
+
     private final FilteredList<Person> filteredPersons;
+
     private final FilteredList<Assignment> filteredAssignments;
+
+    private final ObservableList<View> selectedView = FXCollections.observableArrayList();
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,10 +47,42 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+
+        initView();
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+    }
+
+    //=========== Views =====================================================================================
+
+    private void initView() {
+        selectedView.add(View.ASSIGNMENT);
+    }
+
+    @Override
+    public void setView(View v) {
+        selectedView.set(0, v);
+    }
+
+
+    @Override
+    public void addViewChangeListener(ListChangeListener<View> listener) {
+        selectedView.addListener(listener);
+    }
+
+    @Override
+    public void removeViewChangeListener(ListChangeListener<View> listener) {
+        selectedView.removeListener(listener);
+    }
+
+    @Override
+    public void checkValidOperation(View correctView) throws CommandException {
+        View currView = selectedView.get(0);
+        if (correctView != currView) {
+            throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView + MESSAGE_WRONG_VIEW_SECOND_HALF);
+        }
     }
 
     //=========== UserPrefs ==================================================================================

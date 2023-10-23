@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -20,7 +22,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.View;
 
 
 /**
@@ -89,6 +91,32 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane selectedListPanelPlaceholder;
 
+    private ListChangeListener<View> onViewChange = (change) -> {
+        change.next();
+        if (change.wasReplaced()) {
+            ObservableList<? extends View> selectedView = change.getList();
+            View v = selectedView.get(0);
+            switch (v) {
+            case ASSIGNMENT:
+                handleSetAssignmentView();
+                break;
+            case PERSONS:
+                handleSetPersonView();
+                break;
+            default:
+                break;
+            }
+
+            if (selectedView.get(0) == View.ASSIGNMENT) {
+                handleSetAssignmentView();
+            } else if (selectedView.get(0) == View.PERSONS) {
+                handleSetPersonView();
+            } else {
+                // do nothing for now
+            }
+        }
+    };
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -106,7 +134,14 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        init();
     }
+
+    private void init() {
+        logic.subscribeViewChange(onViewChange);
+    }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;

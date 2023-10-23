@@ -3,8 +3,10 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
@@ -16,6 +18,23 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENTS = unused -> true;
+
+    String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
+
+    String MESSAGE_WRONG_VIEW_SECOND_HALF = " before performing this operation "
+             + "by using the respective list commands";
+
+    void setView(View v);
+
+    void addViewChangeListener(ListChangeListener<View> e);
+
+    void removeViewChangeListener(ListChangeListener<View> e);
+
+    /**
+     * @param correctView the view that this command should be executed in
+     * @throws CommandException if current view is different from correct view
+     */
+    void checkValidOperation(View correctView) throws CommandException;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
