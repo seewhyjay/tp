@@ -56,6 +56,7 @@ public class AddAssignmentCommand extends AssignmentCommand {
         }
 
         model.addAssignment(toAdd);
+        model.sortAssignments();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
