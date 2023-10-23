@@ -231,7 +231,6 @@ public class AddAssignmentCommandTest {
 
         @Override
         public void sortAssignments() {
-            throw new AssertionError("This method should not be called.");
         }
     }
 

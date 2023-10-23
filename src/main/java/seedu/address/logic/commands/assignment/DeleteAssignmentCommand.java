@@ -43,6 +43,7 @@ public class DeleteAssignmentCommand extends AssignmentCommand {
 
         Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAssignment(assignmentToDelete);
+        model.sortAssignments();
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, Messages.format(assignmentToDelete)));
     }
 
