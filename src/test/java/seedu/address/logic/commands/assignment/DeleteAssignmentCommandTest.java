@@ -37,7 +37,7 @@ public class DeleteAssignmentCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteAssignment(assignmentToDelete);
-
+        expectedModel.sortAssignments();
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
