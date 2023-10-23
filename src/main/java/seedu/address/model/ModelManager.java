@@ -66,7 +66,6 @@ public class ModelManager implements Model {
         selectedView.set(0, v);
     }
 
-
     @Override
     public void addViewChangeListener(ListChangeListener<View> listener) {
         selectedView.addListener(listener);

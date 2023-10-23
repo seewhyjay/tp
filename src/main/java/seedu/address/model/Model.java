@@ -22,7 +22,7 @@ public interface Model {
     String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
 
     String MESSAGE_WRONG_VIEW_SECOND_HALF = " before performing this operation "
-             + "by using the respective list commands";
+             + "using the respective list commands";
 
     void setView(View v);
 
