@@ -80,7 +80,7 @@
                   </HBox>
                   <StackPane GridPane.columnIndex="0"  fx:id="selectedListPanelPlaceholder" minWidth="300" VBox.vgrow="ALWAYS"/>
                 </VBox>
-                <VBox fx:id="calendarContainer" GridPane.columnIndex="1"/>
+                <VBox fx:id="calendarContainer" GridPane.columnIndex="1" alignment="CENTER"/>
               </GridPane>
           </VBox>
 

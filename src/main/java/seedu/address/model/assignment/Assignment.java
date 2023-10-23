@@ -2,7 +2,6 @@ package seedu.address.model.assignment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -122,7 +121,6 @@ public class Assignment implements Comparable<Assignment> {
 
     @Override
     public String toString() {
-        DateTimeFormatter toStringFormatter = DateTimeFormatter.ofPattern("d MMM uuuu h:mm a");
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("completeness", status)

@@ -61,6 +61,16 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isValidOperationWithNonDefaultView_fail() {
+        assertFalse(modelManager.isValidOperationWith(View.INTERNSHIPS));
+    }
+
+    @Test
+    public void isValidOperationWithNonDefaultView_success() {
+        assertTrue(modelManager.isValidOperationWith(View.ASSIGNMENTS));
+    }
+
+    @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
     }

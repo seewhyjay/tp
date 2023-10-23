@@ -60,20 +60,6 @@ public class AddAssignmentCommandTest {
     }
 
     @Test
-    public void execute_wrongOnWrongView_throwsCommandException() {
-        Assignment validAssignment = new AssignmentBuilder().build();
-        AddAssignmentCommand addCommand = new AddAssignmentCommand(validAssignment);
-        ModelStub modelStub = new ModelStubWithAssignment(validAssignment);
-
-        // Simulating current in persons view and trying to execute an assignment command;
-        modelStub.setView(View.PERSONS);
-
-        assertThrows(CommandException.class,
-                Model.MESSAGE_WRONG_VIEW_FIRST_HALF + View.ASSIGNMENTS
-                        + Model.MESSAGE_WRONG_VIEW_SECOND_HALF, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
     public void equals() {
         Assignment assignment1 = new AssignmentBuilder().withName("CS2103T TP").build();
         Assignment assignment2 = new AssignmentBuilder().withName("CS2100 Assignment").build();
@@ -114,7 +100,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void checkValidOperationWith(View v) throws CommandException {
+        public boolean isValidOperationWith(View v) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -253,26 +239,11 @@ public class AddAssignmentCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithAssignment extends ModelStub {
-        private View v = View.ASSIGNMENTS;
-
         private final Assignment assignment;
 
         ModelStubWithAssignment(Assignment assignment) {
             requireNonNull(assignment);
             this.assignment = assignment;
-        }
-
-        @Override
-        public void checkValidOperationWith(View correctView) throws CommandException {
-            if (correctView != v) {
-                throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
-                        + MESSAGE_WRONG_VIEW_SECOND_HALF);
-            }
-        }
-
-        @Override
-        public void setView(View v) {
-            this.v = v;
         }
 
         @Override
@@ -286,22 +257,7 @@ public class AddAssignmentCommandTest {
      * A Model stub that always accept the assignment being added.
      */
     private class ModelStubAcceptingAssignmentAdded extends ModelStub {
-        private View v = View.ASSIGNMENTS;
-
         private final ArrayList<Assignment> assignmentsAdded = new ArrayList<>();
-
-        @Override
-        public void checkValidOperationWith(View correctView) throws CommandException {
-            if (correctView != v) {
-                throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
-                        + MESSAGE_WRONG_VIEW_SECOND_HALF);
-            }
-        }
-
-        @Override
-        public void setView(View v) {
-            this.v = v;
-        }
 
         @Override
         public boolean hasAssignment(Assignment assignment) {

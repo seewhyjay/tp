@@ -47,7 +47,6 @@ public class EditAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.checkValidOperationWith(correctViewNeeded);
 
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
 

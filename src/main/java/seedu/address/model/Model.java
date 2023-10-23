@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
@@ -32,9 +31,8 @@ public interface Model {
 
     /**
      * @param correctView the view that this command should be executed in
-     * @throws CommandException if current view is different from correct view
      */
-    void checkValidOperationWith(View correctView) throws CommandException;
+    boolean isValidOperationWith(View correctView);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

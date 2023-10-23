@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -17,7 +16,6 @@ import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 
 /**
@@ -28,11 +26,6 @@ import seedu.address.model.assignment.Assignment;
 public class UnMarkAssignmentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @BeforeEach
-    public void init() {
-        model.setView(View.ASSIGNMENTS);
-    }
 
     @Test
     public void execute_unMark_success() {
@@ -60,15 +53,6 @@ public class UnMarkAssignmentCommandTest {
 
         CommandTestUtil.assertCommandFailure(unMarkCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
-
-    @Test
-    public void execute_wrongOnWrongViewValidInput_throwsCommandException() {
-        model.setView(View.PERSONS);
-        UnMarkAssignmentCommand unMarkCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
-        CommandTestUtil.assertCommandFailure(unMarkCommand, model, Model.MESSAGE_WRONG_VIEW_FIRST_HALF
-                + View.ASSIGNMENTS + Model.MESSAGE_WRONG_VIEW_SECOND_HALF);
-    }
-
     @Test
     public void equals() {
         UnMarkAssignmentCommand unMarkFirstCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);

@@ -99,7 +99,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void checkValidOperationWith(View v) throws CommandException {
+        public boolean isValidOperationWith(View v) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -247,19 +247,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void checkValidOperationWith(View correctView) throws CommandException {
-            if (correctView != v) {
-                throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
-                        + MESSAGE_WRONG_VIEW_SECOND_HALF);
-            }
-        }
-
-        @Override
-        public void setView(View v) {
-            this.v = v;
-        }
-
-        @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
@@ -271,21 +258,6 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        private View v = View.PERSONS;
-
-        @Override
-        public void checkValidOperationWith(View correctView) throws CommandException {
-            if (correctView != v) {
-                throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView
-                        + MESSAGE_WRONG_VIEW_SECOND_HALF);
-            }
-        }
-
-        @Override
-        public void setView(View v) {
-            this.v = v;
-        }
 
         @Override
         public boolean hasPerson(Person person) {

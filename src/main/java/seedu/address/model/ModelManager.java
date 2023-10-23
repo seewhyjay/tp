@@ -13,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
@@ -33,7 +32,6 @@ public class ModelManager implements Model {
     private final FilteredList<Assignment> filteredAssignments;
 
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -77,11 +75,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void checkValidOperationWith(View correctView) throws CommandException {
+    public boolean isValidOperationWith(View correctView) {
         View currView = selectedView.get(0);
-        if (correctView != currView) {
-            throw new CommandException(MESSAGE_WRONG_VIEW_FIRST_HALF + correctView + MESSAGE_WRONG_VIEW_SECOND_HALF);
-        }
+        return currView == correctView;
     }
 
     //=========== UserPrefs ==================================================================================
