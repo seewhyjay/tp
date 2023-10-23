@@ -18,7 +18,7 @@ encounter in your university life.
 ## Table of Contents
 - [About this guide](#about-this-guide)
   - [New Users](#new-users)
-  - [Experienced Users](#-experienced-users)
+  - [Experienced Users](#experienced-users)
 - [Getting started](#getting-started)
 - [Glossary](#glossary)
 - [Understanding the Graphical User Interface(GUI)](#understanding-the-graphical-user-interface--gui-)
@@ -47,7 +47,7 @@ encounter in your university life.
 ### New Users
 
 If you are new here, and need help with getting started with our application, visit our 
-[quick start](#quick-start) guide to onboard onto CampusCompanion smoothly!
+[Getting Started](#getting-started) guide to onboard onto CampusCompanion smoothly!
 
 After setting up the application, if you are looking for a step-by-step walk-through on the various features 
 that CampusCompanion has, [click here](#campuscompanion-tutorial--for-new-users-) for a tutorial of CampusCompanion.
@@ -72,15 +72,15 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `campuscompanion.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `campuscompanion.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your CampusCompanion.
+3. Copy the file to the folder you want to use as the _home folder_ for your CampusCompanion.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar campuscompanion.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar campuscompanion.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -93,7 +93,7 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -113,7 +113,7 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ### Quick Orientation
 
-<PUT A LABELLED PICTURE> 
+PUT A LABELLED PICTURE!!!
 
 Here is a quick summary of each GUI component within CampusCompanion
 
@@ -211,9 +211,7 @@ CampusCompanion data are saved in the hard disk automatically after any command 
 
 CampusCompanion data are saved automatically as a JSON file `[JAR file location]/data/campuscompanion.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Campus Companion will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
-</div>
+
 
 ### Archiving data files `[coming in v2.0]`
 
