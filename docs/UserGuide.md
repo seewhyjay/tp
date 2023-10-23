@@ -103,8 +103,9 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 Here are some descriptions of the words we use throughout the User Guide:
 
 
-| Term          | Definition                                                                                                                                                            |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Term | Definition |
+|------|------------|
+| xxx  | xxxx       |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
