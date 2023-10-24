@@ -168,9 +168,17 @@ To view all our features, you may visit out [features section](#features).
 
 **Purpose:**
 
-[!WARNING] if any, otherwise remove
+<div markdown="block" class="alert alert-danger">
 
-[!NOTE]
+**ALERT**
+Put alerts here, if any
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Note**
+Put notes here
+</div>
 
 **Examples:** show some examples with the parameters
 
@@ -184,9 +192,17 @@ To view all our features, you may visit out [features section](#features).
 
 **Purpose:**
 
-[!WARNING] if any, otherwise remove
+<div markdown="block" class="alert alert-danger">
 
-[!NOTE]
+**ALERT**
+Put alerts here, if any
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Note**
+Put notes here
+</div>
 
 **Examples:** show some examples with the parameters
 
@@ -200,16 +216,24 @@ To view all our features, you may visit out [features section](#features).
 
 **Purpose:** To delete the specified doctor from CampusCompanion
 
-[!WARNING]
+<div markdown="block" class="alert alert-danger">
+
+**ALERT**
 This command cannot be undone. If you remove the wrong assignment, you will have to add it back using ``add-a``.
 
+</div>
+
+
 <div markdown="block" class="alert alert-info">
+
+**Note**
 
 - The index refers to the index number in the displayed assignment list. If you want to find out the index of the 
 assignment you want to delete, you can use ``list-a`` to view all the current assignment you have.
 
 - The first assignment in the list may not be index 1. Please refer to [parameter summary](#parameter-summary) 
 if you want to understand how to find the index number.
+
 </div>
 
 **Examples:**
@@ -230,9 +254,17 @@ For information on which details can be edited, [refer here](#editing-an-assignm
 
 **Purpose:**
 
-[!WARNING] if any, otherwise remove
+<div markdown="block" class="alert alert-danger">
 
-[!NOTE]
+**ALERT**
+Put alerts here, if any
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Note**
+Put notes here
+</div>
 
 **Examples:** show some examples with the parameters
 
@@ -244,9 +276,17 @@ For information on which details can be edited, [refer here](#editing-an-assignm
 
 **Purpose:**
 
-[!WARNING] if any, otherwise remove
+<div markdown="block" class="alert alert-danger">
 
-[!NOTE]
+**ALERT**
+Put alerts here, if any
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Note**
+Put notes here
+</div>
 
 **Examples:** show some examples with the parameters
 
@@ -261,12 +301,19 @@ For information on which details can be edited, [refer here](#editing-an-assignm
 **Purpose:** To list all the assignments with deadline between the given start date and end date. 
 This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
 
-[!NOTE]
+<div markdown="block" class="alert alert-info">
+
+**Notes**
+
 - _Start date_ must be after the _current date_. Otherwise, an error message will be shown. 
+
 - _End date_ must be after _start date_. Otherwise, an error message will be shown.
+
 - Both _start date_ and _end date_ are optional parameters. The timing specified within the _start date_ and _end date_ are also optional.
   - If no timing is specified for _start date_, the timing will default to 00:00.
   - If no timing is specified for _end date_, the timing will default to 23:59.
+
+</div>
 
 **Examples:**
 
@@ -291,9 +338,17 @@ This command also changes the view to assignments tab (if the view is not curren
 
 **Purpose:**
 
-[!WARNING] if any, otherwise remove
+<div markdown="block" class="alert alert-danger">
 
-[!NOTE]
+**ALERT**
+Put alerts here, if any
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Note**
+Put notes here
+</div>
 
 **Examples:** show some examples with the parameters
 
