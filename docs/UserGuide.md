@@ -414,9 +414,14 @@ CampusCompanion data are saved automatically as a JSON file `[JAR file location]
 Advanced users are welcome to update data directly by editing that data file. After editing that file, 
 when you re-run the application, the new data will automatically be shown. 
 
-[!NOTE]
-We do not recommend editing the file directly, because if the data is entered in the wrong format, it would corrupt the 
+<div markdown="block" class="alert alert-info">
+
+**Note:**
+We do not recommend editing the file directly, because if the data is entered in the wrong format, it would corrupt the
 application, and the application may not be able to load subsequently.
+
+</div>
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -425,10 +430,15 @@ application, and the application may not be able to load subsequently.
 
 This section provides a summary of the **commands**. 
 
-[!NOTE] 
+<div markdown="block" class="alert alert-info">
+
+**Note:**
 Each command may require 1 or more compulsory parameters.
-Please refer to [parameter summary](#parameter-summary) section, for more information on each parameter, 
-or [feature](#features) section, for detailed information about each feature. 
+Please refer to [parameter summary](#parameter-summary) section, for more information on each parameter,
+or [feature](#features) section, for detailed information about each feature.
+
+</div>
+
 
 ### Assignment Commands
 
