@@ -203,11 +203,14 @@ To view all our features, you may visit out [features section](#features).
 [!WARNING]
 This command cannot be undone. If you remove the wrong assignment, you will have to add it back using ``add-a``.
 
-[!NOTE]
+<div markdown="block" class="alert alert-info">
+
 - The index refers to the index number in the displayed assignment list. If you want to find out the index of the 
 assignment you want to delete, you can use ``list-a`` to view all the current assignment you have.
+
 - The first assignment in the list may not be index 1. Please refer to [parameter summary](#parameter-summary) 
 if you want to understand how to find the index number.
+</div>
 
 **Examples:**
 - ``list-a`` to list all the assignments, followed by ``delete-a 1`` to delete assignment with **index** 1.
@@ -216,7 +219,7 @@ if you want to understand how to find the index number.
 **When you might use it:**
 - If the assignment is completed and submitted, and you have no need to continue tracking it. 
 - If the assignment is wrongly added.
-- If certain details of the assignment was wrongly added, and these details are non-editable (eg. name of assignment, deadline). 
+- If certain details of the assignment was wrongly added, and these details are non-editable (e.g. name of assignment, deadline). 
 For information on which details can be edited, [refer here](#editing-an-assignment).
 
 [Scroll back to Table of Contents](#table-of-contents)
