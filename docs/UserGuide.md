@@ -104,15 +104,15 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 ### Definitions 
 Here are some descriptions of the words we use throughout the User Guide:
 
-| Term                 | Definition                                                                                                                                                                                                          |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command              | An input from the user that tells CampusCompanion to perform an action (eg. ADD an assignment, DELETE an assignment).                                                                                               |
-| Parameter            | Parameters are the details you would include about the assignment/internship (eg. Name, Description). A Command will include 1 or more parameters.                                                                  |
-| Compulsory Parameter | These are parameters that **must** be included in the Command, otherwise the Command will fail, and an error message will be displayed to you.                                                                      |
-| Optional Parameter   | These are parameters that can be omitted from the command with no errors. Such parameters provides you the flexibility of capturing or omitting additional, less important information.                             |
-| GUI                  | Graphical User Interface (GUI) represents the visual display of CampusCompanion which you are looking at and interacting with.                                                                                      |
-| GUI component        | The GUI is made up of many GUI components such as the calendar component, the list component etc. For more information on specific GUI components, [click here](#understanding-the-graphical-user-interface--gui-). |
-| CLI                  | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                                                                                                               |
+| Term               | Definition                                                                                                                                                                                                          |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command            | An input from the user that tells CampusCompanion to perform an action (eg. ADD an assignment, DELETE an assignment).                                                                                               |
+| Parameter          | Parameters are the details you would include about the assignment/internship (eg. Name, Description). A command may include 1 or more parameters.                                                                   |
+| Required Parameter | These are parameters that **must** be included in the command, otherwise the command will fail, and an error message will be displayed to you.                                                                      |
+| Optional Parameter | These are parameters that can be omitted from the command with no errors. Such parameters provides you the flexibility of capturing or omitting additional, less important information.                             |
+| GUI                | Graphical User Interface (GUI) represents the visual display of CampusCompanion which you are looking at and interacting with.                                                                                      |
+| GUI component      | The GUI is made up of many GUI components such as the calendar component, the list component etc. For more information on specific GUI components, [click here](#understanding-the-graphical-user-interface--gui-). |
+| CLI                | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                                                                                                               |
 
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -226,19 +226,20 @@ This command cannot be undone. If you remove the wrong assignment, you will have
 
 <div markdown="block" class="alert alert-info">
 
-**Note**
+**Note:**
 
 - The index refers to the index number in the displayed assignment list. If you want to find out the index of the 
 assignment you want to delete, you can use ``list-a`` to view all the current assignment you have.
 
 - The first assignment in the list may not be index 1. Please refer to [parameter summary](#parameter-summary) 
-if you want to understand how to find the index number.
+if you want to understand what is the index number.
 
 </div>
 
 **Examples:**
 - ``list-a`` to list all the assignments, followed by ``delete-a 1`` to delete assignment with **index** 1.
-- ``find-a CS2103T`` to find assignments which have "CS2103T" in the name, followed by ``delete-a 1`` to delete assignment with **index** 1.
+- ``find-a CS2103T`` to find the assignment you want to delete which has "CS2103T" in the name. Assuming this assignment is at **index** 1,
+use ``delete-a 1`` to delete it.
 
 **When you might use it:**
 - If the assignment is completed and submitted, and you have no need to continue tracking it. 
@@ -262,8 +263,9 @@ Put alerts here, if any
 
 <div markdown="block" class="alert alert-info">
 
-**Note**
+**Note:**
 Put notes here
+
 </div>
 
 **Examples:** show some examples with the parameters
@@ -284,7 +286,7 @@ Put alerts here, if any
 
 <div markdown="block" class="alert alert-info">
 
-**Note**
+**Note:**
 Put notes here
 </div>
 
@@ -303,7 +305,7 @@ This command also changes the view to assignments tab (if the view is not curren
 
 <div markdown="block" class="alert alert-info">
 
-**Notes**
+**Note:**
 
 - _Start date_ must be after the _current date_. Otherwise, an error message will be shown. 
 
@@ -346,7 +348,7 @@ Put alerts here, if any
 
 <div markdown="block" class="alert alert-info">
 
-**Note**
+**Note:**
 Put notes here
 </div>
 
