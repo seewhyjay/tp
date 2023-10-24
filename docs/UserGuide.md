@@ -336,7 +336,7 @@ This command also changes the view to assignments tab (if the view is not curren
 
 ### Finding an assignment by keywords
 
-```put command first```
+```find-a [keyword]```
 
 **Purpose:**
 
@@ -349,12 +349,26 @@ Put alerts here, if any
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-Put notes here
+``find-a`` is case-insensitive and does not require the whole word to match, for example, ``find-a la`` will match
+with "CS2103T Lab"
+
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:** 
+- ``find-a CS2103T`` to find all assignments with "CS2103T" in the assignment name
+- ``find-a lab`` to find all assignments with the word "lab" in the assignment name
 
-**When you might use it:** give some use cases
+**When you might use it:**
+- You might use the find-a command when you are looking for specific assignments within a large pool of assignments and
+  want to filter them based on keywords or partial keywords. This can help you quickly locate assignments 
+  related to a particular topic, course, or category, saving you time and effort in manually searching through a list of assignments.
+
+- If you need to manage and organize your assignments efficiently, ``find-a`` can be a valuable tool to retrieve specific 
+  assignments without the need to remember their exact names. If you are a student trying to locate all your lab assignments
+  this command simplifies the process.
+
+- When you need to prioritize your work or plan your schedule, using find-a to filter assignments by keywords allows you to focus on specific tasks or projects. 
+  This selective approach helps you manage your workload more effectively and ensures that you allocate your time and resources to the most relevant assignments.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
