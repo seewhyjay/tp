@@ -142,12 +142,37 @@ public class Calendar extends UiPart<Region> {
         // Reset calendar
         calendar.getChildren().clear();
 
-        // Updating calendar by on the button pressed by user
+        // Updating calendar on button pressed by user
         selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
 
         calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
         addDaysIndicator(calendar);
+        fillStartOfCurrentMonthToEndOfCalendar();
+        fillStartOfCalendarToEndOfPrevMonth();
+    }
 
+    private void fillStartOfCalendarToEndOfPrevMonth() {
+        LocalDate prevMonthDate = selectedCalendarView.plusMonths(-1).atEndOfMonth();
+        int columnIndex = dayToIndex(prevMonthDate.getDayOfWeek());
+
+        // If columnIndex == 6, it means first day of curr
+        // month is at [0, 0], means grid is filled
+        if (columnIndex != 6) {
+            while (columnIndex >= 0) {
+                VBox dayContainer = new VBox();
+                dayContainer.setSpacing(3);
+                dayContainer.getStyleClass().add("h-pane");
+                Label day = new Label(Integer.toString(prevMonthDate.getDayOfMonth()));
+                prevMonthDate = prevMonthDate.plusDays(-1);
+                day.getStyleClass().add("cal-disabled");
+                dayContainer.getChildren().add(day);
+                calendar.add(dayContainer, columnIndex, 1, 1, 1);
+                columnIndex -= 1;
+            }
+        }
+    }
+
+    private void fillStartOfCurrentMonthToEndOfCalendar() {
         int rowIndex = 1;
 
         LocalDate newMonthDate = selectedCalendarView.atDay(1);
@@ -191,40 +216,22 @@ public class Calendar extends UiPart<Region> {
             }
             newMonthDate = newMonthDate.plusDays(1);
         }
-
-        LocalDate prevMonthDate = selectedCalendarView.plusMonths(-1).atEndOfMonth();
-        int columnIndex = dayToIndex(prevMonthDate.getDayOfWeek());
-
-        // If columnIndex == 6, it means all the days are filed
-        if (columnIndex != 6) {
-            while (columnIndex >= 0) {
-                VBox dayContainer = new VBox();
-                dayContainer.setSpacing(3);
-                dayContainer.getStyleClass().add("h-pane");
-                Label day = new Label(Integer.toString(prevMonthDate.getDayOfMonth()));
-                prevMonthDate = prevMonthDate.plusDays(-1);
-                day.getStyleClass().add("cal-disabled");
-                dayContainer.getChildren().add(day);
-                calendar.add(dayContainer, columnIndex, 1, 1, 1);
-                columnIndex -= 1;
-            }
-        }
     }
 
     private HashMap<LocalDate, LinkedList<String>> getDateToTasksMap() {
         HashMap<LocalDate, LinkedList<String>> map = new HashMap<>();
         for (Assignment a : assignments) {
 
-            // Return an empty date if somehow a plannedDate Managed to get in
+            // Return an empty date if somehow a plannedDate managed to get in
             LocalDate endDate = a.getEnd().getDate().map(LocalDateTime::toLocalDate)
                     .orElse(LocalDate.MIN);
 
             if (!map.containsKey(endDate)) {
                 LinkedList<String> names = new LinkedList<>();
-                names.add(a.getName().taskName);
+                names.add(a.getName().getText());
                 map.put(endDate, names);
             } else {
-                map.get(endDate).add(a.getName().taskName);
+                map.get(endDate).add(a.getName().getText());
             }
         }
 

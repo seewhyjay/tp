@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -23,8 +24,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -93,6 +94,26 @@ public class AddCommandTest {
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isValidOperationWith(View v) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeViewChangeListener(ListChangeListener<View> listener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addViewChangeListener(ListChangeListener<View> listener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setView(View v) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -166,17 +187,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void markAsComplete(Assignment toMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void markAsIncomplete(Assignment toUnMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void editAssignment(Assignment assignment, Description newDescription) {
+        public void setAssignment(Assignment assignment, Assignment newAssignment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -215,6 +226,8 @@ public class AddCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
+        private View v = View.PERSONS;
+
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -225,7 +238,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.isDuplicate(person);
         }
     }
 
@@ -238,7 +251,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isDuplicate);
         }
 
         @Override

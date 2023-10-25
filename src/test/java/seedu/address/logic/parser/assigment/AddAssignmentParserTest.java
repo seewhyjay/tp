@@ -1,9 +1,12 @@
 package seedu.address.logic.parser.assigment;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.assignment.AddAssignmentCommand.MESSAGE_USAGE;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.assignment.ParserUtil.MESSAGE_INVALID_DATE;
+import static seedu.address.logic.parser.assignment.ParserUtil.MESSAGE_INVALID_NAME;
+import static seedu.address.logic.parser.assignment.ParserUtil.MESSAGE_INVALID_STATUS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,16 +18,17 @@ import seedu.address.logic.commands.assignment.AddAssignmentCommand;
 import seedu.address.logic.parser.assignment.AddAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.IsoDate;
-import seedu.address.model.assignment.Name;
-import seedu.address.model.assignment.NoDate;
-import seedu.address.model.assignment.Status;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.NoDate;
+import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 
-// LAZY TO MAKE UNIT TEST WITH CURRENT DATE WITH AND WITHOUT TIME, BUT I USER TESTED IT!!!!!!!!!
 public class AddAssignmentParserTest {
     private final AddAssignmentParser parser = new AddAssignmentParser();
+
+    private final String multiplePrefixMsg = "Multiple values specified for the following single-valued field(s): ";
 
     @Test
     public void parse_allFieldsPresentSingleTag_success() throws ParseException {
@@ -38,7 +42,7 @@ public class AddAssignmentParserTest {
                         DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                 Set.of(new Tag("cs2100")));
 
-        assertEquals(parser.parse(validInput), new AddAssignmentCommand(validAssignment));
+        assertParseSuccess(parser, validInput, new AddAssignmentCommand(validAssignment));
     }
 
     @Test
@@ -54,7 +58,7 @@ public class AddAssignmentParserTest {
                         DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                 Set.of(new Tag("cs2100"), new Tag("cs2103"), new Tag("gg")));
 
-        assertEquals(parser.parse(validInput), new AddAssignmentCommand(validAssignment));
+        assertParseSuccess(parser, validInput, new AddAssignmentCommand(validAssignment));
     }
 
     @Test
@@ -70,7 +74,7 @@ public class AddAssignmentParserTest {
                         DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                 Set.of(new Tag("cs2100"), new Tag("cs2103"), new Tag("gg")));
 
-        assertEquals(parser.parse(validInput), new AddAssignmentCommand(validAssignment));
+        assertParseSuccess(parser, validInput, new AddAssignmentCommand(validAssignment));
     }
 
     @Test
@@ -84,7 +88,7 @@ public class AddAssignmentParserTest {
                 new NoDate(),
                 Set.of(new Tag("cs2100"), new Tag("cs2103"), new Tag("gg")));
 
-        assertEquals(parser.parse(validInput), new AddAssignmentCommand(validAssignment));
+        assertParseSuccess(parser, validInput, new AddAssignmentCommand(validAssignment));
     }
 
     @Test
@@ -100,7 +104,7 @@ public class AddAssignmentParserTest {
                         DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                 Set.of(new Tag("cs2100"), new Tag("cs2103"), new Tag("gg")));
 
-        assertEquals(parser.parse(validInput), new AddAssignmentCommand(validAssignment));
+        assertParseSuccess(parser, validInput, new AddAssignmentCommand(validAssignment));
     }
 
     @Test
@@ -115,24 +119,20 @@ public class AddAssignmentParserTest {
                         DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                 Set.of(new Tag("cs2100")));
 
-        assertEquals(parser.parse(validInput), new AddAssignmentCommand(validAssignment));
+        assertParseSuccess(parser, validInput, new AddAssignmentCommand(validAssignment));
     }
 
     @Test
     public void parse_invalidDateWithoutTime_fail() throws ParseException {
-        String validInput = " n/task1 s/complete e/2021-11-11 d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(validInput));
-        assertEquals(e.getMessage(), "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) "
-                + "format and given date must not be before today's date");
+        String invalidInput = " n/task1 s/complete e/2021-11-11 d/description p/2025-11-11 11:11 t/cs2100";
+        assertParseFailure(parser, invalidInput, MESSAGE_INVALID_DATE);
 
     }
 
     @Test
     public void parse_invalidDateWithoutTime2_fail() throws ParseException {
-        String validInput = " n/task1 s/complete e/2021-11-1 d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(validInput));
-        assertEquals(e.getMessage(), "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) "
-                + "format and given date must not be before today's date");
+        String invalidInput = " n/task1 s/complete e/2021-11-1 d/description p/2025-11-11 11:11 t/cs2100";
+        assertParseFailure(parser, invalidInput, MESSAGE_INVALID_DATE);
 
     }
 
@@ -140,83 +140,70 @@ public class AddAssignmentParserTest {
     public void parse_multipleName_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/2025-11-11 23:59 "
                 + "d/description p/2025-11-11 11:11 t/cs2100 n/task2";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): n/");
+        assertParseFailure(parser, invalidInput, multiplePrefixMsg + "n/");
     }
 
     @Test
     public void parse_multipleStatus_fail() throws ParseException {
         String invalidInput = " n/task1 s/incomplete s/complete e/2025-11-11 23:59 "
                 + "d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): s/");
+        assertParseFailure(parser, invalidInput, multiplePrefixMsg + "s/");
     }
 
     @Test
     public void parse_multipleEndDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/2025-11-11 23:59 e/2025-11-11 11:11 "
                 + "d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): e/");
+        assertParseFailure(parser, invalidInput, multiplePrefixMsg + "e/");
     }
 
     @Test
     public void parse_multipleDescription_fail() throws ParseException {
         String invalidInput = " n/task1 s/incomplete e/2025-11-11 23:59 "
                 + "d/description d/description1 d/description3 p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): d/");
+        assertParseFailure(parser, invalidInput, multiplePrefixMsg + "d/");
     }
 
     @Test
     public void parse_multiplePlannedDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/incomplete e/2025-11-11 23:59 "
                 + "d/description p/2025-11-11 11:11 p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Multiple values specified for the following single-valued field(s): p/");
+        assertParseFailure(parser, invalidInput, multiplePrefixMsg + "p/");
     }
 
     @Test
     public void parse_invalidName_fail() throws ParseException {
         String invalidInput = " n/ s/complete e/2025-11-11 23:59 d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Name cannot be empty");
+        assertParseFailure(parser, invalidInput, MESSAGE_INVALID_NAME);
     }
 
     @Test
     public void parse_invalidDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/1111-11-11 23:59 d/description p/1111-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) format "
-                + "and given date must not be before today's date");
+        assertParseFailure(parser, invalidInput, MESSAGE_INVALID_DATE);
     }
 
     @Test
     public void parse_invalidStatus_fail() throws ParseException {
         String invalidInput = " n/task1 s/completee e/2025-11-11 23:59 d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Enter a valid status input: s/complete, s/incomplete");
+        assertParseFailure(parser, invalidInput, MESSAGE_INVALID_STATUS);
     }
 
     @Test
     public void parse_invalidPlannedDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete e/2025-11-11 23:59 d/description p/1111-11-1 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(e.getMessage(), "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) format "
-                + "and given date must not be before today's date");
+        assertParseFailure(parser, invalidInput, MESSAGE_INVALID_DATE);
     }
 
     @Test
     public void parse_missingName_fail() throws ParseException {
         String invalidInput = " s/complete e/2025-11-11 23:59 d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), e.getMessage());
+        assertParseFailure(parser, invalidInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 
     @Test
     public void parse_missingEndDate_fail() throws ParseException {
         String invalidInput = " n/task1 s/complete d/description p/2025-11-11 11:11 t/cs2100";
-        ParseException e = assertThrows(ParseException.class, () -> parser.parse(invalidInput));
-        assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), e.getMessage());
+        assertParseFailure(parser, invalidInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 }

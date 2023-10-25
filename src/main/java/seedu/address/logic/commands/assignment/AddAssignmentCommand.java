@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_PLANNEDFINISHDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -26,10 +27,11 @@ public class AddAssignmentCommand extends AssignmentCommand {
             + ": Adds an assignment to the app. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "]\n"
-            + PREFIX_STATUS + "STATUS "
             + PREFIX_ENDDATE + "YYYY-MM-DD HH:mm "
-            + "[" + PREFIX_PLANNEDFINISHDATE + "YYYY-MM-DD HH:mm" + "]\n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "]"
+            + "[" + PREFIX_STATUS + "STATUS " + "]\n"
+            + "[" + PREFIX_PLANNEDFINISHDATE + "YYYY-MM-DD HH:mm" + "]"
+            + "[" + PREFIX_TAG + "TAG" + "]\n"
             + "Example: " + COMMAND_WORD
             + " add-a n/Assignment 1 d/description e/2023-12-18 19:00 p/2023-08-19 18:00 t/group s/incomplete";
 

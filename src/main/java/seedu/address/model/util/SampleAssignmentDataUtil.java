@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.IsoDate;
-import seedu.address.model.assignment.Name;
-import seedu.address.model.assignment.Status;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 
 /**

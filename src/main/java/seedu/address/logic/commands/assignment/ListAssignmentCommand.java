@@ -40,6 +40,8 @@ public class ListAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.setView(correctViewNeeded);
+
         model.updateFilteredAssignmentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size()));

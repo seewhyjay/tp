@@ -4,13 +4,15 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,7 +22,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.View;
 
 
 /**
@@ -81,13 +83,40 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private HBox viewSwitcher;
+    private Label currViewHeader;
 
     @FXML
     private VBox selectedList;
 
     @FXML
     private StackPane selectedListPanelPlaceholder;
+
+    private ListChangeListener<View> onViewChange = (change) -> {
+        change.next();
+        if (change.wasReplaced()) {
+            ObservableList<? extends View> selectedView = change.getList();
+            View v = selectedView.get(0);
+            setViewHeaderName(v.toString());
+            switch (v) {
+            case ASSIGNMENTS:
+                handleSetAssignmentView();
+                break;
+            case PERSONS:
+                handleSetPersonView();
+                break;
+            default:
+                break;
+            }
+
+            if (selectedView.get(0) == View.ASSIGNMENTS) {
+                handleSetAssignmentView();
+            } else if (selectedView.get(0) == View.PERSONS) {
+                handleSetPersonView();
+            } else {
+                // do nothing for now
+            }
+        }
+    };
 
 
     /**
@@ -106,7 +135,19 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        init();
     }
+
+    private void setViewHeaderName(String header) {
+        String newHeader = header.charAt(0) + header.substring(1).toLowerCase();
+        currViewHeader.setText(newHeader);
+    }
+
+    private void init() {
+        logic.subscribeViewChange(onViewChange);
+    }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -246,7 +287,7 @@ public class MainWindow extends UiPart<Stage> {
      * button is clicked
      */
     @FXML
-    public void handleSetPersonView() {
+    private void handleSetPersonView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
@@ -256,7 +297,7 @@ public class MainWindow extends UiPart<Stage> {
      * when button is clicked
      */
     @FXML
-    public void handleSetAssignmentView() {
+    private void handleSetAssignmentView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
     }

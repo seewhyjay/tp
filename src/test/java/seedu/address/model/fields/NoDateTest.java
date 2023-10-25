@@ -1,4 +1,4 @@
-package seedu.address.model.assignment;
+package seedu.address.model.fields;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

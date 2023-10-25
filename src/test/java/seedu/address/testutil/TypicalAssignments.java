@@ -19,7 +19,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.IsoDate;
+import seedu.address.model.fields.IsoDate;
 
 /**
  * Typical Assignments
