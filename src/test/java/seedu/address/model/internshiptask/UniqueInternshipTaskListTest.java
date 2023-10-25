@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
 import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask1;
 import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask2;
 
@@ -57,6 +58,30 @@ public class UniqueInternshipTaskListTest {
                 .withStatus(true)
                 .build();
         assertTrue(uniqueTaskList.contains(editedTask));
+    }
+
+    @Test
+    public void contains_taskWithDifferentRole_returnsFalse() {
+        uniqueTaskList.add(task1);
+        InternshipTask editedTask = new InternshipTaskBuilder(task1)
+                .withInternshipRole(getTypicalInternshipRole2())
+                .withDeadline(date)
+                .withOutcome(Outcome.REJECTED)
+                .withStatus(true)
+                .build();
+        assertFalse(uniqueTaskList.contains(editedTask));
+    }
+
+    @Test
+    public void contains_taskWithDifferentTaskName_returnsFalse() {
+        uniqueTaskList.add(task1);
+        InternshipTask editedTask = new InternshipTaskBuilder(task1)
+                .withTaskName(desc)
+                .withDeadline(date)
+                .withOutcome(Outcome.REJECTED)
+                .withStatus(true)
+                .build();
+        assertFalse(uniqueTaskList.contains(editedTask));
     }
 
     @Test

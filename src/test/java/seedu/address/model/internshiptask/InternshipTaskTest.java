@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
 import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask1;
 import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask2;
 
@@ -48,8 +49,21 @@ public class InternshipTaskTest {
 
         assertTrue(task1.isSameInternshipTask(editedTask));
 
-        // different name all other attributes same -> returns false
-        editedTask = new InternshipTaskBuilder(task1).withName(obscureInput).build();
+        // different taskName all other attributes same -> returns false
+        editedTask = new InternshipTaskBuilder(task1).withTaskName(obscureInput).build();
+        assertFalse(task1.isSameInternshipTask(editedTask));
+
+        // different role all other attributes same -> returns false
+        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2()).build();
+        assertFalse(task1.isSameInternshipTask(editedTask));
+
+        // different taskName all other attributes same -> returns false
+        editedTask = new InternshipTaskBuilder(task1).withTaskName(obscureInput).build();
+        assertFalse(task1.isSameInternshipTask(editedTask));
+
+        // different companyName and taskName all other attributes same -> returns false
+        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2())
+                .withTaskName(obscureInput).build();
         assertFalse(task1.isSameInternshipTask(editedTask));
     }
 
@@ -71,8 +85,12 @@ public class InternshipTaskTest {
         // different person -> returns false
         assertFalse(task1.equals(task2));
 
-        // different name -> returns false
-        InternshipTask editedTask = new InternshipTaskBuilder(task1).withName(obscureInput).build();
+        // different taskName -> returns false
+        InternshipTask editedTask = new InternshipTaskBuilder(task1).withTaskName(obscureInput).build();
+        assertFalse(task1.equals(editedTask));
+
+        // different companyName -> returns false
+        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2()).build();
         assertFalse(task1.equals(editedTask));
 
         // different status -> returns false
@@ -94,7 +112,9 @@ public class InternshipTaskTest {
 
     @Test
     public void toStringMethod() {
-        String expected = InternshipTask.class.getCanonicalName() + "{name=" + task1.getName() + ", deadline="
+        String expected = InternshipTask.class.getCanonicalName() + "{role="
+                + task1.getInternshipRole().getMainDetails() + ", taskName="
+                + task1.getTaskName() + ", deadline="
                 + task1.getDeadline() + ", status=" + task1.getStatus() + ", outcome="
                 + task1.getOutcome() + ", tags="
                 + task1.getTags() + "}";

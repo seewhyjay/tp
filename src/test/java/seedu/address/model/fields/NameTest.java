@@ -20,11 +20,11 @@ public class NameTest {
 
     @Test
     public void isValidName() {
-        assertThrows(NullPointerException.class, () -> Name.isValidTaskName(null));
+        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
-        assertTrue(Name.isValidTaskName(VALID_NAME_ASSIGNMENT));
+        assertTrue(Name.isValidName(VALID_NAME_ASSIGNMENT));
 
-        assertFalse(Name.isValidTaskName(INVALID_NAME_EMPTY));
+        assertFalse(Name.isValidName(INVALID_NAME_EMPTY));
     }
 
     @Test

@@ -40,7 +40,7 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidTaskName(name)) {
+        if (!Name.isValidName(name)) {
             throw new ParseException(MESSAGE_INVALID_NAME);
         }
         return new Name(trimmedName);

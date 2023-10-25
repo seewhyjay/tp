@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -10,21 +12,25 @@ import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Outcome;
 import seedu.address.model.fields.Status;
 import seedu.address.model.fields.TaskOutcome;
+import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+
 
 /**
  * A class to create new InternshipTask objects
  */
 public class InternshipTaskBuilder {
-    private final String defaultName = "Grind Leetcode";
+    private final InternshipRole defaultRole = getTypicalInternshipRole1();
+    private final String defaultTaskName = "Grind Leetcode";
     private final LocalDateTime defaultDate = LocalDateTime.parse("2024-04-01 23:59",
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     private final boolean defaultStatus = false;
     private final Outcome defaultOutcome = Outcome.FOLLOW_UP;
 
-    private Name name;
+    private InternshipRole role;
+    private Name taskName;
     private IsoDate deadline;
     private Status status;
     private TaskOutcome outcome;
@@ -34,20 +40,21 @@ public class InternshipTaskBuilder {
      * Creates an InternshipTaskBuilder with default fields
      */
     public InternshipTaskBuilder() {
-        name = new Name(defaultName);
+        role = defaultRole;
+        taskName = new Name(defaultTaskName);
         deadline = new IsoDate(defaultDate);
         status = new Status(defaultStatus);
         outcome = new TaskOutcome(defaultOutcome);
         tags = new HashSet<>();
     }
 
-
     /**
      * Creates an InternshipTaskBuilder with the given input
      * @param taskToCopy over to the builder
      */
     public InternshipTaskBuilder(InternshipTask taskToCopy) {
-        name = taskToCopy.getName();
+        role = taskToCopy.getInternshipRole();
+        taskName = taskToCopy.getTaskName();
         deadline = taskToCopy.getDeadline();
         status = taskToCopy.getStatus();
         outcome = taskToCopy.getOutcome();
@@ -55,11 +62,20 @@ public class InternshipTaskBuilder {
     }
 
     /**
+     * @param role that this task is related to
+     * @return InternshipBuilder with the given name
+     */
+    public InternshipTaskBuilder withInternshipRole(InternshipRole role) {
+        this.role = role;
+        return this;
+    }
+
+    /**
      * @param name of the task
      * @return InternshipBuilder with the given name
      */
-    public InternshipTaskBuilder withName(String name) {
-        this.name = new Name(name);
+    public InternshipTaskBuilder withTaskName(String name) {
+        this.taskName = new Name(name);
         return this;
     }
 
@@ -104,7 +120,7 @@ public class InternshipTaskBuilder {
      * @return an InternshipTask with the current fields
      */
     public InternshipTask build() {
-        return new InternshipTask(name, deadline, status, outcome, tags);
+        return new InternshipTask(role, taskName, deadline, status, outcome, tags);
     }
 
 }

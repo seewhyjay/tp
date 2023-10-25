@@ -1,11 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.fields.Outcome;
 import seedu.address.model.internshiptask.InternshipTask;
-
 
 /**
  * A class to get typical internship tasks
@@ -21,7 +22,8 @@ public class TypicalInternshipTasks {
 
     public static InternshipTask getTypicalInternshipTask2() {
         return new InternshipTaskBuilder()
-                .withName("Leetcode")
+                .withInternshipRole(getTypicalInternshipRole2())
+                .withTaskName("Leetcode")
                 .withStatus(true)
                 .withDeadline(date2)
                 .withOutcome(Outcome.GHOSTED)

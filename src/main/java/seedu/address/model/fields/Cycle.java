@@ -3,42 +3,41 @@ package seedu.address.model.fields;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a task name.
+ * Represents the period of an internship
  */
-public class Name {
-
+public class Cycle {
     public static final String MESSAGE_CONSTRAINTS = "Empty string not allowed";
 
     // Matches everything except empty string
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
 
-    private final String name;
+    private final String cycle;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Cycle}.
      *
-     * @param name A valid name.
+     * @param cycle A valid cycle.
      */
-    public Name(String name) {
-        requireNonNull(name);
-        this.name = name;
+    public Cycle(String cycle) {
+        requireNonNull(cycle);
+        this.cycle = cycle;
     }
 
-    public String getName() {
-        return name;
+    public String getCycle() {
+        return cycle;
     }
 
     /**
-     * @param taskName be verified
+     * @param taskCycle be verified
      * @return true when not an empty string, false otherwise
      */
-    public static boolean isValidName(String taskName) {
-        return taskName.matches(VALIDATION_REGEX);
+    public static boolean isValidCycle(String taskCycle) {
+        return taskCycle.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return name;
+        return cycle;
     }
 
     @Override
@@ -48,16 +47,16 @@ public class Name {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Cycle)) {
             return false;
         }
 
-        Name otherName = (Name) other;
-        return name.equals(otherName.name);
+        Cycle otherCycle = (Cycle) other;
+        return cycle.equals(otherCycle.cycle);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return cycle.hashCode();
     }
 }

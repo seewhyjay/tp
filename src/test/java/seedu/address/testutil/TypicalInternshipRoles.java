@@ -17,6 +17,7 @@ public class TypicalInternshipRoles {
     public static InternshipRole getTypicalInternshipRole2() {
         return new InternshipRoleBuilder()
                 .withName("Gov Tech")
+                .withCycle("Winter")
                 .withRole("Software Engineer")
                 .withDescription("Good Knowledge of React")
                 .withOutcome(Outcome.OFFERED)

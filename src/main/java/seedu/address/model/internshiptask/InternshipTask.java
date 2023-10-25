@@ -12,13 +12,15 @@ import seedu.address.model.fields.IsoDate;
 import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Status;
 import seedu.address.model.fields.TaskOutcome;
+import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a task needed for an intern application/role
  */
 public class InternshipTask {
-    private final Name name;
+    private final InternshipRole role;
+    private final Name taskName;
     private final IsoDate deadline;
     private final Status status;
     private final TaskOutcome outcome;
@@ -26,23 +28,30 @@ public class InternshipTask {
 
     /**
      * Creates an InternshipTask object
-     * @param name of the task
+     * @param role that this task is related to
+     * @param taskName of the task
      * @param deadline of the task
      * @param status of the task
      * @param outcome of the task
      * @param tags of the task
      */
-    public InternshipTask(Name name, IsoDate deadline, Status status, TaskOutcome outcome, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, status, outcome);
-        this.name = name;
+    public InternshipTask(InternshipRole role, Name taskName, IsoDate deadline,
+                          Status status, TaskOutcome outcome, Set<Tag> tags) {
+        requireAllNonNull(role, taskName, deadline, status, outcome);
+        this.role = role;
+        this.taskName = taskName;
         this.deadline = deadline;
         this.status = status;
         this.outcome = outcome;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Name getTaskName() {
+        return taskName;
+    }
+
+    public InternshipRole getInternshipRole() {
+        return role;
     }
 
     public IsoDate getDeadline() {
@@ -70,13 +79,13 @@ public class InternshipTask {
             return true;
         }
 
-        return otherTask != null && name.equals(otherTask.name);
+        return otherTask != null && role.isSameInternshipRole(otherTask.role) && taskName.equals(otherTask.taskName);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, status, outcome);
+        return Objects.hash(taskName, role, deadline, status, outcome, tags);
     }
 
     @Override
@@ -91,7 +100,8 @@ public class InternshipTask {
 
         InternshipTask otherTask = (InternshipTask) other;
 
-        return name.equals(otherTask.name)
+        return role.equals(otherTask.role)
+                && taskName.equals(otherTask.taskName)
                 && deadline.equals(otherTask.deadline)
                 && status.equals(otherTask.status)
                 && outcome.equals(otherTask.outcome)
@@ -101,7 +111,8 @@ public class InternshipTask {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
+                .add("role", role.getMainDetails())
+                .add("taskName", taskName)
                 .add("deadline", deadline)
                 .add("status", status)
                 .add("outcome", outcome)

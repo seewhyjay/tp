@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
 import seedu.address.model.fields.Location;
 import seedu.address.model.fields.Name;
@@ -20,6 +21,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class InternshipRoleBuilder {
     private static final String DEFAULT_NAME = "Google";
+    private static final String DEFAULT_CYCLE = "Summer";
     private static final String DEFAULT_DESCRIPTION = "STEP internship";
     private static final String DEFAULT_ROLE = "Backend Engineer";
     private static final Outcome DEFAULT_OUTCOME = Outcome.FOLLOW_UP;
@@ -28,6 +30,7 @@ public class InternshipRoleBuilder {
 
     private Name name;
     private Role role;
+    private Cycle cycle;
     private Description description;
     private ApplicationOutcome outcome;
     private Pay pay;
@@ -39,6 +42,7 @@ public class InternshipRoleBuilder {
      */
     public InternshipRoleBuilder() {
         name = new Name(DEFAULT_NAME);
+        cycle = new Cycle(DEFAULT_CYCLE);
         description = new Description(DEFAULT_DESCRIPTION);
         role = new Role(DEFAULT_ROLE);
         outcome = new ApplicationOutcome(DEFAULT_OUTCOME);
@@ -53,6 +57,7 @@ public class InternshipRoleBuilder {
      */
     public InternshipRoleBuilder(InternshipRole roleToCopy) {
         name = roleToCopy.getName();
+        cycle = roleToCopy.getCycle();
         role = roleToCopy.getRole();
         description = roleToCopy.getDescription();
         outcome = roleToCopy.getApplicationOutcome();
@@ -76,6 +81,15 @@ public class InternshipRoleBuilder {
      */
     public InternshipRoleBuilder withRole(String role) {
         this.role = new Role(role);
+        return this;
+    }
+
+    /**
+     * @param cycle of the Internship role
+     * @return a InternshipRoleBuilder object with the given cycle
+     */
+    public InternshipRoleBuilder withCycle(String cycle) {
+        this.cycle = new Cycle(cycle);
         return this;
     }
 
@@ -128,7 +142,7 @@ public class InternshipRoleBuilder {
      * @return an InternshipRole with the current fields
      */
     public InternshipRole build() {
-        return new InternshipRole(name, role, description, pay, outcome, location, tags);
+        return new InternshipRole(name, role, cycle, description, pay, outcome, location, tags);
     }
 
 }

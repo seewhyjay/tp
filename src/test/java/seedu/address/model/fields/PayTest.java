@@ -7,12 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
+import java.util.Currency;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
 public class PayTest {
     private final String validPay1 = "10000.00";
-    private final String validPay2 = "99999.999";
+    private final String validPay2 = "9999999999999999999.999";
     private final String validPay3 = "0.00";
     private final String validPay4 = "1200.504";
 
@@ -33,6 +35,13 @@ public class PayTest {
 
         assertFalse(Pay.isValidPay(invalidPay1));
         assertFalse(Pay.isValidPay(invalidPay2));
+    }
+
+    @Test
+    public void toStringTest() {
+        Pay p1 = new Pay(new BigDecimal(validPay2));
+        assertEquals(p1.toString(), Currency.getInstance(Locale.getDefault()).getSymbol()
+                + "9,999,999,999,999,999,999.99");
     }
 
     @Test

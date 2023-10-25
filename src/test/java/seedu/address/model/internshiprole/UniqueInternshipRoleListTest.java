@@ -59,6 +59,48 @@ public class UniqueInternshipRoleListTest {
     }
 
     @Test
+    public void contains_roleWithSameNameRole_returnsFalse() {
+        uniqueRoleList.add(role1);
+        InternshipRole editedRole = new InternshipRoleBuilder(role1)
+                .withCycle(desc)
+                .withOutcome(Outcome.REJECTED)
+                .withDescription(desc)
+                .withLocation(desc)
+                .withPay(new BigDecimal("00.00"))
+                .withTags("tag")
+                .build();
+        assertFalse(uniqueRoleList.contains(editedRole));
+    }
+
+    @Test
+    public void contains_roleWithSameNameCycle_returnsFalse() {
+        uniqueRoleList.add(role1);
+        InternshipRole editedRole = new InternshipRoleBuilder(role1)
+                .withRole(desc)
+                .withOutcome(Outcome.REJECTED)
+                .withDescription(desc)
+                .withLocation(desc)
+                .withPay(new BigDecimal("00.00"))
+                .withTags("tag")
+                .build();
+        assertFalse(uniqueRoleList.contains(editedRole));
+    }
+
+    @Test
+    public void contains_roleWithSameCycleRole_returnsFalse() {
+        uniqueRoleList.add(role1);
+        InternshipRole editedRole = new InternshipRoleBuilder(role1)
+                .withName(desc)
+                .withOutcome(Outcome.REJECTED)
+                .withDescription(desc)
+                .withLocation(desc)
+                .withPay(new BigDecimal("00.00"))
+                .withTags("tag")
+                .build();
+        assertFalse(uniqueRoleList.contains(editedRole));
+    }
+
+    @Test
     public void add_nullRole_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueRoleList.add(null));
     }

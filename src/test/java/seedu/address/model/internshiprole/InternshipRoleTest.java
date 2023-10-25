@@ -74,7 +74,7 @@ public class InternshipRoleTest {
         // different type -> returns false
         assertFalse(role1.equals(5));
 
-        // different person -> returns false
+        // different role -> returns false
         assertFalse(role1.equals(role2));
 
         // different name -> returns false
@@ -83,6 +83,10 @@ public class InternshipRoleTest {
 
         // different role -> returns false
         editedRole = new InternshipRoleBuilder(role1).withRole(obscureInput).build();
+        assertFalse(role1.equals(editedRole));
+
+        // different cycle -> returns false
+        editedRole = new InternshipRoleBuilder(role1).withCycle(obscureInput).build();
         assertFalse(role1.equals(editedRole));
 
         // different outcome -> returns false
@@ -109,7 +113,9 @@ public class InternshipRoleTest {
     @Test
     public void toStringMethod() {
         String expected = InternshipRole.class.getCanonicalName() + "{name=" + role1.getName() + ", role="
-                + role1.getRole() + ", description=" + role1.getDescription() + ", pay="
+                + role1.getRole() + ", cycle="
+                + role1.getCycle() + ", description="
+                + role1.getDescription() + ", pay="
                 + role1.getPay() + ", outcome="
                 + role1.getApplicationOutcome() + ", location="
                 + role1.getLocation() + ", tags="

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
 import seedu.address.model.fields.Location;
 import seedu.address.model.fields.Name;
@@ -22,6 +23,7 @@ import seedu.address.model.tag.Tag;
 public class InternshipRole {
     private final Name name;
     private final Role role;
+    private final Cycle cycle;
     private final Description description;
     private final Pay pay;
     private final ApplicationOutcome outcome;
@@ -37,11 +39,12 @@ public class InternshipRole {
      * @param outcome of the internship application
      * @param location of the internship
      */
-    public InternshipRole(Name name, Role role, Description description, Pay pay, ApplicationOutcome outcome,
-                          Location location, Set<Tag> tags) {
+    public InternshipRole(Name name, Role role, Cycle cycle, Description description,
+                          Pay pay, ApplicationOutcome outcome, Location location, Set<Tag> tags) {
         requireAllNonNull(name, role, description, pay, outcome, location, tags);
         this.name = name;
         this.role = role;
+        this.cycle = cycle;
         this.description = description;
         this.pay = pay;
         this.outcome = outcome;
@@ -55,6 +58,10 @@ public class InternshipRole {
 
     public Role getRole() {
         return role;
+    }
+
+    public Cycle getCycle() {
+        return cycle;
     }
 
     public Description getDescription() {
@@ -80,7 +87,7 @@ public class InternshipRole {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, role, description, description, pay, outcome, location, tags);
+        return Objects.hash(name, role, cycle, description, description, pay, outcome, location, tags);
     }
 
 
@@ -93,7 +100,13 @@ public class InternshipRole {
             return true;
         }
 
-        return otherRole != null && role.equals(otherRole.role) && name.equals(otherRole.name);
+        return otherRole != null && role.equals(otherRole.role)
+                && name.equals(otherRole.name)
+                && cycle.equals(otherRole.cycle);
+    }
+
+    public String getMainDetails() {
+        return name.toString() + ", " + role.toString() + ", " + cycle.toString();
     }
 
     @Override
@@ -110,6 +123,7 @@ public class InternshipRole {
 
         return name.equals(otherRole.name)
                 && role.equals(otherRole.role)
+                && cycle.equals(otherRole.cycle)
                 && description.equals(otherRole.description)
                 && pay.equals(otherRole.pay)
                 && outcome.equals(otherRole.outcome)
@@ -122,6 +136,7 @@ public class InternshipRole {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("role", role)
+                .add("cycle", cycle)
                 .add("description", description)
                 .add("pay", pay)
                 .add("outcome", outcome)
