@@ -122,13 +122,32 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ### Quick Orientation
 
-PUT A LABELLED PICTURE!!!
+![img.png](images/LabelledGUI.png)
 
 Here is a quick summary of each GUI component within CampusCompanion
+
+
+| Component                   | Description                                                                                                                                                                                                                                                                                                                                                             |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Menu Bar                    | Contains dropdown menu for ``File`` which lets you exit CampusCompanion, and ``Help`` which leads you to this user guide.                                                                                                                                                                                                                                               |
+| Command Box                 | Commands are entered here.                                                                                                                                                                                                                                                                                                                                              |
+| Result Box                  | Feedback from entered command is shown here. If command entered is erroneous, the required correct usage will be shown.                                                                                                                                                                                                                                                 |
+| List Title                  | Indicates if ``Assignments`` or ``Internships`` are currently being shown.                                                                                                                                                                                                                                                                                              |
+| Assignment/Internship List  | Shows all relevant information cards, can be switched between ``Assignments`` and ``Internships`` through the use of the ``list-x`` command, ``x`` being ``a`` or ``i`` respectively. Commands that filter information cards such as ``find`` will update this list. <br><br> When CampusCompanion is first opened, all ``Assignment`` information cards will be shown. |
+| Information Card            | Shows all information of individual ``assignment`` or ``internship``, these can be filtered through the use of ``list`` or ``find``.                                                                                                                                                                                                                                    |
+| Index Number                | The index number of the card, it is used in commands like ``delete`` and ``edit``.                                                                                                                                                                                                                                                                                      |
+| Calendar with Task Preview  | The calendar shows up to 2 tasks, be it ``assignment`` or ``internship`` for each day, if there are any. The current day is highlighted in purple.                                                                                                                                                                                                                      |
+| Calendar Navigation Buttons | Used to change the month being shown on the calendar.                                                                                                                                                                                                                                                                                                                   |
+| Footer                      | Shows the location of the saved data. This file can be used to move data to another computer.                                                                                                                                                                                                                                                                           |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Notes about the GUI
+
+While there are clickable buttons such as the calendar navigation button and the options on the menu bar, CampusCompanion is a CLI-focused application, and as such, implements commands to do the same thing.
+For example:
+- ``Help`` can be achieved using the ``help`` command.
+- ``File -> Exit`` can be achieved using the ``exit`` command.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -336,25 +355,32 @@ This command also changes the view to assignments tab (if the view is not curren
 
 ### Finding an assignment by keywords
 
-```put command first```
+```find-a KEYWORD```
 
 **Purpose:**
-
-<div markdown="block" class="alert alert-danger">
-
-**ALERT**
-Put alerts here, if any
-</div>
+To find all assignments whose name contains the keyword.
 
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-Put notes here
+The keyword is case-insensitive and does not require the whole word to match, for example, if you had an assignment with the name "CS2100 Lab", using the command ``find-a l``, ``find-a la``, ``find-a lab`` or ``find-a LAB`` will match with this assignment
+
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:** 
+- ``find-a CS2103T`` to find all assignments with "CS2103T" in the assignment name
 
-**When you might use it:** give some use cases
+**When you might use it:**
+- You might use the ``find-a`` command when you are looking for specific assignments within a large pool of assignments and
+  want to filter them based on keywords or partial keywords. This can help you quickly locate assignments 
+  related to a particular topic, course, or category, saving you time and effort in manually searching through a list of assignments.
+
+- If you need to manage and organize your assignments efficiently, ``find-a`` can be a valuable tool to retrieve specific 
+  assignments without the need to remember their exact names. If you are a student trying to locate all your lab assignments
+  this command simplifies the process.
+
+- When you need to prioritize your work or plan your schedule, using ``find-a`` to filter assignments by keywords allows you to focus on specific tasks or projects. 
+  This selective approach helps you manage your workload more effectively and ensures that you allocate your time and resources to the most relevant assignments.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
