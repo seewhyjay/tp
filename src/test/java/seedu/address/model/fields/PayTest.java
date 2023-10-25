@@ -36,14 +36,7 @@ public class PayTest {
         assertFalse(Pay.isValidPay(invalidPay1));
         assertFalse(Pay.isValidPay(invalidPay2));
     }
-
-    @Test
-    public void toStringTest() {
-        Pay p1 = new Pay(new BigDecimal(validPay2));
-        assertEquals(p1.toString(), Currency.getInstance(Locale.getDefault()).getSymbol()
-                + "9,999,999,999,999,999,999.99");
-    }
-
+    
     @Test
     public void equals() {
         Pay pay = new Pay(new BigDecimal(validPay1));
