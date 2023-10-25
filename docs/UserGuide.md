@@ -85,13 +85,13 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all assignments and internships.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Campus Companion.
+   * `add-a n/CS2100 Assignment 1 e/2023-10-29` : Adds an assignment named `CS2100 Assignment 1` to the Campus Companion.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete-a 3` : Deletes the 3rd assignment shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `mark-a 1` : Marks the 1st assignment shown in the current list.
 
    * `exit` : Exits the app.
 
@@ -152,6 +152,12 @@ This is a tutorial for new CampusCompanion users. This tutorial will provide you
 command for both assignments and internships. 
 
 1. Launch CampusCompanion. You may refer to the instructions [here](#getting-started).
+2. Add your first assignment! You may refer to the command `add-a` found [here](#adding-an-assignment).
+3. Once your assignment is done, you can either use `delete-a` found [here](#deleting-an-assignment) to remove it from
+CampusCompanion, or `mark-a` found [here](#marking-an-assignment-as-complete) if you want to mark it as complete and continue tracking it.
+4. After adding more assignments, you can use `list-a` found [here](#listing-and-filtering-assignments) to see all your assignments.
+5. To find assignments by keyword, you can refer to `find-a` found [here](#finding-an-assignment-by-keywords).
+6. Congratulations! You should now be familiar with using CampusCompanion.
 
 To view all our features, you may visit out [features section](#features).
 
@@ -164,25 +170,35 @@ To view all our features, you may visit out [features section](#features).
 
 ### Adding an assignment
 
-```put command first```
+```add-a n/NAME [d/DESCRIPTION] [s/STATUS] e/YYYY-MM-DD HH:mm [p/YYYY-MM-DD HH:mm]```
 
 **Purpose:**
-
+To add an assignment into CampusCompanion.
 <div markdown="block" class="alert alert-danger">
 
 **ALERT**
-Put alerts here, if any
+This command cannot be undone. If you add in the wrong details, 
+you would have to delete the assignment using `delete-a` and add it again. If instead
+your status or description is wrong, you can simply `mark-a`/`unmark-a` or `edit-a`.
+HH:mm is set to 23:59 by default if left empty.
 </div>
 
 <div markdown="block" class="alert alert-info">
 
 **Note**
-Put notes here
+- The name(n/) and deadline(e/) of the assignment are compulsory, the 
+description(d/), status(s/) and planned finish date(p/) are all optional fields.
+- The deadline(e/) and planned end date(p/) **must** be after the current date and time.
+Otherwise, an error message will be shown.
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:** 
+- `add-a n/CS2100 Assignment 1 e/2023-10-29 13:00`
+- `add-a n/CS2103T v1.3 d/Work on add function for task e/2023-10-28`
 
-**When you might use it:** give some use cases
+**When you might use it:** 
+- When you first receive news of an assignment or deadline, and you want to keep track of it.
+- When you already have existing assignments not written in CampusCompanion, and want to organise them all in one place.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -214,7 +230,7 @@ Put notes here
 
 ```delete-a INDEX```
 
-**Purpose:** To delete the specified doctor from CampusCompanion
+**Purpose:** To delete the specified assignment from CampusCompanion
 
 <div markdown="block" class="alert alert-danger">
 
@@ -251,48 +267,74 @@ For information on which details can be edited, [refer here](#editing-an-assignm
 
 ### Marking an assignment as complete
 
-```put command first```
+```mark-a INDEX```
 
 **Purpose:**
+To mark a specific assignment in CampusCompanion as complete.
 
 <div markdown="block" class="alert alert-danger">
 
 **ALERT**
-Put alerts here, if any
+This command cannot be undone. If an assignment is wrongly marked as
+complete, you can unmark it with `unmark-a`.
 </div>
 
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-Put notes here
+- The index refers to the index number in the displayed assignments list. If you want to find out the index of the
+  assignment you want to mark, you can use ``list-a`` to view all the current assignments you have.
+
+- The first assignment in the list may not be index 1. Please refer to [parameter summary](#parameter-summary)
+  if you want to understand what is the index number.
 
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:**
+- `list-a` to list all the assignments, then `mark-a 1` to mark
+the assignment with index 1 as complete.
+- `find-a MIH1101` to find assignments with MIH1101 in their name.
+Assuming the assignment to mark is at index 1, you can use `mark-a 1` to mark it.
 
-**When you might use it:** give some use cases
+**When you might use it:**
+- When you complete an assignment, and you want to mark it.
+- When you wrongly unmark a completed assignment, and want to mark it again.
 
 ### Marking an assignment as incomplete
 
-```put command first```
+```unmark-a INDEX```
 
 **Purpose:**
-
+To mark a specific assignment in CampusCompanion as incomplete.
 <div markdown="block" class="alert alert-danger">
 
 **ALERT**
-Put alerts here, if any
+This command cannot be undone. If a completed assignment is wrongly marked as
+incomplete, you can mark it again with `mark-a`.
 </div>
 
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-Put notes here
+- The index refers to the index number in the displayed assignments list. If you want to find out the index of the
+  assignment you want to unmark, you can use ``list-a`` to view all the current assignments you have.
+
+- The first assignment in the list may not be index 1. Please refer to [parameter summary](#parameter-summary)
+  if you want to understand what is the index number.
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:**
+- `list-a` to list all the assignments, then `unmark-a 1` to mark
+  the assignment with index 1 as incomplete, assuming it was complete previously.
+- `find-a MIH1101` to find assignments with MIH1101 in their name.
+  Assuming the assignment to unmark is at index 1 and is complete, 
+you can use `unmark-a 1` to mark it as incomplete.
 
-**When you might use it:** give some use cases
+**When you might use it:**
+- When you wrongly mark an assignment as complete, and you want to unmark it.
+- When you added an assignment with a complete status mistakenly, and want to unmark it.
+- When you initially completed an assignment and marked it, but realise you have changes to make 
+regarding the assignment and want to continue working on it.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
