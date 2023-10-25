@@ -85,7 +85,7 @@ public final class Assignment implements Comparable<Assignment>, Unique<Assignme
      * Returns a new Assignment with the given description
      * @return a new Assignment with the given description
      */
-    public Assignment setDescription(Description newDescription) {
+    public Assignment getNewAssignmentWithDescription(Description newDescription) {
         return new Assignment(name, enddate, status, newDescription, plannedFinishDate, tags);
     }
 

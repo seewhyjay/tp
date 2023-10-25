@@ -12,7 +12,7 @@ import java.util.List;
 public class TaskOutcome {
 
     private static final List<String> possibleOutcomes =
-            new LinkedList<>(Arrays.asList("follow up", "ghosted", "offered", "rejected"));
+            new LinkedList<>(Arrays.asList("follow-up", "ghosted", "offered", "rejected"));
 
     private final Outcome outcome;
 

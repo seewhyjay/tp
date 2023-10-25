@@ -10,15 +10,15 @@ public enum Outcome {
     public String toString() {
         switch (this) {
         case FOLLOW_UP:
-            return "follow up";
+            return "Follow-up";
         case GHOSTED:
-            return "ghosted";
+            return "Ghosted";
         case REJECTED:
-            return "rejected";
+            return "Rejected";
         case OFFERED:
-            return "offered";
+            return "Offered";
         case ACCEPTED:
-            return "accepted";
+            return "Accepted";
         default:
             return "";
         }

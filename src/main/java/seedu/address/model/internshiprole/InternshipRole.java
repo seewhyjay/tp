@@ -21,6 +21,7 @@ import seedu.address.model.unique.Unique;
 /**
  * Represents an internship role
  */
+// PLS DO NOT REMOVE THE FINAL MODIFIER SUPPOSE TO BE IMMUTABLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public final class InternshipRole implements Unique<InternshipRole> {
     private final Name name;
     private final Role role;

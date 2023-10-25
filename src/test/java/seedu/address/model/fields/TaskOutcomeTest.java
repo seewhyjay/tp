@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class TaskOutcomeTest {
-    private final String validOutcome1 = "follow up";
+    private final String validOutcome1 = "follow-up";
     private final String validOutcome2 = "offered";
     private final String validOutcome3 = "rejected";
     private final String validOutcome4 = "ghosted";

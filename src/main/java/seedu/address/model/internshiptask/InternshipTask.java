@@ -19,6 +19,7 @@ import seedu.address.model.unique.Unique;
 /**
  * Represents a task needed for an intern application/role
  */
+// PLS DO NOT REMOVE THE FINAL MODIFIER SUPPOSE TO BE IMMUTABLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public final class InternshipTask implements Unique<InternshipTask> {
     private final InternshipRole role;
     private final Name taskName;
