@@ -58,7 +58,8 @@ public class AddInternshipRoleParser implements Parser<AddInternshipRoleCommand>
 
         Set<Tag> tagList = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
 
-        
+
+        return null;
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.person.Prefix;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -72,4 +73,22 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code assignment} for display to the user.
+     */
+    public static String format(InternshipTask internshipTask) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(internshipTask.getTaskName())
+                .append("; Internship role name: ")
+                .append(internshipTask.getInternshipRole().getName())
+                .append("; Status: ")
+                .append(internshipTask.getStatus())
+                .append("; Deadline: ")
+                .append(internshipTask.getDeadline())
+                .append("; Outcome: ")
+                .append(internshipTask.getOutcome())
+                .append("; Tags: ");
+        internshipTask.getTags().forEach(builder::append);
+        return builder.toString();
+    }
 }

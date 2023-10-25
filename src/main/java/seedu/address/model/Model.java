@@ -7,6 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -131,4 +132,15 @@ public interface Model {
      * The assignment must exist in Campus Companion.
      */
     void setAssignment(Assignment assignment, Assignment newAssignment);
+
+    /** Returns an unmodifiable view of the filtered internship task list */
+    ObservableList<InternshipTask> getFilteredInternshipTaskList();
+
+    ObservableList<InternshipTask> getUnfilteredInternshipTaskList();
+
+    void deleteInternshipTask(InternshipTask target);
+
+    void addInternshipTask(InternshipTask internshipTask);
+
+    boolean hasInternshipTask(InternshipTask internshipTask);
 }

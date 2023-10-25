@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -30,6 +31,8 @@ public class ModelManager implements Model {
 
     private final FilteredList<Assignment> filteredAssignments;
 
+    private final FilteredList<InternshipTask> filteredInternshipTaskList;
+
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
     /**
@@ -44,6 +47,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        filteredInternshipTaskList = new FilteredList<>(this.addressBook.getInternshipTaskList());
 
         initView();
     }
@@ -187,6 +191,35 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Assignment> getUnfilteredAssignmentList() {
         return addressBook.getAssignmentList();
+    }
+
+
+    //====== Filtered Internship Task List Accessors==========================
+
+    @Override
+    public boolean hasInternshipTask(InternshipTask internshipTask) {
+        return addressBook.hasInternshipTask(internshipTask);
+    }
+
+    @Override
+    public void deleteInternshipTask(InternshipTask target) {
+        addressBook.removeInternshipTask(target);
+    }
+
+    @Override
+    public void addInternshipTask(InternshipTask internshipTask) {
+        requireNonNull(internshipTask);
+        addressBook.addInternshipTask(internshipTask);
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return filteredInternshipTaskList;
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
+        return addressBook.getInternshipTaskList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
