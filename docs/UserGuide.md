@@ -514,6 +514,7 @@ The information below specifies parameter description, constraints and usage thr
 | s/                                    | Status (optional parameter)                            | Either `complete` or `incomplete`                                                                                                       | complete, incomplete                    | done, finished, completed |
 | p/                                    | Planned finish date of assignment (optional parameter) | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST** be after current date. | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
 | INDEX<sup>*</sup> or i/ (in `edit-a`) | Index in assignments list                              | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                           | -1, 2147483649            |
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Internship Parameters
