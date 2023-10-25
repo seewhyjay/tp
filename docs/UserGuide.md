@@ -194,10 +194,7 @@ Put notes here
 
 <div markdown="block" class="alert alert-danger">
 
-**ALERT**
-This command cannot be undone. Once you have edited an assignment,
-the old description is lost.
-</div>
+
 
 <div markdown="block" class="alert alert-info">
 
