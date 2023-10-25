@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 public class PayTest {
     private final String validPay1 = "10000.00";
-    private final String validPay2 = "9999999999999.999";
+    private final String validPay2 = "99999.999";
     private final String validPay3 = "0.00";
     private final String validPay4 = "1200.504";
 
@@ -39,7 +39,7 @@ public class PayTest {
     public void toStringTest() {
         BigDecimal pay1 = new BigDecimal(validPay2);
         Pay p1 = new Pay(pay1);
-        assertEquals(p1.toString(), "$9,999,999,999,999.99");
+        assertEquals(p1.toString(), "$99,999.99");
 
         BigDecimal pay2 = new BigDecimal(validPay4);
         Pay p2 = new Pay(pay2);
