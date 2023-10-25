@@ -1,40 +1,43 @@
-package seedu.address.model.assignment;
+package seedu.address.model.fields;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a task name.
+ * Represents any non empty text
  */
-public class Name {
-
+public class NonEmptyText {
     public static final String MESSAGE_CONSTRAINTS = "Empty string not allowed";
 
     // Matches everything except empty string
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
 
-    public final String taskName;
+    private final String text;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param taskName A valid name.
+     * @param text A valid text.
      */
-    public Name(String taskName) {
-        requireNonNull(taskName);
-        this.taskName = taskName;
+    public NonEmptyText(String text) {
+        requireNonNull(text);
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
     }
 
     /**
      * @param taskName be verified
      * @return true when not an empty string, false otherwise
      */
-    public static boolean isValidTaskName(String taskName) {
+    public static boolean isValidText(String taskName) {
         return taskName.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return taskName;
+        return text;
     }
 
     @Override
@@ -44,16 +47,16 @@ public class Name {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof NonEmptyText)) {
             return false;
         }
 
-        Name otherName = (Name) other;
-        return taskName.equals(otherName.taskName);
+        NonEmptyText otherName = (NonEmptyText) other;
+        return text.equals(otherName.text);
     }
 
     @Override
     public int hashCode() {
-        return taskName.hashCode();
+        return text.hashCode();
     }
 }

@@ -10,14 +10,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.assignment.EditAssignmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.Prefix;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.fields.Description;
 
 /**
  * Parses an input that starts with edit-a
  */
-public class EditAssignmentParser {
+public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
     /**
      * Parses the input command that starts with edit-a

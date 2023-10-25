@@ -41,6 +41,7 @@ public class MarkAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -52,8 +53,10 @@ public class MarkAssignmentCommand extends AssignmentCommand {
             throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_COMPLETE);
         }
 
-        model.markAsComplete(assignmentToMark);
-        return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_SUCCESS, Messages.format(assignmentToMark)));
+        Assignment markedAssignment = assignmentToMark.mark();
+        model.setAssignment(assignmentToMark, markedAssignment);
+
+        return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_SUCCESS, Messages.format(markedAssignment)));
     }
 
     @Override

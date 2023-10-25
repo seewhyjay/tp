@@ -11,11 +11,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignment.Date;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.IsoDate;
-import seedu.address.model.assignment.Name;
-import seedu.address.model.assignment.Status;
+import seedu.address.model.fields.Date;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +23,14 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_INVALID_DATE = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd "
+            + "(default 23:59) format and given date must not be before today's date";
+
+
+    public static final String MESSAGE_INVALID_NAME = "Name cannot be empty";
+
+    public static final String MESSAGE_INVALID_STATUS = "Enter a valid status input: s/complete, s/incomplete";
 
     /**
      * @param name the taskname
@@ -32,8 +40,8 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidTaskName(name)) {
-            throw new ParseException("Name cannot be empty");
+        if (!Name.isValidText(name)) {
+            throw new ParseException(MESSAGE_INVALID_NAME);
         }
         return new Name(trimmedName);
     }
@@ -59,7 +67,7 @@ public class ParserUtil {
         requireNonNull(status);
         String trimmedStatus = status.trim();
         if (!Status.isValidStatus(status)) {
-            throw new ParseException("Enter a valid status input: s/complete, s/incomplete");
+            throw new ParseException(MESSAGE_INVALID_STATUS);
         }
         return new Status(trimmedStatus.equals("complete"));
     }
@@ -82,8 +90,7 @@ public class ParserUtil {
                     DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
         }
 
-        throw new ParseException("Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd (default 23:59) format "
-                + "and given date must not be before today's date");
+        throw new ParseException(MESSAGE_INVALID_DATE);
     }
 
     /**

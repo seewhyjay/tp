@@ -7,10 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.UniqueAssignmentList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.unique.UniqueList;
 
 /**
  * Wraps all data at the address-book level
@@ -18,9 +16,9 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueList<Person> persons;
 
-    private final UniqueAssignmentList assignments;
+    private final UniqueList<Assignment> assignments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,8 +28,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
-        assignments = new UniqueAssignmentList();
+        persons = new UniqueList<>();
+        assignments = new UniqueList<>();
     }
 
     public AddressBook() {
@@ -52,11 +50,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+        this.persons.setList(persons);
     }
 
     public void setAssignments(List<Assignment> assignments) {
-        this.assignments.setAssignments(assignments);
+        this.assignments.setList(assignments);
     }
 
     /**
@@ -95,7 +93,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        persons.set(target, editedPerson);
     }
 
     /**
@@ -144,41 +142,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         assignments.remove(key);
     }
 
-    /**
-     * Mark an assignment as complete
-     *
-     * @param toMark the assignment to be marked
-     */
-    public void markAssignment(Assignment toMark) {
-        requireNonNull(toMark);
-        assignments.mark(toMark);
-    }
 
     /**
      * Sort assignments by endDate
      */
     public void sortAssignments() {
-        assignments.sortAssignments();
+        assignments.sort((a1, a2) -> a1.getEnd().compareTo(a2.getEnd()));
     }
 
-    /**
-     * UnMark an assignment and set its status as incomplete
-     *
-     * @param toUnMark the assignment to be marked
-     */
-    public void unMarkAssignment(Assignment toUnMark) {
-        requireNonNull(toUnMark);
-        assignments.unMark(toUnMark);
-    }
 
     /**
      * Edits the target assignment's description
      *
-     * @param newDescription The input description
+     * @param newAssignment to replace target
      */
-    public void editAssignment(Assignment assignment, Description newDescription) {
-        requireNonNull(assignment);
-        assignments.edit(assignment, newDescription);
+    public void editAssignment(Assignment target, Assignment newAssignment) {
+        requireNonNull(target);
+        assignments.set(target, newAssignment);
     }
 
     @Override

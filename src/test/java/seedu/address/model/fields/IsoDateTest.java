@@ -1,4 +1,4 @@
-package seedu.address.model.assignment;
+package seedu.address.model.fields;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 
 public class IsoDateTest {
 
-    private String invalidDate = "1111-11-40 11:50";
-    private String invalidDate2 = "1111-11-40";
+    private final String invalidDate = "1111-11-40 11:50";
+    private final String invalidDate2 = "1111-11-40";
 
-    private String validDate = "2025-11-11 11:50";
-    private String validDate2 = "2025-11-11 11:51";
-    private String validDate3 = "2025-11-11";
+    private final String validDate = "2025-11-11 11:50";
+    private final String validDate2 = "2025-11-11 11:51";
+    private final String validDate3 = "2025-11-11";
 
     @Test
     public void isValidDate() {
