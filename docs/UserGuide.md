@@ -228,27 +228,30 @@ To add an assignment into CampusCompanion.
 
 ### Editing an assignment
 
-```put command first```
+```edit-a i/INDEX d/DESCRIPTION```
 
-To view assignment parameter information, click [here](#assignment-parameters)
-
-**Purpose:**
+**Purpose:** Edit the description of a specified assignment
 
 <div markdown="block" class="alert alert-danger">
 
-**ALERT**
-Put alerts here, if any
-</div>
+
 
 <div markdown="block" class="alert alert-info">
 
 **Note**
-Put notes here
+- The index refers to the position of the assignment in the assignment list. To find out 
+the index of the assignment you want to edit, use the ``list-a`` command.
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:**
+- Use `list-a` to list all the assignments, followed by `edit-a i/1 d/This is my new description`
+to edit the description of the assignment at **index** 1.
+- Use `find-a CS2103T` to find the assignment with "CS2103T" in the name. Assuming that this assignment
+- is at **index** 1, use `edit-a i/1 d/Create test cases` to edit its description to "Create test cases".
 
-**When you might use it:** give some use cases
+**When you might use it:** 
+- If the assignment was originally added with a wrong description.
+- If the requirements of the assignment has changed since you last added it.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
