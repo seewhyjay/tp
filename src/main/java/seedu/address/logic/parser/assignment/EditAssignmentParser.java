@@ -11,7 +11,6 @@ import seedu.address.logic.commands.assignment.EditAssignmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.Prefix;
 import seedu.address.model.fields.Description;
