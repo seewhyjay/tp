@@ -7,17 +7,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Date;
 import seedu.address.model.fields.Description;
 import seedu.address.model.fields.IsoDate;
 import seedu.address.model.fields.Location;
 import seedu.address.model.fields.Name;
 import seedu.address.model.fields.NonEmptyText;
+import seedu.address.model.fields.Outcome;
 import seedu.address.model.fields.Pay;
 import seedu.address.model.fields.Role;
 import seedu.address.model.fields.Status;
@@ -41,6 +45,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_PAY = "Pay must be a positive number, e.g. 1600.50";
 
     public static final String MESSAGE_INVALID_STATUS = "Enter a valid status input: s/complete, s/incomplete";
+
+    public static final String MESSAGE_INVALID_APP_OUTCOME = "Enter a valid outcome: o/follow-up, "
+            + "ghosted, rejected, offered, accepted, awaiting";
 
     /**
      * @param name the taskname
@@ -165,7 +172,7 @@ public class ParserUtil {
 
     /**
      * @param location of the internship
-     * @return a name object
+     * @return a Location object
      * @throws ParseException
      */
     public static Location parseLocation(String location) throws ParseException {
@@ -179,7 +186,7 @@ public class ParserUtil {
 
     /**
      * @param role of the internship
-     * @return a name object
+     * @return a Role object
      * @throws ParseException
      */
     public static Role parseRole(String role) throws ParseException {
@@ -191,13 +198,40 @@ public class ParserUtil {
         return new Role(trimmedRole);
     }
 
+    /**
+     * @param cycle of the internship
+     * @return a Cycle object
+     * @throws ParseException
+     */
+    public static Cycle parseCycle(String cycle) throws ParseException {
+        requireNonNull(cycle);
+        String trimmedCycle = cycle.trim();
+        if (!NonEmptyText.isValidText(trimmedCycle)) {
+            throw new ParseException(MESSAGE_INVALID_ROLE);
+        }
+        return new Cycle(trimmedCycle);
+    }
+
+    /**
+     *
+     * @param pay of the internship
+     * @return a Pay object
+     * @throws ParseException if not a valid pay
+     */
     public static Pay parsePay(String pay) throws ParseException {
         requireNonNull(pay);
         String trimmedPay = pay.trim();
         if (!Pay.isValidPay(trimmedPay)) {
             throw new ParseException(MESSAGE_INVALID_PAY);
         }
-
         return new Pay(new BigDecimal(trimmedPay));
+    }
+
+    public static ApplicationOutcome parseApplicationOutcome(String outcome) throws ParseException {
+        return Optional.of(outcome)
+                .filter(ApplicationOutcome::isValidApplicationOutcome)
+                .flatMap(Outcome::parseOutcome)
+                .map(ApplicationOutcome::new)
+                .orElseThrow(() -> new ParseException(MESSAGE_INVALID_APP_OUTCOME));
     }
 }
