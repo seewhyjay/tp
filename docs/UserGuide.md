@@ -122,13 +122,31 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ### Quick Orientation
 
-PUT A LABELLED PICTURE!!!
+![img.png](images/LabelledGUI.png)
 
 Here is a quick summary of each GUI component within CampusCompanion
+
+
+| Component                   | Description                                                                                                                                                                                                                                                                                                                                                             |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Menu Bar                    | Contains dropdown menu for ``File`` which lets you exit CampusCompanion, and ``Help`` which leads you to this user guide.                                                                                                                                                                                                                                               |
+| Command Box                 | Commands are entered here.                                                                                                                                                                                                                                                                                                                                              |
+| Result Box                  | Feedback from entered command is shown here. If command entered is erroneous, the required correct usage will be shown.                                                                                                                                                                                                                                                 |
+| List Title                  | Indicates if ``Assignments`` or ``Internships`` are currently being shown.                                                                                                                                                                                                                                                                                              |
+| Assignment/Internship List  | Shows all relevant information cards, can be switched between ``Assignments`` and ``Internships`` through the use of the ``list-x`` command, ``x`` being ``a`` or ``i`` respectively. Commands that filter information cards such as ``find`` will update this list. <br><br> When CampusCompanion is first opened, all ``Assignment`` information cards will be shown. |
+| Information Card            | Shows all information of individual ``assignment`` or ``internship``, these can be filtered through the use of ``list`` or ``find``.                                                                                                                                                                                                                                    |
+| Calendar with Task Preview  | The calendar shows up to 2 tasks, be it ``assignment`` or ``internship`` for each day, if there are any. The current day is highlighted in purple.                                                                                                                                                                                                                      |
+| Calendar Navigation Buttons | Used to change the month being shown on the calendar.                                                                                                                                                                                                                                                                                                                   |
+| Footer                      | Shows the location of the saved data. This file can be used to move data to another computer.                                                                                                                                                                                                                                                                           |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Notes about the GUI
+
+While there are clickable buttons such as the calendar navigation button and the options on the menu bar, CampusCompanion is a CLI-focused application, and as such, implements commands to do the same thing.
+For example:
+- ``Help`` can be achieved using the ``help`` command.
+- ``File -> Exit`` can be achieved using the ``exit`` command.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
