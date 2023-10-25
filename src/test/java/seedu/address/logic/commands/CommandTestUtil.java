@@ -137,7 +137,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAssignmentList().size());
 
         Assignment assignment = model.getFilteredAssignmentList().get(targetIndex.getZeroBased());
-        final String[] splitName = assignment.getName().getName().split("\\s+");
+        final String[] splitName = assignment.getName().getText().split("\\s+");
         model.updateFilteredAssignmentList(
                 new AssignmentNameContainsKeywordsPredicate(
                         Arrays.asList(splitName[0])));

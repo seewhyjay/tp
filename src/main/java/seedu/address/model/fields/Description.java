@@ -6,7 +6,6 @@ import static java.util.Objects.requireNonNull;
  * Represents a task description.
  */
 public class Description {
-
     private final String description;
 
     /**

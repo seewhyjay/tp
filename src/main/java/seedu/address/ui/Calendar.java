@@ -228,10 +228,10 @@ public class Calendar extends UiPart<Region> {
 
             if (!map.containsKey(endDate)) {
                 LinkedList<String> names = new LinkedList<>();
-                names.add(a.getName().getName());
+                names.add(a.getName().getText());
                 map.put(endDate, names);
             } else {
-                map.get(endDate).add(a.getName().getName());
+                map.get(endDate).add(a.getName().getText());
             }
         }
 
