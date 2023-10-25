@@ -355,15 +355,10 @@ This command also changes the view to assignments tab (if the view is not curren
 
 ### Finding an assignment by keywords
 
-```find-a [keyword]```
+```find-a KEYWORD```
 
 **Purpose:**
-
-<div markdown="block" class="alert alert-danger">
-
-**ALERT**
-Put alerts here, if any
-</div>
+To find all assignments whose name contains the keyword.
 
 <div markdown="block" class="alert alert-info">
 
@@ -375,7 +370,7 @@ with "CS2103T Lab"
 
 **Examples:** 
 - ``find-a CS2103T`` to find all assignments with "CS2103T" in the assignment name
-- ``find-a lab`` to find all assignments with the word "lab" in the assignment name
+- The keyword is case-insensitive and does not require the whole word to match, for example, if you had an assignment with the name "CS2100 Lab", using the command ``find-a l``, ``find-a la``, ``find-a lab`` or ``find-a LAB`` will match with this assignment
 
 **When you might use it:**
 - You might use the find-a command when you are looking for specific assignments within a large pool of assignments and
