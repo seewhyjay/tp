@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_PLANNEDFINISHDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.ParserUtil.parseTags;
+import static seedu.address.logic.parser.assignment.ParserUtil.parseTags;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -16,7 +16,6 @@ import seedu.address.logic.commands.assignment.AddAssignmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.Prefix;
 import seedu.address.model.assignment.Assignment;
