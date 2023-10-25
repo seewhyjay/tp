@@ -4,9 +4,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.assignment.AddAssignmentCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.assignment.ParserUtil.MESSAGE_INVALID_DATE;
-import static seedu.address.logic.parser.assignment.ParserUtil.MESSAGE_INVALID_NAME;
-import static seedu.address.logic.parser.assignment.ParserUtil.MESSAGE_INVALID_STATUS;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DATE;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NAME;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_STATUS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
