@@ -7,7 +7,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.fields.Description;
 import seedu.address.model.person.Person;
 
 /**
@@ -117,18 +116,6 @@ public interface Model {
     ObservableList<Assignment> getUnfilteredAssignmentList();
 
     /**
-     * Marks the given assignment as complete.
-     * The assignment must exist in Campus Companion.
-     */
-    void markAsComplete(Assignment target);
-
-    /**
-     * Marks the given assignment as incomplete (UnMarks the assignment).
-     * The assignment must exist in Campus Companion.
-     */
-    void markAsIncomplete(Assignment toUnMark);
-
-    /**
      * Sorts UniqueAssignmentList by endDate
      */
     void sortAssignments();
@@ -143,5 +130,5 @@ public interface Model {
      * Edits the description of an assignment.
      * The assignment must exist in Campus Companion.
      */
-    void editAssignment(Assignment assignment, Description newDescription);
+    void setAssignment(Assignment assignment, Assignment newAssignment);
 }

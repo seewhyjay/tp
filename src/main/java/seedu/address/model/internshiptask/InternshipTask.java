@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Represents a task needed for an intern application/role
  */
-public class InternshipTask {
+public final class InternshipTask {
     private final InternshipRole role;
     private final Name taskName;
     private final IsoDate deadline;

@@ -26,10 +26,10 @@ public class AssignmentTest {
     @Test
     public void isSameAssignment() {
         // same object -> returns true
-        assertTrue(ASSIGNMENT1.isSameAssignment(ASSIGNMENT1));
+        assertTrue(ASSIGNMENT1.isDuplicate(ASSIGNMENT1));
 
         // null -> returns false
-        assertFalse(ASSIGNMENT1.isSameAssignment(null));
+        assertFalse(ASSIGNMENT1.isDuplicate(null));
 
         // same name, all other attributes different -> returns true
         Assignment editedAssignment = new AssignmentBuilder(ASSIGNMENT1).withDescription(VALID_DESCRIPTION_ASSIGNMENT)
@@ -37,11 +37,11 @@ public class AssignmentTest {
                 .withDeadline(LocalDateTime.now())
                 .withPlannedDate(LocalDateTime.now())
                         .withStatus(true).build();
-        assertTrue(ASSIGNMENT1.isSameAssignment(editedAssignment));
+        assertTrue(ASSIGNMENT1.isDuplicate(editedAssignment));
 
         // different name, all other attributes same -> returns false
         editedAssignment = new AssignmentBuilder(ASSIGNMENT1).withName(VALID_NAME_ASSIGNMENT).build();
-        assertFalse(ASSIGNMENT1.isSameAssignment(editedAssignment));
+        assertFalse(ASSIGNMENT1.isDuplicate(editedAssignment));
     }
 
     @Test

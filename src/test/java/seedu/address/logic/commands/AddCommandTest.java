@@ -26,7 +26,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.fields.Description;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -188,17 +187,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void markAsComplete(Assignment toMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void markAsIncomplete(Assignment toUnMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void editAssignment(Assignment assignment, Description newDescription) {
+        public void setAssignment(Assignment assignment, Assignment newAssignment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -249,7 +238,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.isDuplicate(person);
         }
     }
 
@@ -262,7 +251,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isDuplicate);
         }
 
         @Override

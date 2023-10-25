@@ -26,7 +26,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.fields.Description;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AssignmentBuilder;
 
@@ -105,7 +104,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void editAssignment(Assignment a, Description d) {
+        public void setAssignment(Assignment a, Assignment newA) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -195,16 +194,6 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void markAsComplete(Assignment toMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void markAsIncomplete(Assignment toUnMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -248,7 +237,7 @@ public class AddAssignmentCommandTest {
         @Override
         public boolean hasAssignment(Assignment assignment) {
             requireNonNull(assignment);
-            return this.assignment.isSameAssignment(assignment);
+            return this.assignment.isDuplicate(assignment);
         }
     }
 
@@ -261,7 +250,7 @@ public class AddAssignmentCommandTest {
         @Override
         public boolean hasAssignment(Assignment assignment) {
             requireNonNull(assignment);
-            return assignmentsAdded.stream().anyMatch(assignment::isSameAssignment);
+            return assignmentsAdded.stream().anyMatch(assignment::isDuplicate);
         }
 
         @Override

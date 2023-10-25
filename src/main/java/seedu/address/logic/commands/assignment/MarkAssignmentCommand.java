@@ -53,8 +53,10 @@ public class MarkAssignmentCommand extends AssignmentCommand {
             throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_COMPLETE);
         }
 
-        model.markAsComplete(assignmentToMark);
-        return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_SUCCESS, Messages.format(assignmentToMark)));
+        Assignment markedAssignment = assignmentToMark.mark();
+        model.setAssignment(assignmentToMark, markedAssignment);
+
+        return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_SUCCESS, Messages.format(markedAssignment)));
     }
 
     @Override

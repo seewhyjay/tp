@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Represents an internship role
  */
-public class InternshipRole {
+public final class InternshipRole {
     private final Name name;
     private final Role role;
     private final Cycle cycle;
@@ -89,7 +89,6 @@ public class InternshipRole {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, role, cycle, description, description, pay, outcome, location, tags);
     }
-
 
     /**
      * @param otherRole to be checked

@@ -14,18 +14,19 @@ import seedu.address.model.fields.IsoDate;
 import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.unique.Unique;
 
 /**
  * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Assignment implements Comparable<Assignment> {
+public final class Assignment implements Comparable<Assignment>, Unique<Assignment> {
     private final Name name;
-    private IsoDate enddate;
-    private Status status;
-    private Description description;
-    private Date plannedFinishDate;
-    private Set<Tag> tags = new HashSet<>();
+    private final IsoDate enddate;
+    private final Status status;
+    private final Description description;
+    private final Date plannedFinishDate;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -33,7 +34,7 @@ public class Assignment implements Comparable<Assignment> {
     public Assignment(Name name, IsoDate endDate, Status status, Description description,
                       Date plannedFinishDate, Set<Tag> tags) {
         requireAllNonNull(name, endDate, status, description, plannedFinishDate, tags);
-        this.name = name;
+        this.name = new Name(name.getText());
         this.enddate = endDate;
         this.status = status;
         this.tags.addAll(tags);
@@ -61,16 +62,31 @@ public class Assignment implements Comparable<Assignment> {
         return plannedFinishDate;
     }
 
-    public void mark() {
-        this.status = new Status(true);
+
+    /**
+     * Mark an assignment as completed
+     * @return a new Assignment that is marked as completed
+     */
+    public Assignment mark() {
+        Status newStatus = new Status(true);
+        return new Assignment(name, enddate, newStatus, description, plannedFinishDate, tags);
     }
 
-    public void unMark() {
-        this.status = new Status(false);
+    /**
+     * Mark an assignment as incomplete
+     * @return a new Assignment that is marked as incomplete
+     */
+    public Assignment unMark() {
+        Status newStatus = new Status(false);
+        return new Assignment(name, enddate, newStatus, description, plannedFinishDate, tags);
     }
 
-    public void setDescription(Description newDescription) {
-        this.description = newDescription;
+    /**
+     * Returns a new Assignment with the given description
+     * @return a new Assignment with the given description
+     */
+    public Assignment setDescription(Description newDescription) {
+        return new Assignment(name, enddate, status, newDescription, plannedFinishDate, tags);
     }
 
     /**
@@ -85,7 +101,8 @@ public class Assignment implements Comparable<Assignment> {
      * Returns true if both assignments have the same name.
      * This defines a weaker notion of equality between two assignments.
      */
-    public boolean isSameAssignment(Assignment otherAssignment) {
+    @Override
+    public boolean isDuplicate(Assignment otherAssignment) {
         if (otherAssignment == this) {
             return true;
         }

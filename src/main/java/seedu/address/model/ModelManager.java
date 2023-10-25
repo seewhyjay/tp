@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.fields.Description;
 import seedu.address.model.person.Person;
 
 /**
@@ -152,15 +151,6 @@ public class ModelManager implements Model {
     }
 
     //====== Filtered Assignment List Accessors==========================
-    @Override
-    public void markAsComplete(Assignment toMark) {
-        addressBook.markAssignment(toMark);
-    }
-
-    @Override
-    public void markAsIncomplete(Assignment toUnMark) {
-        addressBook.unMarkAssignment(toUnMark);
-    }
 
     @Override
     public boolean hasAssignment(Assignment assignment) {
@@ -184,9 +174,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void editAssignment(Assignment assignment, Description newDescription) {
+    public void setAssignment(Assignment assignment, Assignment newAssignment) {
         requireNonNull(assignment);
-        addressBook.editAssignment(assignment, newDescription);
+        addressBook.editAssignment(assignment, newAssignment);
     }
 
     @Override

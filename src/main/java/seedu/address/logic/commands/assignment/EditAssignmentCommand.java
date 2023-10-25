@@ -54,9 +54,12 @@ public class EditAssignmentCommand extends AssignmentCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
         Assignment assignmentToEdit = lastShownList.get(index.getZeroBased());
+        Assignment assignmentWithNewDesc = assignmentToEdit.setDescription(newDescription);
 
-        model.editAssignment(assignmentToEdit, newDescription);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(assignmentToEdit)));
+
+
+        model.setAssignment(assignmentToEdit, assignmentWithNewDesc);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(assignmentWithNewDesc)));
     }
 
     @Override
