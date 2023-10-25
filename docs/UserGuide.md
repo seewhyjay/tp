@@ -177,27 +177,35 @@ command for both assignments and internships.
 2. Let's try **adding an assignment** to CampusCompanion. Enter the command
 `add-a n/CC tutorial 1 e/2023-11-11`
 ![NewUserTutAdd1.png](images%2FNewUserTutAdd1.png)
+
 3. Add a few more assignments. Try out filling optional parameters as well, etc
 `add-a n/CC optional 1 e/2023-11-11 16:00 d/try this out! s/complete p/2023-11-10 t/Optional`
    - Note: On adding assignments, they will automatically be sorted by their deadlines.
    The assignment due earliest will be first in the assignments list, which can be view using `list-a`.
 ![NewUserTutAddMoreAssgn.png](images%2FNewUserTutAddMoreAssgn.png)
+
 4. Let us try editing the description of `CC tutorial 1` to say `nice descriptive description!`.
 Input `list-a` to show the assignments list, then look for `CC tutorial 1`. In the example above, it is in index 2,
 so we do `edit-a i/2 d/nice descriptive description!`
 ![NewUserTutEdit.png](images%2FNewUserTutEdit.png)
+
 5. We are done with `CC tutorial 1`! Let's now mark it as complete. First, let's try using `find-a` to filter and narrow
 down the list. We can do `find-a tutorial` to filter the assignments list to show only assignments that
 contain `tutorial`.
 ![NewUserTutFind.png](images%2FNewUserTutFind.png)
-Then, we use the index shown in the list (in this case, 1) and do `mark-a 1` to mark the assignment as completed.
+
+6. Then, we use the index shown in the list (in this case, 1) and do `mark-a 1` to mark the assignment as completed.
 ![NewUserTutMark.png](images%2FNewUserTutMark.png)
-6. To see all our assignments again, let's do `list-a`.
+
+7. To see all our assignments again, let's do `list-a`.
 ![NewUserTutList.png](images%2FNewUserTutList.png)
-7. Lastly, let's delete our `CC tutorial 1` as we no longer want to track it.
+
+8. Lastly, let's delete our `CC tutorial 1` as we no longer want to track it.
 With reference the picture above, we will do `delete-a 2`.
 ![NewUserTutDelete.png](images%2FNewUserTutDelete.png)
-8. Congratulations! You are now ready to use CampusCompanion.
+
+9. Congratulations! You are now ready to use CampusCompanion.
+
 To view all our features, you may visit out [features section](#features).
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -231,10 +239,6 @@ To add an assignment into CampusCompanion.
 ```edit-a i/INDEX d/DESCRIPTION```
 
 **Purpose:** Edit the description of a specified assignment
-
-<div markdown="block" class="alert alert-danger">
-
-
 
 <div markdown="block" class="alert alert-info">
 
