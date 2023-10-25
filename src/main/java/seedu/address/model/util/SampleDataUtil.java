@@ -49,19 +49,18 @@ public class SampleDataUtil {
 
     private static Assignment[] getSampleAssignments() {
         return new Assignment[] {
-            new Assignment(new seedu.address.model.assignment.Name("task1"),
-                    new IsoDate(LocalDateTime.parse("2024-11-11 23:59",
+            new Assignment(new seedu.address.model.assignment.Name("Task1"),
+                    new IsoDate(LocalDateTime.parse("2023-10-18 23:59",
                             DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                     new Status(true), new Description("description"),
-                    new IsoDate(LocalDateTime.parse("2024-11-11 11:11",
+                    new IsoDate(LocalDateTime.parse("2023-11-11 11:11",
                             DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                     Set.of(new Tag("cs2100"))),
-            new Assignment(new seedu.address.model.assignment.Name("task2"),
-                    new IsoDate(LocalDateTime.parse("2024-11-11 23:59",
+            new Assignment(new seedu.address.model.assignment.Name("Task2"),
+                    new IsoDate(LocalDateTime.parse("2023-10-31 23:59",
                             DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                     new Status(true), new Description("description"),
                     new NoDate(), Set.of(new Tag("cs2103"))),
-
         };
     }
 

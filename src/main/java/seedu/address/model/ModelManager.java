@@ -20,7 +20,6 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -137,6 +136,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortAssignments() {
+        addressBook.sortAssignments();
+    }
+
+    @Override
     public void addAssignment(Assignment assignment) {
         requireNonNull(assignment);
         addressBook.addAssignment(assignment);
@@ -151,6 +155,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Assignment> getFilteredAssignmentList() {
         return filteredAssignments;
+    }
+
+    @Override
+    public ObservableList<Assignment> getUnfilteredAssignmentList() {
+        return addressBook.getAssignmentList();
     }
 
     //=========== Filtered Person List Accessors =============================================================

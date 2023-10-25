@@ -103,7 +103,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void markAsIncomplete(Assignment a) {
+        public ObservableList<Assignment> getUnfilteredAssignmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -178,6 +178,11 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
+        public void markAsIncomplete(Assignment toUnMark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -200,6 +205,10 @@ public class AddAssignmentCommandTest {
         @Override
         public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortAssignments() {
         }
     }
 

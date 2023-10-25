@@ -7,27 +7,27 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
-import seedu.address.logic.parser.assignment.MarkAssignmentParser;
+import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
+import seedu.address.logic.parser.assignment.UnMarkAssignmentParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
- * outside of the MarkAssignmentCommand code. For example, inputs "1" and "1 abc" take the
- * same path through the MarkAssignmentCommand, and therefore we test only one of them.
+ * outside of the UnMarkAssignmentCommand code. For example, inputs "1" and "1 abc" take the
+ * same path through the UnMarkAssignmentCommand, and therefore we test only one of them.
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class MarkAssignmentParserTest {
-    private MarkAssignmentParser parser = new MarkAssignmentParser();
+public class UnMarkAssignmentParserTest {
+    private UnMarkAssignmentParser parser = new UnMarkAssignmentParser();
 
     @Test
     public void parse_validArgs_returnsMarkCommand() {
-        assertParseSuccess(parser, "1", new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT));
+        assertParseSuccess(parser, "1", new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkAssignmentCommand.MESSAGE_USAGE));
+                UnMarkAssignmentCommand.MESSAGE_USAGE));
     }
 }

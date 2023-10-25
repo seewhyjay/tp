@@ -7,7 +7,6 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,7 +15,7 @@ import seedu.address.model.assignment.Assignment;
 /**
  * Deletes a assignment identified using it's displayed index from the app.
  */
-public class DeleteAssignmentCommand extends Command {
+public class DeleteAssignmentCommand extends AssignmentCommand {
     public static final String COMMAND_WORD = "delete-a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -43,6 +42,7 @@ public class DeleteAssignmentCommand extends Command {
 
         Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAssignment(assignmentToDelete);
+        model.sortAssignments();
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, Messages.format(assignmentToDelete)));
     }
 

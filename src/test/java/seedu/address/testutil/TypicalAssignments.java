@@ -45,9 +45,9 @@ public class TypicalAssignments {
             LocalDateTime.parse("2023-12-12 21:30", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
 
     private static final LocalDateTime exampleDate3 =
-            LocalDateTime.parse("2023-12-15 21:30", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
-    private static final LocalDateTime exampleDate4 =
             LocalDateTime.parse("2023-12-16 22:30", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
+    private static final LocalDateTime exampleDate4 =
+            LocalDateTime.parse("2023-12-15 21:30", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
     public static final Assignment ASSIGNMENT1 = new AssignmentBuilder().withName("CS2100 Lab 7")
             .withStatus(false).withDescription("Draw diagrams")
             .withDeadline(exampleDate1)

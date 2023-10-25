@@ -97,6 +97,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered assignment list */
     ObservableList<Assignment> getFilteredAssignmentList();
 
+    ObservableList<Assignment> getUnfilteredAssignmentList();
+
     /**
      * Marks the given assignment as complete.
      * The assignment must exist in Campus Companion.
@@ -108,6 +110,11 @@ public interface Model {
      * The assignment must exist in Campus Companion.
      */
     void markAsIncomplete(Assignment toUnMark);
+
+    /**
+     * Sorts UniqueAssignmentList by endDate
+     */
+    void sortAssignments();
 
     /**
      * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.

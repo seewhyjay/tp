@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX = "The assignment index provided is invalid";
     public static final String MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW = "%1$d assignments listed!";
 
+    public static final String MESSAGE_ASSIGNMENTS_SORTED = "Sorted all assignments by date!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
@@ -53,7 +54,7 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code assignment} for display to the user.
      */
     public static String format(Assignment assignment) {
         final StringBuilder builder = new StringBuilder();

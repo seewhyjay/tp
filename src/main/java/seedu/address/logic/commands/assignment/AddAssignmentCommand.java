@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,7 +18,7 @@ import seedu.address.model.assignment.Assignment;
  * Adds an assignment to the
  * current list of assignments when executed.
  */
-public class AddAssignmentCommand extends Command {
+public class AddAssignmentCommand extends AssignmentCommand {
 
     public static final String COMMAND_WORD = "add-a";
 
@@ -30,8 +29,9 @@ public class AddAssignmentCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "]\n"
             + PREFIX_STATUS + "STATUS "
             + PREFIX_ENDDATE + "YYYY-MM-DD HH:mm "
-            + "[" + PREFIX_PLANNEDFINISHDATE + "YYYY-MM-DD HH:mm " + "]\n"
-            + "Example: " + COMMAND_WORD;
+            + "[" + PREFIX_PLANNEDFINISHDATE + "YYYY-MM-DD HH:mm" + "]\n"
+            + "Example: " + COMMAND_WORD
+            + " add-a n/Assignment 1 d/description e/2023-12-18 19:00 p/2023-08-19 18:00 t/group s/incomplete";
 
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
 
@@ -56,6 +56,7 @@ public class AddAssignmentCommand extends Command {
         }
 
         model.addAssignment(toAdd);
+        model.sortAssignments();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

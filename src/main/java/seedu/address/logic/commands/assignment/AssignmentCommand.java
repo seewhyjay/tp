@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.assignment;
 
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -7,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
-public abstract class AssignmentCommand {
+public abstract class AssignmentCommand extends Command {
 
     /**
      * Executes the command and returns the result message.

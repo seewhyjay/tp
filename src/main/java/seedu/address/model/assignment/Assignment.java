@@ -15,9 +15,9 @@ import seedu.address.model.tag.Tag;
  * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Assignment {
+public class Assignment implements Comparable<Assignment> {
     private final Name name;
-    private Date enddate;
+    private IsoDate enddate;
     private Status status;
     private Description description;
     private Date plannedFinishDate;
@@ -26,7 +26,7 @@ public class Assignment {
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Date endDate, Status status, Description description,
+    public Assignment(Name name, IsoDate endDate, Status status, Description description,
                       Date plannedFinishDate, Set<Tag> tags) {
         requireAllNonNull(name, endDate, status, tags);
         this.name = name;
@@ -41,7 +41,7 @@ public class Assignment {
         return name;
     }
 
-    public Date getEnd() {
+    public IsoDate getEnd() {
         return this.enddate;
     }
 
@@ -131,5 +131,16 @@ public class Assignment {
                 .add("end", enddate)
                 .add("tags", tags)
                 .toString();
+    }
+
+    @Override
+    public int compareTo(Assignment o) {
+        if (this.enddate.compareTo(o.enddate) == 0) {
+            return 0;
+        } else if (this.enddate.compareTo(o.enddate) > 0) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

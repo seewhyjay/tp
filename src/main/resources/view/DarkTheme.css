@@ -197,6 +197,7 @@
 
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-radius: 0.8em;
 }
 
 .pane-with-border {
@@ -375,9 +376,6 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #ebebeb;
@@ -410,7 +408,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #262626;
-    -fx-padding: 23 3 23 3;
+    -fx-padding: 7 0 7 0;
     -fx-alignment: center;
     -fx-max-width: 50000000;
 }
@@ -419,7 +417,7 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Arial";
     -fx-text-fill: #ebebeb;
-    -fx-padding: 23 3 23 3;
+    -fx-padding: 7 0 7 0;
     -fx-alignment: center ;
     -fx-max-width: 50000000;
     -fx-font-weight: 700;
@@ -428,4 +426,9 @@
 #calendar > .bold {
     -fx-font-weight: 800;
 }
+
+.h-pane > .label {
+    -fx-alignment: top-center;
+}
+
 

@@ -51,5 +51,5 @@ public interface Logic {
 
     ObservableList<Assignment> getFilteredAssignmentList();
 
-
+    ObservableList<Assignment> getUnfilteredAssignmentList();
 }

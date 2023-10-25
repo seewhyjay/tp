@@ -1,18 +1,15 @@
 package seedu.address.ui;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -24,6 +21,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -31,6 +30,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    private static final int maxNumOfNamesToDisplay = 2;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -50,8 +51,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private HelpWindow helpWindow;
 
+    private Calendar calendar;
+
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private VBox calendarContainer;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -83,11 +89,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane selectedListPanelPlaceholder;
 
-    @FXML
-    private GridPane calendar;
-
-    @FXML
-    private Label calendarDate;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -162,7 +163,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        initCalendar();
+        calendar = new Calendar(logic.getUnfilteredAssignmentList());
+        calendarContainer.getChildren().add(calendar.getRoot());
     }
 
     /**
@@ -228,11 +230,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } finally {
+            calendar.handleCalendarChange(0);
         }
     }
 
@@ -254,144 +259,5 @@ public class MainWindow extends UiPart<Stage> {
     public void handleSetAssignmentView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
-    }
-
-    private void initCalendar() {
-        handleCalendarChange(0);
-    }
-
-    private void addDaysIndicator(GridPane calendar) {
-        Label sun = new Label("Sun");
-        sun.getStyleClass().add("cal-enabled");
-        sun.getStyleClass().add("bold");
-        calendar.add(sun, 0, 0, 1, 1);
-
-        Label mon = new Label("Mo");
-        mon.getStyleClass().add("cal-enabled");
-        mon.getStyleClass().add("bold");
-        calendar.add(mon, 1, 0, 1, 1);
-
-        Label tues = new Label("Tu");
-        tues.getStyleClass().add("cal-enabled");
-        tues.getStyleClass().add("bold");
-        calendar.add(tues, 2, 0, 1, 1);
-
-        Label wed = new Label("Wed");
-        wed.getStyleClass().add("cal-enabled");
-        wed.getStyleClass().add("bold");
-        calendar.add(wed, 3, 0, 1, 1);
-
-        Label thurs = new Label("Th");
-        thurs.getStyleClass().add("cal-enabled");
-        thurs.getStyleClass().add("bold");
-        calendar.add(thurs, 4, 0, 1, 1);
-
-        Label fri = new Label("Fri");
-        fri.getStyleClass().add("cal-enabled");
-        fri.getStyleClass().add("bold");
-        calendar.add(fri, 5, 0, 1, 1);
-
-        Label sat = new Label("Sat");
-        sat.getStyleClass().add("cal-enabled");
-        sat.getStyleClass().add("bold");
-        calendar.add(sat, 6, 0, 1, 1);
-    }
-
-
-    private int dayToIndex(DayOfWeek d) {
-        if (d == DayOfWeek.SUNDAY) {
-            return 0;
-        } else if (d == DayOfWeek.MONDAY) {
-            return 1;
-        } else if (d == DayOfWeek.TUESDAY) {
-            return 2;
-        } else if (d == DayOfWeek.WEDNESDAY) {
-            return 3;
-        } else if (d == DayOfWeek.THURSDAY) {
-            return 4;
-        } else if (d == DayOfWeek.FRIDAY) {
-            return 5;
-        } else {
-            return 6;
-        }
-    }
-
-    private void handleCalendarChange(int monthsToAdd) {
-        // Updating calendar by on the button pressed by user
-        selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
-
-        calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
-        addDaysIndicator(calendar);
-
-        int rowIndex = 1;
-
-        LocalDate newMonthDate = selectedCalendarView.atDay(1);
-        LocalDate endOfMonthDate = selectedCalendarView.atEndOfMonth();
-
-        // Loop through the entire calendar array
-        while (rowIndex <= 6) {
-            int columnIndex = dayToIndex(newMonthDate.getDayOfWeek());
-            int val = newMonthDate.getDayOfMonth();
-            Label day = new Label(Integer.toString(val));
-
-            // Setting styles accordingly
-            if (!newMonthDate.isAfter(endOfMonthDate)) {
-                day.getStyleClass().add("cal-enabled");
-            } else {
-                day.getStyleClass().add("cal-disabled");
-            }
-
-            if (newMonthDate.equals(LocalDate.now())) {
-                day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
-            }
-
-            calendar.add(day, columnIndex, rowIndex, 1, 1);
-
-            // Check if end of calendar column (Saturday)
-            // if yes, move on to the next row (Sunday)
-            if (columnIndex == 6) {
-                rowIndex += 1;
-            }
-            newMonthDate = newMonthDate.plusDays(1);
-        }
-
-        LocalDate prevMonthDate = selectedCalendarView.plusMonths(-1).atEndOfMonth();
-        int columnIndex = dayToIndex(prevMonthDate.getDayOfWeek());
-
-        // If columnIndex == 6, it means all the days are filed
-        if (columnIndex != 6) {
-            while (columnIndex >= 0) {
-                Label day = new Label(Integer.toString(prevMonthDate.getDayOfMonth()));
-
-                if (prevMonthDate.equals(LocalDate.now())) {
-                    day.setStyle("-fx-background-color: #282828; -fx-background-radius: 0.5em;");
-                }
-
-                prevMonthDate = prevMonthDate.plusDays(-1);
-                day.getStyleClass().add("cal-disabled");
-                calendar.add(day, columnIndex, 1, 1, 1);
-                columnIndex -= 1;
-            }
-        }
-    }
-
-
-    /**
-     * Shows previous month when button is clicked
-     */
-    @FXML
-    public void handleCalendarLeftClick() {
-        calendar.getChildren().clear();
-        handleCalendarChange(-1);
-    }
-
-    /**
-     * Shows next month when button is clicked
-     */
-    @FXML
-    public void handleCalendarRightClick() {
-
-        calendar.getChildren().clear();
-        handleCalendarChange(1);
     }
 }
