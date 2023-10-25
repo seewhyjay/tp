@@ -159,7 +159,7 @@ command for both assignments and internships.
 `add-a n/CC tutorial 1 e/2023-11-11`
 ![NewUserTutAdd1.png](images%2FNewUserTutAdd1.png)
 3. Add a few more assignments. Try out filling optional parameters as well, etc
-`add-a n/CC optional 1 e/2023-11-11 16:00 d/try this out! s/complete p/2023-11-10`
+`add-a n/CC optional 1 e/2023-11-11 16:00 d/try this out! s/complete p/2023-11-10 t/Optional`
    - Note: On adding assignments, they will automatically be sorted by their deadlines.
    The assignment due earliest will be first in the assignments list, which can be view using `list-a`.
 ![NewUserTutAddMoreAssgn.png](images%2FNewUserTutAddMoreAssgn.png)
@@ -190,7 +190,7 @@ To view all our features, you may visit out [features section](#features).
 
 ### Adding an assignment
 
-```add-a n/NAME e/YYYY-MM-DD HH:mm [d/DESCRIPTION] [s/STATUS] [p/YYYY-MM-DD HH:mm]```
+```add-a n/NAME e/YYYY-MM-DD HH:mm [d/DESCRIPTION] [s/STATUS] [p/YYYY-MM-DD HH:mm] [t/TAG]```
 
 To view assignment parameter information, click [here](#assignment-parameters)
 
@@ -199,7 +199,7 @@ To add an assignment into CampusCompanion.
 
 **Examples:** 
 - `add-a n/CS2100 Assignment 1 e/2023-10-29 13:00`
-- `add-a n/CS2103T v1.3 e/2023-10-28 18:00 d/Work on add function for task s/incomplete p/2023-10-27 16:00`
+- `add-a n/CS2103T v1.3 e/2023-10-28 18:00 d/Work on add function for task s/incomplete p/2023-10-27 16:00 t/Coding`
 
 **When you might use it:** 
 - When you first receive news of an assignment or deadline, and you want to keep track of it.
@@ -339,22 +339,10 @@ regarding the assignment and want to continue working on it.
 
 ```list-a [s/YYYY-MM-DD [HH:mm]] [e/YYYY-MM-DD [HH:mm]]```
 
+To view assignment parameter information, click [here](#assignment-parameters) (Refer to last two rows).
+
 **Purpose:** To list all the assignments with deadline between the given start date and end date. 
 This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
-
-<div markdown="block" class="alert alert-info">
-
-**Note:**
-
-- _Start date_ must be after the _current date_. Otherwise, an error message will be shown. 
-
-- _End date_ must be after _start date_. Otherwise, an error message will be shown.
-
-- Both _start date_ and _end date_ are optional parameters. The timing specified within the _start date_ and _end date_ are also optional.
-  - If no timing is specified for _start date_, the timing will default to 00:00.
-  - If no timing is specified for _end date_, the timing will default to 23:59.
-
-</div>
 
 **Examples:**
 
@@ -506,14 +494,16 @@ or [feature](#features) section, for detailed information about each feature.
 
 The information below specifies parameter description, constraints and usage through valid and invalid examples.
 
-| Parameter                             | Description                                            | Constraints                                                                                                                             | Valid Examples                          | Invalid Examples          |
-|---------------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------|
-| n/                                    | Name of the assignment                                 | NA                                                                                                                                      | CS2100 Assignment, Tutorial 2           | NA                        |
-| e/                                    | Deadline of the assignment                             | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST** be after current date. | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
-| d/                                    | Description of the assignment (optional parameter)     | NA                                                                                                                                      | Complete UML diagram, Finish question 2 | NA                        |
-| s/                                    | Status (optional parameter)                            | Either `complete` or `incomplete`                                                                                                       | complete, incomplete                    | done, finished, completed |
-| p/                                    | Planned finish date of assignment (optional parameter) | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST** be after current date. | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
-| INDEX<sup>*</sup> or i/ (in `edit-a`) | Index in assignments list                              | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                           | -1, 2147483649            |
+| Parameter                             | Description                                                                         | Constraints                                                                                                                             | Valid Examples                          | Invalid Examples          |
+|---------------------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------|
+| n/                                    | Name of the assignment                                                              | NA                                                                                                                                      | CS2100 Assignment, Tutorial 2           | NA                        |
+| e/                                    | Deadline of the assignment                                                          | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
+| d/                                    | Description of the assignment (optional parameter)                                  | NA                                                                                                                                      | Complete UML diagram, Finish question 2 | NA                        |
+| s/                                    | Status (optional parameter)                                                         | Either `complete` or `incomplete`                                                                                                       | complete, incomplete                    | done, finished, completed |
+| p/                                    | Planned finish date of assignment (optional parameter)                              | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
+| INDEX<sup>*</sup> or i/ (in `edit-a`) | Index in assignments list                                                           | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                           | -1, 2147483649            |
+| s/ (in `list-a`)                      | Start date to filter assignments with deadlines after the date (optional parameter) | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 00:00 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
+| e/ (in `list-a`)                      | End date to filter assignments with deadlines before the date (optional parameter)  | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after start date.**   | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
