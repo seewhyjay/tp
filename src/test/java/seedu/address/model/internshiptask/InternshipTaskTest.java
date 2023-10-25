@@ -1,5 +1,6 @@
 package seedu.address.model.internshiptask;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -89,5 +90,14 @@ public class InternshipTaskTest {
         // different tags -> returns false
         editedTask = new InternshipTaskBuilder(task1).withTags("tag").build();
         assertFalse(task1.equals(editedTask));
+    }
+
+    @Test
+    public void toStringMethod() {
+        String expected = InternshipTask.class.getCanonicalName() + "{name=" + task1.getName() + ", deadline="
+                + task1.getDeadline() + ", status=" + task1.getStatus() + ", outcome="
+                + task1.getOutcome() + ", tags="
+                + task1.getTags() + "}";
+        assertEquals(expected, task1.toString());
     }
 }

@@ -105,6 +105,7 @@ public class InternshipTask {
                 .add("deadline", deadline)
                 .add("status", status)
                 .add("outcome", outcome)
+                .add("tags", tags)
                 .toString();
     }
 
