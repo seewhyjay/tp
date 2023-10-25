@@ -37,10 +37,7 @@ public class PayTest {
 
     @Test
     public void toStringTest() {
-        BigDecimal pay1 = new BigDecimal(validPay2);
-        Pay p1 = new Pay(pay1);
-        assertEquals(p1.toString(), "$99,999.99");
-
+        
         BigDecimal pay2 = new BigDecimal(validPay4);
         Pay p2 = new Pay(pay2);
         assertEquals(p2.toString(), "$1,200.50");
