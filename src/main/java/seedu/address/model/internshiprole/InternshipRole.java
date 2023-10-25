@@ -16,11 +16,12 @@ import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Pay;
 import seedu.address.model.fields.Role;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.unique.Unique;
 
 /**
  * Represents an internship role
  */
-public final class InternshipRole {
+public final class InternshipRole implements Unique<InternshipRole> {
     private final Name name;
     private final Role role;
     private final Cycle cycle;
@@ -94,7 +95,8 @@ public final class InternshipRole {
      * @param otherRole to be checked
      * @return true if name and role is the same
      */
-    public boolean isSameInternshipRole(InternshipRole otherRole) {
+    @Override
+    public boolean isDuplicate(InternshipRole otherRole) {
         if (this == otherRole) {
             return true;
         }

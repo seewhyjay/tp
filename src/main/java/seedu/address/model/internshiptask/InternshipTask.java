@@ -14,11 +14,12 @@ import seedu.address.model.fields.Status;
 import seedu.address.model.fields.TaskOutcome;
 import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.unique.Unique;
 
 /**
  * Represents a task needed for an intern application/role
  */
-public final class InternshipTask {
+public final class InternshipTask implements Unique<InternshipTask> {
     private final InternshipRole role;
     private final Name taskName;
     private final IsoDate deadline;
@@ -74,12 +75,12 @@ public final class InternshipTask {
      * @param otherTask to be verifed
      * @return true if otherTask has the same task name
      */
-    public boolean isSameInternshipTask(InternshipTask otherTask) {
+    public boolean isDuplicate(InternshipTask otherTask) {
         if (this == otherTask) {
             return true;
         }
 
-        return otherTask != null && role.isSameInternshipRole(otherTask.role) && taskName.equals(otherTask.taskName);
+        return otherTask != null && role.isDuplicate(otherTask.role) && taskName.equals(otherTask.taskName);
     }
 
     @Override

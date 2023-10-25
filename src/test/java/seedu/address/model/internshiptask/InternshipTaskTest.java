@@ -35,10 +35,10 @@ public class InternshipTaskTest {
     @Test
     public void isSameInternshipRole() {
         // same object -> returns true
-        assertTrue(task1.isSameInternshipTask(task1));
+        assertTrue(task1.isDuplicate(task1));
 
         // null -> returns false
-        assertFalse(task1.isSameInternshipTask(null));
+        assertFalse(task1.isDuplicate(null));
 
         // same name and role, all other attributes different -> returns true
         InternshipTask editedTask = new InternshipTaskBuilder(task1)
@@ -47,24 +47,24 @@ public class InternshipTaskTest {
                 .withDeadline(date2)
                 .withTags("tag").build();
 
-        assertTrue(task1.isSameInternshipTask(editedTask));
+        assertTrue(task1.isDuplicate(editedTask));
 
         // different taskName all other attributes same -> returns false
         editedTask = new InternshipTaskBuilder(task1).withTaskName(obscureInput).build();
-        assertFalse(task1.isSameInternshipTask(editedTask));
+        assertFalse(task1.isDuplicate(editedTask));
 
         // different role all other attributes same -> returns false
         editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2()).build();
-        assertFalse(task1.isSameInternshipTask(editedTask));
+        assertFalse(task1.isDuplicate(editedTask));
 
         // different taskName all other attributes same -> returns false
         editedTask = new InternshipTaskBuilder(task1).withTaskName(obscureInput).build();
-        assertFalse(task1.isSameInternshipTask(editedTask));
+        assertFalse(task1.isDuplicate(editedTask));
 
         // different companyName and taskName all other attributes same -> returns false
         editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2())
                 .withTaskName(obscureInput).build();
-        assertFalse(task1.isSameInternshipTask(editedTask));
+        assertFalse(task1.isDuplicate(editedTask));
     }
 
     @Test

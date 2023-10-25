@@ -28,12 +28,12 @@ public class InternshipRoleTest {
     }
 
     @Test
-    public void isSameInternshipRole() {
+    public void isDuplicate() {
         // same object -> returns true
-        assertTrue(role1.isSameInternshipRole(role1));
+        assertTrue(role1.isDuplicate(role1));
 
         // null -> returns false
-        assertFalse(role1.isSameInternshipRole(null));
+        assertFalse(role1.isDuplicate(null));
 
         // same name and role, all other attributes different -> returns true
         InternshipRole editedRole = new InternshipRoleBuilder(role1)
@@ -43,19 +43,19 @@ public class InternshipRoleTest {
                 .withDescription(obscureInput)
                 .withTags("tag").build();
 
-        assertTrue(role1.isSameInternshipRole(editedRole));
+        assertTrue(role1.isDuplicate(editedRole));
 
         // different name & role, all other attributes same -> returns false
         editedRole = new InternshipRoleBuilder(role1).withName(obscureInput).withRole(obscureInput).build();
-        assertFalse(role1.isSameInternshipRole(editedRole));
+        assertFalse(role1.isDuplicate(editedRole));
 
         // different name , all other attributes same -> returns false
         editedRole = new InternshipRoleBuilder(role1).withName(obscureInput).build();
-        assertFalse(role1.isSameInternshipRole(editedRole));
+        assertFalse(role1.isDuplicate(editedRole));
 
         // different role , all other attributes same -> returns false
         editedRole = new InternshipRoleBuilder(role1).withRole(obscureInput).build();
-        assertFalse(role1.isSameInternshipRole(editedRole));
+        assertFalse(role1.isDuplicate(editedRole));
 
     }
 
