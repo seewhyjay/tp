@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
-import java.util.Currency;
-import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +34,7 @@ public class PayTest {
         assertFalse(Pay.isValidPay(invalidPay1));
         assertFalse(Pay.isValidPay(invalidPay2));
     }
-    
+
     @Test
     public void equals() {
         Pay pay = new Pay(new BigDecimal(validPay1));
