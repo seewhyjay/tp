@@ -7,7 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.fields.Description;
 import seedu.address.model.person.Person;
 
 /**

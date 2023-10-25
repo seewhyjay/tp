@@ -1,4 +1,4 @@
-package seedu.address.model.assignment;
+package seedu.address.model.fields;
 
 import static java.util.Objects.requireNonNull;
 
@@ -17,11 +17,11 @@ public class Name {
     /**
      * Constructs a {@code Name}.
      *
-     * @param taskName A valid name.
+     * @param name A valid name.
      */
-    public Name(String taskName) {
-        requireNonNull(taskName);
-        this.name = taskName;
+    public Name(String name) {
+        requireNonNull(name);
+        this.name = name;
     }
 
     public String getName() {

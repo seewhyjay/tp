@@ -13,12 +13,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Date;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.IsoDate;
-import seedu.address.model.assignment.Name;
-import seedu.address.model.assignment.NoDate;
-import seedu.address.model.assignment.Status;
+import seedu.address.model.fields.Date;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.NoDate;
+import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 
 /**

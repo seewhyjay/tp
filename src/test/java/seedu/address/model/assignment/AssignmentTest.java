@@ -19,8 +19,8 @@ import seedu.address.testutil.AssignmentBuilder;
 public class AssignmentTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Assignment person = new AssignmentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Assignment assignment = new AssignmentBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> assignment.getTags().remove(0));
     }
 
     @Test

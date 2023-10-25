@@ -8,6 +8,11 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.fields.Date;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +32,7 @@ public class Assignment implements Comparable<Assignment> {
      */
     public Assignment(Name name, IsoDate endDate, Status status, Description description,
                       Date plannedFinishDate, Set<Tag> tags) {
-        requireAllNonNull(name, endDate, status, tags);
+        requireAllNonNull(name, endDate, status, description, plannedFinishDate, tags);
         this.name = name;
         this.enddate = endDate;
         this.status = status;

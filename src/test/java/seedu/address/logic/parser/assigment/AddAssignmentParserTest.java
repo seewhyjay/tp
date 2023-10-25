@@ -18,11 +18,11 @@ import seedu.address.logic.commands.assignment.AddAssignmentCommand;
 import seedu.address.logic.parser.assignment.AddAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.IsoDate;
-import seedu.address.model.assignment.Name;
-import seedu.address.model.assignment.NoDate;
-import seedu.address.model.assignment.Status;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.NoDate;
+import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 
 public class AddAssignmentParserTest {

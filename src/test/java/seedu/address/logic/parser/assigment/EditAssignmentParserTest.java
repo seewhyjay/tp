@@ -10,7 +10,7 @@ import seedu.address.logic.commands.assignment.EditAssignmentCommand;
 import seedu.address.logic.parser.assignment.EditAssignmentParser;
 import seedu.address.logic.parser.assignment.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.fields.Description;
 
 public class EditAssignmentParserTest {
 

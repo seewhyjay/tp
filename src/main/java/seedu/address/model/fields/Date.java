@@ -1,4 +1,4 @@
-package seedu.address.model.assignment;
+package seedu.address.model.fields;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

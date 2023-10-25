@@ -15,7 +15,7 @@ import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.fields.Description;
 
 public class EditAssignmentCommandTest {
 

@@ -13,7 +13,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.Prefix;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.fields.Description;
 
 /**
  * Parses an input that starts with edit-a
