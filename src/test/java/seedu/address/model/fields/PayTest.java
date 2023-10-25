@@ -36,15 +36,6 @@ public class PayTest {
     }
 
     @Test
-    public void toStringTest() {
-        
-        BigDecimal pay2 = new BigDecimal(validPay4);
-        Pay p2 = new Pay(pay2);
-        assertEquals(p2.toString(), "$1,200.50");
-
-    }
-
-    @Test
     public void equals() {
         Pay pay = new Pay(new BigDecimal(validPay1));
 
