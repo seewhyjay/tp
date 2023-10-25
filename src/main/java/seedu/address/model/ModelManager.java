@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Description;
 import seedu.address.model.person.Person;
 
 /**
@@ -121,6 +122,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markAsIncomplete(Assignment toUnMark) {
+        addressBook.unMarkAssignment(toUnMark);
+    }
+
+    @Override
     public boolean hasAssignment(Assignment assignment) {
         return addressBook.hasAssignment(assignment);
     }
@@ -134,6 +140,12 @@ public class ModelManager implements Model {
     public void addAssignment(Assignment assignment) {
         requireNonNull(assignment);
         addressBook.addAssignment(assignment);
+    }
+
+    @Override
+    public void editAssignment(Assignment assignment, Description newDescription) {
+        requireNonNull(assignment);
+        addressBook.editAssignment(assignment, newDescription);
     }
 
     @Override

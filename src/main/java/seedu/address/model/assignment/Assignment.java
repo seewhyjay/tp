@@ -61,6 +61,14 @@ public class Assignment {
         this.status = new Status(true);
     }
 
+    public void unMark() {
+        this.status = new Status(false);
+    }
+
+    public void setDescription(Description newDescription) {
+        this.description = newDescription;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Description;
 import seedu.address.model.assignment.UniqueAssignmentList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -149,6 +150,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void markAssignment(Assignment toMark) {
         requireNonNull(toMark);
         assignments.mark(toMark);
+    }
+
+    /**
+     * UnMark an assignment and set its status as incomplete
+     * @param toUnMark the assignment to be marked
+     */
+    public void unMarkAssignment(Assignment toUnMark) {
+        requireNonNull(toUnMark);
+        assignments.unMark(toUnMark);
+    }
+
+    /**
+     * Edits the target assignment's description
+     * @param newDescription The input description
+     */
+    public void editAssignment(Assignment assignment, Description newDescription) {
+        requireNonNull(assignment);
+        assignments.edit(assignment, newDescription);
     }
 
     @Override
