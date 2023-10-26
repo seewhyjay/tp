@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.person.Person;
 import seedu.address.model.unique.UniqueList;
 
@@ -20,6 +21,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueList<Assignment> assignments;
 
+    private final UniqueList<InternshipRole> roles;
+
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -30,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniqueList<>();
         assignments = new UniqueList<>();
+        roles = new UniqueList<>();
     }
 
     public AddressBook() {
@@ -64,8 +69,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setAssignments(newData.getAssignmentList());
-
     }
+
+
+
 
     //// person-level operations
 
@@ -160,6 +167,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(target);
         assignments.set(target, newAssignment);
     }
+
+    // ================ Internship Roles =====================================================================
+
+    public void addInternshipRoles(InternshipRole role) {
+        requireNonNull(role);
+        roles.add(role);
+    }
+
+    public boolean hasInternshipRoles(InternshipRole role) {
+        requireNonNull(role);
+        return roles.contains(role);
+    }
+
 
     @Override
     public boolean equals(Object other) {

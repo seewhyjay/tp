@@ -5,6 +5,7 @@ import seedu.address.logic.parser.person.Prefix;
 public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_ROLE = new Prefix("r/");
+    public static final Prefix PREFIX_CYCLE = new Prefix("c/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_PAY = new Prefix("p/");
     public static final Prefix PREFIX_OUTCOME = new Prefix("o/");

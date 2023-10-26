@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.internship.role;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_CYCLE;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,8 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.Prefix;
+import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
 import seedu.address.model.fields.Location;
 import seedu.address.model.fields.Name;
@@ -31,34 +34,47 @@ import seedu.address.model.tag.Tag;
 public class AddInternshipRoleParser implements Parser<AddInternshipRoleCommand> {
     @Override
     public AddInternshipRoleCommand parse(String args) throws ParseException {
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROLE,
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROLE, PREFIX_CYCLE,
                 PREFIX_DESCRIPTION, PREFIX_PAY, PREFIX_OUTCOME, PREFIX_LOCATION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_ROLE)
+        if (!arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_ROLE, PREFIX_CYCLE)
                 || !argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddInternshipRoleCommand.MESSAGE_USAGE));
         }
 
-        argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_ROLE, PREFIX_DESCRIPTION, PREFIX_PAY,
-                PREFIX_OUTCOME, PREFIX_LOCATION);
+        argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_ROLE, PREFIX_CYCLE,
+                PREFIX_DESCRIPTION, PREFIX_PAY, PREFIX_OUTCOME, PREFIX_LOCATION);
 
         Name name = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_NAME).get());
 
         Role role = ParserUtil.parseRole(argumentMultimap.getValue(PREFIX_ROLE).get());
 
+        Cycle cycle = ParserUtil.parseCycle(argumentMultimap.getValue(PREFIX_CYCLE).get());
+
         Description description = ParserUtil.parseDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION)
                 .orElse(""));
 
-        Pay pay;
+        // To be looked through again
+        Pay pay = argumentMultimap.getValue(PREFIX_PAY).isEmpty()
+                ? null
+                : ParserUtil.parsePay(argumentMultimap.getValue(PREFIX_PAY).get());
 
-        Outcome outcome;
+        ApplicationOutcome outcome = argumentMultimap.getValue(PREFIX_OUTCOME).isEmpty()
+                ? new ApplicationOutcome(Outcome.AWAITING)
+                : ParserUtil.parseApplicationOutcome(argumentMultimap.getValue(PREFIX_OUTCOME).get());
 
-        Location location;
+        // To be looked through again
+        Location location = argumentMultimap.getValue(PREFIX_LOCATION).isEmpty()
+                ? null
+                : ParserUtil.parseLocation(argumentMultimap.getValue(PREFIX_LOCATION).get());
 
         Set<Tag> tagList = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
 
-        
+        InternshipRole internshipRole = new InternshipRole(name, role, cycle, description,
+                pay, outcome, location, tagList);
+
+        return new AddInternshipRoleCommand(internshipRole);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
