@@ -36,7 +36,7 @@ public class ModelManager implements Model {
 
     private final FilteredList<InternshipTask> filteredInternshipTasks;
 
-    private final ObservableList<View> selectedView = FXCollections.observableArrayList();
+    private static final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -52,8 +52,6 @@ public class ModelManager implements Model {
         this.filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
         this.filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
         this.filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
-
-        initView();
     }
 
     public ModelManager() {
@@ -62,18 +60,19 @@ public class ModelManager implements Model {
 
     //=========== Views =====================================================================================
 
-    private void initView() {
-        selectedView.add(View.INTERNSHIPS);
-    }
-
     @Override
     public void setView(View v) {
-        selectedView.set(0, v);
+        if (selectedView.size() == 0) {
+            selectedView.add(v);
+        } else {
+            selectedView.set(0, v);
+        }
     }
 
     @Override
-    public void addViewChangeListener(ListChangeListener<View> listener) {
+    public void addViewChangeListener(ListChangeListener<View> listener, View defaultView) {
         selectedView.addListener(listener);
+        setView(defaultView);
     }
 
     @Override

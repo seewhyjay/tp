@@ -42,7 +42,9 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_ROLE = "Role cannot be empty";
 
-    public static final String MESSAGE_INVALID_PAY = "Pay must be a positive number, e.g. 1600.50";
+    public static final String MESSAGE_INVALID_CYCLE = "Cycle cannot be empty";
+
+    public static final String MESSAGE_INVALID_PAY = "Pay must be a non negative number, e.g. 0, 1600.50";
 
     public static final String MESSAGE_INVALID_STATUS = "Enter a valid status input: s/complete, s/incomplete";
 
@@ -207,7 +209,7 @@ public class ParserUtil {
         requireNonNull(cycle);
         String trimmedCycle = cycle.trim();
         if (!NonEmptyText.isValidText(trimmedCycle)) {
-            throw new ParseException(MESSAGE_INVALID_ROLE);
+            throw new ParseException(MESSAGE_INVALID_CYCLE);
         }
         return new Cycle(trimmedCycle);
     }

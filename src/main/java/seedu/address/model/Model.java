@@ -26,7 +26,7 @@ public interface Model {
 
     void setView(View v);
 
-    void addViewChangeListener(ListChangeListener<View> e);
+    void addViewChangeListener(ListChangeListener<View> e, View defaultView);
 
     void removeViewChangeListener(ListChangeListener<View> e);
 

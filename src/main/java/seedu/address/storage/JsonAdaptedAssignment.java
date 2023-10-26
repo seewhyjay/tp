@@ -81,20 +81,23 @@ class JsonAdaptedAssignment {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-
         if (!Name.isValidText(name)) {
             throw new IllegalValueException("Name Not Valid " + Name.MESSAGE_CONSTRAINTS);
         }
-
         final Name modelName = new Name(name);
 
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
         final Description modelDescription = new Description(description);
+
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-
         final Status modelStatus = new Status(status);
+
 
         if (endDate == null) {
             throw new IllegalValueException("EndDate Null"

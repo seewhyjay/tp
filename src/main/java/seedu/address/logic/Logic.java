@@ -57,7 +57,7 @@ public interface Logic {
 
     ObservableList<Assignment> getUnfilteredAssignmentList();
 
-    void subscribeViewChange(ListChangeListener<View> listener);
+    void subscribeViewChange(ListChangeListener<View> listener, View defaultView);
 
     void unsubscribeViewChange(ListChangeListener<View> listener);
 

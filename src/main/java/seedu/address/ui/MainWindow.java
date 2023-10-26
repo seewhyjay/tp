@@ -108,6 +108,7 @@ public class MainWindow extends UiPart<Stage> {
         if (change.wasReplaced() || change.wasAdded()) {
             ObservableList<? extends View> selectedView = change.getList();
             View v = selectedView.get(0);
+            System.out.println(v);
             setViewHeaderName(v.toString());
             switch (v) {
             case ASSIGNMENTS:
@@ -139,19 +140,12 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
-        init();
     }
 
     private void setViewHeaderName(String header) {
         String newHeader = header.charAt(0) + header.substring(1).toLowerCase();
         currViewHeader.setText(newHeader);
     }
-
-    private void init() {
-        logic.subscribeViewChange(onViewChange);
-    }
-
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -214,6 +208,12 @@ public class MainWindow extends UiPart<Stage> {
 
         calendar = new Calendar(logic.getUnfilteredAssignmentList());
         calendarContainer.getChildren().add(calendar.getRoot());
+
+        initDefaultView();
+    }
+
+    private void initDefaultView() {
+        logic.subscribeViewChange(onViewChange, View.INTERNSHIPS);
     }
 
     /**

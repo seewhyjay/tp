@@ -141,7 +141,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void addViewChangeListener(ListChangeListener<View> listener) {
+        public void addViewChangeListener(ListChangeListener<View> listener, View defaultView) {
             throw new AssertionError("This method should not be called.");
         }
 

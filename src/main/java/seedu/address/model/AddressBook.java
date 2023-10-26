@@ -83,7 +83,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setAssignments(newData.getAssignmentList());
         setInternshipRoles(newData.getInternshipRoleList());
         setInternshipTasks(newData.getInternshipTaskList());
-
     }
 
 

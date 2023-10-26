@@ -7,5 +7,6 @@
     "plannedFinishDate" : null,
     "tags" : [ "cs2100" ]
   }],
-  "persons": []
+  "persons": [],
+  "roles" : [ ]
 }

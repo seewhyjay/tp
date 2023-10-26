@@ -120,7 +120,11 @@ public class JsonAdaptedInternshipRole {
         if (pay == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Pay.class.getSimpleName()));
         }
+        if (!Pay.isValidPay(pay)) {
+            throw new IllegalValueException("Pay Not Valid " + Pay.MESSAGE_CONSTRAINTS);
+        }
         final Pay modelPay = new Pay(pay);
+
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));

@@ -41,6 +41,10 @@ public class Pay {
         return pay.matches(VALID_PAY_REGEX);
     }
 
+    public static boolean isValidPay(BigDecimal pay) {
+        return pay.compareTo(new BigDecimal(0)) > -1;
+    }
+
     public BigDecimal getPay() {
         return pay;
     }

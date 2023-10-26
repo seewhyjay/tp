@@ -102,8 +102,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void subscribeViewChange(ListChangeListener<View> listener) {
-        model.addViewChangeListener(listener);
+    public void subscribeViewChange(ListChangeListener<View> listener, View defaultView) {
+        model.addViewChangeListener(listener, defaultView);
     }
 
     @Override
