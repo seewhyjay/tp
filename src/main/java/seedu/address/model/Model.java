@@ -7,6 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.person.Person;
 
 /**
@@ -131,4 +132,9 @@ public interface Model {
      * The assignment must exist in Campus Companion.
      */
     void setAssignment(Assignment assignment, Assignment newAssignment);
+
+    // ============ Internship Roles =============================================================
+    void addInternshipRole(InternshipRole role);
+
+    boolean hasInternshipRole(InternshipRole role);
 }
