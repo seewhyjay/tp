@@ -1,5 +1,17 @@
 package seedu.address.logic.parser.internship.task;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.parseTags;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_OUTCOME;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TASK_NAME;
+
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.assignment.AddAssignmentCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
@@ -9,19 +21,16 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.Prefix;
-import seedu.address.model.fields.*;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.Outcome;
+import seedu.address.model.fields.Status;
+import seedu.address.model.fields.TaskOutcome;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ParserUtil.parseTags;
-import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_OUTCOME;
-import static seedu.address.logic.parser.internship.task.CliSyntax.*;
-
+/**
+ * Parses user input for adding internship tasks
+ */
 public class AddInternshipTaskParser implements Parser<AddInternshipTaskCommand> {
     @Override
     public AddInternshipTaskCommand parse(String args) throws ParseException {
