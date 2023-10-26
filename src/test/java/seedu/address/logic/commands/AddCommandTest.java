@@ -26,6 +26,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -139,6 +140,16 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasInternshipRole(InternshipRole role) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInternshipRole(InternshipRole role) {
             throw new AssertionError("This method should not be called.");
         }
 

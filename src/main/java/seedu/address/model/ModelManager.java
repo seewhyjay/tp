@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.person.Person;
 
 /**
@@ -78,6 +79,19 @@ public class ModelManager implements Model {
         View currView = selectedView.get(0);
         return currView == correctView;
     }
+
+    //========== Internship Roles ===========================================================================
+
+    @Override
+    public void addInternshipRole(InternshipRole role) {
+        addressBook.addInternshipRoles(role);
+    }
+
+    @Override
+    public boolean hasInternshipRole(InternshipRole role) {
+        return addressBook.hasInternshipRoles(role);
+    }
+
 
     //=========== UserPrefs ==================================================================================
 
