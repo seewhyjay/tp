@@ -258,35 +258,77 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has many assignments to keep track of as a student in university
+* is someone who is applying for computer science related internship roles, and will have many rounds of interview before potentially getting an offer
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage assignments and deadlines faster than a typical mouse/GUI driven app
+**Value proposition**: manage assignments deadlines and internship applications faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
+In the table below, **_user_** refers to the Computer Science student.
+
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                    | I want to …​                            | So that I can…​                                        |
-| ----- |----------------------------|-----------------------------------------|--------------------------------------------------------|
-| `* * *` | new user                   | see usage instructions                  | refer to instructions when I forget how to use the App |
-| `* * *` | user                       | add a new assignment                    | keep track of what I need to complete                  |
-| `* * *` | user                       | delete an assingmnet                    | remove entries that I no longer need                   |
-| `* * *` | user                       | mark an assignment as completed         | track my progress of my assignments                    |
-| `* * *` | user                       | unmark an assignment which is completed | track my progress if I marked something wrongly        |
-| `* * *` | user with many assignments | see all the current assignments         | see all my current assignments                         |
-|`* * *`  | user                       | edit a previously added assignment      | change the requirements in the future                  |
+| Priority | As a …​                                | I want to …​                                                                                                                                            | So that I can…​                                                                                                                   |
+|----------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | new user                               | see usage instructions                                                                                                                                  | refer to instructions when I forget how to use the App                                                                            |
+| `* * *`  | user                                   | add a new assignment                                                                                                                                    | keep track of the assignments that I need to complete                                                                             |
+| `* * *`  | user                                   | see the status and the deadline of my assignments                                                                                                       | monitor my progress and plan my time based on the number of tasks that needs to be completed                                      |
+| `* * *`  | user                                   | delete an assignment                                                                                                                                    | remove entries that I no longer need to track                                                                                     |
+| `* * *`  | user                                   | mark an assignment as completed                                                                                                                         | track my progress of my assignments, and plan my time better                                                                      |
+| `* * *`  | user                                   | unmark an assignment which is currently completed                                                                                                       | track my progress if I marked something wrongly without needing to delete the entry                                               |
+| `* * *`  | user with many assignments             | see all the current assignments, and all their details                                                                                                  | have a understanding of how many assignments I have in total currently                                                            |
+| `* * *`  | user with many assignments             | view my assignments in chronological order of the deadlines (ie, assignment with earliest deadline first)                                               | understand which assignment is due earlier, and therefore I can prioritise it                                                     |
+| `* * *`  | user                                   | add information about a **role** that I am applying to such as the role name, company, salary, overall status of the application etc.                   | keep track of the roles that I have applied to                                                                                    |
+| `* * *`  | user                                   | add information about the **tasks** that I have to complete for each of the roles that I have applied for such as the OA, interview 1, interview 2 etc. | keep track of the deadlines for each task related to my application at every stage                                                |
+| `* * *`  | user                                   | delete information about the **role** that I have applied for                                                                                           | remove entries of roles that I no longer want to track                                                                            |
+| `* * *`  | user                                   | delete information about the **tasks** related to an application                                                                                        | remove entries of tasks that I no longer want to track                                                                            |
+| `* * *`  | user                                   | update the **overall outcome** of the **role** that I have applied for (eg: follow up, rejected, success)                                               | keep track of the current status of an application                                                                                |
+| `* * *`  | user                                   | update the **outcome** of a **task** related to an application (eg: follow up, rejected, pending)                                                       | keep track of the outcome of completing that task                                                                                 |
+| `* * *`  | user                                   | mark the **status** of a **task** related to an application to "complete"                                                                               | keep track of which task I have completed and not miss any deadlines related to my application                                    |
+| `* * *`  | user                                   | unmark the **status** of a **task** related to an application to "incomplete"                                                                           | easily change the status of the task, in case I marked it as complete wrongly                                                     |
+| `* * *`  | user                                   | see **all** the **roles** which I have applied for, and the information related to each role                                                            | have an overview of each application's information and outcome                                                                    |
+| `* * *`  | user                                   | see **all** the **tasks** which I have for all the roles I have applied for                                                                             | have an overview of all the tasks which I currently have, and their status, deadline and outcome                                  |
+| `* *`    | user with many deadlines               | calendar view which shows the task which needs to be completed by that date                                                                             | have a quick overview of the deadlines for a particular day                                                                       |
+| `* *`    | user with many assignments             | filter my assignments by deadline (ie, only view assignments due within a certain time frame)                                                           | have an overview of the assignments due within a certain time frame, and I can plan ahead for busy time frames                    |
+| `* *`    | user                                   | edit the description of a previously added assignment                                                                                                   | update the assignment if there were changes to the requirements, or if I want to note more information down for myself            |
+| `* *`    | user                                   | find my assignments by a certain keyword only                                                                                                           | find an assignment and view its details without needing to scroll through the whole list of assignments                           |
+| `* *`    | user                                   | add in information about when I plan to complete an assignment by                                                                                       | manage my time and finish assignments before their deadline                                                                       |
+| `* *`    | user with many internship tasks        | filter my internship tasks deadline (ie, only view tasks due within a certain time frame)                                                               | have an overview of the internship tasks due within a certain time frame, and I can plan ahead for busy time frames               |
+| `* *`    | user with many internship tasks        | find my internship application information based on certain keywords only                                                                               | find an internship role and view its associated details and tasks without needing to scroll through the whole list of internships |
+| `*`      | user with many internship applications | view overall statistics for my past applications such as at which stage do I get rejected or accepted                                                   | understand which stage I need to improve on and which stage I'm stronger in                                                       |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `CampusCompanion` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, we assume the following unless specified otherwise
 
-**Use case: Add an assignment**
+- The **System** is `CampusCompanion`
+- The **Actor** is the `user`
+- The following preconditions
+  - The `user` has launched the `CampusCompanion` application.
+Furthermore, some of the use cases are similar when manipulating **assignments**, internship **roles** and internship **tasks**. 
+Therefore, to keep the developer guide concise, the use cases elaborated upon below are only detailed for assignments. 
+Nonetheless, they can be extrapolated for internships roles and tasks too, without changes to the major details within the use case. 
+Such associated pairs of use cases are listed in the table below.
+
+| Assignment Use Case                   | Internship Role Use Case                | Internship Task Use Case                    |
+|---------------------------------------|-----------------------------------------|---------------------------------------------|
+| UC1 - Add Assignment                  | UCxx - Add Internship Role              | UCxx - Add Internship Task                  |
+| UC2 - Delete Assignment               | UCxx - Delete Internship Role           | UCxx - Delete Internship Task               |
+| UC3 - Mark Assignment as complete     | _Not Applicable_                        | UCxx - Mark Internship Task as complete     |
+| UC4 - UnMark Assignment as incomplete | _Not Applicable_                        | UCxx - UnMark Internship Task as incomplete |
+| UC5 - List Assignments                | UCxx - List Internship Role             | _Not Applicable_                            |
+| UC6 - Filter Assignments by deadline  | _Not Applicable_                        | UCxx - Filter Internship Task by deadline   |
+| UC7 - Edit Assignments information    | UCxx - Edit Internship Role information | UCxx - Edit Internship Task information     |
+| UC8 - Find Assignment by keyword      | UCxx - Find Internship Role by keyword  | ??                                          |
+
+
+**UC1: Add an assignment**
 
 **MSS**
 
@@ -297,13 +339,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given command is invalid.
+* 1a. User enters invalid command.
+  * 1a1. CampusCompanion prompts user to correct the format of the command.
+  * 1a2. User enters command and information to add an assignment. 
+    <br/>
+    Steps 1a1-1a2 are repeated until a valid add command is entered. 
+    <br/>
+    Use case resumes from step 2.
+* 1b. CampusCompanion detects duplicate assignment entry.
+  * 1b1. CampusCompanion prompts user to not enter duplicate information
+  * 1b2. User re-enters command to add an assignment.
+  <br/>
+  Steps 1b1-1b2 are repeated until a unique entry is entered.
+  Use cases resumes from step 2.
 
-    * 1a1. CampusCompanion shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: Delete a person**
+**UC2: Delete an assignment**
 
 **MSS**
 
@@ -320,13 +370,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. User enters invalid command.
+    * 3a1. CampusCompanion prompts user to correct the format of the command.
+    * 3a2. User enters command to delete an assignment.
+      <br/>
+      Steps 3a1-3a2 are repeated until a valid delete command is entered.
+      <br/>
+      Use case resumes from step 4.
 
-    * 3a1. CampusCompanion shows an error message.
+* 3b. The given index is invalid.
 
-      Use case resumes at step 2.
+    * 3b1. CampusCompanion prompts user that the index is invalid.
+    * 3b2. User re-enters command.
+      <br/>
+      Steps 3b1-3b2 are repeated until a valid index is entered.
+      <br/>
+      Use case resumes from step 4.
 
-**Use case: Mark an assignment**
+**UC3: Mark an assignment**
 
 **MSS**
 
@@ -343,13 +404,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. User enters invalid command.
+    * 3a1. CampusCompanion prompts user to correct the format of the mark command.
+    * 3a2. User enters command to mark an assignment.
+      <br/>
+      Steps 3a1-3a2 are repeated until a valid mark command is entered.
+      <br/>
+      Use case resumes from step 4.
 
-    * 3a1. CampusCompanion shows an error message.
+* 3b. The given index is invalid.
 
-      Use case resumes at step 2.
+    * 3b1. CampusCompanion prompts user that the index is invalid.
+    * 3b2. User re-enters command.
+      <br/>
+      Steps 3b1-3b2 are repeated until a valid index is entered.
+      <br/>
+      Use case resumes from step 4.
 
-**Use case: UnMark an assignment**
+**UC4: Un-mark an assignment**
 
 **MSS**
 
@@ -366,21 +438,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. User enters invalid command.
+    * 3a1. CampusCompanion prompts user to correct the format of the unmark command.
+    * 3a2. User enters command to unmark an assignment.
+      <br/>
+      Steps 3a1-3a2 are repeated until a valid unmark command is entered.
+      <br/>
+      Use case resumes from step 4.
 
-    * 3a1. CampusCompanion shows an error message.
+* 3b. The given index is invalid.
 
-      Use case resumes at step 2.
+    * 3b1. CampusCompanion prompts user that the index is invalid.
+    * 3b2. User re-enters command.
+      <br/>
+      Steps 3b1-3b2 are repeated until a valid index is entered.
+      <br/>
+      Use case resumes from step 4.
 
-**Use case: Edit an assignment**
+**UC5 - List Assignments**
 
 **MSS**
 
 1.  User requests to list all assignments
 2.  CampusCompanion shows a list of assignments with their details
-3.  User requests to edit a specific assignment in the list
-4.  User specifies new item name for assignment
-5.  CampusCompanion changes the assignment name
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. CampusCompanion detects an error in the command format.
+    * 1a1. CampusCompanion prompts user to correct the format of the list command.
+    * 1a2. User enters command to list assignments.
+      <br/>
+      Steps 1a1-1a2 are repeated until a valid list command is entered.
+      <br/>
+      Use case resumes from step 2.
+
+**UC6 - Filter Assignments by deadline**
+
+**MSS**
+
+1.  User requests to list only assignments with deadline within a certain time period
+2.  CampusCompanion shows a filtered list of assignments with their details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. CampusCompanion detects an error in the command format.
+    * 1a1. CampusCompanion prompts user to correct the format of the list command with filter.
+    * 1a2. User enters command to list assignments.
+      <br/>
+      Steps 1a1-1a2 are repeated until a valid list command is entered.
+      <br/>
+      Use case resumes from step 2.
+
+* 1b. The given date is not valid (before current date).
+  * 1b1. CampusCompanion prompts user to correct the date range.
+  * User enters command with valid date range.
+    <br/>
+    Steps 1b1-1b2 are repeated until a valid list command is entered.
+    <br/>
+    Use case resumes from step 2.
+
+**UC7 - Edit Assignments information**
+
+**MSS**
+
+1.  User requests to list all assignments
+2.  CampusCompanion shows a list of assignments with their details
+3.  User requests to edit a assignment's information by specifying the updated information. 
+4.  CampusCompanion confirms the update of the assignment's information.
 
     Use case ends.
 
@@ -390,29 +518,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. CampusCompanion detects an error in the command format.
+    * 3a1. CampusCompanion prompts user to correct the format of the edit command.
+    * 3a2. User enters command to edit assignments.
+      <br/>
+      Steps 3a1-3a2 are repeated until a valid edit command is entered.
+      <br/>
+      Use case resumes from step 4.
 
-    * 3a1. CampusCompanion shows an error message.
+* 3b. The given index is invalid.
 
-      Use case resumes at step 2.
+    * 3b1. CampusCompanion prompts user that the index is invalid.
+    * 3b2. User re-enters command.
+      <br/>
+      Steps 3b1-3b2 are repeated until a valid index is entered.
+      <br/>
+      Use case resumes from step 4.
 
-* 3b. The user did not specify a new item name. 
+**UC8 - Find Assignment by keyword**
 
-    * 3b1. CampusCompanion shows an error message.
+1. User requests to find assignments that meet a particular criteria.
+2. CampusCompanion shows a list of assignments that meet the criteria requested by user. 
 
-      Use case resumes at step 2.
+    Use case ends.
 
-*{More to be added}*
+* 1a. CampusCompanion detects an error in the command format.
+    * 1a1. CampusCompanion prompts user to correct the format of the find command.
+    * 1a2. User enters command to find assignments.
+      <br/>
+      Steps 1a1-1a2 are repeated until a valid find command is entered.
+      <br/>
+      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The user interface should be intuitive enough for users who are not IT-savvy
-5. The product should be for a single user
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The user interface should be intuitive enough for users who are not IT-savvy.
+5. The product should be for a single user.
 6. The software should work without requiring an installer.
-7. The GUI should work well for standard resolutions
+7. The GUI should work well for standard resolutions.
 8. The file sizes of the deliverables should be reasonable and not exceed the limits given below.
 
 ### Glossary
