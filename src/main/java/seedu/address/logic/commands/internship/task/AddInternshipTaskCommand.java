@@ -5,8 +5,13 @@ import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
 
 public class AddInternshipTaskCommand extends InternshipCommand {
+    public static final String MESSAGE_USAGE = "TO BE MODIFIED, from AddInternshipRole";
+
+    public AddInternshipTaskCommand() {}
+
     @Override
     public CommandResult execute(Model model) {
-        return null;
+        return new CommandResult(null);
     }
+
 }
