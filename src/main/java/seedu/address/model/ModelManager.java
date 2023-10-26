@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -31,6 +32,10 @@ public class ModelManager implements Model {
 
     private final FilteredList<Assignment> filteredAssignments;
 
+    private final FilteredList<InternshipRole> filteredInternshipRoles;
+
+    private final FilteredList<InternshipTask> filteredInternshipTasks;
+
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
     /**
@@ -45,6 +50,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
+        filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
 
         initView();
     }
@@ -226,6 +233,46 @@ public class ModelManager implements Model {
         filteredAssignments.setPredicate(predicate);
     }
 
+    //====== Filtered Internship Task List Accessors==========================
+
+    @Override
+    public boolean hasInternshipTask(InternshipTask internshipTask) {
+        return addressBook.hasInternshipTask(internshipTask);
+    }
+
+    @Override
+    public void deleteInternshipTask(InternshipTask target) {
+        addressBook.removeInternshipTask(target);
+    }
+
+    @Override
+    public void addInternshipTask(InternshipTask internshipTask) {
+        requireNonNull(internshipTask);
+        addressBook.addInternshipTask(internshipTask);
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return filteredInternshipTasks;
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
+        return addressBook.getInternshipTaskList();
+    }
+
+    //====== Filtered Internship Role List Accessors==========================
+
+    @Override
+    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+        return filteredInternshipRoles;
+    }
+
+    @Override
+    public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
+        return addressBook.getInternshipRoleList();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -241,6 +288,7 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filteredAssignments.equals(otherModelManager.filteredAssignments);
+                && filteredAssignments.equals(otherModelManager.filteredAssignments)
+                && filteredInternshipTasks.equals(otherModelManager.filteredInternshipTasks);
     }
 }

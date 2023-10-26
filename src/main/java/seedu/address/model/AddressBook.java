@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.unique.UniqueList;
 
@@ -23,6 +24,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueList<InternshipRole> roles;
 
+    private final UniqueList<InternshipTask> internshipTasks;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,6 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniqueList<>();
         assignments = new UniqueList<>();
         roles = new UniqueList<>();
+        internshipTasks = new UniqueList<>();
     }
 
     public AddressBook() {
@@ -178,6 +182,34 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasInternshipRoles(InternshipRole role) {
         requireNonNull(role);
         return roles.contains(role);
+    }
+
+    @Override
+    public ObservableList<InternshipRole> getInternshipRoleList() {
+        return roles.asUnmodifiableObservableList();
+    }
+    // ================ Internship Tasks =====================================================================
+
+    /**
+     * @param internshipTask to be checked
+     * @return true if internship task is present, false otherwise
+     */
+    public boolean hasInternshipTask(InternshipTask internshipTask) {
+        requireNonNull(internshipTask);
+        return internshipTasks.contains(internshipTask);
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getInternshipTaskList() {
+        return internshipTasks.asUnmodifiableObservableList();
+    }
+
+    public void addInternshipTask(InternshipTask internshipTask) {
+        internshipTasks.add(internshipTask);
+    }
+
+    public void removeInternshipTask(InternshipTask key) {
+        internshipTasks.remove(key);
     }
 
 

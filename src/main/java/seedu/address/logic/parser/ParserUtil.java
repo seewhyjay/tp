@@ -13,18 +13,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.fields.ApplicationOutcome;
-import seedu.address.model.fields.Cycle;
-import seedu.address.model.fields.Date;
-import seedu.address.model.fields.Description;
-import seedu.address.model.fields.IsoDate;
-import seedu.address.model.fields.Location;
-import seedu.address.model.fields.Name;
-import seedu.address.model.fields.NonEmptyText;
-import seedu.address.model.fields.Outcome;
-import seedu.address.model.fields.Pay;
-import seedu.address.model.fields.Role;
-import seedu.address.model.fields.Status;
+import seedu.address.model.fields.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -232,6 +221,14 @@ public class ParserUtil {
                 .filter(ApplicationOutcome::isValidApplicationOutcome)
                 .flatMap(Outcome::parseOutcome)
                 .map(ApplicationOutcome::new)
+                .orElseThrow(() -> new ParseException(MESSAGE_INVALID_APP_OUTCOME));
+    }
+
+    public static TaskOutcome parseTaskOutcome(String outcome) throws ParseException {
+        return Optional.of(outcome)
+                .filter(TaskOutcome::isValidTaskOutcome)
+                .flatMap(Outcome::parseOutcome)
+                .map(TaskOutcome::new)
                 .orElseThrow(() -> new ParseException(MESSAGE_INVALID_APP_OUTCOME));
     }
 }

@@ -22,6 +22,7 @@ import seedu.address.logic.commands.assignment.FindAssignmentCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
 import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
+import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
 import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.commands.person.EditCommand;
@@ -35,6 +36,7 @@ import seedu.address.logic.parser.assignment.ListAssignmentParser;
 import seedu.address.logic.parser.assignment.MarkAssignmentParser;
 import seedu.address.logic.parser.assignment.UnMarkAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.internship.task.AddInternshipTaskParser;
 import seedu.address.logic.parser.person.AddCommandParser;
 import seedu.address.logic.parser.person.DeleteCommandParser;
 import seedu.address.logic.parser.person.EditCommandParser;
@@ -137,6 +139,10 @@ public class AddressBookParser {
         case EditAssignmentCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.ASSIGNMENTS);
             return new EditAssignmentParser().parse(arguments);
+
+        case AddInternshipTaskCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new AddInternshipTaskParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
