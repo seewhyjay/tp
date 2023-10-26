@@ -33,6 +33,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private final View startingView = View.INTERNSHIPS;
+
     private static final int maxNumOfNamesToDisplay = 2;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -46,14 +48,24 @@ public class MainWindow extends UiPart<Stage> {
     // Assignments
     private AssignmentListPanel assignmentListPanel;
 
+    // Internships
+
+    private InternshipRolePanel internRolePanel;
+
+    private InternshipTaskPanel internTaskPanel;
+
+    private InternPanel internPanel;
+
+    // Calendar
+
+    private Calendar calendar;
+
     // Persons
     private PersonListPanel personListPanel;
 
     private ResultDisplay resultDisplay;
 
     private HelpWindow helpWindow;
-
-    private Calendar calendar;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -93,9 +105,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private ListChangeListener<View> onViewChange = (change) -> {
         change.next();
-        if (change.wasReplaced()) {
+        if (change.wasReplaced() || change.wasAdded()) {
             ObservableList<? extends View> selectedView = change.getList();
             View v = selectedView.get(0);
+            System.out.println(v);
             setViewHeaderName(v.toString());
             switch (v) {
             case ASSIGNMENTS:
@@ -105,15 +118,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleSetPersonView();
                 break;
             default:
-                break;
-            }
-
-            if (selectedView.get(0) == View.ASSIGNMENTS) {
-                handleSetAssignmentView();
-            } else if (selectedView.get(0) == View.PERSONS) {
-                handleSetPersonView();
-            } else {
-                // do nothing for now
+                handleSetInternshipView();
             }
         }
     };
@@ -135,19 +140,12 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
-        init();
     }
 
     private void setViewHeaderName(String header) {
         String newHeader = header.charAt(0) + header.substring(1).toLowerCase();
         currViewHeader.setText(newHeader);
     }
-
-    private void init() {
-        logic.subscribeViewChange(onViewChange);
-    }
-
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -193,7 +191,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
-        selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+        internRolePanel = new InternshipRolePanel(logic.getFilteredInternshipRoleList());
+        internTaskPanel = new InternshipTaskPanel(logic.getFilteredInternshipTaskList());
+        internPanel = new InternPanel(internRolePanel, internTaskPanel);
+
+        selectedListPanelPlaceholder.getChildren().add(internPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -206,6 +208,12 @@ public class MainWindow extends UiPart<Stage> {
 
         calendar = new Calendar(logic.getUnfilteredAssignmentList());
         calendarContainer.getChildren().add(calendar.getRoot());
+
+        initDefaultView();
+    }
+
+    private void initDefaultView() {
+        logic.subscribeViewChange(onViewChange, View.INTERNSHIPS);
     }
 
     /**
@@ -300,5 +308,15 @@ public class MainWindow extends UiPart<Stage> {
     private void handleSetAssignmentView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+    }
+
+    /**
+     * Display a list of internship cards
+     * when button is clicked
+     */
+    @FXML
+    private void handleSetInternshipView() {
+        selectedListPanelPlaceholder.getChildren().clear();
+        selectedListPanelPlaceholder.getChildren().add(internPanel.getRoot());
     }
 }

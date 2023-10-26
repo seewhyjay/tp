@@ -13,6 +13,8 @@ public class Pay {
     // Matches positive numbers, any dp. Inputs cannot start with a period
     private static final String VALID_PAY_REGEX = "^[+]?\\d+([.]\\d+)?$";
 
+    public static final String MESSAGE_CONSTRAINTS = "Pay must be positive number";
+
     private final BigDecimal pay;
 
     private final NumberFormat moneyFormatter;
@@ -37,6 +39,10 @@ public class Pay {
      */
     public static boolean isValidPay(String pay) {
         return pay.matches(VALID_PAY_REGEX);
+    }
+
+    public static boolean isValidPay(BigDecimal pay) {
+        return pay.compareTo(new BigDecimal(0)) > -1;
     }
 
     public BigDecimal getPay() {

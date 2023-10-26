@@ -66,6 +66,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.assignments.setList(assignments);
     }
 
+    public void setInternshipRoles(List<InternshipRole> internRoles) {
+        this.roles.setList(internRoles);
+    }
+
+    public void setInternshipTasks(List<InternshipTask> internshipTasks) {
+        this.tasks.setList(internshipTasks);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -73,9 +81,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setAssignments(newData.getAssignmentList());
+        setInternshipRoles(newData.getInternshipRoleList());
+        setInternshipTasks(newData.getInternshipTaskList());
     }
-
-
 
 
     //// person-level operations

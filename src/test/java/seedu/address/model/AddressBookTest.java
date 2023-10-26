@@ -106,6 +106,16 @@ public class AddressBookTest {
         }
 
         @Override
+        public ObservableList<InternshipTask> getInternshipTaskList() {
+            return tasks;
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getInternshipRoleList() {
+            return roles;
+        }
+
+        @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }

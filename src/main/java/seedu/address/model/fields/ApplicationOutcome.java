@@ -12,7 +12,7 @@ import java.util.List;
 public class ApplicationOutcome {
 
     private static final List<String> possibleOutcomes =
-            new LinkedList<>(Arrays.asList("follow-up", "ghosted", "offered", "rejected", "accepted"));
+            new LinkedList<>(Arrays.asList("follow-up", "ghosted", "offered", "rejected", "accepted", "awaiting"));
 
     private final Outcome outcome;
 

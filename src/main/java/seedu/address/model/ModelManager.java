@@ -36,7 +36,7 @@ public class ModelManager implements Model {
 
     private final FilteredList<InternshipTask> filteredInternshipTasks;
 
-    private final ObservableList<View> selectedView = FXCollections.observableArrayList();
+    private static final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -62,18 +62,19 @@ public class ModelManager implements Model {
 
     //=========== Views =====================================================================================
 
-    private void initView() {
-        selectedView.add(View.ASSIGNMENTS);
-    }
-
     @Override
     public void setView(View v) {
-        selectedView.set(0, v);
+        if (selectedView.size() == 0) {
+            selectedView.add(v);
+        } else {
+            selectedView.set(0, v);
+        }
     }
 
     @Override
-    public void addViewChangeListener(ListChangeListener<View> listener) {
+    public void addViewChangeListener(ListChangeListener<View> listener, View defaultView) {
         selectedView.addListener(listener);
+        setView(defaultView);
     }
 
     @Override
@@ -99,6 +100,17 @@ public class ModelManager implements Model {
         return addressBook.hasInternshipRoles(role);
     }
 
+    @Override
+    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+        return filteredInternshipRoles;
+    }
+
+    // ========== Internship Tasks ==========================================================================
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return filteredInternshipTasks;
+    }
 
     //=========== UserPrefs ==================================================================================
 
@@ -167,7 +179,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 

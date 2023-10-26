@@ -38,11 +38,6 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @BeforeEach
-    public void init() {
-        model.setView(View.PERSONS);
-    }
-
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();

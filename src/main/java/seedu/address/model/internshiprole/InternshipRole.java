@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -43,7 +44,7 @@ public final class InternshipRole implements Unique<InternshipRole> {
      */
     public InternshipRole(Name name, Role role, Cycle cycle, Description description,
                           Pay pay, ApplicationOutcome outcome, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, role, description, pay, outcome, location, tags);
+        requireAllNonNull(name, role, cycle, description, outcome, tags);
         this.name = name;
         this.role = role;
         this.cycle = cycle;

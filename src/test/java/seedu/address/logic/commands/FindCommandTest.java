@@ -30,11 +30,6 @@ public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @BeforeEach
-    public void init() {
-        model.setView(View.PERSONS);
-    }
-
     @Test
     public void equals() {
         NameContainsKeywordsPredicate firstPredicate =

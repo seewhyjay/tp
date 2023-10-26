@@ -101,6 +101,16 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
+        public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasInternshipRole(InternshipRole role) {
             throw new AssertionError("This method should not be called.");
         }
@@ -131,7 +141,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public void addViewChangeListener(ListChangeListener<View> listener) {
+        public void addViewChangeListener(ListChangeListener<View> listener, View defaultView) {
             throw new AssertionError("This method should not be called.");
         }
 
