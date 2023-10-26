@@ -53,7 +53,6 @@ public class ModelManager implements Model {
         filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
         filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
 
-        initView();
     }
 
     public ModelManager() {
@@ -105,12 +104,6 @@ public class ModelManager implements Model {
         return filteredInternshipRoles;
     }
 
-    // ========== Internship Tasks ==========================================================================
-
-    @Override
-    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
-        return filteredInternshipTasks;
-    }
 
     //=========== UserPrefs ==================================================================================
 
@@ -273,11 +266,6 @@ public class ModelManager implements Model {
     }
 
     //====== Filtered Internship Role List Accessors==========================
-
-    @Override
-    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
-        return filteredInternshipRoles;
-    }
 
     @Override
     public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {

@@ -260,16 +260,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -107,7 +107,7 @@ public class AddressBookTest {
 
         @Override
         public ObservableList<InternshipTask> getInternshipTaskList() {
-            return tasks;
+            return internshipTasks;
         }
 
         @Override
@@ -124,12 +124,6 @@ public class AddressBookTest {
         public ObservableList<Assignment> getAssignmentList() {
             return assignments;
         }
-
-        @Override
-        public ObservableList<InternshipRole> getInternshipRoleList() { return roles; }
-
-        @Override
-        public ObservableList<InternshipTask> getInternshipTaskList() { return internshipTasks; }
 
     }
 

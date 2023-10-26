@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void setInternshipTasks(List<InternshipTask> internshipTasks) {
-        this.tasks.setList(internshipTasks);
+        this.internshipTasks.setList(internshipTasks);
     }
 
     /**
