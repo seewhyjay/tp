@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -31,6 +32,10 @@ public class ModelManager implements Model {
 
     private final FilteredList<Assignment> filteredAssignments;
 
+    private final FilteredList<InternshipRole> filteredInternshipRoles;
+
+    private final FilteredList<InternshipTask> filteredInternshipTasks;
+
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
     /**
@@ -43,8 +48,10 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        this.filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
+        this.filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
 
         initView();
     }
@@ -56,7 +63,7 @@ public class ModelManager implements Model {
     //=========== Views =====================================================================================
 
     private void initView() {
-        selectedView.add(View.ASSIGNMENTS);
+        selectedView.add(View.INTERNSHIPS);
     }
 
     @Override
@@ -92,6 +99,17 @@ public class ModelManager implements Model {
         return addressBook.hasInternshipRoles(role);
     }
 
+    @Override
+    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+        return filteredInternshipRoles;
+    }
+
+    // ========== Internship Tasks ==========================================================================
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return filteredInternshipTasks;
+    }
 
     //=========== UserPrefs ==================================================================================
 
@@ -160,7 +178,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 

@@ -40,7 +40,7 @@
             <Label fx:id="description" styleClass="cell_small_label" text="\$email" />
             <Label fx:id="pay" styleClass="cell_small_label" text="\$email"/>
             <Label fx:id="outcome" styleClass="cell_small_label" text="\$email"/>
-            <Label fx:id="location" styleClass="cell_small_label" text="\$email"/>
+            <Label fx:id="internLocation" styleClass="cell_small_label" text="\$email"/>
         </VBox>
     </GridPane>
 </HBox>

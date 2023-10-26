@@ -37,7 +37,7 @@ public class InternshipRoleCard extends UiPart<Region>{
     private Label outcome;
 
     @FXML
-    private Label location;
+    private Label internLocation;
 
     @FXML
     private FlowPane tags;
@@ -52,7 +52,7 @@ public class InternshipRoleCard extends UiPart<Region>{
         description.setText(this.internshipRole.getDescription().toString());
         pay.setText(this.internshipRole.getPay().toString());
         outcome.setText(this.internshipRole.getApplicationOutcome().toString());
-        location.setText(this.internshipRole.getLocation().toString());
+        internLocation.setText(this.internshipRole.getLocation().toString());
         internshipRole.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

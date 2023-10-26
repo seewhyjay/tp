@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AssignmentBuilder;
 
@@ -96,6 +97,16 @@ public class AddAssignmentCommandTest {
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
             throw new AssertionError("This method should not be called.");
         }
 

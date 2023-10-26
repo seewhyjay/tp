@@ -11,6 +11,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,4 +60,9 @@ public interface Logic {
     void subscribeViewChange(ListChangeListener<View> listener);
 
     void unsubscribeViewChange(ListChangeListener<View> listener);
+
+    ObservableList<InternshipRole> getFilteredInternshipRoleList();
+
+    ObservableList<InternshipTask> getFilteredInternshipTaskList();
+
 }

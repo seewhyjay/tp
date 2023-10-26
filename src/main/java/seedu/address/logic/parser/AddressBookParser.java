@@ -35,11 +35,13 @@ import seedu.address.logic.parser.assignment.ListAssignmentParser;
 import seedu.address.logic.parser.assignment.MarkAssignmentParser;
 import seedu.address.logic.parser.assignment.UnMarkAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.internship.role.AddInternshipRoleParser;
 import seedu.address.logic.parser.person.AddCommandParser;
 import seedu.address.logic.parser.person.DeleteCommandParser;
 import seedu.address.logic.parser.person.EditCommandParser;
 import seedu.address.logic.parser.person.FindCommandParser;
 import seedu.address.model.View;
+import seedu.address.logic.commands.internship.role.AddInternshipRoleCommand;
 
 /**
  * Parses user input.
@@ -138,6 +140,9 @@ public class AddressBookParser {
             verifyView(viewVerifier, View.ASSIGNMENTS);
             return new EditAssignmentParser().parse(arguments);
 
+        case AddInternshipRoleCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new AddInternshipRoleParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

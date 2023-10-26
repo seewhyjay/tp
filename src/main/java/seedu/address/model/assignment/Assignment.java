@@ -33,7 +33,7 @@ public final class Assignment implements Comparable<Assignment>, Unique<Assignme
      */
     public Assignment(Name name, IsoDate endDate, Status status, Description description,
                       Date plannedFinishDate, Set<Tag> tags) {
-        requireAllNonNull(name, endDate, status, description, plannedFinishDate, tags);
+        requireAllNonNull(name, endDate, status, tags);
         this.name = new Name(name.getText());
         this.enddate = endDate;
         this.status = status;

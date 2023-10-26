@@ -18,6 +18,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -107,5 +109,15 @@ public class LogicManager implements Logic {
     @Override
     public void unsubscribeViewChange(ListChangeListener<View> listener) {
         model.removeViewChangeListener(listener);
+    }
+
+    @Override
+    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+        return model.getFilteredInternshipRoleList();
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return model.getFilteredInternshipTaskList();
     }
 }

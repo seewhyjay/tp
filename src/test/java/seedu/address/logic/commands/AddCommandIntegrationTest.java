@@ -26,7 +26,6 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.setView(View.PERSONS);
     }
 
     @Test

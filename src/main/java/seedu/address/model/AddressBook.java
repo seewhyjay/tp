@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.unique.UniqueList;
 
@@ -23,6 +24,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueList<InternshipRole> roles;
 
+    private final UniqueList<InternshipTask> tasks;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,6 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniqueList<>();
         assignments = new UniqueList<>();
         roles = new UniqueList<>();
+        tasks = new UniqueList<>();
     }
 
     public AddressBook() {
@@ -62,6 +66,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.assignments.setList(assignments);
     }
 
+    public void setInternshipRoles(List<InternshipRole> internRoles) {
+        this.roles.setList(internRoles);
+    }
+
+    public void setInternshipTasks(List<InternshipTask> internshipTasks) {
+        this.tasks.setList(internshipTasks);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -69,9 +81,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setAssignments(newData.getAssignmentList());
+        setInternshipRoles(newData.getInternshipRoleList());
+        setInternshipTasks(newData.getInternshipTaskList());
+
     }
-
-
 
 
     //// person-level operations
@@ -178,6 +191,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasInternshipRoles(InternshipRole role) {
         requireNonNull(role);
         return roles.contains(role);
+    }
+
+    public ObservableList<InternshipRole> getInternshipRoleList() {
+        return roles.asUnmodifiableObservableList();
+    }
+
+    // ============ Internship Tasks =========================================================================
+
+    public ObservableList<InternshipTask> getInternshipTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
 

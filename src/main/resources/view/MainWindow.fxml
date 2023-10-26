@@ -75,7 +75,7 @@
                     </padding>
                     <Label HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                     <Label text="Your" styleClass="view-header" />
-                    <Label fx:id="currViewHeader" text="Assignments" styleClass="view-header"/>
+                    <Label fx:id="currViewHeader" text="Internships" styleClass="view-header"/>
                     <Label HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                   </HBox>
                   <StackPane GridPane.columnIndex="0"  fx:id="selectedListPanelPlaceholder" minWidth="300" VBox.vgrow="ALWAYS"/>
