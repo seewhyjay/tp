@@ -24,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueList<InternshipRole> roles;
 
-    private final UniqueList<InternshipTask> tasks;
+    private final UniqueList<InternshipTask> internshipTasks;
 
 
     /*
@@ -38,7 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniqueList<>();
         assignments = new UniqueList<>();
         roles = new UniqueList<>();
-        tasks = new UniqueList<>();
+        internshipTasks = new UniqueList<>();
     }
 
     public AddressBook() {
@@ -192,14 +192,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         return roles.contains(role);
     }
 
+    @Override
     public ObservableList<InternshipRole> getInternshipRoleList() {
         return roles.asUnmodifiableObservableList();
     }
+    // ================ Internship Tasks =====================================================================
 
-    // ============ Internship Tasks =========================================================================
+    /**
+     * @param internshipTask to be checked
+     * @return true if internship task is present, false otherwise
+     */
+    public boolean hasInternshipTask(InternshipTask internshipTask) {
+        requireNonNull(internshipTask);
+        return internshipTasks.contains(internshipTask);
+    }
 
+    @Override
     public ObservableList<InternshipTask> getInternshipTaskList() {
-        return tasks.asUnmodifiableObservableList();
+        return internshipTasks.asUnmodifiableObservableList();
+    }
+
+    public void addInternshipTask(InternshipTask internshipTask) {
+        internshipTasks.add(internshipTask);
+    }
+
+    public void removeInternshipTask(InternshipTask key) {
+        internshipTasks.remove(key);
     }
 
 

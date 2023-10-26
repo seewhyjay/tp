@@ -15,14 +15,16 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENTS = unused -> true;
 
     String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
 
     String MESSAGE_WRONG_VIEW_SECOND_HALF = " before performing this operation "
-             + "using the respective list commands";
+            + "using the respective list commands";
 
     void setView(View v);
 
@@ -70,7 +72,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -97,11 +101,14 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
@@ -112,7 +119,9 @@ public interface Model {
 
     void deleteAssignment(Assignment target);
 
-    /** Returns an unmodifiable view of the filtered assignment list */
+    /**
+     * Returns an unmodifiable view of the filtered assignment list
+     */
     ObservableList<Assignment> getFilteredAssignmentList();
 
     ObservableList<Assignment> getUnfilteredAssignmentList();
@@ -124,6 +133,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
@@ -141,7 +151,20 @@ public interface Model {
 
     ObservableList<InternshipRole> getFilteredInternshipRoleList();
 
-    // =========== Internship Tasks ==============================================================
+    ObservableList<InternshipRole> getUnfilteredInternshipRoleList();
+    // ============ Internship Tasks =============================================================
 
+    /**
+     * Returns an unmodifiable view of the filtered internship task list
+     */
     ObservableList<InternshipTask> getFilteredInternshipTaskList();
+
+    ObservableList<InternshipTask> getUnfilteredInternshipTaskList();
+
+    void deleteInternshipTask(InternshipTask target);
+
+    void addInternshipTask(InternshipTask internshipTask);
+
+    boolean hasInternshipTask(InternshipTask internshipTask);
+
 }

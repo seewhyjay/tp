@@ -243,6 +243,41 @@ public class AddAssignmentCommandTest {
         @Override
         public void sortAssignments() {
         }
+
+        @Override
+        public boolean hasInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

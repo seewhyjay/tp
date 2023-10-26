@@ -48,10 +48,12 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
-        this.filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
-        this.filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
+        filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
+
+        initView();
     }
 
     public ModelManager() {
@@ -242,6 +244,46 @@ public class ModelManager implements Model {
         filteredAssignments.setPredicate(predicate);
     }
 
+    //====== Filtered Internship Task List Accessors==========================
+
+    @Override
+    public boolean hasInternshipTask(InternshipTask internshipTask) {
+        return addressBook.hasInternshipTask(internshipTask);
+    }
+
+    @Override
+    public void deleteInternshipTask(InternshipTask target) {
+        addressBook.removeInternshipTask(target);
+    }
+
+    @Override
+    public void addInternshipTask(InternshipTask internshipTask) {
+        requireNonNull(internshipTask);
+        addressBook.addInternshipTask(internshipTask);
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return filteredInternshipTasks;
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
+        return addressBook.getInternshipTaskList();
+    }
+
+    //====== Filtered Internship Role List Accessors==========================
+
+    @Override
+    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+        return filteredInternshipRoles;
+    }
+
+    @Override
+    public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
+        return addressBook.getInternshipRoleList();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -257,6 +299,7 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filteredAssignments.equals(otherModelManager.filteredAssignments);
+                && filteredAssignments.equals(otherModelManager.filteredAssignments)
+                && filteredInternshipTasks.equals(otherModelManager.filteredInternshipTasks);
     }
 }
