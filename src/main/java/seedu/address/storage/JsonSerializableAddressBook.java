@@ -13,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.ui.InternshipRolePanel;
 
@@ -26,7 +27,9 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_ASSIGNMENTS = "Assignments list contains duplicate assignment(s).";
 
-    public static final String MESSAGE_DUPLICATE_INTERN_ROLES = "InternshipRole list contains duplicate roles(s).";
+    public static final String MESSAGE_DUPLICATE_INTERN_ROLES = "InternshipRole list contains duplicate role(s).";
+
+    public static final String MESSAGE_DUPLICATE_INTERN_TASKS = "InternshipRole list contains duplicate task(s).";
 
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
 
@@ -34,16 +37,20 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedInternshipRole> roles = new ArrayList<>();
 
+    private final List<JsonAdaptedInternshipTask> internshipTasks = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given assignments.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("assignments") List<JsonAdaptedAssignment> assignments,
                                        @JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("roles") List<JsonAdaptedInternshipRole> roles) {
+                                       @JsonProperty("roles") List<JsonAdaptedInternshipRole> roles,
+                                       @JsonProperty("internshipTasks") List<JsonAdaptedInternshipTask> internshipTasks) {
         this.assignments.addAll(assignments);
         this.persons.addAll(persons);
         this.roles.addAll(roles);
+        this.internshipTasks.addAll(internshipTasks);
     }
 
     /**
@@ -58,6 +65,8 @@ class JsonSerializableAddressBook {
                 .map(JsonAdaptedInternshipRole::new).collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream()
                 .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        internshipTasks.addAll(source.getInternshipTaskList().stream()
+                .map(JsonAdaptedInternshipTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -91,6 +100,13 @@ class JsonSerializableAddressBook {
             addressBook.addInternshipRoles(role);
         }
 
+        for (JsonAdaptedInternshipTask jsonAdaptedInternshipTask : internshipTasks) {
+            InternshipTask internshipTask = jsonAdaptedInternshipTask.toModelType();
+            if (addressBook.hasInternshipTask(internshipTask)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_TASKS);
+            }
+            addressBook.addInternshipTask(internshipTask);
+        }
         return addressBook;
     }
 
