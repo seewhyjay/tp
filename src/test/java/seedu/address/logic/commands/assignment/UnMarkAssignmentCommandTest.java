@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,21 +28,26 @@ public class UnMarkAssignmentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    private Assignment getAtIndex(int i) {
+        return model.getFilteredAssignmentList().get(i);
+    }
+
     @Test
-    public void execute_unMark_success() {
-        Assignment assignmentToUnMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        model.markAsComplete(assignmentToUnMark);
-        assertTrue(assignmentToUnMark.getStatus().toString().equals("complete"));
-        model.markAsIncomplete(assignmentToUnMark);
-        assertTrue(assignmentToUnMark.getStatus().toString().equals("incomplete"));
+    public void execute_unMark_success() throws CommandException {
+        Assignment assignmentToUnMark = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        model.setAssignment(assignmentToUnMark, assignmentToUnMark.mark());
+        assertTrue(getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased())
+                .getStatus().toString().equals("complete"));
+        UnMarkAssignmentCommand cmd = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        cmd.execute(model);
+        assertTrue(getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased()).getStatus().toString().equals("incomplete"));
     }
 
     @Test
     public void execute_unMarkIncompletAssignment_throwsCommandException() {
         Assignment assignmentToUnMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         UnMarkAssignmentCommand markCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
-
-        model.markAsIncomplete(assignmentToUnMark);
+        model.setAssignment(assignmentToUnMark, assignmentToUnMark.unMark());
         assertCommandFailure(markCommand, model,
                 String.format(UnMarkAssignmentCommand.MESSAGE_ASSIGNMENT_ALREADY_INCOMPLETE));
     }
@@ -53,7 +59,6 @@ public class UnMarkAssignmentCommandTest {
 
         CommandTestUtil.assertCommandFailure(unMarkCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
-
     @Test
     public void equals() {
         UnMarkAssignmentCommand unMarkFirstCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);

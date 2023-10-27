@@ -13,12 +13,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Date;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.IsoDate;
-import seedu.address.model.assignment.Name;
-import seedu.address.model.assignment.NoDate;
-import seedu.address.model.assignment.Status;
+import seedu.address.model.fields.Date;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.NoDate;
+import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,20 +81,23 @@ class JsonAdaptedAssignment {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-
-        if (!Name.isValidTaskName(name)) {
+        if (!Name.isValidText(name)) {
             throw new IllegalValueException("Name Not Valid " + Name.MESSAGE_CONSTRAINTS);
         }
-
         final Name modelName = new Name(name);
 
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
         final Description modelDescription = new Description(description);
+
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-
         final Status modelStatus = new Status(status);
+
 
         if (endDate == null) {
             throw new IllegalValueException("EndDate Null"

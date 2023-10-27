@@ -1,6 +1,6 @@
 package seedu.address.model.assignment;
 
-import static seedu.address.model.assignment.IsoDate.isDateBefore;
+import static seedu.address.model.fields.IsoDate.isDateBefore;
 
 import java.util.List;
 import java.util.function.Predicate;

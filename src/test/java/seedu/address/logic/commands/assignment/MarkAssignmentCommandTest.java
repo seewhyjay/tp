@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,19 +28,25 @@ public class MarkAssignmentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @Test
-    public void execute_mark_success() {
-        Assignment assignmentToMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        model.markAsComplete(assignmentToMark);
-        assertTrue(assignmentToMark.getStatus().toString().equals("complete"));
+    private Assignment getAtIndex(int i) {
+        return model.getFilteredAssignmentList().get(i);
     }
 
     @Test
-    public void execute_markAlreadyCompletedAssignment_throwsCommandException() {
-        Assignment assignmentToMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        MarkAssignmentCommand markCommand = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+    public void execute_mark_success() throws CommandException {
+        Assignment assignmentToMark = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        assertFalse(assignmentToMark.getStatus().isCompleted());
+        MarkAssignmentCommand cmd = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        cmd.execute(model);
+        Assignment markedAssignment = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        assertTrue(markedAssignment.getStatus().toString().equals("complete"));
+    }
 
-        model.markAsComplete(assignmentToMark);
+
+    @Test
+    public void execute_markAlreadyCompletedAssignment_throwsCommandException() throws CommandException {
+        MarkAssignmentCommand markCommand = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        markCommand.execute(model);
         assertCommandFailure(markCommand, model,
                 String.format(MarkAssignmentCommand.MESSAGE_ASSIGNMENT_ALREADY_COMPLETE));
     }
@@ -48,7 +55,6 @@ public class MarkAssignmentCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
         MarkAssignmentCommand markCommand = new MarkAssignmentCommand(outOfBoundIndex);
-
         CommandTestUtil.assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
 

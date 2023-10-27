@@ -34,6 +34,7 @@ public class DeleteAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

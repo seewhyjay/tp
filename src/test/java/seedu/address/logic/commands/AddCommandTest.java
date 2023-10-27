@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
@@ -23,8 +24,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -97,6 +100,37 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public boolean isValidOperationWith(View v) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeViewChangeListener(ListChangeListener<View> listener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addViewChangeListener(ListChangeListener<View> listener, View defaultView) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setView(View v) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -118,6 +152,16 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasInternshipRole(InternshipRole role) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInternshipRole(InternshipRole role) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -166,17 +210,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void markAsComplete(Assignment toMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void markAsIncomplete(Assignment toUnMark) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void editAssignment(Assignment assignment, Description newDescription) {
+        public void setAssignment(Assignment assignment, Assignment newAssignment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -209,12 +243,39 @@ public class AddCommandTest {
         public void sortAssignments() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
+        private View v = View.PERSONS;
+
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -225,7 +286,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.isDuplicate(person);
         }
     }
 
@@ -238,7 +299,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isDuplicate);
         }
 
         @Override

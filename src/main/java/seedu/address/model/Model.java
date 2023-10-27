@@ -3,19 +3,39 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENTS = unused -> true;
+
+    String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
+
+    String MESSAGE_WRONG_VIEW_SECOND_HALF = " before performing this operation "
+            + "using the respective list commands";
+
+    void setView(View v);
+
+    void addViewChangeListener(ListChangeListener<View> e, View defaultView);
+
+    void removeViewChangeListener(ListChangeListener<View> e);
+
+    /**
+     * @param correctView the view that this command should be executed in
+     */
+    boolean isValidOperationWith(View correctView);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -52,7 +72,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -79,11 +101,14 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
@@ -94,22 +119,12 @@ public interface Model {
 
     void deleteAssignment(Assignment target);
 
-    /** Returns an unmodifiable view of the filtered assignment list */
+    /**
+     * Returns an unmodifiable view of the filtered assignment list
+     */
     ObservableList<Assignment> getFilteredAssignmentList();
 
     ObservableList<Assignment> getUnfilteredAssignmentList();
-
-    /**
-     * Marks the given assignment as complete.
-     * The assignment must exist in Campus Companion.
-     */
-    void markAsComplete(Assignment target);
-
-    /**
-     * Marks the given assignment as incomplete (UnMarks the assignment).
-     * The assignment must exist in Campus Companion.
-     */
-    void markAsIncomplete(Assignment toUnMark);
 
     /**
      * Sorts UniqueAssignmentList by endDate
@@ -118,6 +133,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
@@ -126,5 +142,29 @@ public interface Model {
      * Edits the description of an assignment.
      * The assignment must exist in Campus Companion.
      */
-    void editAssignment(Assignment assignment, Description newDescription);
+    void setAssignment(Assignment assignment, Assignment newAssignment);
+
+    // ============ Internship Roles =============================================================
+    void addInternshipRole(InternshipRole role);
+
+    boolean hasInternshipRole(InternshipRole role);
+
+    ObservableList<InternshipRole> getFilteredInternshipRoleList();
+
+    ObservableList<InternshipRole> getUnfilteredInternshipRoleList();
+    // ============ Internship Tasks =============================================================
+
+    /**
+     * Returns an unmodifiable view of the filtered internship task list
+     */
+    ObservableList<InternshipTask> getFilteredInternshipTaskList();
+
+    ObservableList<InternshipTask> getUnfilteredInternshipTaskList();
+
+    void deleteInternshipTask(InternshipTask target);
+
+    void addInternshipTask(InternshipTask internshipTask);
+
+    boolean hasInternshipTask(InternshipTask internshipTask);
+
 }

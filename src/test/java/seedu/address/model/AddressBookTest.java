@@ -19,8 +19,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.unique.exceptions.DuplicateElementException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -52,7 +54,7 @@ public class AddressBookTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateElementException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -96,9 +98,21 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Assignment> assignments = FXCollections.observableArrayList();
+        private final ObservableList<InternshipRole> roles = FXCollections.observableArrayList();
+        private final ObservableList<InternshipTask> internshipTasks = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
+        }
+
+        @Override
+        public ObservableList<InternshipTask> getInternshipTaskList() {
+            return internshipTasks;
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getInternshipRoleList() {
+            return roles;
         }
 
         @Override
@@ -110,7 +124,6 @@ public class AddressBookTest {
         public ObservableList<Assignment> getAssignmentList() {
             return assignments;
         }
-
 
     }
 

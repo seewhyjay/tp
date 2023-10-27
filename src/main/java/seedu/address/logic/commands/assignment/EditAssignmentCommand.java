@@ -13,7 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.fields.Description;
 
 /**
  * A command that edits the description of an assignment when executed.
@@ -47,15 +47,17 @@ public class EditAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
         Assignment assignmentToEdit = lastShownList.get(index.getZeroBased());
+        Assignment assignmentWithNewDesc = assignmentToEdit.getNewAssignmentWithDescription(newDescription);
 
-        model.editAssignment(assignmentToEdit, newDescription);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(assignmentToEdit)));
+        model.setAssignment(assignmentToEdit, assignmentWithNewDesc);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(assignmentWithNewDesc)));
     }
 
     @Override

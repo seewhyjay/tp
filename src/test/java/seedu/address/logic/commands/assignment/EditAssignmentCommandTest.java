@@ -15,21 +15,25 @@ import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.assignment.Description;
+import seedu.address.model.fields.Description;
 
 public class EditAssignmentCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    private final String desc1 = "new desc1";
+
+    private final String desc2 = "new desc2";
+
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        String newDesc = "new desc";
-
         EditAssignmentCommand editCommand = new EditAssignmentCommand(INDEX_FIRST_ASSIGNMENT,
-                new Description(newDesc));
+                new Description(desc1));
 
         String commandResult = editCommand.execute(model).getFeedbackToUser();
-        assertTrue(commandResult.contains(newDesc));
-        assertEquals(newDesc,
+        assertTrue(commandResult.contains(desc1));
+        assertEquals(desc1,
                 model.getFilteredAssignmentList()
                         .get(INDEX_FIRST_ASSIGNMENT.getZeroBased())
                         .getDescription().toString());
@@ -44,9 +48,6 @@ public class EditAssignmentCommandTest {
 
     @Test
     public void equals() {
-        String desc1 = "desc1";
-        String desc2 = "desc2";
-
         EditAssignmentCommand editFirstCommand = new EditAssignmentCommand(INDEX_FIRST_ASSIGNMENT,
                 new Description(desc1));
         EditAssignmentCommand editSecondCommand = new EditAssignmentCommand(INDEX_SECOND_ASSIGNMENT,

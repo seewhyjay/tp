@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Description;
-import seedu.address.model.assignment.IsoDate;
-import seedu.address.model.assignment.NoDate;
-import seedu.address.model.assignment.Status;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.NoDate;
+import seedu.address.model.fields.Status;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -49,14 +49,14 @@ public class SampleDataUtil {
 
     private static Assignment[] getSampleAssignments() {
         return new Assignment[] {
-            new Assignment(new seedu.address.model.assignment.Name("Task1"),
+            new Assignment(new seedu.address.model.fields.Name("Task1"),
                     new IsoDate(LocalDateTime.parse("2023-10-18 23:59",
                             DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                     new Status(true), new Description("description"),
                     new IsoDate(LocalDateTime.parse("2023-11-11 11:11",
                             DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                     Set.of(new Tag("cs2100"))),
-            new Assignment(new seedu.address.model.assignment.Name("Task2"),
+            new Assignment(new seedu.address.model.fields.Name("Task2"),
                     new IsoDate(LocalDateTime.parse("2023-10-31 23:59",
                             DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
                     new Status(true), new Description("description"),

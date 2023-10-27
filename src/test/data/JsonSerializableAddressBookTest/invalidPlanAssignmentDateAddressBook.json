@@ -7,5 +7,7 @@
     "plannedFinishDate" : "1111-11-11",
     "tags" : [ "cs2100" ]
   }],
-  "persons": []
+  "persons": [],
+  "roles" : [ ],
+  "internshipTasks" : [ ]
 }
