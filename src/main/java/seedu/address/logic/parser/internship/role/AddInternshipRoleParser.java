@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_PAY;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_TAG;
 
-import java.math.BigDecimal;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -59,9 +58,9 @@ public class AddInternshipRoleParser implements Parser<AddInternshipRoleCommand>
         Description description = ParserUtil.parseDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION)
                 .orElse(""));
 
-        // To be looked through again
+
         Pay pay = argumentMultimap.getValue(PREFIX_PAY).isEmpty()
-                ? new Pay(new BigDecimal("0"))
+                ? new Pay(null)
                 : ParserUtil.parsePay(argumentMultimap.getValue(PREFIX_PAY).get());
 
         ApplicationOutcome outcome = argumentMultimap.getValue(PREFIX_OUTCOME).isEmpty()

@@ -20,13 +20,7 @@ public class InternshipRoleCard extends UiPart<Region> {
     private Label id;
 
     @FXML
-    private Label name;
-
-    @FXML
-    private Label role;
-
-    @FXML
-    private Label cycle;
+    private Label roleDetails;
 
     @FXML
     private Label description;
@@ -52,13 +46,11 @@ public class InternshipRoleCard extends UiPart<Region> {
         super(FXML);
         this.internshipRole = internshipRole;
         id.setText(displayedIndex + ". ");
-        name.setText(this.internshipRole.getName().toString());
-        role.setText(this.internshipRole.getRole().toString());
-        cycle.setText(this.internshipRole.getCycle().toString());
-        description.setText(this.internshipRole.getDescription().toString());
-        pay.setText(this.internshipRole.getPay().toString());
-        outcome.setText(this.internshipRole.getApplicationOutcome().toString());
-        internLocation.setText(this.internshipRole.getLocation().toString());
+        roleDetails.setText(this.internshipRole.getMainDetails());
+        description.setText("Description: " + this.internshipRole.getDescription().toString());
+        pay.setText("Pay: " + this.internshipRole.getPay().toString());
+        outcome.setText("Outcome: " + this.internshipRole.getApplicationOutcome().toString());
+        internLocation.setText("Location: " + this.internshipRole.getLocation().toString());
         internshipRole.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
