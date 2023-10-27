@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.assignment.AddAssignmentCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -37,9 +36,9 @@ public class AddInternshipTaskParser implements Parser<AddInternshipTaskCommand>
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_INDEX,
                 PREFIX_STATUS, PREFIX_DEADLINE, PREFIX_OUTCOME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argumentMultimap, PREFIX_TASK_NAME, PREFIX_INDEX, PREFIX_STATUS, PREFIX_DEADLINE)
+        if (!arePrefixesPresent(argumentMultimap, PREFIX_TASK_NAME, PREFIX_INDEX, PREFIX_DEADLINE)
                 || !argumentMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInternshipTaskCommand.MESSAGE_USAGE));
         }
 
         argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TASK_NAME, PREFIX_INDEX, PREFIX_STATUS,

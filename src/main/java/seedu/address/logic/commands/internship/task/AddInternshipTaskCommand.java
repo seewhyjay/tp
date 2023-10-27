@@ -1,6 +1,12 @@
 package seedu.address.logic.commands.internship.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_OUTCOME;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
@@ -27,9 +33,18 @@ import seedu.address.model.tag.Tag;
 public class AddInternshipTaskCommand extends InternshipCommand {
 
     public static final String COMMAND_WORD = "add-i-task";
-    public static final String MESSAGE_USAGE = "TO BE MODIFIED, from AddInternshipTask";
-    public static final String MESSAGE_SUCCESS = "New internship task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This internship task already exists in the address book";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds an internship task to the app. "
+            + "Parameters: "
+            + PREFIX_TASK_NAME + "NAME "
+            + PREFIX_INDEX + "INDEX OF INTERNSHIP ROLE "
+            + PREFIX_DEADLINE + "YYYY-MM-DD HH:mm "
+            + "[" + PREFIX_STATUS + "STATUS " + "]\n"
+            + "[" + PREFIX_OUTCOME + "awaiting/follow-up/ghosted/rejected/offered" + "]\n"
+            + "[" + PREFIX_TAG + "TAG" + "]\n"
+            + "Example: " + COMMAND_WORD
+            + " add-a n/Assignment 1 d/description e/2023-12-18 19:00 p/2023-08-19 18:00 t/group s/incomplete";    public static final String MESSAGE_SUCCESS = "New internship task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This internship task already exists in the address book";
     public static final String MESSAGE_INVALID_ROLE_INDEX = "There is no such internship role with that index";
     private final Index internshipRoleIndex;
     private final Name taskName;
@@ -70,17 +85,17 @@ public class AddInternshipTaskCommand extends InternshipCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.getUnfilteredInternshipRoleList().size() < internshipRoleIndex.getOneBased() ||
+        if (model.getFilteredInternshipRoleList().size() < internshipRoleIndex.getOneBased() ||
                 internshipRoleIndex.getOneBased() < 0) {
             throw new CommandException(MESSAGE_INVALID_ROLE_INDEX);
         }
 
-        InternshipRole internshipRole = model.getUnfilteredInternshipRoleList().get(internshipRoleIndex.getZeroBased());
+        InternshipRole internshipRole = model.getFilteredInternshipRoleList().get(internshipRoleIndex.getZeroBased());
 
         InternshipTask toAdd = new InternshipTask(internshipRole, taskName, deadline, status, outcome, tags);
 
         if (model.hasInternshipTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.addInternshipTask(toAdd);
