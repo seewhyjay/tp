@@ -139,10 +139,27 @@ The `Model` component,
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The `Storage` component plays a crucial role in your application by handling the persistence of data, specifically address book data and user preference data, in JSON format. It provides methods to save this data and retrieve it, converting it into corresponding objects when needed. This section will provide an overview of the Storage component, its key features, dependencies, and the classes it interacts with.
+
+The Storage component is responsible for the following key features:
+
+* Data Serialization: It can save data, such as address book entries and user preferences, in JSON format. Serialization is the process of converting these data objects into a structured text format, making them suitable for storage and future retrieval.
+
+* Data Deserialization: It can read data back from the storage, deserialize it, and recreate corresponding objects. This feature is essential for restoring the application's state from previously saved data.
+
+* Inheritance from AddressBookStorage and UserPrefStorage: The Storage component is designed to be versatile. It inherits from both AddressBookStorage and UserPrefStorage, allowing it to be treated as either one, depending on whether you need to work with address book data or user preference data. This inheritance simplifies the codebase by providing a single entry point for storage operations, regardless of the data type.
+
+**Dependencies**
+
+The Storage component relies on certain classes from the Model component, as its primary responsibility is to manage the persistence of objects that belong to the model. Currently, these classes include:
+
+* JsonAdaptedAssignment: This class is used to store assignment data in a format suitable for JSON serialization. It is essential for saving and retrieving assignment-related information.
+
+* JsonAdaptedInternshipRole: To store internship role data. This class ensures that internship roles can be saved and restored accurately.
+
+* JsonAdaptedInternshipTask: This class handles the serialization and deserialization of internship task data. It is crucial for maintaining the integrity of internship-related information.
+
+These dependencies illustrate the close relationship between the Storage and Model components, as the Storage component is responsible for managing the persistence of data associated with the Model.
 
 ### Common classes
 
