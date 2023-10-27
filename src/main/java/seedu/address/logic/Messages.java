@@ -20,8 +20,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX = "The assignment index provided is invalid";
     public static final String MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW = "%1$d assignments listed!";
-
-    public static final String MESSAGE_ASSIGNMENTS_SORTED = "Sorted all assignments by date!";
+    public static final String MESSAGE_INTERNSHIPS_LISTED_OVERVIEW = "%1$d internship roles and tasks listed!";
+    public static final String MESSAGE_INVALID_INTERNSHIP_TASK_DISPLAYED_INDEX = "The internship task index"
+            + " provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";

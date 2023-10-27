@@ -265,11 +265,34 @@ public class ModelManager implements Model {
         return addressBook.getInternshipTaskList();
     }
 
+    @Override
+    public void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate) {
+        requireNonNull(predicate);
+        filteredInternshipTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortInternshipTasks() {
+        addressBook.sortInternshipTasks();
+    }
+
+    @Override
+    public void setInternshipTask(InternshipTask task, InternshipTask newTask) {
+        requireNonNull(task);
+        addressBook.setInternshipTask(task, newTask);
+    }
+
     //====== Filtered Internship Role List Accessors==========================
 
     @Override
     public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
         return addressBook.getInternshipRoleList();
+    }
+
+    @Override
+    public void updateFilteredInternshipRoleList(Predicate<InternshipRole> predicate) {
+        requireNonNull(predicate);
+        filteredInternshipRoles.setPredicate(predicate);
     }
 
     @Override

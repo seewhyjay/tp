@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -166,7 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Sort assignments by endDate
      */
     public void sortAssignments() {
-        assignments.sort((a1, a2) -> a1.getEnd().compareTo(a2.getEnd()));
+        assignments.sort(Comparator.comparing(Assignment::getEnd));
     }
 
 
@@ -229,6 +230,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         internshipTasks.remove(key);
     }
 
+    /**
+     * Sort assignments by endDate
+     */
+    public void sortInternshipTasks() {
+        internshipTasks.sort(Comparator.comparing(InternshipTask::getDeadline));
+    }
+
+    /**
+     * Replaces task with newTask as InternshipTasks are immutable, and as such any changes made will have to be
+     * reflected in the internshipTasks list through replaing the old InternshipTask
+     *
+     * @param newTask to replace target
+     */
+    public void setInternshipTask(InternshipTask task, InternshipTask newTask) {
+        requireNonNull(task);
+        internshipTasks.set(task, newTask);
+    }
 
     @Override
     public boolean equals(Object other) {

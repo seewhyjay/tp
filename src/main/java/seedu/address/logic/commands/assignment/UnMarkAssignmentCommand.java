@@ -21,7 +21,7 @@ public class UnMarkAssignmentCommand extends AssignmentCommand {
     public static final String COMMAND_WORD = "unmark-a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks an assignment, "
-            + "and sets it's status as incomplete, "
+            + "and sets its status as incomplete, "
             + "identified by the index number used in the displayed assignments list."
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
