@@ -22,6 +22,7 @@ import seedu.address.logic.commands.assignment.FindAssignmentCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
 import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
+import seedu.address.logic.commands.internship.ListInternshipCommand;
 import seedu.address.logic.commands.internship.role.AddInternshipRoleCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.DeleteInternshipTaskCommand;
@@ -155,6 +156,9 @@ public class AddressBookParser {
         case DeleteInternshipTaskCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new DeleteInternshipTaskParser().parse(arguments);
+
+        case ListInternshipCommand.COMMAND_WORD:
+            return new ListInternshipCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

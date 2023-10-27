@@ -250,6 +250,11 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
+        public void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate) {
+
+        }
+
+        @Override
         public void addInternshipTask(InternshipTask internshipTask) {
             throw new AssertionError("This method should not be called.");
         }
@@ -266,6 +271,11 @@ public class AddAssignmentCommandTest {
 
         @Override
         public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredInternshipRoleList(Predicate<InternshipRole> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

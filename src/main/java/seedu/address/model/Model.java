@@ -20,6 +20,8 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENTS = unused -> true;
+    Predicate<InternshipRole> PREDICATE_SHOW_ALL_INTERNSHIP_ROLES = unused -> true;
+    Predicate<InternshipTask> PREDICATE_SHOW_ALL_INTERNSHIP_TASKS = unused -> true;
 
     String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
 
@@ -152,6 +154,13 @@ public interface Model {
     ObservableList<InternshipRole> getFilteredInternshipRoleList();
 
     ObservableList<InternshipRole> getUnfilteredInternshipRoleList();
+    /**
+     * Updates the filter of the filtered internship role list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredInternshipRoleList(Predicate<InternshipRole> predicate);
+
     // ============ Internship Tasks =============================================================
 
     /**
@@ -167,4 +176,10 @@ public interface Model {
 
     boolean hasInternshipTask(InternshipTask internshipTask);
 
+    /**
+     * Updates the filter of the filtered internship task list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate);
 }
