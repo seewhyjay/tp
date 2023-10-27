@@ -1,14 +1,5 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.fields.*;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
-import seedu.address.model.tag.Tag;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,6 +7,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.Outcome;
+import seedu.address.model.fields.Status;
+import seedu.address.model.fields.TaskOutcome;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.tag.Tag;
+
+/**
+ * Json serialised InternshipTask
+ */
 public class JsonAdaptedInternshipTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "InternshipTask's %s field is missing!";
 

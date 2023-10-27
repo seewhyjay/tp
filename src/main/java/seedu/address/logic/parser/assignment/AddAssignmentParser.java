@@ -1,13 +1,13 @@
 package seedu.address.logic.parser.assignment;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.parseTags;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_PLANNEDFINISHDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.ParserUtil.parseTags;
 
 import java.util.Set;
 import java.util.stream.Stream;

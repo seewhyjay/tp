@@ -38,7 +38,8 @@ public class AddInternshipTaskParser implements Parser<AddInternshipTaskCommand>
 
         if (!arePrefixesPresent(argumentMultimap, PREFIX_TASK_NAME, PREFIX_INDEX, PREFIX_DEADLINE)
                 || !argumentMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInternshipTaskCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddInternshipTaskCommand.MESSAGE_USAGE));
         }
 
         argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TASK_NAME, PREFIX_INDEX, PREFIX_STATUS,

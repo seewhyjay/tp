@@ -6,6 +6,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.View;
 
+/**
+ * Command for internships CRUD operations
+ */
 public abstract class InternshipCommand extends Command {
     public final View correctViewNeeded = View.INTERNSHIPS;
 

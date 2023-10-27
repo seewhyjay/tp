@@ -36,7 +36,7 @@ public class ModelManager implements Model {
 
     private final FilteredList<InternshipTask> filteredInternshipTasks;
 
-    private static final ObservableList<View> selectedView = FXCollections.observableArrayList();
+    private final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.

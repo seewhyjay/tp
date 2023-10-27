@@ -13,7 +13,18 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.fields.*;
+import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Cycle;
+import seedu.address.model.fields.Date;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Location;
+import seedu.address.model.fields.Name;
+import seedu.address.model.fields.Outcome;
+import seedu.address.model.fields.Pay;
+import seedu.address.model.fields.Role;
+import seedu.address.model.fields.Status;
+import seedu.address.model.fields.TaskOutcome;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,6 +51,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_APP_OUTCOME = "Enter a valid outcome: o/follow-up, "
             + "ghosted, rejected, offered, accepted, awaiting";
 
+    public static final String MESSAGE_INVALID_TASK_OUTCOME = "Enter a valid outcome: o/follow-up, "
+            + "ghosted, rejected, offered, awaiting";
+
     /**
      * @param name the taskname
      * @return a name object
@@ -48,7 +62,7 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!NonEmptyText.isValidText(name)) {
+        if (!Name.isValidText(name)) {
             throw new ParseException(MESSAGE_INVALID_NAME);
         }
         return new Name(trimmedName);
@@ -169,7 +183,7 @@ public class ParserUtil {
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
         String trimmedLocation = location.trim();
-        if (!NonEmptyText.isValidText(trimmedLocation)) {
+        if (!Location.isValidText(trimmedLocation)) {
             throw new ParseException(MESSAGE_INVALID_LOCATION);
         }
         return new Location(trimmedLocation);
@@ -183,7 +197,7 @@ public class ParserUtil {
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!NonEmptyText.isValidText(trimmedRole)) {
+        if (!Role.isValidText(trimmedRole)) {
             throw new ParseException(MESSAGE_INVALID_ROLE);
         }
         return new Role(trimmedRole);
@@ -197,14 +211,14 @@ public class ParserUtil {
     public static Cycle parseCycle(String cycle) throws ParseException {
         requireNonNull(cycle);
         String trimmedCycle = cycle.trim();
-        if (!NonEmptyText.isValidText(trimmedCycle)) {
+        if (!Cycle.isValidText(trimmedCycle)) {
             throw new ParseException(MESSAGE_INVALID_CYCLE);
         }
         return new Cycle(trimmedCycle);
     }
 
     /**
-     *
+     * Pay a string to a Pay object
      * @param pay of the internship
      * @return a Pay object
      * @throws ParseException if not a valid pay
@@ -218,6 +232,12 @@ public class ParserUtil {
         return new Pay(new BigDecimal(trimmedPay));
     }
 
+    /**
+     * Parse a string to an Outcome enum
+     * @param outcome to be parsed
+     * @return an Outcome
+     * @throws ParseException if not a valid ApplicationOutcome
+     */
     public static ApplicationOutcome parseApplicationOutcome(String outcome) throws ParseException {
         return Optional.of(outcome)
                 .filter(ApplicationOutcome::isValidApplicationOutcome)
@@ -226,11 +246,17 @@ public class ParserUtil {
                 .orElseThrow(() -> new ParseException(MESSAGE_INVALID_APP_OUTCOME));
     }
 
+    /**
+     * Parse a string to an Outcome enum
+     * @param outcome to be parsed
+     * @return an Outcome
+     * @throws ParseException if not a valid TaskOutcome
+     */
     public static TaskOutcome parseTaskOutcome(String outcome) throws ParseException {
         return Optional.of(outcome)
                 .filter(TaskOutcome::isValidTaskOutcome)
                 .flatMap(Outcome::parseOutcome)
                 .map(TaskOutcome::new)
-                .orElseThrow(() -> new ParseException(MESSAGE_INVALID_APP_OUTCOME));
+                .orElseThrow(() -> new ParseException(MESSAGE_INVALID_TASK_OUTCOME));
     }
 }

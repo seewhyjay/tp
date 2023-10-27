@@ -182,11 +182,20 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     // ================ Internship Roles =====================================================================
 
+    /**
+     * Add an internship role
+     * @param role to be added
+     */
     public void addInternshipRoles(InternshipRole role) {
         requireNonNull(role);
         roles.add(role);
     }
 
+    /**
+     * Verify if the given role is in the list
+     * @param role to be checked
+     * @return true if role is present
+     */
     public boolean hasInternshipRoles(InternshipRole role) {
         requireNonNull(role);
         return roles.contains(role);
@@ -240,4 +249,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

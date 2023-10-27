@@ -7,6 +7,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.internshiptask.InternshipTask;
 
+/**
+ * Panel to store InternshipTask
+ */
 public class InternshipTaskPanel extends UiPart<Region> {
 
     private static final String FXML = "InternshipTaskPanel.fxml";
@@ -14,9 +17,13 @@ public class InternshipTaskPanel extends UiPart<Region> {
     @FXML
     private ListView<InternshipTask> internshipTaskView;
 
-    public InternshipTaskPanel(ObservableList<InternshipTask> roles) {
+    /**
+     * Creates an InternshipTask panel with the given tasks
+     * @param tasks
+     */
+    public InternshipTaskPanel(ObservableList<InternshipTask> tasks) {
         super(FXML);
-        internshipTaskView.setItems(roles);
+        internshipTaskView.setItems(tasks);
         internshipTaskView.setCellFactory(listView -> new InternshipTaskListViewCell());
     }
 

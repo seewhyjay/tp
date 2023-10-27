@@ -32,6 +32,9 @@ import seedu.address.model.fields.Role;
 import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parser to create an InternshipRole from the given input
+ */
 public class AddInternshipRoleParser implements Parser<AddInternshipRoleCommand> {
     @Override
     public AddInternshipRoleCommand parse(String args) throws ParseException {

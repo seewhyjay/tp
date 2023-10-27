@@ -1,16 +1,20 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.internshiptask.InternshipTask;
-import java.util.Comparator;
 
+/**
+ * Represents an InternshipTask Card
+ */
 public class InternshipTaskCard extends UiPart<Region> {
-    private final InternshipTask task;
-
     private static final String FXML = "InternshipTaskCard.fxml";
+
+    private final InternshipTask task;
 
     @FXML
     private Label id;
@@ -33,6 +37,11 @@ public class InternshipTaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Crates an InternshipTask card with the given task
+     * @param task to be displayed
+     * @param displayedIndex of the task
+     */
     public InternshipTaskCard(InternshipTask task, int displayedIndex) {
         super(FXML);
         this.task = task;

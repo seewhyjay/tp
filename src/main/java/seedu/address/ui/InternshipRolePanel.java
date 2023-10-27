@@ -3,16 +3,23 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.internshiprole.InternshipRole;
-import javafx.scene.control.ListView;
 
+/**
+ * Panel to display internshipRoles
+ */
 public class InternshipRolePanel extends UiPart<Region> {
     private static final String FXML = "InternshipRolePanel.fxml";
 
     @FXML
     private ListView<InternshipRole> internshipRoleView;
 
+    /**
+     * Creates an internship role panel with the given roles
+     * @param roles to be added to panel
+     */
     public InternshipRolePanel(ObservableList<InternshipRole> roles) {
         super(FXML);
         internshipRoleView.setItems(roles);
@@ -20,7 +27,7 @@ public class InternshipRolePanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of 
+     * Custom {@code ListCell} that displays the graphics of
      * a {@code InternshipRole} using a {@code InternshipRoleCard}.
      */
     class InternshipRoleListViewCell extends ListCell<InternshipRole> {

@@ -33,9 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
-    private final View startingView = View.INTERNSHIPS;
-
-    private static final int maxNumOfNamesToDisplay = 2;
+    private final View defaultView = View.INTERNSHIPS;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -108,7 +106,6 @@ public class MainWindow extends UiPart<Stage> {
         if (change.wasReplaced() || change.wasAdded()) {
             ObservableList<? extends View> selectedView = change.getList();
             View v = selectedView.get(0);
-            System.out.println(v);
             setViewHeaderName(v.toString());
             switch (v) {
             case ASSIGNMENTS:
@@ -213,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void initDefaultView() {
-        logic.subscribeViewChange(onViewChange, View.INTERNSHIPS);
+        logic.subscribeViewChange(onViewChange, defaultView);
     }
 
     /**

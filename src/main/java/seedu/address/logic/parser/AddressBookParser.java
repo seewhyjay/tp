@@ -22,6 +22,7 @@ import seedu.address.logic.commands.assignment.FindAssignmentCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
 import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
+import seedu.address.logic.commands.internship.role.AddInternshipRoleCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
 import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.commands.person.DeleteCommand;
@@ -43,7 +44,6 @@ import seedu.address.logic.parser.person.DeleteCommandParser;
 import seedu.address.logic.parser.person.EditCommandParser;
 import seedu.address.logic.parser.person.FindCommandParser;
 import seedu.address.model.View;
-import seedu.address.logic.commands.internship.role.AddInternshipRoleCommand;
 
 /**
  * Parses user input.
@@ -145,7 +145,7 @@ public class AddressBookParser {
         case AddInternshipRoleCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new AddInternshipRoleParser().parse(arguments);
-            
+
         case AddInternshipTaskCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new AddInternshipTaskParser().parse(arguments);
