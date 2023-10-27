@@ -4,9 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+/**
+ * Panel to display tasks and roles
+ */
 public class InternPanel extends UiPart<Region> {
 
-    private final static String FXML = "InternPanel.fxml";
+    private static final String FXML = "InternPanel.fxml";
 
     @FXML
     private VBox internshipRolePlaceHolder;
@@ -14,6 +17,11 @@ public class InternPanel extends UiPart<Region> {
     @FXML
     private VBox internshipTaskPlaceHolder;
 
+    /**
+     * Adds role panel task panel to this panel
+     * @param rolePanel to be added
+     * @param taskPanel to be added
+     */
     public InternPanel(InternshipRolePanel rolePanel, InternshipTaskPanel taskPanel) {
         super(FXML);
         internshipRolePlaceHolder.getChildren().add(rolePanel.getRoot());

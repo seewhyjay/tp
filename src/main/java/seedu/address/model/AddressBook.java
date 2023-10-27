@@ -2,12 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
@@ -185,11 +182,20 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     // ================ Internship Roles =====================================================================
 
+    /**
+     * Add an internship role
+     * @param role to be added
+     */
     public void addInternshipRoles(InternshipRole role) {
         requireNonNull(role);
         roles.add(role);
     }
 
+    /**
+     * Verify if the given role is in the list
+     * @param role to be checked
+     * @return true if role is present
+     */
     public boolean hasInternshipRoles(InternshipRole role) {
         requireNonNull(role);
         return roles.contains(role);

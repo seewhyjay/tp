@@ -1,9 +1,9 @@
 package seedu.address.logic.parser.assignment;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.parseDateForList;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDFILTER;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STARTFILTER;
-import static seedu.address.logic.parser.ParserUtil.parseDateForList;
 
 import java.util.Arrays;
 

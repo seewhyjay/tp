@@ -1,16 +1,17 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import javafx.fxml.FXML;
-
 import seedu.address.model.internshiprole.InternshipRole;
 
-import java.util.Comparator;
-
-
-public class InternshipRoleCard extends UiPart<Region>{
+/**
+ * Card for an InternshipRole
+ */
+public class InternshipRoleCard extends UiPart<Region> {
     private static final String FXML = "InternshipRoleCard.fxml";
 
     private final InternshipRole internshipRole;
@@ -42,6 +43,11 @@ public class InternshipRoleCard extends UiPart<Region>{
     @FXML
     private FlowPane tags;
 
+    /**
+     * Represents an internship role gui card
+     * @param internshipRole to display
+     * @param displayedIndex to display
+     */
     public InternshipRoleCard(InternshipRole internshipRole, int displayedIndex) {
         super(FXML);
         this.internshipRole = internshipRole;

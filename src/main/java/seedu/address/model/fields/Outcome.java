@@ -26,6 +26,11 @@ public enum Outcome {
         }
     }
 
+    /**
+     * Parse a string to an Outcome Enum
+     * @param s to be parsed
+     * @return an optional outcome
+     */
     public static Optional<Outcome> parseOutcome(String s) {
         switch (s) {
         case "follow-up":

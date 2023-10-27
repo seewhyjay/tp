@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.internship.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_OUTCOME;
 import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TASK_NAME;
 
 import java.util.Set;
 
@@ -43,7 +43,8 @@ public class AddInternshipTaskCommand extends InternshipCommand {
             + "[" + PREFIX_OUTCOME + "awaiting/follow-up/ghosted/rejected/offered" + "]\n"
             + "[" + PREFIX_TAG + "TAG" + "]\n"
             + "Example: " + COMMAND_WORD
-            + " add-a n/Assignment 1 d/description e/2023-12-18 19:00 p/2023-08-19 18:00 t/group s/incomplete";    public static final String MESSAGE_SUCCESS = "New internship task added: %1$s";
+            + " add-a n/Assignment 1 d/description e/2023-12-18 19:00 p/2023-08-19 18:00 t/group s/incomplete";
+    public static final String MESSAGE_SUCCESS = "New internship task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This internship task already exists in the address book";
     public static final String MESSAGE_INVALID_ROLE_INDEX = "There is no such internship role with that index";
     private final Index internshipRoleIndex;
@@ -85,8 +86,8 @@ public class AddInternshipTaskCommand extends InternshipCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.getFilteredInternshipRoleList().size() < internshipRoleIndex.getOneBased() ||
-                internshipRoleIndex.getOneBased() < 0) {
+        if (model.getFilteredInternshipRoleList().size() < internshipRoleIndex.getOneBased()
+                || internshipRoleIndex.getOneBased() < 0) {
             throw new CommandException(MESSAGE_INVALID_ROLE_INDEX);
         }
 

@@ -10,10 +10,10 @@ import java.text.NumberFormat;
  * A class representing salary
  */
 public class Pay {
+    public static final String MESSAGE_CONSTRAINTS = "Pay must be positive number";
+
     // Matches positive numbers, any dp. Inputs cannot start with a period
     private static final String VALID_PAY_REGEX = "^[+]?\\d+([.]\\d+)?$";
-
-    public static final String MESSAGE_CONSTRAINTS = "Pay must be positive number";
 
     private final BigDecimal pay;
 

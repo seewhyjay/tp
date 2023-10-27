@@ -15,7 +15,6 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
-import seedu.address.ui.InternshipRolePanel;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -46,7 +45,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("assignments") List<JsonAdaptedAssignment> assignments,
                                        @JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("roles") List<JsonAdaptedInternshipRole> roles,
-                                       @JsonProperty("internshipTasks") List<JsonAdaptedInternshipTask> internshipTasks) {
+                                       @JsonProperty("internshipTasks")
+                                           List<JsonAdaptedInternshipTask> internshipTasks) {
         this.assignments.addAll(assignments);
         this.persons.addAll(persons);
         this.roles.addAll(roles);

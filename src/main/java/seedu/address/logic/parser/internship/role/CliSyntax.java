@@ -2,6 +2,9 @@ package seedu.address.logic.parser.internship.role;
 
 import seedu.address.logic.parser.person.Prefix;
 
+/**
+ * Syntax for creating an InternshipRole
+ */
 public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_ROLE = new Prefix("r/");
