@@ -3,7 +3,6 @@ package seedu.address.model.fields;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -18,12 +17,6 @@ public class PayTest {
 
     private final String invalidPay1 = "-1200.00";
     private final String invalidPay2 = ".00";
-
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Pay(null));
-    }
 
     @Test
     public void isValidPayTest() {

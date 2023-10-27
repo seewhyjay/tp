@@ -41,6 +41,11 @@ public class Pay {
         return pay.matches(VALID_PAY_REGEX);
     }
 
+    /**
+     * Verify if a pay is valid
+     * @param pay to be verified
+     * @return true if pay is non-negative
+     */
     public static boolean isValidPay(BigDecimal pay) {
         requireNonNull(pay);
         return pay.compareTo(new BigDecimal(0)) > -1;

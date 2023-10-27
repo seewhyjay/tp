@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_PAY;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_TAG;
 
-import java.math.BigDecimal;
 import java.util.Set;
 import java.util.stream.Stream;
 
