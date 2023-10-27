@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -16,5 +18,9 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     ObservableList<Assignment> getAssignmentList();
+
+    ObservableList<InternshipRole> getInternshipRoleList();
+
+    ObservableList<InternshipTask> getInternshipTaskList();
 
 }

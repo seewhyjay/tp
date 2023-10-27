@@ -14,6 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -30,6 +32,10 @@ public class ModelManager implements Model {
 
     private final FilteredList<Assignment> filteredAssignments;
 
+    private final FilteredList<InternshipRole> filteredInternshipRoles;
+
+    private final FilteredList<InternshipTask> filteredInternshipTasks;
+
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
     /**
@@ -44,8 +50,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
+        filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
 
-        initView();
     }
 
     public ModelManager() {
@@ -54,18 +61,19 @@ public class ModelManager implements Model {
 
     //=========== Views =====================================================================================
 
-    private void initView() {
-        selectedView.add(View.ASSIGNMENTS);
-    }
-
     @Override
     public void setView(View v) {
-        selectedView.set(0, v);
+        if (selectedView.size() == 0) {
+            selectedView.add(v);
+        } else {
+            selectedView.set(0, v);
+        }
     }
 
     @Override
-    public void addViewChangeListener(ListChangeListener<View> listener) {
+    public void addViewChangeListener(ListChangeListener<View> listener, View defaultView) {
         selectedView.addListener(listener);
+        setView(defaultView);
     }
 
     @Override
@@ -78,6 +86,24 @@ public class ModelManager implements Model {
         View currView = selectedView.get(0);
         return currView == correctView;
     }
+
+    //========== Internship Roles ===========================================================================
+
+    @Override
+    public void addInternshipRole(InternshipRole role) {
+        addressBook.addInternshipRoles(role);
+    }
+
+    @Override
+    public boolean hasInternshipRole(InternshipRole role) {
+        return addressBook.hasInternshipRoles(role);
+    }
+
+    @Override
+    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+        return filteredInternshipRoles;
+    }
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -146,7 +172,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -212,6 +237,41 @@ public class ModelManager implements Model {
         filteredAssignments.setPredicate(predicate);
     }
 
+    //====== Filtered Internship Task List Accessors==========================
+
+    @Override
+    public boolean hasInternshipTask(InternshipTask internshipTask) {
+        return addressBook.hasInternshipTask(internshipTask);
+    }
+
+    @Override
+    public void deleteInternshipTask(InternshipTask target) {
+        addressBook.removeInternshipTask(target);
+    }
+
+    @Override
+    public void addInternshipTask(InternshipTask internshipTask) {
+        requireNonNull(internshipTask);
+        addressBook.addInternshipTask(internshipTask);
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return filteredInternshipTasks;
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
+        return addressBook.getInternshipTaskList();
+    }
+
+    //====== Filtered Internship Role List Accessors==========================
+
+    @Override
+    public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
+        return addressBook.getInternshipRoleList();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -227,6 +287,7 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filteredAssignments.equals(otherModelManager.filteredAssignments);
+                && filteredAssignments.equals(otherModelManager.filteredAssignments)
+                && filteredInternshipTasks.equals(otherModelManager.filteredInternshipTasks);
     }
 }

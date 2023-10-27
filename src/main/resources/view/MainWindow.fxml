@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="CampusCompanion" minWidth="800" minHeight="700" onCloseRequest="#handleExit">
   <icons>
@@ -29,8 +30,8 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <ScrollPane fitToHeight="true" fitToWidth="true" >
 
+      <ScrollPane fitToHeight="true" fitToWidth="true" >
         <VBox>
           <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
             <Menu mnemonicParsing="false" text="File">
@@ -75,7 +76,7 @@
                     </padding>
                     <Label HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                     <Label text="Your" styleClass="view-header" />
-                    <Label fx:id="currViewHeader" text="Assignments" styleClass="view-header"/>
+                    <Label fx:id="currViewHeader" text="PLACEHOLDER" styleClass="view-header"/>
                     <Label HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                   </HBox>
                   <StackPane GridPane.columnIndex="0"  fx:id="selectedListPanelPlaceholder" minWidth="300" VBox.vgrow="ALWAYS"/>
@@ -87,6 +88,7 @@
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         </VBox>
       </ScrollPane>
+
     </Scene>
   </scene>
 </fx:root>

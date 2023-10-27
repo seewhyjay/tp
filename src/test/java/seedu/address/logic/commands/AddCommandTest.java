@@ -26,6 +26,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -98,6 +100,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
         public boolean isValidOperationWith(View v) {
             throw new AssertionError("This method should not be called.");
         }
@@ -108,7 +121,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addViewChangeListener(ListChangeListener<View> listener) {
+        public void addViewChangeListener(ListChangeListener<View> listener, View defaultView) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -139,6 +152,16 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasInternshipRole(InternshipRole role) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInternshipRole(InternshipRole role) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -218,6 +241,31 @@ public class AddCommandTest {
 
         @Override
         public void sortAssignments() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteInternshipTask(InternshipTask internshipTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipTask> getUnfilteredInternshipTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
             throw new AssertionError("This method should not be called.");
         }
     }

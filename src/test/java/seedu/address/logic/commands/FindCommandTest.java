@@ -13,14 +13,12 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collections;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.person.FindCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.View;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -29,11 +27,6 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @BeforeEach
-    public void init() {
-        model.setView(View.PERSONS);
-    }
 
     @Test
     public void equals() {
