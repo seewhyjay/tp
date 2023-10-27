@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -17,9 +16,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.logic.Logic;
 import seedu.address.model.View;
-import seedu.address.model.assignment.Assignment;
-import seedu.address.model.fields.IsoDate;
-import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.unique.UniqueModelWithDate;
 
 /**
@@ -41,7 +37,6 @@ public class Calendar extends UiPart<Region> {
         if (change.wasReplaced() || change.wasAdded()) {
             ObservableList<? extends View> selectedView = change.getList();
             View v = selectedView.get(0);
-            HashMap<LocalDate, LinkedList<String>> newMap = new HashMap<>();
             switch (v) {
             case ASSIGNMENTS:
                 selectedList = logic.getUnfilteredAssignmentList();

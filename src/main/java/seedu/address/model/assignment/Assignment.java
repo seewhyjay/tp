@@ -18,7 +18,6 @@ import seedu.address.model.fields.IsoDate;
 import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.unique.Unique;
 import seedu.address.model.unique.UniqueModelWithDate;
 
 /**

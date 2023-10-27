@@ -13,13 +13,11 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.fields.IsoDate;
-import seedu.address.model.fields.Location;
 import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Status;
 import seedu.address.model.fields.TaskOutcome;
 import seedu.address.model.internshiprole.InternshipRole;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.unique.Unique;
 import seedu.address.model.unique.UniqueModelWithDate;
 
 /**
