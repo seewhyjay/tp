@@ -43,7 +43,7 @@ public class AddInternshipTaskParser implements Parser<AddInternshipTaskCommand>
         }
 
         argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TASK_NAME, PREFIX_INDEX, PREFIX_STATUS,
-                PREFIX_DEADLINE);
+                PREFIX_DEADLINE, PREFIX_OUTCOME);
 
         Name name = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_TASK_NAME).get());
 

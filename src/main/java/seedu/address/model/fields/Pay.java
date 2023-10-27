@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.util.Optional;
 
 /**
  * A class representing salary
@@ -15,7 +16,7 @@ public class Pay {
     // Matches positive numbers, any dp. Inputs cannot start with a period
     private static final String VALID_PAY_REGEX = "^[+]?\\d+([.]\\d+)?$";
 
-    private final BigDecimal pay;
+    private final BigDecimal pay; // This can be null, use this.getPay() instead of referencing it directly!
 
     private final NumberFormat moneyFormatter;
 
@@ -24,7 +25,6 @@ public class Pay {
      * @param pay the salary amount
      */
     public Pay(BigDecimal pay) {
-        requireNonNull(pay);
         this.pay = pay;
 
         moneyFormatter = NumberFormat.getCurrencyInstance();
@@ -42,11 +42,12 @@ public class Pay {
     }
 
     public static boolean isValidPay(BigDecimal pay) {
+        requireNonNull(pay);
         return pay.compareTo(new BigDecimal(0)) > -1;
     }
 
-    public BigDecimal getPay() {
-        return pay;
+    public Optional<BigDecimal> getPay() {
+        return Optional.ofNullable(pay);
     }
 
     /**
@@ -54,7 +55,7 @@ public class Pay {
      */
     @Override
     public String toString() {
-        return moneyFormatter.format(pay);
+        return this.getPay().map(moneyFormatter::format).orElse("");
     }
 
     @Override
@@ -69,12 +70,12 @@ public class Pay {
         }
 
         Pay otherPay = (Pay) other;
-        return pay.equals(otherPay.pay);
+        return this.getPay().equals(otherPay.getPay());
     }
 
     @Override
     public int hashCode() {
-        return pay.hashCode();
+        return this.getPay().hashCode();
     }
 
 }
