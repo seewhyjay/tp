@@ -21,7 +21,7 @@ import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.parser.assignment.ListAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentBetweenStartandEndPredicate;
-import seedu.address.model.assignment.IsoDate;
+import seedu.address.model.fields.IsoDate;
 
 public class ListAssignmentParserTest {
     private final ListAssignmentParser parser = new ListAssignmentParser();

@@ -44,6 +44,7 @@ public class UnMarkAssignmentCommand extends AssignmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -55,8 +56,10 @@ public class UnMarkAssignmentCommand extends AssignmentCommand {
             throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_INCOMPLETE);
         }
 
-        model.markAsIncomplete(assignmentToUnMark);
-        return new CommandResult(String.format(MESSAGE_UNMARK_ASSIGNMENT_SUCCESS, Messages.format(assignmentToUnMark)));
+        Assignment unmarkedAssignment = assignmentToUnMark.unMark();
+
+        model.setAssignment(assignmentToUnMark, unmarkedAssignment);
+        return new CommandResult(String.format(MESSAGE_UNMARK_ASSIGNMENT_SUCCESS, Messages.format(unmarkedAssignment)));
     }
 
     @Override

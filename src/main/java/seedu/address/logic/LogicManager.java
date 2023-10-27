@@ -5,6 +5,7 @@ import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -15,7 +16,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -48,7 +52,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText, model::isValidOperationWith);
         commandResult = command.execute(model);
 
         try {
@@ -97,4 +101,23 @@ public class LogicManager implements Logic {
         return model.getUnfilteredAssignmentList();
     }
 
+    @Override
+    public void subscribeViewChange(ListChangeListener<View> listener, View defaultView) {
+        model.addViewChangeListener(listener, defaultView);
+    }
+
+    @Override
+    public void unsubscribeViewChange(ListChangeListener<View> listener) {
+        model.removeViewChangeListener(listener);
+    }
+
+    @Override
+    public ObservableList<InternshipRole> getFilteredInternshipRoleList() {
+        return model.getFilteredInternshipRoleList();
+    }
+
+    @Override
+    public ObservableList<InternshipTask> getFilteredInternshipTaskList() {
+        return model.getFilteredInternshipTaskList();
+    }
 }

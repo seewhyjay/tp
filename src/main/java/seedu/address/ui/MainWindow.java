@@ -4,13 +4,15 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,7 +22,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.View;
 
 
 /**
@@ -31,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
-    private static final int maxNumOfNamesToDisplay = 2;
+    private final View defaultView = View.INTERNSHIPS;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -44,14 +46,24 @@ public class MainWindow extends UiPart<Stage> {
     // Assignments
     private AssignmentListPanel assignmentListPanel;
 
+    // Internships
+
+    private InternshipRolePanel internRolePanel;
+
+    private InternshipTaskPanel internTaskPanel;
+
+    private InternPanel internPanel;
+
+    // Calendar
+
+    private Calendar calendar;
+
     // Persons
     private PersonListPanel personListPanel;
 
     private ResultDisplay resultDisplay;
 
     private HelpWindow helpWindow;
-
-    private Calendar calendar;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -81,13 +93,32 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private HBox viewSwitcher;
+    private Label currViewHeader;
 
     @FXML
     private VBox selectedList;
 
     @FXML
     private StackPane selectedListPanelPlaceholder;
+
+    private ListChangeListener<View> onViewChange = (change) -> {
+        change.next();
+        if (change.wasReplaced() || change.wasAdded()) {
+            ObservableList<? extends View> selectedView = change.getList();
+            View v = selectedView.get(0);
+            setViewHeaderName(v.toString());
+            switch (v) {
+            case ASSIGNMENTS:
+                handleSetAssignmentView();
+                break;
+            case PERSONS:
+                handleSetPersonView();
+                break;
+            default:
+                handleSetInternshipView();
+            }
+        }
+    };
 
 
     /**
@@ -106,6 +137,11 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+    }
+
+    private void setViewHeaderName(String header) {
+        String newHeader = header.charAt(0) + header.substring(1).toLowerCase();
+        currViewHeader.setText(newHeader);
     }
 
     public Stage getPrimaryStage() {
@@ -152,7 +188,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
-        selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+        internRolePanel = new InternshipRolePanel(logic.getFilteredInternshipRoleList());
+        internTaskPanel = new InternshipTaskPanel(logic.getFilteredInternshipTaskList());
+        internPanel = new InternPanel(internRolePanel, internTaskPanel);
+
+        selectedListPanelPlaceholder.getChildren().add(internPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -165,6 +205,12 @@ public class MainWindow extends UiPart<Stage> {
 
         calendar = new Calendar(logic.getUnfilteredAssignmentList());
         calendarContainer.getChildren().add(calendar.getRoot());
+
+        initDefaultView();
+    }
+
+    private void initDefaultView() {
+        logic.subscribeViewChange(onViewChange, defaultView);
     }
 
     /**
@@ -246,7 +292,7 @@ public class MainWindow extends UiPart<Stage> {
      * button is clicked
      */
     @FXML
-    public void handleSetPersonView() {
+    private void handleSetPersonView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
@@ -256,8 +302,18 @@ public class MainWindow extends UiPart<Stage> {
      * when button is clicked
      */
     @FXML
-    public void handleSetAssignmentView() {
+    private void handleSetAssignmentView() {
         selectedListPanelPlaceholder.getChildren().clear();
         selectedListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+    }
+
+    /**
+     * Display a list of internship cards
+     * when button is clicked
+     */
+    @FXML
+    private void handleSetInternshipView() {
+        selectedListPanelPlaceholder.getChildren().clear();
+        selectedListPanelPlaceholder.getChildren().add(internPanel.getRoot());
     }
 }

@@ -85,13 +85,16 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list-a` : Lists all assignments.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Campus Companion.
+   * `list-i` : Lists all internships.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `add-a n/CS2100 Assignment 1 e/2023-10-29` : Adds an assignment named `CS2100 Assignment 1` 
+with a deadline of `29 Oct 2023 23:59` to the Campus Companion.
 
-   * `clear` : Deletes all contacts.
+   * `delete-a 3` : Deletes the assignment with index 3 in the current list.
+
+   * `mark-a 1` : Marks the assignment with index 1 in the current list.
 
    * `exit` : Exits the app.
 
@@ -122,13 +125,32 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ### Quick Orientation
 
-PUT A LABELLED PICTURE!!!
+![img.png](images/LabelledGUI.png)
 
 Here is a quick summary of each GUI component within CampusCompanion
+
+
+| Component                   | Description                                                                                                                                                                                                                                                                                                                                                             |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Menu Bar                    | Contains dropdown menu for ``File`` which lets you exit CampusCompanion, and ``Help`` which leads you to this user guide.                                                                                                                                                                                                                                               |
+| Command Box                 | Commands are entered here.                                                                                                                                                                                                                                                                                                                                              |
+| Result Box                  | Feedback from entered command is shown here. If command entered is erroneous, the required correct usage will be shown.                                                                                                                                                                                                                                                 |
+| List Title                  | Indicates if ``Assignments`` or ``Internships`` are currently being shown.                                                                                                                                                                                                                                                                                              |
+| Assignment/Internship List  | Shows all relevant information cards, can be switched between ``Assignments`` and ``Internships`` through the use of the ``list-x`` command, ``x`` being ``a`` or ``i`` respectively. Commands that filter information cards such as ``find`` will update this list. <br><br> When CampusCompanion is first opened, all ``Assignment`` information cards will be shown. |
+| Information Card            | Shows all information of individual ``assignment`` or ``internship``, these can be filtered through the use of ``list`` or ``find``.                                                                                                                                                                                                                                    |
+| Index Number                | The index number of the card, it is used in commands like ``delete`` and ``edit``.                                                                                                                                                                                                                                                                                      |
+| Calendar with Task Preview  | The calendar shows up to 2 tasks, be it ``assignment`` or ``internship`` for each day, if there are any. The current day is highlighted in purple.                                                                                                                                                                                                                      |
+| Calendar Navigation Buttons | Used to change the month being shown on the calendar.                                                                                                                                                                                                                                                                                                                   |
+| Footer                      | Shows the location of the saved data. This file can be used to move data to another computer.                                                                                                                                                                                                                                                                           |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Notes about the GUI
+
+While there are clickable buttons such as the calendar navigation button and the options on the menu bar, CampusCompanion is a CLI-focused application, and as such, implements commands to do the same thing.
+For example:
+- ``Help`` can be achieved using the ``help`` command.
+- ``File -> Exit`` can be achieved using the ``exit`` command.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -152,6 +174,37 @@ This is a tutorial for new CampusCompanion users. This tutorial will provide you
 command for both assignments and internships. 
 
 1. Launch CampusCompanion. You may refer to the instructions [here](#getting-started).
+2. Let's try **adding an assignment** to CampusCompanion. Enter the command
+`add-a n/CC tutorial 1 e/2023-11-11`
+![NewUserTutAdd1.png](images%2FNewUserTutAdd1.png)
+
+3. Add a few more assignments. Try out filling optional parameters as well, etc
+`add-a n/CC optional 1 e/2023-11-11 16:00 d/try this out! s/complete p/2023-11-10 t/Optional`
+   - Note: On adding assignments, they will automatically be sorted by their deadlines.
+   The assignment due earliest will be first in the assignments list, which can be view using `list-a`.
+![NewUserTutAddMoreAssgn.png](images%2FNewUserTutAddMoreAssgn.png)
+
+4. Let us try editing the description of `CC tutorial 1` to say `nice descriptive description!`.
+Input `list-a` to show the assignments list, then look for `CC tutorial 1`. In the example above, it is in index 2,
+so we do `edit-a i/2 d/nice descriptive description!`
+![NewUserTutEdit.png](images%2FNewUserTutEdit.png)
+
+5. We are done with `CC tutorial 1`! Let's now mark it as complete. First, let's try using `find-a` to filter and narrow
+down the list. We can do `find-a tutorial` to filter the assignments list to show only assignments that
+contain `tutorial`.
+![NewUserTutFind.png](images%2FNewUserTutFind.png)
+
+6. Then, we use the index shown in the list (in this case, 1) and do `mark-a 1` to mark the assignment as completed.
+![NewUserTutMark.png](images%2FNewUserTutMark.png)
+
+7. To see all our assignments again, let's do `list-a`.
+![NewUserTutList.png](images%2FNewUserTutList.png)
+
+8. Lastly, let's delete our `CC tutorial 1` as we no longer want to track it.
+With reference the picture above, we will do `delete-a 2`.
+![NewUserTutDelete.png](images%2FNewUserTutDelete.png)
+
+9. Congratulations! You are now ready to use CampusCompanion.
 
 To view all our features, you may visit out [features section](#features).
 
@@ -164,49 +217,45 @@ To view all our features, you may visit out [features section](#features).
 
 ### Adding an assignment
 
-```put command first```
+```add-a n/NAME e/YYYY-MM-DD HH:mm [d/DESCRIPTION] [s/STATUS] [p/YYYY-MM-DD HH:mm] [t/TAG]```
+
+To view assignment parameter information, click [here](#assignment-parameters)
 
 **Purpose:**
+To add an assignment into CampusCompanion.
 
-<div markdown="block" class="alert alert-danger">
+**Examples:** 
+- `add-a n/CS2100 Assignment 1 e/2023-10-29 13:00`
+- `add-a n/CS2103T v1.3 e/2023-10-28 18:00 d/Work on add function for task s/incomplete p/2023-10-27 16:00 t/Coding`
 
-**ALERT**
-Put alerts here, if any
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-**Note**
-Put notes here
-</div>
-
-**Examples:** show some examples with the parameters
-
-**When you might use it:** give some use cases
+**When you might use it:** 
+- When you first receive news of an assignment or deadline, and you want to keep track of it.
+- When you already have existing assignments not written in CampusCompanion, and want to organise them all in one place.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Editing an assignment
 
-```put command first```
+```edit-a i/INDEX d/DESCRIPTION```
 
-**Purpose:**
-
-<div markdown="block" class="alert alert-danger">
-
-**ALERT**
-Put alerts here, if any
-</div>
+**Purpose:** Edit the description of a specified assignment
 
 <div markdown="block" class="alert alert-info">
 
 **Note**
-Put notes here
+- The index refers to the position of the assignment in the assignment list. To find out 
+the index of the assignment you want to edit, use the ``list-a`` command.
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:**
+- Use `list-a` to list all the assignments, followed by `edit-a i/1 d/This is my new description`
+to edit the description of the assignment at **index** 1.
+- Use `find-a CS2103T` to find the assignment with "CS2103T" in the name. Assuming that this assignment
+- is at **index** 1, use `edit-a i/1 d/Create test cases` to edit its description to "Create test cases".
 
-**When you might use it:** give some use cases
+**When you might use it:** 
+- If the assignment was originally added with a wrong description.
+- If the requirements of the assignment has changed since you last added it.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -214,7 +263,9 @@ Put notes here
 
 ```delete-a INDEX```
 
-**Purpose:** To delete the specified doctor from CampusCompanion
+To view assignment parameter information, click [here](#assignment-parameters)
+
+**Purpose:** To delete the specified assignment from CampusCompanion
 
 <div markdown="block" class="alert alert-danger">
 
@@ -251,48 +302,62 @@ For information on which details can be edited, [refer here](#editing-an-assignm
 
 ### Marking an assignment as complete
 
-```put command first```
+```mark-a INDEX```
+
+To view assignment parameter information, click [here](#assignment-parameters)
 
 **Purpose:**
-
-<div markdown="block" class="alert alert-danger">
-
-**ALERT**
-Put alerts here, if any
-</div>
-
+To mark a specific assignment in CampusCompanion as complete.
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-Put notes here
-
+- The index refers to the index number in the displayed assignments list. If you want to find out the index of the
+  assignment you want to mark, you can use ``list-a`` to view all the current assignments you have.
+- The first assignment in the list may not be index 1. Please refer to [parameter summary](#parameter-summary)
+  if you want to understand what is the index number.
+-  If an assignment is wrongly marked as complete, you can unmark it with `unmark-a`.
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:**
+- `list-a` to list all the assignments, then `mark-a 1` to mark
+the assignment with index 1 as complete.
+- `find-a MIH1101` to find assignments with MIH1101 in their name.
+Assuming the assignment to mark is at index 1, you can use `mark-a 1` to mark it.
 
-**When you might use it:** give some use cases
+**When you might use it:**
+- When you complete an assignment, and you want to mark it.
+- When you wrongly unmark a completed assignment, and want to mark it again.
 
 ### Marking an assignment as incomplete
 
-```put command first```
+```unmark-a INDEX```
+
+To view assignment parameter information, click [here](#assignment-parameters)
 
 **Purpose:**
-
-<div markdown="block" class="alert alert-danger">
-
-**ALERT**
-Put alerts here, if any
-</div>
-
+To mark a specific assignment in CampusCompanion as incomplete.
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-Put notes here
+- The index refers to the index number in the displayed assignments list. If you want to find out the index of the
+  assignment you want to unmark, you can use ``list-a`` to view all the current assignments you have.
+- The first assignment in the list may not be index 1. Please refer to [parameter summary](#parameter-summary)
+  if you want to understand what is the index number.
+- If a completed assignment is wrongly marked as incomplete, you can mark it again with `mark-a`.
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:**
+- `list-a` to list all the assignments, then `unmark-a 1` to mark
+  the assignment with index 1 as incomplete, assuming it was complete previously.
+- `find-a MIH1101` to find assignments with MIH1101 in their name.
+  Assuming the assignment to unmark is at index 1 and is complete, 
+you can use `unmark-a 1` to mark it as incomplete.
 
-**When you might use it:** give some use cases
+**When you might use it:**
+- When you wrongly mark an assignment as complete, and you want to unmark it.
+- When you added an assignment with a complete status mistakenly, and want to unmark it.
+- When you initially completed an assignment and marked it, but realise you have changes to make 
+regarding the assignment and want to continue working on it.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -300,22 +365,10 @@ Put notes here
 
 ```list-a [s/YYYY-MM-DD [HH:mm]] [e/YYYY-MM-DD [HH:mm]]```
 
+To view assignment parameter information, click [here](#assignment-parameters) (Refer to last two rows).
+
 **Purpose:** To list all the assignments with deadline between the given start date and end date. 
 This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
-
-<div markdown="block" class="alert alert-info">
-
-**Note:**
-
-- _Start date_ must be after the _current date_. Otherwise, an error message will be shown. 
-
-- _End date_ must be after _start date_. Otherwise, an error message will be shown.
-
-- Both _start date_ and _end date_ are optional parameters. The timing specified within the _start date_ and _end date_ are also optional.
-  - If no timing is specified for _start date_, the timing will default to 00:00.
-  - If no timing is specified for _end date_, the timing will default to 23:59.
-
-</div>
 
 **Examples:**
 
@@ -336,25 +389,32 @@ This command also changes the view to assignments tab (if the view is not curren
 
 ### Finding an assignment by keywords
 
-```put command first```
+```find-a KEYWORD```
 
 **Purpose:**
-
-<div markdown="block" class="alert alert-danger">
-
-**ALERT**
-Put alerts here, if any
-</div>
+To find all assignments whose name contains the keyword.
 
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-Put notes here
+The keyword is case-insensitive and does not require the whole word to match, for example, if you had an assignment with the name "CS2100 Lab", using the command ``find-a l``, ``find-a la``, ``find-a lab`` or ``find-a LAB`` will match with this assignment
+
 </div>
 
-**Examples:** show some examples with the parameters
+**Examples:** 
+- ``find-a CS2103T`` to find all assignments with "CS2103T" in the assignment name
 
-**When you might use it:** give some use cases
+**When you might use it:**
+- You might use the ``find-a`` command when you are looking for specific assignments within a large pool of assignments and
+  want to filter them based on keywords or partial keywords. This can help you quickly locate assignments 
+  related to a particular topic, course, or category, saving you time and effort in manually searching through a list of assignments.
+
+- If you need to manage and organize your assignments efficiently, ``find-a`` can be a valuable tool to retrieve specific 
+  assignments without the need to remember their exact names. If you are a student trying to locate all your lab assignments
+  this command simplifies the process.
+
+- When you need to prioritize your work or plan your schedule, using ``find-a`` to filter assignments by keywords allows you to focus on specific tasks or projects. 
+  This selective approach helps you manage your workload more effectively and ensures that you allocate your time and resources to the most relevant assignments.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -464,6 +524,19 @@ or [feature](#features) section, for detailed information about each feature.
 ## Parameter Summary
 
 ### Assignment Parameters
+
+The information below specifies parameter description, constraints and usage through valid and invalid examples.
+
+| Parameter                             | Description                                                                         | Constraints                                                                                                                             | Valid Examples                          | Invalid Examples          |
+|---------------------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------|
+| n/                                    | Name of the assignment                                                              | NA                                                                                                                                      | CS2100 Assignment, Tutorial 2           | NA                        |
+| e/                                    | Deadline of the assignment                                                          | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
+| d/                                    | Description of the assignment (optional parameter)                                  | NA                                                                                                                                      | Complete UML diagram, Finish question 2 | NA                        |
+| s/                                    | Status (optional parameter)                                                         | Either `complete` or `incomplete`                                                                                                       | complete, incomplete                    | done, finished, completed |
+| p/                                    | Planned finish date of assignment (optional parameter)                              | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
+| INDEX<sup>*</sup> or i/ (in `edit-a`) | Index in assignments list                                                           | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                           | -1, 2147483649            |
+| s/ (in `list-a`)                      | Start date to filter assignments with deadlines after the date (optional parameter) | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 00:00 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
+| e/ (in `list-a`)                      | End date to filter assignments with deadlines before the date (optional parameter)  | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after start date.**   | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
 
 [Scroll back to Table of Contents](#table-of-contents)
 

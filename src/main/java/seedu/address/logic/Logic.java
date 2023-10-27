@@ -2,13 +2,17 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -52,4 +56,13 @@ public interface Logic {
     ObservableList<Assignment> getFilteredAssignmentList();
 
     ObservableList<Assignment> getUnfilteredAssignmentList();
+
+    void subscribeViewChange(ListChangeListener<View> listener, View defaultView);
+
+    void unsubscribeViewChange(ListChangeListener<View> listener);
+
+    ObservableList<InternshipRole> getFilteredInternshipRoleList();
+
+    ObservableList<InternshipTask> getFilteredInternshipTaskList();
+
 }

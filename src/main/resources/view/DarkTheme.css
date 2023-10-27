@@ -40,10 +40,6 @@
     -fx-background-radius: 10;
 }
 
-.list-view {
-    -fx-background-color: red;
-}
-
 .list-view .list-cell:even {
     -fx-padding: 3px;
     -fx-border-insets: 3px;
@@ -151,7 +147,7 @@
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
+    -fx-padding: 5 5 5 5;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
@@ -430,5 +426,22 @@
 .h-pane > .label {
     -fx-alignment: top-center;
 }
+
+.view-header {
+    -fx-font-size: 18pt;
+    -fx-text-fill: #ebebeb;
+    -fx-padding: 3 3 3 3;
+    -fx-font-family: "Arial";
+    -fx-font-weight: 700;
+}
+
+.h2 {
+    -fx-font-size: 15pt;
+    -fx-text-fill: #ebebeb;
+    -fx-padding: 3 3 3 3;
+    -fx-font-family: "Arial";
+    -fx-font-weight: 700;
+}
+
 
 

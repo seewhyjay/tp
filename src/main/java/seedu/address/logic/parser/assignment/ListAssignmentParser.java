@@ -1,9 +1,9 @@
 package seedu.address.logic.parser.assignment;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.parseDateForList;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDFILTER;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STARTFILTER;
-import static seedu.address.logic.parser.assignment.ParserUtil.parseDateForList;
 
 import java.util.Arrays;
 
@@ -13,7 +13,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentBetweenStartandEndPredicate;
-import seedu.address.model.assignment.IsoDate;
+import seedu.address.model.fields.IsoDate;
 
 /**
  * Parses an input that starts with list-a
