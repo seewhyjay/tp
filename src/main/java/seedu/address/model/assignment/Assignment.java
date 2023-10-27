@@ -2,8 +2,12 @@ package seedu.address.model.assignment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,12 +19,13 @@ import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.unique.Unique;
+import seedu.address.model.unique.UniqueModelWithDate;
 
 /**
  * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public final class Assignment implements Comparable<Assignment>, Unique<Assignment> {
+public final class Assignment implements Comparable<Assignment>, UniqueModelWithDate<Assignment> {
     private final Name name;
     private final IsoDate enddate;
     private final Status status;
@@ -60,6 +65,18 @@ public final class Assignment implements Comparable<Assignment>, Unique<Assignme
 
     public Date getPlannedFinishDate() {
         return plannedFinishDate;
+    }
+
+    @Override
+    public void hashDateToNameWith(HashMap<LocalDate, LinkedList<String>> map) {
+        LocalDate d = enddate.getDate().map(LocalDateTime::toLocalDate).orElse(LocalDate.MIN);
+        if (map.containsKey(d)) {
+            map.get(d).add(name.toString());
+        } else {
+            LinkedList<String> l = new LinkedList<>();
+            l.add(name.toString());
+            map.put(d, l);
+        }
     }
 
 

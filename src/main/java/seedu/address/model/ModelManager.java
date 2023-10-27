@@ -38,6 +38,7 @@ public class ModelManager implements Model {
 
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
 
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */

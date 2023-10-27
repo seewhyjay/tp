@@ -7,6 +7,7 @@ import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +15,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.logic.Logic;
+import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.fields.IsoDate;
+import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.unique.UniqueModelWithDate;
 
 /**
  * Calendar that displays assignments name
@@ -24,25 +30,48 @@ public class Calendar extends UiPart<Region> {
 
     private static final int maxNumOfNamesToDisplay = 2;
 
-    private ObservableList<Assignment> assignments;
-
     private YearMonth selectedCalendarView = YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth());
+
+    private ObservableList<? extends UniqueModelWithDate<?>> selectedList;
+
+    private Logic logic;
+
+    private ListChangeListener<View> handleViewChange = (change) -> {
+        change.next();
+        if (change.wasReplaced() || change.wasAdded()) {
+            ObservableList<? extends View> selectedView = change.getList();
+            View v = selectedView.get(0);
+            HashMap<LocalDate, LinkedList<String>> newMap = new HashMap<>();
+            switch (v) {
+            case ASSIGNMENTS:
+                selectedList = logic.getUnfilteredAssignmentList();
+                break;
+            case INTERNSHIPS:
+                selectedList = logic.getFilteredInternshipTaskList();
+                break;
+            default:
+                break;
+            }
+        }
+        handleCalendarChange(0);
+    };
 
     @FXML
     private Label calendarDate;
+
 
     @FXML
     private GridPane calendar;
 
     /**
      * Constructs a calendar with the provided list as info on what to display
-     * @param assignments the info to be displayed
      */
-    public Calendar(ObservableList<Assignment> assignments) {
+    public Calendar(Logic logic, View defaultView) {
         super(FXML);
-        this.assignments = assignments;
-        initCalendar();
+        this.logic = logic;
+        this.logic.subscribeViewChange(handleViewChange, defaultView);
     }
+
 
     @FXML
     private void handleCalendarLeftClick() {
@@ -147,6 +176,7 @@ public class Calendar extends UiPart<Region> {
 
         calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
         addDaysIndicator(calendar);
+
         fillStartOfCurrentMonthToEndOfCalendar();
         fillStartOfCalendarToEndOfPrevMonth();
     }
@@ -177,7 +207,6 @@ public class Calendar extends UiPart<Region> {
 
         LocalDate newMonthDate = selectedCalendarView.atDay(1);
         LocalDate endOfMonthDate = selectedCalendarView.atEndOfMonth();
-        HashMap<LocalDate, LinkedList<String>> dateToNameMap = getDateToTasksMap();
 
         // Loop through the entire calendar array
         while (rowIndex <= 6) {
@@ -193,9 +222,14 @@ public class Calendar extends UiPart<Region> {
             VBox.setVgrow(day, Priority.ALWAYS);
             dayContainer.getChildren().add(day);
 
+            HashMap<LocalDate, LinkedList<String>> map = new HashMap<>();
+            for (UniqueModelWithDate<?> elem : selectedList) {
+                elem.hashDateToNameWith(map);
+            }
+
             // Assigning assignment names to current month only
-            if (dateToNameMap.containsKey(newMonthDate) && !newMonthDate.isAfter(endOfMonthDate)) {
-                addNamesToCell(dayContainer, dateToNameMap.get(newMonthDate));
+            if (map.containsKey(newMonthDate) && !newMonthDate.isAfter(endOfMonthDate)) {
+                addNamesToCell(dayContainer, map.get(newMonthDate));
             }
 
             // Setting styles accordingly
@@ -216,25 +250,5 @@ public class Calendar extends UiPart<Region> {
             }
             newMonthDate = newMonthDate.plusDays(1);
         }
-    }
-
-    private HashMap<LocalDate, LinkedList<String>> getDateToTasksMap() {
-        HashMap<LocalDate, LinkedList<String>> map = new HashMap<>();
-        for (Assignment a : assignments) {
-
-            // Return an empty date if somehow a plannedDate managed to get in
-            LocalDate endDate = a.getEnd().getDate().map(LocalDateTime::toLocalDate)
-                    .orElse(LocalDate.MIN);
-
-            if (!map.containsKey(endDate)) {
-                LinkedList<String> names = new LinkedList<>();
-                names.add(a.getName().getText());
-                map.put(endDate, names);
-            } else {
-                map.get(endDate).add(a.getName().getText());
-            }
-        }
-
-        return map;
     }
 }
