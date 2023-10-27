@@ -10,13 +10,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindAssignmentCommand object
  */
-public class FindAssignmentCommandParser implements Parser<FindAssignmentCommand> {
+public class FindAssignmentParser implements Parser<FindAssignmentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindAssignmentCommand
+     * and returns a FindAssignmentCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
