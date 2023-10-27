@@ -237,6 +237,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         internshipTasks.sort(Comparator.comparing(InternshipTask::getDeadline));
     }
 
+    /**
+     * Replaces task with newTask as InternshipTasks are immutable, and as such any changes made will have to be
+     * reflected in the internshipTasks list through replaing the old InternshipTask
+     *
+     * @param newTask to replace target
+     */
+    public void setInternshipTask(InternshipTask task, InternshipTask newTask) {
+        requireNonNull(task);
+        internshipTasks.set(task, newTask);
+    }
 
     @Override
     public boolean equals(Object other) {

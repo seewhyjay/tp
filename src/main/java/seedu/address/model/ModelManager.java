@@ -276,6 +276,12 @@ public class ModelManager implements Model {
         addressBook.sortInternshipTasks();
     }
 
+    @Override
+    public void setInternshipTask(InternshipTask task, InternshipTask newTask) {
+        requireNonNull(task);
+        addressBook.setInternshipTask(task, newTask);
+    }
+
     //====== Filtered Internship Role List Accessors==========================
 
     @Override

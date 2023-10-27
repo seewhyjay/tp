@@ -73,6 +73,23 @@ public final class InternshipTask implements Comparable<InternshipTask>, Unique<
     }
 
     /**
+     * Mark an internship task as completed
+     * @return a new InternshipTask that is marked as completed
+     */
+    public InternshipTask mark() {
+        Status newStatus = new Status(true);
+        return new InternshipTask(role, taskName, deadline, newStatus, outcome, tags);
+    }
+
+    /**
+     * Mark an assignment as incomplete
+     * @return a new Assignment that is marked as incomplete
+     */
+    public InternshipTask unMark() {
+        Status newStatus = new Status(false);
+        return new InternshipTask(role, taskName, deadline, newStatus, outcome, tags);
+    }
+    /**
      * @param otherTask to be verifed
      * @return true if otherTask has the same task name
      */

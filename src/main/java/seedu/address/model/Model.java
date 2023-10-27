@@ -23,10 +23,10 @@ public interface Model {
     Predicate<InternshipRole> PREDICATE_SHOW_ALL_INTERNSHIP_ROLES = unused -> true;
     Predicate<InternshipTask> PREDICATE_SHOW_ALL_INTERNSHIP_TASKS = unused -> true;
 
-    String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
+    String MESSAGE_WRONG_VIEW_FIRST_HALF = "Please switch to ";
 
     String MESSAGE_WRONG_VIEW_SECOND_HALF = " before performing this operation "
-            + "using the respective list commands";
+            + "using its respective list command";
 
     void setView(View v);
 
@@ -184,4 +184,6 @@ public interface Model {
     void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate);
 
     void sortInternshipTasks();
+
+    void setInternshipTask(InternshipTask task, InternshipTask newTask);
 }
