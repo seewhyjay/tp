@@ -1,17 +1,18 @@
 package seedu.address.logic.commands.internship.task;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
 import seedu.address.model.internshiptask.InternshipTask;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes an internship task identified using it's displayed index from the app.
@@ -20,7 +21,8 @@ public class DeleteInternshipTaskCommand extends InternshipCommand {
     public static final String COMMAND_WORD = "delete-i-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the internship task identified by the index number used in the displayed internship task list.\n"
+            + ": Deletes the internship task identified by the index number used "
+            + "in the displayed internship task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
