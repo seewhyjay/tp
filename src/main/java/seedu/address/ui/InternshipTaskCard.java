@@ -39,6 +39,7 @@ public class InternshipTaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ", ");
         roleDetails.setText(task.getInternshipRole().getMainDetails());
         name.setText(task.getTaskName().toString());
+        deadline.setText(task.getDeadline().toString());
         status.setText(task.getStatus().toString());
         outcome.setText(task.getOutcome().toString());
         task.getTags().stream()
