@@ -20,7 +20,7 @@ import seedu.address.model.unique.Unique;
  * Represents a task needed for an intern application/role
  */
 // PLS DO NOT REMOVE THE FINAL MODIFIER SUPPOSE TO BE IMMUTABLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-public final class InternshipTask implements Unique<InternshipTask> {
+public final class InternshipTask implements Comparable<InternshipTask>, Unique<InternshipTask> {
     private final InternshipRole role;
     private final Name taskName;
     private final IsoDate deadline;
@@ -122,4 +122,14 @@ public final class InternshipTask implements Unique<InternshipTask> {
                 .toString();
     }
 
+    @Override
+    public int compareTo(InternshipTask o) {
+        if (this.deadline.compareTo(o.deadline) == 0) {
+            return 0;
+        } else if (this.deadline.compareTo(o.deadline) > 0) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }

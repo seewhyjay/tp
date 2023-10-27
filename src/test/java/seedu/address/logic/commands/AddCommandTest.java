@@ -255,6 +255,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void sortInternshipTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addInternshipTask(InternshipTask internshipTask) {
             throw new AssertionError("This method should not be called.");
         }

@@ -100,6 +100,7 @@ public class AddInternshipTaskCommand extends InternshipCommand {
         }
 
         model.addInternshipTask(toAdd);
+        model.sortInternshipTasks();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

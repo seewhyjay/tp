@@ -271,6 +271,11 @@ public class ModelManager implements Model {
         filteredInternshipTasks.setPredicate(predicate);
     }
 
+    @Override
+    public void sortInternshipTasks() {
+        addressBook.sortInternshipTasks();
+    }
+
     //====== Filtered Internship Role List Accessors==========================
 
     @Override
