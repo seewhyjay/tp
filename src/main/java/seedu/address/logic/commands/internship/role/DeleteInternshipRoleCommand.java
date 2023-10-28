@@ -24,7 +24,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the internship role identified by the index number used "
-            + "in the displayed internship task list, and all its associated tasks.\n"
+            + "in the displayed internship role list, and all its associated tasks.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
