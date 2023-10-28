@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.person.Prefix;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**

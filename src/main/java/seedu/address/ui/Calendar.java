@@ -6,7 +6,6 @@ import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,8 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.logic.Logic;
-import seedu.address.model.View;
 import seedu.address.model.unique.UniqueModelWithDate;
 
 /**
@@ -26,34 +23,12 @@ public class Calendar extends UiPart<Region> {
 
     private static final int maxNumOfNamesToDisplay = 2;
 
-    private YearMonth selectedCalendarView = YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth());
+    private YearMonth selectedCalendarMonth = YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth());
 
     private ObservableList<? extends UniqueModelWithDate<?>> selectedList;
 
-    private Logic logic;
-
-    private ListChangeListener<View> handleViewChange = (change) -> {
-        change.next();
-        if (change.wasReplaced() || change.wasAdded()) {
-            ObservableList<? extends View> selectedView = change.getList();
-            View v = selectedView.get(0);
-            switch (v) {
-            case ASSIGNMENTS:
-                selectedList = logic.getUnfilteredAssignmentList();
-                break;
-            case INTERNSHIPS:
-                selectedList = logic.getFilteredInternshipTaskList();
-                break;
-            default:
-                break;
-            }
-        }
-        handleCalendarChange(0);
-    };
-
     @FXML
     private Label calendarDate;
-
 
     @FXML
     private GridPane calendar;
@@ -61,12 +36,15 @@ public class Calendar extends UiPart<Region> {
     /**
      * Constructs a calendar with the provided list as info on what to display
      */
-    public Calendar(Logic logic, View defaultView) {
+    public Calendar(ObservableList<? extends UniqueModelWithDate<?>> selectedList) {
         super(FXML);
-        this.logic = logic;
-        this.logic.subscribeViewChange(handleViewChange, defaultView);
+        this.selectedList = selectedList;
     }
 
+    public void setSelectedList(ObservableList<? extends UniqueModelWithDate<?>> list) {
+        selectedList = list;
+        handleCalendarChange(0);
+    }
 
     @FXML
     private void handleCalendarLeftClick() {
@@ -79,10 +57,6 @@ public class Calendar extends UiPart<Region> {
     @FXML
     private void handleCalendarRightClick() {
         handleCalendarChange(1);
-    }
-
-    private void initCalendar() {
-        handleCalendarChange(0);
     }
 
     private void addDaysIndicator(GridPane calendar) {
@@ -167,9 +141,9 @@ public class Calendar extends UiPart<Region> {
         calendar.getChildren().clear();
 
         // Updating calendar on button pressed by user
-        selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
+        selectedCalendarMonth = selectedCalendarMonth.plusMonths(monthsToAdd);
 
-        calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
+        calendarDate.setText(selectedCalendarMonth.getMonth() + " " + selectedCalendarMonth.getYear());
         addDaysIndicator(calendar);
 
         fillStartOfCurrentMonthToEndOfCalendar();
@@ -177,7 +151,7 @@ public class Calendar extends UiPart<Region> {
     }
 
     private void fillStartOfCalendarToEndOfPrevMonth() {
-        LocalDate prevMonthDate = selectedCalendarView.plusMonths(-1).atEndOfMonth();
+        LocalDate prevMonthDate = selectedCalendarMonth.plusMonths(-1).atEndOfMonth();
         int columnIndex = dayToIndex(prevMonthDate.getDayOfWeek());
 
         // If columnIndex == 6, it means first day of curr
@@ -200,8 +174,8 @@ public class Calendar extends UiPart<Region> {
     private void fillStartOfCurrentMonthToEndOfCalendar() {
         int rowIndex = 1;
 
-        LocalDate newMonthDate = selectedCalendarView.atDay(1);
-        LocalDate endOfMonthDate = selectedCalendarView.atEndOfMonth();
+        LocalDate newMonthDate = selectedCalendarMonth.atDay(1);
+        LocalDate endOfMonthDate = selectedCalendarMonth.atEndOfMonth();
 
         // Loop through the entire calendar array
         while (rowIndex <= 6) {

@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.fields.Outcome;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.testutil.InternshipTaskBuilder;
 
 public class InternshipTaskTest {

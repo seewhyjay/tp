@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +24,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.View;
-
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -101,7 +101,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane selectedListPanelPlaceholder;
 
-    private ListChangeListener<View> onViewChange = (change) -> {
+    private final ListChangeListener<View> onViewChange = (change) -> {
         change.next();
         if (change.wasReplaced() || change.wasAdded()) {
             ObservableList<? extends View> selectedView = change.getList();
@@ -109,13 +109,19 @@ public class MainWindow extends UiPart<Stage> {
             setViewHeaderName(v.toString());
             switch (v) {
             case ASSIGNMENTS:
+                calendar.setSelectedList(logic.getUnfilteredAssignmentList());
                 handleSetAssignmentView();
                 break;
             case PERSONS:
+                calendar.setSelectedList(FXCollections.observableArrayList());
                 handleSetPersonView();
                 break;
-            default:
+            case INTERNSHIPS:
+                calendar.setSelectedList(logic.getUnfilteredInternshipTaskList());
                 handleSetInternshipView();
+                break;
+            default:
+                break;
             }
         }
     };
@@ -203,7 +209,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        calendar = new Calendar(logic, defaultView);
+        calendar = new Calendar(FXCollections.observableArrayList());
         calendarContainer.getChildren().add(calendar.getRoot());
 
         initDefaultView();
