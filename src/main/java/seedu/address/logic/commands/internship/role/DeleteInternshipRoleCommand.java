@@ -17,7 +17,7 @@ import seedu.address.model.internshiptask.InternshipTask;
 import seedu.address.model.internshiptask.InternshipTaskHasSameInternshipRolePredicate;
 
 /**
- * Deletes an internship task identified using it's displayed index from the app.
+ * Deletes an internship task identified using its displayed index from the app.
  */
 public class DeleteInternshipRoleCommand extends InternshipCommand {
     public static final String COMMAND_WORD = "delete-i-role";
