@@ -67,11 +67,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.assignments.setList(assignments);
     }
 
-    public void setInternshipRole(List<InternshipRole> internRoles) {
+    public void setInternshipRoles(List<InternshipRole> internRoles) {
         this.internshipRoles.setList(internRoles);
     }
 
-    public void setInternshipTask(List<InternshipTask> internshipTasks) {
+    public void setInternshipTasks(List<InternshipTask> internshipTasks) {
         this.internshipTasks.setList(internshipTasks);
     }
 
@@ -82,8 +82,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setAssignments(newData.getAssignmentList());
-        setInternshipRole(newData.getInternshipRoleList());
-        setInternshipTask(newData.getInternshipTaskList());
+        setInternshipRoles(newData.getInternshipRoleList());
+        setInternshipTasks(newData.getInternshipTaskList());
     }
 
 
