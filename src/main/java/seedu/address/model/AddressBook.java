@@ -23,7 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueList<Assignment> assignments;
 
-    private final UniqueList<InternshipRole> roles;
+    private final UniqueList<InternshipRole> internshipRoles;
 
     private final UniqueList<InternshipTask> internshipTasks;
 
@@ -38,7 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniqueList<>();
         assignments = new UniqueList<>();
-        roles = new UniqueList<>();
+        internshipRoles = new UniqueList<>();
         internshipTasks = new UniqueList<>();
     }
 
@@ -68,7 +68,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void setInternshipRoles(List<InternshipRole> internRoles) {
-        this.roles.setList(internRoles);
+        this.internshipRoles.setList(internRoles);
     }
 
     public void setInternshipTasks(List<InternshipTask> internshipTasks) {
@@ -187,9 +187,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Add an internship role
      * @param role to be added
      */
-    public void addInternshipRoles(InternshipRole role) {
+    public void addInternshipRole(InternshipRole role) {
         requireNonNull(role);
-        roles.add(role);
+        internshipRoles.add(role);
+    }
+
+    public void removeInternshipRole(InternshipRole key) {
+        internshipRoles.remove(key);
     }
 
     /**
@@ -197,14 +201,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param role to be checked
      * @return true if role is present
      */
-    public boolean hasInternshipRoles(InternshipRole role) {
+    public boolean hasInternshipRole(InternshipRole role) {
         requireNonNull(role);
-        return roles.contains(role);
+        return internshipRoles.contains(role);
     }
 
     @Override
     public ObservableList<InternshipRole> getInternshipRoleList() {
-        return roles.asUnmodifiableObservableList();
+        return internshipRoles.asUnmodifiableObservableList();
     }
     // ================ Internship Tasks =====================================================================
 

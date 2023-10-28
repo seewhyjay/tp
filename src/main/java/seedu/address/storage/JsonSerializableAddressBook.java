@@ -94,10 +94,10 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedInternshipRole jsonAdaptedInternshipRole : roles) {
             InternshipRole role = jsonAdaptedInternshipRole.toModelType();
-            if (addressBook.hasInternshipRoles(role)) {
+            if (addressBook.hasInternshipRole(role)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_ROLES);
             }
-            addressBook.addInternshipRoles(role);
+            addressBook.addInternshipRole(role);
         }
 
         for (JsonAdaptedInternshipTask jsonAdaptedInternshipTask : internshipTasks) {
