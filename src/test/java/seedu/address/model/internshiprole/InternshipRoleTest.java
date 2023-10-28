@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.fields.Outcome;
+import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.testutil.InternshipRoleBuilder;
 
 public class InternshipRoleTest {

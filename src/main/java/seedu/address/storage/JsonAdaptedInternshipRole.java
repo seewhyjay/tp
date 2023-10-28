@@ -19,7 +19,7 @@ import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Outcome;
 import seedu.address.model.fields.Pay;
 import seedu.address.model.fields.Role;
-import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.tag.Tag;
 
 /**

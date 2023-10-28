@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
-import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internship.role.InternshipRole;
 
 /**
  * Command to add an InternshipRole

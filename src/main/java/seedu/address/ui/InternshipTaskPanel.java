@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.task.InternshipTask;
 
 /**
  * Panel to store InternshipTask

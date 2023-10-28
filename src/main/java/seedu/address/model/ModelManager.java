@@ -14,8 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,6 +37,7 @@ public class ModelManager implements Model {
     private final FilteredList<InternshipTask> filteredInternshipTasks;
 
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.

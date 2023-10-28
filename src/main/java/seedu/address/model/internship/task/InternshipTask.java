@@ -1,9 +1,13 @@
-package seedu.address.model.internshiptask;
+package seedu.address.model.internship.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,15 +16,15 @@ import seedu.address.model.fields.IsoDate;
 import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Status;
 import seedu.address.model.fields.TaskOutcome;
-import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.unique.Unique;
+import seedu.address.model.unique.UniqueModelWithDate;
 
 /**
  * Represents a task needed for an intern application/role
  */
 // PLS DO NOT REMOVE THE FINAL MODIFIER SUPPOSE TO BE IMMUTABLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-public final class InternshipTask implements Comparable<InternshipTask>, Unique<InternshipTask> {
+public final class InternshipTask implements Comparable<InternshipTask>, UniqueModelWithDate<InternshipTask> {
     private final InternshipRole role;
     private final Name taskName;
     private final IsoDate deadline;
@@ -70,6 +74,18 @@ public final class InternshipTask implements Comparable<InternshipTask>, Unique<
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    @Override
+    public void hashDateToNameWith(HashMap<LocalDate, LinkedList<String>> map) {
+        LocalDate d = deadline.getDate().map(LocalDateTime::toLocalDate).orElse(LocalDate.MIN);
+        if (map.containsKey(d)) {
+            map.get(d).add(taskName.toString());
+        } else {
+            LinkedList<String> l = new LinkedList<>();
+            l.add(taskName.toString());
+            map.put(d, l);
+        }
     }
 
     /**

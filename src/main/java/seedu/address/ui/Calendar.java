@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -14,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.assignment.Assignment;
+import seedu.address.model.unique.UniqueModelWithDate;
 
 /**
  * Calendar that displays assignments name
@@ -24,9 +23,9 @@ public class Calendar extends UiPart<Region> {
 
     private static final int maxNumOfNamesToDisplay = 2;
 
-    private ObservableList<Assignment> assignments;
+    private YearMonth selectedCalendarMonth = YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth());
 
-    private YearMonth selectedCalendarView = YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth());
+    private ObservableList<? extends UniqueModelWithDate<?>> selectedList;
 
     @FXML
     private Label calendarDate;
@@ -36,12 +35,15 @@ public class Calendar extends UiPart<Region> {
 
     /**
      * Constructs a calendar with the provided list as info on what to display
-     * @param assignments the info to be displayed
      */
-    public Calendar(ObservableList<Assignment> assignments) {
+    public Calendar(ObservableList<? extends UniqueModelWithDate<?>> selectedList) {
         super(FXML);
-        this.assignments = assignments;
-        initCalendar();
+        this.selectedList = selectedList;
+    }
+
+    public void setSelectedList(ObservableList<? extends UniqueModelWithDate<?>> list) {
+        selectedList = list;
+        handleCalendarChange(0);
     }
 
     @FXML
@@ -55,10 +57,6 @@ public class Calendar extends UiPart<Region> {
     @FXML
     private void handleCalendarRightClick() {
         handleCalendarChange(1);
-    }
-
-    private void initCalendar() {
-        handleCalendarChange(0);
     }
 
     private void addDaysIndicator(GridPane calendar) {
@@ -143,16 +141,17 @@ public class Calendar extends UiPart<Region> {
         calendar.getChildren().clear();
 
         // Updating calendar on button pressed by user
-        selectedCalendarView = selectedCalendarView.plusMonths(monthsToAdd);
+        selectedCalendarMonth = selectedCalendarMonth.plusMonths(monthsToAdd);
 
-        calendarDate.setText(selectedCalendarView.getMonth() + " " + selectedCalendarView.getYear());
+        calendarDate.setText(selectedCalendarMonth.getMonth() + " " + selectedCalendarMonth.getYear());
         addDaysIndicator(calendar);
+
         fillStartOfCurrentMonthToEndOfCalendar();
         fillStartOfCalendarToEndOfPrevMonth();
     }
 
     private void fillStartOfCalendarToEndOfPrevMonth() {
-        LocalDate prevMonthDate = selectedCalendarView.plusMonths(-1).atEndOfMonth();
+        LocalDate prevMonthDate = selectedCalendarMonth.plusMonths(-1).atEndOfMonth();
         int columnIndex = dayToIndex(prevMonthDate.getDayOfWeek());
 
         // If columnIndex == 6, it means first day of curr
@@ -175,9 +174,8 @@ public class Calendar extends UiPart<Region> {
     private void fillStartOfCurrentMonthToEndOfCalendar() {
         int rowIndex = 1;
 
-        LocalDate newMonthDate = selectedCalendarView.atDay(1);
-        LocalDate endOfMonthDate = selectedCalendarView.atEndOfMonth();
-        HashMap<LocalDate, LinkedList<String>> dateToNameMap = getDateToTasksMap();
+        LocalDate newMonthDate = selectedCalendarMonth.atDay(1);
+        LocalDate endOfMonthDate = selectedCalendarMonth.atEndOfMonth();
 
         // Loop through the entire calendar array
         while (rowIndex <= 6) {
@@ -193,9 +191,14 @@ public class Calendar extends UiPart<Region> {
             VBox.setVgrow(day, Priority.ALWAYS);
             dayContainer.getChildren().add(day);
 
+            HashMap<LocalDate, LinkedList<String>> map = new HashMap<>();
+            for (UniqueModelWithDate<?> elem : selectedList) {
+                elem.hashDateToNameWith(map);
+            }
+
             // Assigning assignment names to current month only
-            if (dateToNameMap.containsKey(newMonthDate) && !newMonthDate.isAfter(endOfMonthDate)) {
-                addNamesToCell(dayContainer, dateToNameMap.get(newMonthDate));
+            if (map.containsKey(newMonthDate) && !newMonthDate.isAfter(endOfMonthDate)) {
+                addNamesToCell(dayContainer, map.get(newMonthDate));
             }
 
             // Setting styles accordingly
@@ -216,25 +219,5 @@ public class Calendar extends UiPart<Region> {
             }
             newMonthDate = newMonthDate.plusDays(1);
         }
-    }
-
-    private HashMap<LocalDate, LinkedList<String>> getDateToTasksMap() {
-        HashMap<LocalDate, LinkedList<String>> map = new HashMap<>();
-        for (Assignment a : assignments) {
-
-            // Return an empty date if somehow a plannedDate managed to get in
-            LocalDate endDate = a.getEnd().getDate().map(LocalDateTime::toLocalDate)
-                    .orElse(LocalDate.MIN);
-
-            if (!map.containsKey(endDate)) {
-                LinkedList<String> names = new LinkedList<>();
-                names.add(a.getName().getText());
-                map.put(endDate, names);
-            } else {
-                map.get(endDate).add(a.getName().getText());
-            }
-        }
-
-        return map;
     }
 }

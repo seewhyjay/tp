@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.fields.Outcome;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.task.InternshipTask;
 
 /**
  * A class to get typical internship tasks

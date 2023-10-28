@@ -11,7 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.task.InternshipTask;
 
 /**
  * Un-marks an internship task in the internship task list,
