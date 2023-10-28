@@ -121,6 +121,11 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
+        public void deleteInternshipRole(InternshipRole role) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isValidOperationWith(View v) {
             throw new AssertionError("This method should not be called.");
         }
@@ -251,7 +256,7 @@ public class AddAssignmentCommandTest {
 
         @Override
         public void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

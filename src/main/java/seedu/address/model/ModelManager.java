@@ -91,12 +91,12 @@ public class ModelManager implements Model {
 
     @Override
     public void addInternshipRole(InternshipRole role) {
-        addressBook.addInternshipRoles(role);
+        addressBook.addInternshipRole(role);
     }
 
     @Override
     public boolean hasInternshipRole(InternshipRole role) {
-        return addressBook.hasInternshipRoles(role);
+        return addressBook.hasInternshipRole(role);
     }
 
     @Override
@@ -293,6 +293,11 @@ public class ModelManager implements Model {
     public void updateFilteredInternshipRoleList(Predicate<InternshipRole> predicate) {
         requireNonNull(predicate);
         filteredInternshipRoles.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteInternshipRole(InternshipRole target) {
+        addressBook.removeInternshipRole(target);
     }
 
     @Override
