@@ -91,7 +91,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addInternshipRole(InternshipRole role) {
-        addressBook.addInternshipRoles(role);
+        addressBook.addInternshipRole(role);
     }
 
     @Override

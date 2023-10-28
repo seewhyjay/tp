@@ -97,7 +97,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasInternshipRole(role)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_ROLES);
             }
-            addressBook.addInternshipRoles(role);
+            addressBook.addInternshipRole(role);
         }
 
         for (JsonAdaptedInternshipTask jsonAdaptedInternshipTask : internshipTasks) {
