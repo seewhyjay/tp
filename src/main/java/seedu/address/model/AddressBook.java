@@ -201,7 +201,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param role to be checked
      * @return true if role is present
      */
-    public boolean hasInternshipRoles(InternshipRole role) {
+    public boolean hasInternshipRole(InternshipRole role) {
         requireNonNull(role);
         return internshipRoles.contains(role);
     }

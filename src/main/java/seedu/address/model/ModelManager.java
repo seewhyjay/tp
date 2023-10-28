@@ -96,7 +96,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasInternshipRole(InternshipRole role) {
-        return addressBook.hasInternshipRoles(role);
+        return addressBook.hasInternshipRole(role);
     }
 
     @Override

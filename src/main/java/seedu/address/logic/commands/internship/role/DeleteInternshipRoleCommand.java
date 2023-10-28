@@ -60,7 +60,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
         model.deleteInternshipRole(internshipRoleToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_ROLE_SUCCESS,
-                Messages.format(internshipRoleToDelete)) + "\n" + "And it's associated tasks");
+                Messages.format(internshipRoleToDelete)) + "\n" + "And its associated tasks");
     }
 
     @Override
