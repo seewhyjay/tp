@@ -8,8 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
-import seedu.address.model.internshiprole.InternshipRoleNameContainsKeywordsPredicate;
-import seedu.address.model.internshiptask.InternshipTaskContainsInternshipRolesPredicate;
+import seedu.address.model.internship.role.InternshipRoleNameContainsKeywordsPredicate;
+import seedu.address.model.internship.task.InternshipTaskContainsInternshipRolesPredicate;
 
 
 /**

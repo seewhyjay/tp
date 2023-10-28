@@ -12,9 +12,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
-import seedu.address.model.internshiptask.InternshipTaskHasSameInternshipRolePredicate;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
+import seedu.address.model.internship.task.InternshipTaskHasSameInternshipRolePredicate;
 
 /**
  * Deletes an internship task identified using its displayed index from the app.

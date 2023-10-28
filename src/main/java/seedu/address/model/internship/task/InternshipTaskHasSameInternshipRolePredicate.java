@@ -1,9 +1,9 @@
-package seedu.address.model.internshiptask;
+package seedu.address.model.internship.task;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internship.role.InternshipRole;
 
 
 /**

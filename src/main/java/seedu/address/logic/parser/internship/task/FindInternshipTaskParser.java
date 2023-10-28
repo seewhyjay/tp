@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.address.logic.commands.internship.task.FindInternshipTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.internshiptask.InternshipTaskNameContainsKeywordsPredicate;
+import seedu.address.model.internship.task.InternshipTaskNameContainsKeywordsPredicate;
 
 
 /**
