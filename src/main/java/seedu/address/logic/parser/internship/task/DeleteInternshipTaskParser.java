@@ -10,12 +10,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteInternshipTaskCommand object
  */
 public class DeleteInternshipTaskParser implements Parser<DeleteInternshipTaskCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteInternshipTaskCommand
+     * and returns a DeleteInternshipTaskCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

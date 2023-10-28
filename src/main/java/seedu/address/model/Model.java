@@ -154,6 +154,8 @@ public interface Model {
     ObservableList<InternshipRole> getFilteredInternshipRoleList();
 
     ObservableList<InternshipRole> getUnfilteredInternshipRoleList();
+
+    void deleteInternshipRole(InternshipRole target);
     /**
      * Updates the filter of the filtered internship role list to filter by the given {@code predicate}.
      *

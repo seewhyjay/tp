@@ -23,6 +23,9 @@ public class Messages {
     public static final String MESSAGE_INTERNSHIPS_LISTED_OVERVIEW = "%1$d internship roles and tasks listed!";
     public static final String MESSAGE_INVALID_INTERNSHIP_TASK_DISPLAYED_INDEX = "The internship task index"
             + " provided is invalid";
+
+    public static final String MESSAGE_INVALID_INTERNSHIP_ROLE_DISPLAYED_INDEX = "The internship role index"
+            + " provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";

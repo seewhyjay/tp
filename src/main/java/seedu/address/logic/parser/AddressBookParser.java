@@ -24,6 +24,7 @@ import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
 import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
 import seedu.address.logic.commands.internship.ListInternshipCommand;
 import seedu.address.logic.commands.internship.role.AddInternshipRoleCommand;
+import seedu.address.logic.commands.internship.role.DeleteInternshipRoleCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.DeleteInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.MarkInternshipTaskCommand;
@@ -42,6 +43,7 @@ import seedu.address.logic.parser.assignment.MarkAssignmentParser;
 import seedu.address.logic.parser.assignment.UnMarkAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.internship.role.AddInternshipRoleParser;
+import seedu.address.logic.parser.internship.role.DeleteInternshipRoleParser;
 import seedu.address.logic.parser.internship.task.AddInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.DeleteInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.MarkInternshipTaskParser;
@@ -90,8 +92,6 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-
-
 
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
@@ -152,6 +152,10 @@ public class AddressBookParser {
         case AddInternshipRoleCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new AddInternshipRoleParser().parse(arguments);
+
+        case DeleteInternshipRoleCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new DeleteInternshipRoleParser().parse(arguments);
 
         case AddInternshipTaskCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
