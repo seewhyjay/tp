@@ -17,16 +17,16 @@ import seedu.address.model.fields.ApplicationOutcome;
 import seedu.address.model.internship.role.InternshipRole;
 
 /**
- * A command that edits the outcome of an InternshipRole when executed.
+ * A command that edits the application outcome of an InternshipRole when executed.
  */
 public class EditInternshipRoleCommand extends InternshipCommand {
     public static final String COMMAND_WORD = "edit-i-role";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the outcome of an InternshipRole to the app. "
+            + ": Edits the application outcome of an InternshipRole. "
             + "Parameters: "
-            + "[" + PREFIX_INDEX + "INDEX (must be a positive integer)" + "]\n"
-            + "[" + PREFIX_OUTCOME + "OUTCOME" + "]\n"
+            +  PREFIX_INDEX + "INDEX (must be a positive integer)" + "\n"
+            +  PREFIX_OUTCOME + "OUTCOME" + "\n"
             + "Example: " + COMMAND_WORD + "i/ 1" + " o/ accepted";
 
     public static final String MESSAGE_SUCCESS = "Internship role outcome updated to: %1$s";
@@ -52,7 +52,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
 
         List<InternshipRole> lastShownList = model.getFilteredInternshipRoleList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_TASK_DISPLAYED_INDEX);
         }
 
         InternshipRole roleToEdit = lastShownList.get(index.getZeroBased());
