@@ -52,7 +52,7 @@ public class EditInternshipTaskCommand extends InternshipCommand {
 
         List<InternshipTask> lastShownList = model.getFilteredInternshipTaskList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_TASK_DISPLAYED_INDEX);
         }
 
         InternshipTask taskToEdit = lastShownList.get(index.getZeroBased());
@@ -76,9 +76,9 @@ public class EditInternshipTaskCommand extends InternshipCommand {
             return false;
         }
 
-        EditInternshipTaskCommand otherEditInternshipRoleCommand = (EditInternshipTaskCommand) other;
-        return index.equals(otherEditInternshipRoleCommand.index)
-                && newOutcome.equals(otherEditInternshipRoleCommand.newOutcome);
+        EditInternshipTaskCommand otherEditInternshipTaskCommand = (EditInternshipTaskCommand) other;
+        return index.equals(otherEditInternshipTaskCommand.index)
+                && newOutcome.equals(otherEditInternshipTaskCommand.newOutcome);
     }
 
     @Override
