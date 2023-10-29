@@ -39,10 +39,10 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private static final String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
+    private static final String MESSAGE_WRONG_VIEW_FIRST_HALF = "Please switch to ";
 
     private static final String MESSAGE_WRONG_VIEW_SECOND_HALF = " before performing this operation "
-            + "using the respective list commands";
+            + "using its respective list command";
 
     private static final Function<View, Boolean> verifierTrue = (v) -> true;
 

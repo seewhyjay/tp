@@ -21,8 +21,8 @@ import seedu.address.model.fields.IsoDate;
 import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Status;
 import seedu.address.model.fields.TaskOutcome;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,6 +100,7 @@ public class AddInternshipTaskCommand extends InternshipCommand {
         }
 
         model.addInternshipTask(toAdd);
+        model.sortInternshipTasks();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

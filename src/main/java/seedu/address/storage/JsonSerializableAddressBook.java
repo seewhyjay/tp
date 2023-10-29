@@ -12,8 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -94,10 +94,10 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedInternshipRole jsonAdaptedInternshipRole : roles) {
             InternshipRole role = jsonAdaptedInternshipRole.toModelType();
-            if (addressBook.hasInternshipRoles(role)) {
+            if (addressBook.hasInternshipRole(role)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_ROLES);
             }
-            addressBook.addInternshipRoles(role);
+            addressBook.addInternshipRole(role);
         }
 
         for (JsonAdaptedInternshipTask jsonAdaptedInternshipTask : internshipTasks) {

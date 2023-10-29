@@ -19,7 +19,7 @@ import seedu.address.model.fields.Name;
 import seedu.address.model.fields.Outcome;
 import seedu.address.model.fields.Pay;
 import seedu.address.model.fields.Role;
-import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -67,7 +67,7 @@ public class JsonAdaptedInternshipRole {
         this.role = source.getRole().toString();
         this.cycle = source.getCycle().toString();
         this.description = source.getDescription().toString();
-        this.pay = source.getPay().getPay();
+        this.pay = source.getPay().getPay().orElse(null);
         this.outcome = source.getApplicationOutcome().getApplicationOutcome();
         this.location = source.getLocation().toString();
     }
@@ -123,10 +123,7 @@ public class JsonAdaptedInternshipRole {
         final ApplicationOutcome modelOutcome = new ApplicationOutcome(outcome);
 
 
-        if (pay == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Pay.class.getSimpleName()));
-        }
-        if (!Pay.isValidPay(pay)) {
+        if (pay != null && !Pay.isValidPay(pay)) {
             throw new IllegalValueException("Pay Not Valid " + Pay.MESSAGE_CONSTRAINTS);
         }
         final Pay modelPay = new Pay(pay);

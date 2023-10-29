@@ -26,8 +26,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -91,7 +91,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -162,6 +162,11 @@ public class AddCommandTest {
 
         @Override
         public void addInternshipRole(InternshipRole role) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteInternshipRole(InternshipRole role) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -250,6 +255,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate) {
+
+        }
+
+        @Override
+        public void sortInternshipTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setInternshipTask(InternshipTask task, InternshipTask newTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addInternshipTask(InternshipTask internshipTask) {
             throw new AssertionError("This method should not be called.");
         }
@@ -268,6 +288,13 @@ public class AddCommandTest {
         public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredInternshipRoleList(Predicate<InternshipRole> predicate) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
     }
 
     /**

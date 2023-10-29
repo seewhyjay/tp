@@ -14,8 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,6 +37,7 @@ public class ModelManager implements Model {
     private final FilteredList<InternshipTask> filteredInternshipTasks;
 
     private final ObservableList<View> selectedView = FXCollections.observableArrayList();
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -91,12 +92,12 @@ public class ModelManager implements Model {
 
     @Override
     public void addInternshipRole(InternshipRole role) {
-        addressBook.addInternshipRoles(role);
+        addressBook.addInternshipRole(role);
     }
 
     @Override
     public boolean hasInternshipRole(InternshipRole role) {
-        return addressBook.hasInternshipRoles(role);
+        return addressBook.hasInternshipRole(role);
     }
 
     @Override
@@ -265,11 +266,39 @@ public class ModelManager implements Model {
         return addressBook.getInternshipTaskList();
     }
 
+    @Override
+    public void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate) {
+        requireNonNull(predicate);
+        filteredInternshipTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortInternshipTasks() {
+        addressBook.sortInternshipTasks();
+    }
+
+    @Override
+    public void setInternshipTask(InternshipTask task, InternshipTask newTask) {
+        requireNonNull(task);
+        addressBook.setInternshipTask(task, newTask);
+    }
+
     //====== Filtered Internship Role List Accessors==========================
 
     @Override
     public ObservableList<InternshipRole> getUnfilteredInternshipRoleList() {
         return addressBook.getInternshipRoleList();
+    }
+
+    @Override
+    public void updateFilteredInternshipRoleList(Predicate<InternshipRole> predicate) {
+        requireNonNull(predicate);
+        filteredInternshipRoles.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteInternshipRole(InternshipRole target) {
+        addressBook.removeInternshipRole(target);
     }
 
     @Override

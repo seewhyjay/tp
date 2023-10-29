@@ -7,8 +7,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,11 +20,13 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENTS = unused -> true;
+    Predicate<InternshipRole> PREDICATE_SHOW_ALL_INTERNSHIP_ROLES = unused -> true;
+    Predicate<InternshipTask> PREDICATE_SHOW_ALL_INTERNSHIP_TASKS = unused -> true;
 
-    String MESSAGE_WRONG_VIEW_FIRST_HALF = "Pls switch to ";
+    String MESSAGE_WRONG_VIEW_FIRST_HALF = "Please switch to ";
 
     String MESSAGE_WRONG_VIEW_SECOND_HALF = " before performing this operation "
-            + "using the respective list commands";
+            + "using its respective list command";
 
     void setView(View v);
 
@@ -152,6 +154,15 @@ public interface Model {
     ObservableList<InternshipRole> getFilteredInternshipRoleList();
 
     ObservableList<InternshipRole> getUnfilteredInternshipRoleList();
+
+    void deleteInternshipRole(InternshipRole target);
+    /**
+     * Updates the filter of the filtered internship role list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredInternshipRoleList(Predicate<InternshipRole> predicate);
+
     // ============ Internship Tasks =============================================================
 
     /**
@@ -167,4 +178,14 @@ public interface Model {
 
     boolean hasInternshipTask(InternshipTask internshipTask);
 
+    /**
+     * Updates the filter of the filtered internship task list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredInternshipTaskList(Predicate<InternshipTask> predicate);
+
+    void sortInternshipTasks();
+
+    void setInternshipTask(InternshipTask task, InternshipTask newTask);
 }

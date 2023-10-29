@@ -2,13 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.internshiprole.InternshipRole;
-import seedu.address.model.internshiptask.InternshipTask;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.unique.UniqueList;
 
@@ -22,7 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueList<Assignment> assignments;
 
-    private final UniqueList<InternshipRole> roles;
+    private final UniqueList<InternshipRole> internshipRoles;
 
     private final UniqueList<InternshipTask> internshipTasks;
 
@@ -37,7 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniqueList<>();
         assignments = new UniqueList<>();
-        roles = new UniqueList<>();
+        internshipRoles = new UniqueList<>();
         internshipTasks = new UniqueList<>();
     }
 
@@ -67,7 +68,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void setInternshipRoles(List<InternshipRole> internRoles) {
-        this.roles.setList(internRoles);
+        this.internshipRoles.setList(internRoles);
     }
 
     public void setInternshipTasks(List<InternshipTask> internshipTasks) {
@@ -166,7 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Sort assignments by endDate
      */
     public void sortAssignments() {
-        assignments.sort((a1, a2) -> a1.getEnd().compareTo(a2.getEnd()));
+        assignments.sort(Comparator.comparing(Assignment::getEnd));
     }
 
 
@@ -186,9 +187,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Add an internship role
      * @param role to be added
      */
-    public void addInternshipRoles(InternshipRole role) {
+    public void addInternshipRole(InternshipRole role) {
         requireNonNull(role);
-        roles.add(role);
+        internshipRoles.add(role);
+    }
+
+    public void removeInternshipRole(InternshipRole key) {
+        internshipRoles.remove(key);
     }
 
     /**
@@ -196,14 +201,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param role to be checked
      * @return true if role is present
      */
-    public boolean hasInternshipRoles(InternshipRole role) {
+    public boolean hasInternshipRole(InternshipRole role) {
         requireNonNull(role);
-        return roles.contains(role);
+        return internshipRoles.contains(role);
     }
 
     @Override
     public ObservableList<InternshipRole> getInternshipRoleList() {
-        return roles.asUnmodifiableObservableList();
+        return internshipRoles.asUnmodifiableObservableList();
     }
     // ================ Internship Tasks =====================================================================
 
@@ -229,6 +234,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         internshipTasks.remove(key);
     }
 
+    /**
+     * Sort assignments by endDate
+     */
+    public void sortInternshipTasks() {
+        internshipTasks.sort(Comparator.comparing(InternshipTask::getDeadline));
+    }
+
+    /**
+     * Replaces task with newTask as InternshipTasks are immutable, and as such any changes made will have to be
+     * reflected in the internshipTasks list through replaing the old InternshipTask
+     *
+     * @param newTask to replace target
+     */
+    public void setInternshipTask(InternshipTask task, InternshipTask newTask) {
+        requireNonNull(task);
+        internshipTasks.set(task, newTask);
+    }
 
     @Override
     public boolean equals(Object other) {

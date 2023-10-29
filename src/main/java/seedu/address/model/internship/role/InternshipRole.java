@@ -1,4 +1,4 @@
-package seedu.address.model.internshiprole;
+package seedu.address.model.internship.role;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 

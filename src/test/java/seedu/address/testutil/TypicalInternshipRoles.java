@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.math.BigDecimal;
 
 import seedu.address.model.fields.Outcome;
-import seedu.address.model.internshiprole.InternshipRole;
+import seedu.address.model.internship.role.InternshipRole;
 
 /**
  * A class to get typical internship roles

@@ -22,8 +22,15 @@ import seedu.address.logic.commands.assignment.FindAssignmentCommand;
 import seedu.address.logic.commands.assignment.ListAssignmentCommand;
 import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
 import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
+import seedu.address.logic.commands.internship.ListInternshipCommand;
 import seedu.address.logic.commands.internship.role.AddInternshipRoleCommand;
+import seedu.address.logic.commands.internship.role.DeleteInternshipRoleCommand;
+import seedu.address.logic.commands.internship.role.FindInternshipRoleCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
+import seedu.address.logic.commands.internship.task.DeleteInternshipTaskCommand;
+import seedu.address.logic.commands.internship.task.FindInternshipTaskCommand;
+import seedu.address.logic.commands.internship.task.MarkInternshipTaskCommand;
+import seedu.address.logic.commands.internship.task.UnMarkInternshipTaskCommand;
 import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.commands.person.EditCommand;
@@ -32,13 +39,19 @@ import seedu.address.logic.commands.person.ListCommand;
 import seedu.address.logic.parser.assignment.AddAssignmentParser;
 import seedu.address.logic.parser.assignment.DeleteAssignmentParser;
 import seedu.address.logic.parser.assignment.EditAssignmentParser;
-import seedu.address.logic.parser.assignment.FindAssignmentCommandParser;
+import seedu.address.logic.parser.assignment.FindAssignmentParser;
 import seedu.address.logic.parser.assignment.ListAssignmentParser;
 import seedu.address.logic.parser.assignment.MarkAssignmentParser;
 import seedu.address.logic.parser.assignment.UnMarkAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.internship.role.AddInternshipRoleParser;
+import seedu.address.logic.parser.internship.role.DeleteInternshipRoleParser;
+import seedu.address.logic.parser.internship.role.FindInternshipRoleParser;
 import seedu.address.logic.parser.internship.task.AddInternshipTaskParser;
+import seedu.address.logic.parser.internship.task.DeleteInternshipTaskParser;
+import seedu.address.logic.parser.internship.task.FindInternshipTaskParser;
+import seedu.address.logic.parser.internship.task.MarkInternshipTaskParser;
+import seedu.address.logic.parser.internship.task.UnMarkInternshipTaskParser;
 import seedu.address.logic.parser.person.AddCommandParser;
 import seedu.address.logic.parser.person.DeleteCommandParser;
 import seedu.address.logic.parser.person.EditCommandParser;
@@ -83,8 +96,6 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-
-
 
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
@@ -136,7 +147,7 @@ public class AddressBookParser {
 
         case FindAssignmentCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.ASSIGNMENTS);
-            return new FindAssignmentCommandParser().parse(arguments);
+            return new FindAssignmentParser().parse(arguments);
 
         case EditAssignmentCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.ASSIGNMENTS);
@@ -146,9 +157,36 @@ public class AddressBookParser {
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new AddInternshipRoleParser().parse(arguments);
 
+        case DeleteInternshipRoleCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new DeleteInternshipRoleParser().parse(arguments);
+
         case AddInternshipTaskCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new AddInternshipTaskParser().parse(arguments);
+
+        case DeleteInternshipTaskCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new DeleteInternshipTaskParser().parse(arguments);
+
+        case ListInternshipCommand.COMMAND_WORD:
+            return new ListInternshipCommand();
+
+        case MarkInternshipTaskCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new MarkInternshipTaskParser().parse(arguments);
+
+        case UnMarkInternshipTaskCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new UnMarkInternshipTaskParser().parse(arguments);
+
+        case FindInternshipTaskCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new FindInternshipTaskParser().parse(arguments);
+
+        case FindInternshipRoleCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new FindInternshipRoleParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
