@@ -25,8 +25,8 @@ public class EditInternshipRoleCommand extends InternshipCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the application outcome of an InternshipRole. "
             + "Parameters: "
-            +  PREFIX_INDEX + "INDEX (must be a positive integer)" + "\n"
-            +  PREFIX_OUTCOME + "OUTCOME" + "\n"
+            + PREFIX_INDEX + "INDEX (must be a positive integer)" + "\n"
+            + PREFIX_OUTCOME + "OUTCOME" + "\n"
             + "Example: " + COMMAND_WORD + "i/ 1" + " o/ accepted";
 
     public static final String MESSAGE_SUCCESS = "Internship role outcome updated to: %1$s";
