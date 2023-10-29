@@ -302,6 +302,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setInternshipRole(InternshipRole role, InternshipRole newRole) {
+        requireNonNull(role);
+        addressBook.setInternshipRole(role, newRole);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

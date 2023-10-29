@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.fields.ApplicationOutcome;
 import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
@@ -109,6 +110,10 @@ public final class InternshipRole implements Unique<InternshipRole> {
 
     public String getMainDetails() {
         return name.toString() + ", " + role.toString() + ", " + cycle.toString();
+    }
+
+    public InternshipRole getNewInternshipRoleWithOutcome(ApplicationOutcome newOutcome) {
+        return new InternshipRole(name, role, cycle, description, pay, newOutcome, location, tags);
     }
 
     @Override
