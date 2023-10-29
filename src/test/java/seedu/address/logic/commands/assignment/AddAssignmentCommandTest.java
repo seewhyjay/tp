@@ -126,6 +126,11 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
+        public void setInternshipRole(InternshipRole role, InternshipRole newRole) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isValidOperationWith(View v) {
             throw new AssertionError("This method should not be called.");
         }

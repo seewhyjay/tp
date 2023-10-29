@@ -17,7 +17,7 @@ import seedu.address.model.fields.ApplicationOutcome;
 import seedu.address.model.internship.role.InternshipRole;
 
 /**
- * Command to add an InternshipRole
+ * A command that edits the outcome of an InternshipRole when executed.
  */
 public class EditInternshipRoleCommand extends InternshipCommand {
     public static final String COMMAND_WORD = "edit-i-role";
@@ -36,6 +36,11 @@ public class EditInternshipRoleCommand extends InternshipCommand {
     private final Index index;
     private final ApplicationOutcome newOutcome;
 
+    /**
+     * The constructor for an EditInternshipRoleCommand
+     * @param index The index of the InternshipRole to be edited
+     * @param newOutcome The new outcome for the target InternshipRole
+     */
     public EditInternshipRoleCommand(Index index, ApplicationOutcome newOutcome) {
         this.index = index;
         this.newOutcome = newOutcome;

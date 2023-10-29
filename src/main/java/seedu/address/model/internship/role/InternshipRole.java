@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.assignment.Assignment;
 import seedu.address.model.fields.ApplicationOutcome;
 import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
