@@ -25,8 +25,8 @@ public class EditInternshipTaskCommand extends InternshipCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the outcome of an InternshipTask to the app. "
             + "Parameters: "
-            + "[" + PREFIX_INDEX + "INDEX (must be a positive integer)" + "]\n"
-            + "[" + PREFIX_OUTCOME + "OUTCOME" + "]\n"
+            + PREFIX_INDEX + "INDEX (must be a positive integer)" + "\n"
+            + PREFIX_OUTCOME + "OUTCOME" + "\n"
             + "Example: " + COMMAND_WORD + "i/ 1" + " o/ follow-up";
 
     public static final String MESSAGE_SUCCESS = "Internship task outcome updated to: %1$s";
