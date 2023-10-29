@@ -105,6 +105,11 @@ public final class InternshipTask implements Comparable<InternshipTask>, UniqueM
         Status newStatus = new Status(false);
         return new InternshipTask(role, taskName, deadline, newStatus, outcome, tags);
     }
+
+    public InternshipTask getNewInternshipTaskWithOutcome(TaskOutcome newOutcome) {
+        return new InternshipTask(role, taskName, deadline, status, newOutcome, tags);
+    }
+
     /**
      * @param otherTask to be verifed
      * @return true if otherTask has the same task name
