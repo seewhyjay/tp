@@ -252,6 +252,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         internshipTasks.set(task, newTask);
     }
 
+    public void setInternshipRole(InternshipRole role, InternshipRole newRole) {
+        requireNonNull(role);
+        internshipRoles.set(role, newRole);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
