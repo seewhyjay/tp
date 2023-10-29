@@ -28,6 +28,7 @@ import seedu.address.logic.commands.internship.role.DeleteInternshipRoleCommand;
 import seedu.address.logic.commands.internship.role.FindInternshipRoleCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.DeleteInternshipTaskCommand;
+import seedu.address.logic.commands.internship.task.EditInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.FindInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.MarkInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.UnMarkInternshipTaskCommand;
@@ -49,6 +50,7 @@ import seedu.address.logic.parser.internship.role.DeleteInternshipRoleParser;
 import seedu.address.logic.parser.internship.role.FindInternshipRoleParser;
 import seedu.address.logic.parser.internship.task.AddInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.DeleteInternshipTaskParser;
+import seedu.address.logic.parser.internship.task.EditInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.FindInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.MarkInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.UnMarkInternshipTaskParser;
@@ -168,6 +170,10 @@ public class AddressBookParser {
         case DeleteInternshipTaskCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new DeleteInternshipTaskParser().parse(arguments);
+
+        case EditInternshipTaskCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new EditInternshipTaskParser().parse(arguments);
 
         case ListInternshipCommand.COMMAND_WORD:
             return new ListInternshipCommand();
