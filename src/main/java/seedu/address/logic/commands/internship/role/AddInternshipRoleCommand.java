@@ -25,7 +25,12 @@ public class AddInternshipRoleCommand extends InternshipCommand {
 
     private final InternshipRole toAdd;
 
+    /**
+     * Creates an AddInternshipRole command with the given internship, input cannot be null.
+     * @param toAdd the internship role to add
+     */
     public AddInternshipRoleCommand(InternshipRole toAdd) {
+        requireNonNull(toAdd);
         this.toAdd = toAdd;
     }
 

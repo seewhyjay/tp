@@ -15,20 +15,21 @@ import java.util.Optional;
 public class IsoDate extends Date {
 
     public static final String DATE_FORMAT = "uuuu-MM-dd HH:mm";
+
     public static final String DATE_FORMAT_WITHOUT_TIME = "uuuu-MM-dd";
 
     public static final String MESSAGE_CONSTRAINTS = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format.";
-
-    public static final String MESSAGE_CONSTRAINTS_LIST =
-            MESSAGE_CONSTRAINTS + " Start date must be before end date.";
-
-    private final LocalDateTime endDate;
 
     private static final DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern(DATE_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
     private static final DateTimeFormatter dfWithoutTime = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME)
             .withResolverStyle(ResolverStyle.STRICT);
+
+    public static final String MESSAGE_CONSTRAINTS_LIST =
+            MESSAGE_CONSTRAINTS + " Start date must be before end date.";
+
+    private final LocalDateTime endDate;
 
     /**
      * Constructs a {@code EndDate}.
