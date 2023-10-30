@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Optional;
 
 /**
@@ -13,8 +14,8 @@ import java.util.Optional;
  */
 public class IsoDate extends Date {
 
-    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
-    public static final String DATE_FORMAT_WITHOUT_TIME = "yyyy-MM-dd";
+    public static final String DATE_FORMAT = "uuuu-MM-dd HH:mm";
+    public static final String DATE_FORMAT_WITHOUT_TIME = "uuuu-MM-dd";
 
     public static final String MESSAGE_CONSTRAINTS = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format.";
 
@@ -22,6 +23,12 @@ public class IsoDate extends Date {
             MESSAGE_CONSTRAINTS + " Start date must be before end date.";
 
     private final LocalDateTime endDate;
+
+    private static final DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern(DATE_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
+
+    private static final DateTimeFormatter dfWithoutTime = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME)
+            .withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * Constructs a {@code EndDate}.
@@ -41,8 +48,7 @@ public class IsoDate extends Date {
      */
     public static boolean isValidDateNotBeforeToday(String date) {
         try {
-            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            LocalDateTime d = LocalDateTime.parse(date, df);
+            LocalDateTime d = LocalDateTime.parse(date, dfWithTime);
             return !d.isBefore(LocalDateTime.now());
         } catch (DateTimeParseException e) {
             return false;
@@ -58,10 +64,8 @@ public class IsoDate extends Date {
      */
     public static boolean isDateBefore(String startDate, String endDate) {
         try {
-            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            LocalDateTime startDateFilter = LocalDateTime.parse(startDate, df);
-            LocalDateTime endDateFilter = LocalDateTime.parse(endDate, df);
-
+            LocalDateTime startDateFilter = LocalDateTime.parse(startDate, dfWithTime);
+            LocalDateTime endDateFilter = LocalDateTime.parse(endDate, dfWithTime);
             return startDateFilter.isBefore(endDateFilter);
         } catch (DateTimeParseException e) {
             return false;
@@ -76,8 +80,7 @@ public class IsoDate extends Date {
      */
     public static boolean isValidIsoDate(String date) {
         try {
-            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            LocalDate d = LocalDate.parse(date, df);
+            LocalDateTime d = LocalDateTime.parse(date, dfWithTime);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -92,8 +95,7 @@ public class IsoDate extends Date {
      */
     public static boolean isValidIsoDateWithoutTime(String date) {
         try {
-            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME);
-            LocalDate d = LocalDate.parse(date, df);
+            LocalDate d = LocalDate.parse(date, dfWithoutTime);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -106,8 +108,7 @@ public class IsoDate extends Date {
      */
     public static boolean isValidIsoDateWithoutTimeAfterCurrent(String date) {
         try {
-            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT_WITHOUT_TIME);
-            LocalDate d = LocalDate.parse(date, df);
+            LocalDate d = LocalDate.parse(date, dfWithoutTime);
             return !d.isBefore(LocalDate.now());
         } catch (DateTimeParseException e) {
             return false;
@@ -120,8 +121,7 @@ public class IsoDate extends Date {
      */
     public static boolean isValidSavedDate(String date) {
         try {
-            DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            LocalDateTime.parse(date, df);
+            LocalDateTime.parse(date, dfWithTime);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -129,7 +129,7 @@ public class IsoDate extends Date {
     }
 
     public String toParseString() {
-        return endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return endDate.format(dfWithTime);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class IsoDate extends Date {
 
     @Override
     public String toString() {
-        return endDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return endDate.format(dfWithTime);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class IsoDate extends Date {
 
     @Override
     public String toSaveData() {
-        return endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return endDate.format(dfWithTime);
     }
 
     @Override

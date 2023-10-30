@@ -137,6 +137,11 @@ public class Calendar extends UiPart<Region> {
      * @param monthsToAdd the amount to shift
      */
     public void handleCalendarChange(int monthsToAdd) {
+        // Prevents user from going before year 0
+        if (selectedCalendarMonth.plusMonths(monthsToAdd).getYear() < 0) {
+            return;
+        }
+
         // Reset calendar
         calendar.getChildren().clear();
 
