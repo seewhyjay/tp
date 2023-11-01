@@ -130,6 +130,14 @@ public class Calendar extends UiPart<Region> {
             vbox.getChildren().add(l);
             currCount += 1;
         }
+
+        if (names.size() > 2) {
+            Label l = new Label("...");
+            l.setMaxWidth(500000);
+            l.setStyle("-fx-text-fill: #ebebeb; -fx-background-color: #262626; "
+                    + "-fx-background-radius: 0.5em; -fx-max-height: 30;");
+            vbox.getChildren().add(l);
+        }
     }
 
     /**
@@ -213,7 +221,8 @@ public class Calendar extends UiPart<Region> {
                 day.getStyleClass().add("cal-disabled");
             }
 
-            if (newMonthDate.equals(LocalDate.now())) {
+
+            if (newMonthDate.equals(LocalDate.now()) && !newMonthDate.isAfter(endOfMonthDate)) {
                 day.setStyle("-fx-text-fill: #BB66FC;");
             }
 
