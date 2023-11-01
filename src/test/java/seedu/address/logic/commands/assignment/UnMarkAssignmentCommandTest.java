@@ -3,7 +3,7 @@ package seedu.address.logic.commands.assignment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.CommandAssignmentTestUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -57,7 +57,8 @@ public class UnMarkAssignmentCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
         UnMarkAssignmentCommand unMarkCommand = new UnMarkAssignmentCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(unMarkCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+        CommandAssignmentTestUtil.assertCommandFailure(unMarkCommand, model,
+                Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
     @Test
     public void equals() {
@@ -90,11 +91,11 @@ public class UnMarkAssignmentCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no assignment.
      */
     private void showNoAssignment(Model model) {
         model.updateFilteredAssignmentList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredAssignmentList().isEmpty());
     }
 }

@@ -58,8 +58,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private Calendar calendar;
 
-    // Persons
-    private PersonListPanel personListPanel;
 
     private ResultDisplay resultDisplay;
 
@@ -73,12 +71,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private VBox personList;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private VBox assignmentList;
@@ -111,10 +103,6 @@ public class MainWindow extends UiPart<Stage> {
             case ASSIGNMENTS:
                 calendar.setSelectedList(logic.getUnfilteredAssignmentList());
                 handleSetAssignmentView();
-                break;
-            case PERSONS:
-                calendar.setSelectedList(FXCollections.observableArrayList());
-                handleSetPersonView();
                 break;
             case INTERNSHIPS:
                 calendar.setSelectedList(logic.getUnfilteredInternshipTaskList());
@@ -192,7 +180,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
         internRolePanel = new InternshipRolePanel(logic.getFilteredInternshipRoleList());
         internTaskPanel = new InternshipTaskPanel(logic.getFilteredInternshipTaskList());
@@ -291,16 +278,6 @@ public class MainWindow extends UiPart<Stage> {
         } finally {
             calendar.handleCalendarChange(0);
         }
-    }
-
-    /**
-     * Display a list of person when
-     * button is clicked
-     */
-    @FXML
-    private void handleSetPersonView() {
-        selectedListPanelPlaceholder.getChildren().clear();
-        selectedListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     /**

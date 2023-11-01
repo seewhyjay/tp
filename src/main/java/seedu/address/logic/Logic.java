@@ -13,7 +13,6 @@ import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
-import seedu.address.model.person.Person;
 
 /**
  * API of the Logic component
@@ -34,9 +33,6 @@ public interface Logic {
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.

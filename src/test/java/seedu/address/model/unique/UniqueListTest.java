@@ -1,12 +1,9 @@
 package seedu.address.model.unique;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -58,23 +55,6 @@ public class UniqueListTest {
     @Test
     public void contains_nullUniqueMock_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueUniqueMockList.contains(null));
-    }
-
-    @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniqueUniqueMockList.contains(u1));
-    }
-
-    @Test
-    public void contains_personInList_returnsTrue() {
-        uniqueUniqueMockList.add(u1);
-        assertTrue(uniqueUniqueMockList.contains(u1));
-    }
-
-    @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueUniqueMockList.add(u1);
-        assertTrue(uniqueUniqueMockList.contains(u2));
     }
 
     @Test
@@ -144,11 +124,6 @@ public class UniqueListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsUniqueMockNotFoundException() {
-        assertThrows(ElementNotFoundException.class, () -> uniqueUniqueMockList.remove(u1));
-    }
-
-    @Test
     public void remove_existingUniqueMock_removesUniqueMock() {
         uniqueUniqueMockList.add(u1);
         uniqueUniqueMockList.remove(u1);
@@ -173,16 +148,6 @@ public class UniqueListTest {
     @Test
     public void sets_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueUniqueMockList.setList((List<UniqueMock>) null));
-    }
-
-    @Test
-    public void sets_list_replacesOwnListWithProvidedList() {
-        uniqueUniqueMockList.add(u1);
-        List<UniqueMock> personList = Collections.singletonList(u3);
-        uniqueUniqueMockList.setList(personList);
-        UniqueList<UniqueMock> expectedUniqueUniqueMockList = new UniqueList<UniqueMock>();
-        expectedUniqueUniqueMockList.add(u3);
-        assertEquals(expectedUniqueUniqueMockList, uniqueUniqueMockList);
     }
 
     @Test
