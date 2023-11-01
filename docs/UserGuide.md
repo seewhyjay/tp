@@ -17,6 +17,7 @@ encounter in your university life.
 
 ## Table of Contents
 - [About this guide](#about-this-guide)
+  - [Notations used in this guide](#notations-used-in-this-guide)
   - [New Users](#new-users)
   - [Experienced Users](#experienced-users)
 - [Getting started](#getting-started)
@@ -34,7 +35,7 @@ encounter in your university life.
     - [Listing and filtering assignments](#listing-and-filtering-assignments)
     - [Finding an assignment by keywords](#finding-an-assignment-by-keywords)
   - [Internship Features](#internship-features)
-    - [Common internship feature](#common-internship-features)
+    - [Common internship features](#common-internship-features)
       - [Listing all internship information](#listing-all-internship-information)
     - [Internship Role](#internship-role)
       - [Adding an internship role](#adding-an-internship-role)
@@ -73,7 +74,7 @@ These are alerts which you should take note of before using the command.
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div class="alert alert-info">
 
 These are additional information that you should take note of before using the command.
 
@@ -186,9 +187,9 @@ Here is a quick summary of each GUI component within CampusCompanion
 
 ### Notes about the GUI
 
-In order to use any `assignment` commands, you must first switch to the assignment view (using list-a). Otherwise you will receive an error message. 
+In order to use any `assignment` commands, you must first switch to the assignment view (using list-a). Otherwise, you will receive an error message. 
 
-In order to use any `internship` commands, you must first switch to the internship view (using list-i). Otherwise you will receive an error message.
+In order to use any `internship` commands, you must first switch to the internship view (using list-i). Otherwise, you will receive an error message.
 
 While there are clickable buttons such as the calendar navigation button and the options on the menu bar, CampusCompanion is a CLI-focused application, and as such, implements commands to do the same thing.
 For example:
@@ -267,7 +268,7 @@ To view assignment parameter information, click [here](#assignment-parameters).
 **Purpose:** To list all the assignments with deadline between the given start date and end date.
 This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
 
-<div markdown="block" class="alert alert-info">
+<div class="alert alert-info">
 
 **Note:**
 - In order to use any of the assignment related commands below, you must be in the assignment view. Ie, you must use
@@ -314,7 +315,7 @@ To view detailed assignment parameter information, click [here](#assignment-para
 **Purpose:**
 To add an assignment into CampusCompanion.
 
-<div markdown="block" class="alert alert-info">
+<div class="alert alert-info">
 
 **Note:**
 - The start time and end time within the end date (e/) and planned end date (p/) is optional. 
@@ -339,7 +340,7 @@ To view assignment parameter information, click [here](#assignment-parameters)
 
 **Purpose:** Edit the description of a specified assignment to what is specified by `d/`
 
-<div markdown="block" class="alert alert-info">
+<div class="alert alert-info">
 
 **Note**
 - The index refers to the position of the assignment in the assignment list. To find out 
@@ -476,7 +477,7 @@ are all equivalent and will match with this assignment
 - If you are looking for specific assignments within a large pool of assignments and
   want to filter them based on keywords or partial keywords. 
 
-- If you want to find information about specific assignments but you don't remember their exact names.
+- If you want to find information about specific assignments, but you don't remember their exact names.
 
 - When you need to prioritize your work or plan your schedule, this can allow you to focus on specific tasks or projects.
 
@@ -488,7 +489,7 @@ are all equivalent and will match with this assignment
 
 #### Listing all internship information
 
-```list-i```
+``list-i``
 
 **Purpose:** To list all the internship information stored in CampusCompanion.
 This command also changes the view to internships tab (if the view is not currently at the internships tab).
@@ -623,13 +624,13 @@ for example, if you had an internship role with the name "TikTok", using the com
 </div>
 
 **Examples:**
-- ``find-i-role TikTok`` to find all internship information with "Tiktok" in the company name
+- ``find-i-role TikTok`` to find all internship information with "TikTok" in the company name
 
 **When you might use it:**
 - If you are looking for specific internship information within a long list of internships and
   want to filter them based on keywords or partial keywords.
 
-- If you want to find information about specific internship role but you don't remember the company's exact name.
+- If you want to find information about specific internship role, but you don't remember the company's exact name.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -767,7 +768,7 @@ To mark a specific internship task in CampusCompanion as incomplete.
   Assuming the internship task to unmark is at index 1, you can use `unmark-i 1` to unmark it.
 
 **When you might use it:**
-- When you wrongly mark a incomplete internship task, and want to unmark it.
+- When you wrongly mark an incomplete internship task, and want to unmark it.
 - When you wrongly add an internship task with the status as complete.
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -795,7 +796,7 @@ will match with this internship task.
 - If you are looking for specific internship task information within a long list of internships and
   want to filter them based on keywords or partial keywords.
 
-- If you want to find information about specific internship task but you don't remember the task's exact name.
+- If you want to find information about specific internship task, but you don't remember the task's exact name.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1023,7 +1024,7 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 **Q**: What is the recommended usage of the internship outcomes 
 **A**: Outcome must be either one of the following only: `Follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting`. This is how we recommend using them: 
 - Awaiting (Just finished with one stage and awaiting results of that stage)
-- Follow-up (Just received a follow up - eg. for an interview, but havent finished that round yet.
+- Follow-up (Just received a follow-up - e.g. for an interview, but haven't finished that round yet.
   Once finished with that round, the status should be updated to awaiting to indicate that you are awaiting results.)
 - Ghosted (If you did not receive any news after an appropriate amount of time.)
 - Rejected (If you received a rejection letter)
