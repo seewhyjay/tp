@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
@@ -18,6 +20,8 @@ import seedu.address.model.unique.UniqueList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
+
+    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
 
     private final UniqueList<Person> persons;
 
@@ -226,8 +230,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         return internshipTasks.asUnmodifiableObservableList();
     }
 
+    /**
+     * Adds an internship task to the list of internship tasks, checking if the role exists first
+     * @param internshipTask
+     */
     public void addInternshipTask(InternshipTask internshipTask) {
-        internshipTasks.add(internshipTask);
+        if (!internshipRoles.contains(internshipTask.getInternshipRole())) {
+            logger.warning("Error adding internship task: internship role does not exist!");
+        } else {
+            internshipTasks.add(internshipTask);
+        }
     }
 
     public void removeInternshipTask(InternshipTask key) {
