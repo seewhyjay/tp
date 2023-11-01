@@ -58,6 +58,8 @@ encounter in your university life.
 - [Parameter Summary](#parameter-summary)
   - [Assignment Parameters](#assignment-parameters)
   - [Internship Parameters](#internship-parameters)
+    - [Internship Role Parameters](#internship-role-parameters)
+    - [Internship Task Parameters](#internship-task-parameters)
 - [FAQ](#faq)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -115,11 +117,11 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 
 1. Ensure you have Java `11` or above installed in your Computer. [Click here](#checking-java-version) to learn how to check your java version 
 
-2. Download the latest `campuscompanion.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `campuscompanion.jar` from [here](https://github.com/AY2324S1-CS2103T-T12-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your CampusCompanion.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar campuscompanion.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CampusCompanion.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -130,8 +132,7 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 
    * `list-i` : Lists all internships.
 
-   * `add-a n/CS2100 Assignment 1 e/2023-10-29` : Adds an assignment named `CS2100 Assignment 1` 
-with a deadline of `29 Oct 2023 23:59` to the Campus Companion.
+   * `add-a n/CS2100 Assignment 1 e/2023-10-29` : Adds an assignment named `CS2100 Assignment 1` with a deadline of `29 Oct 2023 23:59` to the Campus Companion.
 
    * `delete-a 3` : Deletes the assignment with index 3 in the current list.
 
@@ -259,45 +260,11 @@ To view all our features, you may visit out [features section](#features).
 
 ## Assignment Features
 
-### Listing and Filtering assignments
-
-```list-a [s/YYYY-MM-DD [HH:mm]] [e/YYYY-MM-DD [HH:mm]]```
-
-To view assignment parameter information, click [here](#assignment-parameters).
-
-**Purpose:** To list all the assignments with deadline between the given start date and end date.
-This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
-
-<div class="alert alert-info">
-
-**Note:**
-- In order to use any of the assignment related commands below, you must be in the assignment view. Ie, you must use
-  list-a to switch to assignment view. This is to prevent you from performing commands while you are not looking at the correct list.
-- The start time and end time is optional. If not provided, start time will default to 00:00 and end time will default to 23:59.
-</div>
-
-**Examples:**
-
-| Combination                                                                                                           | Example                                          | What is displayed to you                                                          |
-|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------|
-| **None** present                                                                                                      | ``list-a``                                       | **All** assignments that are saved in CampusCompanion.                            |
-| **Only** _start date with time_ present                                                                               | ``list-a s/2023-12-10 18:00``                    | **All** assignments with deadline **later** than or equal 10 Dec 2023 18:00       |
-| **Only** _start date without time_ present                                                                            | ``list-a s/2023-12-10``                          | **All** assignments with deadline **later** than or equal 10 Dec 2023 00:00       |
-| **Only** _end date with time_ present                                                                                 | ``list-a e/2023-12-10 18:00``                    | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 18:00  |
-| **Only** _end date without time_ present                                                                              | ``list-a e/2023-12-10``                          | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 23:59  |
-| **Both** _start date_ and _end date_ present (Example not shown for this combination without timing, but it is valid) | ``list-a s/2023-12-10 18:00 e/2023-12-17 18:00`` | **All** assignments with deadline between 10 Dec 2023 18:00 and 17 Dec 2023 18:00 |
-
-**When you might use it**:
-- If you want to see all your current assignments.
-- If you want to filter your current assignments by date, and view the assignments only within a specified time frame.
-
-[Scroll back to Table of Contents](#table-of-contents)
-
 ### Adding an assignment
 
 ```add-a n/NAME e/YYYY-MM-DD [HH:mm] [d/DESCRIPTION] [s/STATUS] [p/YYYY-MM-DD [HH:mm]] [t/TAG]…```
 
-<div class="alert alert-block alert-warning">
+<div markdown="block" class="alert alert-block alert-warning">
 
 **Parameter Information**
 
@@ -315,7 +282,7 @@ To view detailed assignment parameter information, click [here](#assignment-para
 **Purpose:**
 To add an assignment into CampusCompanion.
 
-<div class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **Note:**
 - The start time and end time within the end date (e/) and planned end date (p/) is optional. 
@@ -340,7 +307,7 @@ To view assignment parameter information, click [here](#assignment-parameters)
 
 **Purpose:** Edit the description of a specified assignment to what is specified by `d/`
 
-<div class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **Note**
 - The index refers to the position of the assignment in the assignment list. To find out 
@@ -370,6 +337,7 @@ To view assignment parameter information, click [here](#assignment-parameters)
 <div markdown="block" class="alert alert-danger">
 
 **ALERT**
+
 This command cannot be undone. If you remove the wrong assignment, you will have to add it back using ``add-a``.
 
 </div>
@@ -454,6 +422,41 @@ regarding the assignment and want to continue working on it.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+
+### Listing and Filtering assignments
+
+```list-a [s/YYYY-MM-DD [HH:mm]] [e/YYYY-MM-DD [HH:mm]]```
+
+To view assignment parameter information, click [here](#assignment-parameters).
+
+**Purpose:** To list all the assignments with deadline between the given start date and end date.
+This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
+
+<div markdown="block" class="alert alert-info">
+
+**Note:**
+- In order to use any of the assignment related commands below, you must be in the assignment view. Ie, you must use
+  list-a to switch to assignment view. This is to prevent you from performing commands while you are not looking at the correct list.
+- The start time and end time is optional. If not provided, start time will default to 00:00 and end time will default to 23:59.
+</div>
+
+**Examples:**
+
+| Combination                                                                                                           | Example                                          | What is displayed to you                                                          |
+|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------|
+| **None** present                                                                                                      | ``list-a``                                       | **All** assignments that are saved in CampusCompanion.                            |
+| **Only** _start date with time_ present                                                                               | ``list-a s/2023-12-10 18:00``                    | **All** assignments with deadline **later** than or equal 10 Dec 2023 18:00       |
+| **Only** _start date without time_ present                                                                            | ``list-a s/2023-12-10``                          | **All** assignments with deadline **later** than or equal 10 Dec 2023 00:00       |
+| **Only** _end date with time_ present                                                                                 | ``list-a e/2023-12-10 18:00``                    | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 18:00  |
+| **Only** _end date without time_ present                                                                              | ``list-a e/2023-12-10``                          | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 23:59  |
+| **Both** _start date_ and _end date_ present (Example not shown for this combination without timing, but it is valid) | ``list-a s/2023-12-10 18:00 e/2023-12-17 18:00`` | **All** assignments with deadline between 10 Dec 2023 18:00 and 17 Dec 2023 18:00 |
+
+**When you might use it**:
+- If you want to see all your current assignments.
+- If you want to filter your current assignments by date, and view the assignments only within a specified time frame.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Finding an assignment by keywords
 
 ```find-a KEYWORD```
@@ -516,7 +519,7 @@ list-i to switch to internship view. This is to prevent you from performing comm
 
 ```add-i-role n/NAME OF COMPANY r/ROLE NAME c/INTERNSHIP CYCLE [d/DESCRIPTION] [p/PAY] [o/OUTCOME] [l/LOCATION]```
 
-<div class="alert alert-block alert-warning">
+<div markdown="block" class="alert alert-block alert-warning">
 
 **Parameter Information**
 
@@ -640,7 +643,7 @@ for example, if you had an internship role with the name "TikTok", using the com
 
 ```add-i-task n/NAME i/INDEX OF INTERNSHIP ROLE e/YYYY-MM-DD [HH:mm] [s/STATUS] [o/OUTCOME] [t/TAG]…```
 
-<div class="alert alert-block alert-warning">
+<div markdown="block" class="alert alert-block alert-warning">
 
 **Parameter Information**
 
@@ -804,7 +807,7 @@ will match with this internship task.
 
 ### Exiting the program
 
-```exit```
+``exit``
 
 **Purpose:** Exits the program.
 
@@ -812,7 +815,7 @@ will match with this internship task.
 
 ### Viewing help
 
-```help```
+``help``
 
 **Purpose:** Shows a message explaining how to access the help page, which is the CampusCompanion User Guide. 
 
