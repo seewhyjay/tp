@@ -64,7 +64,7 @@ public class TypicalAssignments {
             .withDeadline(exampleDate3)
             .withPlannedDate(exampleDate3)
             .withTags("Programming").build();
-    public static final Assignment ASSIGNMENT4 = new AssignmentBuilder().withName("CS2103T Milestone 2")
+    public static final Assignment ASSIGNMENT4 = new AssignmentBuilder().withName("CS2105 Milestone 2")
             .withStatus(false).withDescription("Add test cases")
             .withDeadline(exampleDate4)
             .withPlannedDate(exampleDate4)
@@ -92,6 +92,6 @@ public class TypicalAssignments {
 
     public static List<Assignment> getTypicalAssignment() {
         return new ArrayList<>(Arrays.asList(ASSIGNMENT1, ASSIGNMENT2, ASSIGNMENT3,
-                ASSIGNMENT4, ASSIGNMENT5));
+                ASSIGNMENT4));
     }
 }

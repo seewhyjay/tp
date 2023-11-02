@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT3;
-import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT5;
+import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT4;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -71,7 +71,7 @@ public class FindAssignmentCommandTest {
         FindAssignmentCommand command = new FindAssignmentCommand(predicate);
         expectedModel.updateFilteredAssignmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ASSIGNMENT3, ASSIGNMENT5), model.getFilteredAssignmentList());
+        assertEquals(Arrays.asList(ASSIGNMENT3, ASSIGNMENT4), model.getFilteredAssignmentList());
     }
 
     @Test

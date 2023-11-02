@@ -27,7 +27,7 @@ import seedu.address.model.fields.IsoDate;
  */
 public class CommandAssignmentTestUtil {
 
-    public static final String VALID_NAME_ASSIGNMENT = "CS2105 Assignment 2";
+    public static final String VALID_NAME_ASSIGNMENT = "CS2105 OP";
     public static final String VALID_NAME_PROJECT = "CS2103T Quiz";
     public static final String VALID_DESCRIPTION_ASSIGNMENT = "Assignment until K-maps";
     public static final String VALID_DESCRIPTION_PROJECT = "Lecture Quiz";
