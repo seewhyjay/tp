@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
@@ -234,9 +235,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an internship task to the list of internship tasks, checking if the role exists first
      * @param internshipTask
      */
-    public void addInternshipTask(InternshipTask internshipTask) {
+    public void addInternshipTask(InternshipTask internshipTask) throws IllegalValueException {
         if (!internshipRoles.contains(internshipTask.getInternshipRole())) {
-            logger.warning("Error adding internship task: internship role does not exist!");
+            throw new IllegalValueException("Error adding internship task: internship role does not exist!");
         } else {
             internshipTasks.add(internshipTask);
         }

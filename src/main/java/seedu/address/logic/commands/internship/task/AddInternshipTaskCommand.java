@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.internship.task.CliSyntax.PREFIX_TASK_N
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
@@ -98,8 +99,12 @@ public class AddInternshipTaskCommand extends InternshipCommand {
         if (model.hasInternshipTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
-        model.addInternshipTask(toAdd);
+        try {
+            model.addInternshipTask(toAdd);
+        } catch (IllegalValueException ignored) {
+            // Should never happen because it is checked right before this, but this catch is required
+            // because of how deserialisation of stored data happens
+        }
         model.sortInternshipTasks();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
