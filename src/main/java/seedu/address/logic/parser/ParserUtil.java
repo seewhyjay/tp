@@ -33,8 +33,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static final String MESSAGE_INVALID_DATE = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd "
-            + "(default 23:59) format and given date must not be before today's date";
+    public static final String MESSAGE_INVALID_DATE = "Enter date in yyyy-mm-dd HH:mm or yyyy-mm-dd format. "
+            + "Date must be after current date.";
 
     public static final String MESSAGE_INVALID_NAME = "Name cannot be empty";
 

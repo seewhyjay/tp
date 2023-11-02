@@ -2,12 +2,14 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -29,6 +31,8 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_INTERN_ROLES = "InternshipRole list contains duplicate role(s).";
 
     public static final String MESSAGE_DUPLICATE_INTERN_TASKS = "InternshipRole list contains duplicate task(s).";
+
+    private static final Logger logger = LogsCenter.getLogger(JsonSerializableAddressBook.class);
 
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
 
@@ -77,35 +81,51 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedAssignment jsonAdaptedAssignment : assignments) {
-            Assignment assignment = jsonAdaptedAssignment.toModelType();
-            if (addressBook.hasAssignment(assignment)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ASSIGNMENTS);
+            try {
+                Assignment assignment = jsonAdaptedAssignment.toModelType();
+                if (addressBook.hasAssignment(assignment)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_ASSIGNMENTS);
+                }
+                addressBook.addAssignment(assignment);
+            } catch (IllegalValueException e) {
+                logger.warning("Invalid assignment, will not be added.");
             }
-            addressBook.addAssignment(assignment);
         }
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            try {
+                Person person = jsonAdaptedPerson.toModelType();
+                if (addressBook.hasPerson(person)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                }
+                addressBook.addPerson(person);
+            } catch (IllegalValueException e) {
+                logger.warning("Invalid person, will not be added.");
             }
-            addressBook.addPerson(person);
         }
 
         for (JsonAdaptedInternshipRole jsonAdaptedInternshipRole : roles) {
-            InternshipRole role = jsonAdaptedInternshipRole.toModelType();
-            if (addressBook.hasInternshipRole(role)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_ROLES);
+            try {
+                InternshipRole role = jsonAdaptedInternshipRole.toModelType();
+                if (addressBook.hasInternshipRole(role)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_ROLES);
+                }
+                addressBook.addInternshipRole(role);
+            } catch (IllegalValueException e) {
+                logger.warning("Invalid role, will not be added");
             }
-            addressBook.addInternshipRole(role);
         }
 
         for (JsonAdaptedInternshipTask jsonAdaptedInternshipTask : internshipTasks) {
-            InternshipTask internshipTask = jsonAdaptedInternshipTask.toModelType();
-            if (addressBook.hasInternshipTask(internshipTask)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_TASKS);
+            try {
+                InternshipTask internshipTask = jsonAdaptedInternshipTask.toModelType();
+                if (addressBook.hasInternshipTask(internshipTask)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_TASKS);
+                }
+                addressBook.addInternshipTask(internshipTask);
+            } catch (IllegalValueException e) {
+                logger.warning("Invalid task, will not be added");
             }
-            addressBook.addInternshipTask(internshipTask);
         }
         return addressBook;
     }
