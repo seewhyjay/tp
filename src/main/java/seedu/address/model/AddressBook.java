@@ -165,7 +165,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return internshipTasks.asUnmodifiableObservableList();
     }
 
+    /**
+     * Adds an internship task to the list of internship tasks, checking if the role exists first
+     * @param internshipTask
+     */
     public void addInternshipTask(InternshipTask internshipTask) {
+        assert internshipRoles.contains(internshipTask.getInternshipRole());
         internshipTasks.add(internshipTask);
     }
 

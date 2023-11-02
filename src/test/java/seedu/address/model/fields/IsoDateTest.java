@@ -28,6 +28,10 @@ public class IsoDateTest {
         //Date without time
         assertTrue(IsoDate.isValidIsoDateWithoutTimeAfterCurrent(validDate3));
         assertFalse(IsoDate.isValidIsoDateWithoutTimeAfterCurrent(invalidDate2));
+
+        // 29 Feb test
+        assertFalse(IsoDate.isValidIsoDate("2023-02-29 23:59"));
+        assertFalse(IsoDate.isValidIsoDateWithoutTime("2023-02-29"));
     }
 
     @Test

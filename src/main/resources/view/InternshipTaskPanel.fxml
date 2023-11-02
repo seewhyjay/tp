@@ -10,7 +10,6 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css"/>
     </stylesheets>
-
-    <ListView fx:id="internshipTaskView" VBox.vgrow="ALWAYS" />
+    <ListView fx:id="internshipTaskView" VBox.vgrow="ALWAYS" styleClass="rounded-container"/>
 </VBox>
 
