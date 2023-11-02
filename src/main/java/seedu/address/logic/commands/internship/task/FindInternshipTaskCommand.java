@@ -51,7 +51,7 @@ public class FindInternshipTaskCommand extends InternshipCommand {
 
         model.updateFilteredInternshipRoleList(role -> {
             for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
-                if (internshipTask.getInternshipRole().isDuplicate(role)) {
+                if (internshipTask.getInternshipRole().equals(role)) {
                     return true;
                 }
             }
