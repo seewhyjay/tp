@@ -17,7 +17,7 @@
         <Label HBox.hgrow="ALWAYS"  styleClass="h2">Applications</Label>
         <Label HBox.hgrow="ALWAYS" maxWidth="Infinity"></Label>
     </HBox>
-    <VBox fx:id="internshipRolePlaceHolder" VBox.vgrow="ALWAYS" />
+    <VBox fx:id="internshipRolePlaceHolder" VBox.vgrow="ALWAYS"/>
     <HBox>
         <Label HBox.hgrow="ALWAYS" maxWidth="Infinity"></Label>
         <Label HBox.hgrow="ALWAYS" styleClass="h2">Tasks</Label>
