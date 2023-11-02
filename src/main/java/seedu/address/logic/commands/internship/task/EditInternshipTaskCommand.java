@@ -64,6 +64,9 @@ public class EditInternshipTaskCommand extends InternshipCommand {
             throw new CommandException(MESSAGE_INVALID_TASK);
         }
 
+        InternshipTask taskWithNewOutcome = taskToEdit.getNewInternshipTaskWithOutcome(newOutcome);
+        model.setInternshipTask(taskToEdit, taskWithNewOutcome);
+
         // this is kinda whacky, might change in v1.4
         if (newOutcome.getTaskOutcome().equals(Outcome.OFFERED)) {
             Index roleIndex = Index.fromZeroBased(model.getFilteredInternshipRoleList().indexOf(taskToEdit.getInternshipRole()));
@@ -72,8 +75,6 @@ public class EditInternshipTaskCommand extends InternshipCommand {
             editRoleCommand.execute(model);
         }
 
-        InternshipTask taskWithNewOutcome = taskToEdit.getNewInternshipTaskWithOutcome(newOutcome);
-        model.setInternshipTask(taskToEdit, taskWithNewOutcome);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(taskWithNewOutcome)));
     }
 
