@@ -122,6 +122,9 @@ class JsonSerializableAddressBook {
                 if (addressBook.hasInternshipTask(internshipTask)) {
                     throw new IllegalValueException(MESSAGE_DUPLICATE_INTERN_TASKS);
                 }
+                if (!addressBook.getInternshipRoleList().contains(internshipTask.getInternshipRole())) {
+                    throw new IllegalValueException("Task does not belong to a valid internship role");
+                }
                 addressBook.addInternshipTask(internshipTask);
             } catch (IllegalValueException e) {
                 logger.warning("Invalid task, will not be added");
