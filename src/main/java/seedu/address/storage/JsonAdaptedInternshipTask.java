@@ -97,6 +97,7 @@ public class JsonAdaptedInternshipTask {
         final IsoDate modelDeadline = new IsoDate(LocalDateTime.parse(deadline,
                 DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT)));
 
+
         if (outcome == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Outcome.class.getSimpleName()));
         }
@@ -107,7 +108,12 @@ public class JsonAdaptedInternshipTask {
         }
         final Status modelStatus = new Status(status);
 
+        if (internshipRole == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, InternshipRole
+                    .class.getSimpleName()));
+        }
         final InternshipRole modelInternshipRole = internshipRole.toModelType();
+
         final Set<Tag> modelTags = new HashSet<>(internshipTaskTags);
 
         return new InternshipTask(modelInternshipRole, modelName, modelDeadline,

@@ -45,5 +45,6 @@ JsonSerializableAddressBook --> "*" JsonAdaptedInternshipTask
 JsonAdaptedAssignment --> "*" JsonAdaptedTag
 JsonAdaptedInternshipRole --> "*" JsonAdaptedTag
 JsonAdaptedInternshipTask --> "*" JsonAdaptedTag
+JsonAdaptedInternshipTask --> "1" JsonAdaptedInternshipRole
 
 @enduml

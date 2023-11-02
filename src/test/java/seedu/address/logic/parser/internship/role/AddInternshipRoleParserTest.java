@@ -180,18 +180,6 @@ public class AddInternshipRoleParserTest {
     }
 
     @Test
-    public void parseNegativePay_failure() throws ParseException {
-        String validInput = " n/GovTech r/SWE c/Summer p/-1000.00 ";
-        assertParseFailure(parser, validInput, invalidPayMsg);
-    }
-
-    @Test
-    public void parseInvalidPay_failure() throws ParseException {
-        String validInput = " n/GovTech r/SWE c/Summer p/.00 ";
-        assertParseFailure(parser, validInput, invalidPayMsg);
-    }
-
-    @Test
     public void parseEmptyLocation_failure() throws ParseException {
         String validInput = " n/GovTech  r/SWE c/Summer o/accepted d/description  p/1000.00 l/ t/tag";
         assertParseFailure(parser, validInput, "Location cannot be empty");
@@ -206,16 +194,35 @@ public class AddInternshipRoleParserTest {
 
     @Test
     public void parseMissingRole_failure() throws ParseException {
-        String validInput = "n/Fb c/Summer";
+        String validInput = " n/Fb c/Summer";
         assertParseFailure(parser, validInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddInternshipRoleCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parseMissingCycle_failure() throws ParseException {
-        String validInput = "n/Fb r/DevOps ";
+        String validInput = " n/Fb r/DevOps ";
         assertParseFailure(parser, validInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddInternshipRoleCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parseInvalidOutcome_failure() throws ParseException {
+        String validInput = " n/Fb r/DevOps c/Summer o/Invalid";
+        assertParseFailure(parser, validInput,
+                "Enter a valid outcome: o/follow-up, ghosted, rejected, offered, accepted, awaiting");
+    }
+
+    @Test
+    public void parseNegativePay_failure() throws ParseException {
+        String validInput = " n/GovTech r/SWE c/Summer p/-1000.00 ";
+        assertParseFailure(parser, validInput, invalidPayMsg);
+    }
+
+    @Test
+    public void parseInvalidPay_failure() throws ParseException {
+        String validInput = " n/GovTech r/SWE c/Summer p/.00 ";
+        assertParseFailure(parser, validInput, invalidPayMsg);
     }
 
 }

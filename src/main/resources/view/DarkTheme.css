@@ -443,5 +443,9 @@
     -fx-font-weight: 700;
 }
 
+.rounded-container {
+    -fx-background-radius: 1em;
+}
+
 
 

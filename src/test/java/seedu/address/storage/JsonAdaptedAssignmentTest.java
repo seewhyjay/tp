@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 
 public class JsonAdaptedAssignmentTest {
     private final String invalidName = "";
-    private final String invalidDate = "1111-23-11";
+    private final String invalidDate = "2023-02-31";
 
     private final String validName = "task1";
     private final String validDescription = "description";
