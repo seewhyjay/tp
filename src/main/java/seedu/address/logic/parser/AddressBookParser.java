@@ -25,9 +25,11 @@ import seedu.address.logic.commands.assignment.UnMarkAssignmentCommand;
 import seedu.address.logic.commands.internship.ListInternshipCommand;
 import seedu.address.logic.commands.internship.role.AddInternshipRoleCommand;
 import seedu.address.logic.commands.internship.role.DeleteInternshipRoleCommand;
+import seedu.address.logic.commands.internship.role.EditInternshipRoleCommand;
 import seedu.address.logic.commands.internship.role.FindInternshipRoleCommand;
 import seedu.address.logic.commands.internship.task.AddInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.DeleteInternshipTaskCommand;
+import seedu.address.logic.commands.internship.task.EditInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.FindInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.MarkInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.UnMarkInternshipTaskCommand;
@@ -46,9 +48,11 @@ import seedu.address.logic.parser.assignment.UnMarkAssignmentParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.internship.role.AddInternshipRoleParser;
 import seedu.address.logic.parser.internship.role.DeleteInternshipRoleParser;
+import seedu.address.logic.parser.internship.role.EditInternshipRoleParser;
 import seedu.address.logic.parser.internship.role.FindInternshipRoleParser;
 import seedu.address.logic.parser.internship.task.AddInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.DeleteInternshipTaskParser;
+import seedu.address.logic.parser.internship.task.EditInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.FindInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.MarkInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.UnMarkInternshipTaskParser;
@@ -161,6 +165,10 @@ public class AddressBookParser {
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new DeleteInternshipRoleParser().parse(arguments);
 
+        case EditInternshipRoleCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new EditInternshipRoleParser().parse(arguments);
+
         case AddInternshipTaskCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new AddInternshipTaskParser().parse(arguments);
@@ -168,6 +176,10 @@ public class AddressBookParser {
         case DeleteInternshipTaskCommand.COMMAND_WORD:
             verifyView(viewVerifier, View.INTERNSHIPS);
             return new DeleteInternshipTaskParser().parse(arguments);
+
+        case EditInternshipTaskCommand.COMMAND_WORD:
+            verifyView(viewVerifier, View.INTERNSHIPS);
+            return new EditInternshipTaskParser().parse(arguments);
 
         case ListInternshipCommand.COMMAND_WORD:
             return new ListInternshipCommand();

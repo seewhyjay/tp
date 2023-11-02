@@ -111,6 +111,10 @@ public final class InternshipRole implements Unique<InternshipRole> {
         return name.toString() + ", " + role.toString() + ", " + cycle.toString();
     }
 
+    public InternshipRole getNewInternshipRoleWithOutcome(ApplicationOutcome newOutcome) {
+        return new InternshipRole(name, role, cycle, description, pay, newOutcome, location, tags);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

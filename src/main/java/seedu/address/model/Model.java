@@ -151,6 +151,8 @@ public interface Model {
 
     boolean hasInternshipRole(InternshipRole role);
 
+    void setInternshipRole(InternshipRole role, InternshipRole newRole);
+
     ObservableList<InternshipRole> getFilteredInternshipRoleList();
 
     ObservableList<InternshipRole> getUnfilteredInternshipRoleList();
