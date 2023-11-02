@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -47,7 +48,16 @@ public class FindInternshipTaskCommand extends InternshipCommand {
         for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
             internshipRoles.add(internshipTask.getInternshipRole());
         }
-        model.updateFilteredInternshipRoleList(internshipRoles::contains);
+
+        model.updateFilteredInternshipRoleList(role -> {
+            for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
+                if (internshipTask.getInternshipRole().isDuplicate(role)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_INTERNSHIPS_LISTED_OVERVIEW,
                         model.getFilteredInternshipTaskList().size()));

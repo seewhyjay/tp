@@ -99,12 +99,15 @@ public class EditInternshipRoleCommand extends InternshipCommand {
             editedRole = editedRole.getNewInternshipRoleWithLocation(newLocation);
         }
 
-        model.setInternshipRole(roleToEdit, editedRole);
+
         for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
             if (internshipTask.getInternshipRole().equals(roleToEdit)) {
                 model.setInternshipTask(internshipTask, internshipTask.editInternshipRole(editedRole));
             }
         }
+
+        model.setInternshipRole(roleToEdit, editedRole);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(editedRole)));
     }
 
