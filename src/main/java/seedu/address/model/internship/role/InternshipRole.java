@@ -115,6 +115,22 @@ public final class InternshipRole implements Unique<InternshipRole> {
         return new InternshipRole(name, role, cycle, description, pay, newOutcome, location, tags);
     }
 
+    public InternshipRole getNewInternshipRoleWithCycle(Cycle newCycle) {
+        return new InternshipRole(name, role, newCycle, description, pay, outcome, location, tags);
+    }
+
+    public InternshipRole getNewInternshipRoleWithDescription(Description newDescription) {
+        return new InternshipRole(name, role, cycle, newDescription, pay, outcome, location, tags);
+    }
+
+    public InternshipRole getNewInternshipRoleWithPay(Pay newPay) {
+        return new InternshipRole(name, role, cycle, description, newPay, outcome, location, tags);
+    }
+
+    public InternshipRole getNewInternshipRoleWithLocation(Location newLocation) {
+        return new InternshipRole(name, role, cycle, description, pay, outcome, newLocation, tags);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

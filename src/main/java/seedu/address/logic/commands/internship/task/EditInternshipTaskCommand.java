@@ -12,8 +12,12 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
+import seedu.address.logic.commands.internship.role.EditInternshipRoleCommand;
 import seedu.address.model.Model;
+import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Outcome;
 import seedu.address.model.fields.TaskOutcome;
+import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
 
 /**
@@ -59,6 +63,12 @@ public class EditInternshipTaskCommand extends InternshipCommand {
         if (!model.hasInternshipTask(taskToEdit)) {
             throw new CommandException(MESSAGE_INVALID_TASK);
         }
+
+        /*if (newOutcome.getTaskOutcome() == Outcome.OFFERED) {
+            EditInternshipRoleCommand editRoleCommand = new EditInternshipRoleCommand(index,
+                    new ApplicationOutcome(Outcome.OFFERED));
+            editRoleCommand.execute(model);
+        }*/
 
         InternshipTask taskWithNewOutcome = taskToEdit.getNewInternshipTaskWithOutcome(newOutcome);
         model.setInternshipTask(taskToEdit, taskWithNewOutcome);
