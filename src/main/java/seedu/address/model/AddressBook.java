@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
@@ -194,6 +196,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         internshipRoles.set(role, newRole);
     }
 
+    //util methods
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("assignments", assignments)
+                .add("internshipRoles", internshipRoles)
+                .add("internshipTasks", internshipTasks)
+                .toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -206,6 +218,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return assignments.equals(otherAddressBook.assignments);
+        return assignments.equals(otherAddressBook.assignments)
+                && internshipRoles.equals(otherAddressBook.internshipRoles)
+                && internshipTasks.equals(otherAddressBook.internshipTasks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(assignments, internshipRoles, internshipTasks);
     }
 }
