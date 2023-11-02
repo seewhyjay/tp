@@ -12,7 +12,10 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
+import seedu.address.logic.commands.internship.role.EditInternshipRoleCommand;
 import seedu.address.model.Model;
+import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Outcome;
 import seedu.address.model.fields.TaskOutcome;
 import seedu.address.model.internship.task.InternshipTask;
 
@@ -38,7 +41,8 @@ public class EditInternshipTaskCommand extends InternshipCommand {
 
     /**
      * The constructor for an EditInternshipRoleCommand
-     * @param index The index of the InternshipRole to be edited
+     *
+     * @param index      The index of the InternshipRole to be edited
      * @param newOutcome The new outcome for the target InternshipRole
      */
     public EditInternshipTaskCommand(Index index, TaskOutcome newOutcome) {
@@ -60,14 +64,18 @@ public class EditInternshipTaskCommand extends InternshipCommand {
             throw new CommandException(MESSAGE_INVALID_TASK);
         }
 
-        /*if (newOutcome.getTaskOutcome() == Outcome.OFFERED) {
-            EditInternshipRoleCommand editRoleCommand = new EditInternshipRoleCommand(index,
-                    new ApplicationOutcome(Outcome.OFFERED));
-            editRoleCommand.execute(model);
-        }*/
-
         InternshipTask taskWithNewOutcome = taskToEdit.getNewInternshipTaskWithOutcome(newOutcome);
         model.setInternshipTask(taskToEdit, taskWithNewOutcome);
+
+        // this is kinda whacky, might change in v1.4
+        if (newOutcome.getTaskOutcome().equals(Outcome.OFFERED)) {
+            Index roleIndex = Index.fromZeroBased(model.getFilteredInternshipRoleList().indexOf(
+                    taskToEdit.getInternshipRole()));
+            EditInternshipRoleCommand editRoleCommand = new EditInternshipRoleCommand(roleIndex, null, null,
+                    null, new ApplicationOutcome(Outcome.OFFERED), null);
+            editRoleCommand.execute(model);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(taskWithNewOutcome)));
     }
 
