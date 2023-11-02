@@ -23,6 +23,7 @@ import seedu.address.model.fields.Description;
 import seedu.address.model.fields.Location;
 import seedu.address.model.fields.Pay;
 import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 
 /**
  * A command that edits the application outcome of an InternshipRole when executed.
@@ -99,6 +100,11 @@ public class EditInternshipRoleCommand extends InternshipCommand {
         }
 
         model.setInternshipRole(roleToEdit, editedRole);
+        for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
+            if (internshipTask.getInternshipRole().equals(roleToEdit)) {
+                model.setInternshipTask(internshipTask, internshipTask.editInternshipRole(editedRole));
+            }
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(editedRole)));
     }
 
