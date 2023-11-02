@@ -16,7 +16,7 @@ encounter in your university life.
 - Overview of the tasks for the upcoming week and month
 
 ## Table of Contents
-- [About this guide](#about-this-guide)
+- [How to use this guide](#how-to-use-this-guide)
   - [Notations used in this guide](#notations-used-in-this-guide)
   - [New Users](#new-users)
   - [Experienced Users](#experienced-users)
@@ -64,7 +64,7 @@ encounter in your university life.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## About this guide
+## How to use this guide
 
 ### Notations used in this guide
 
@@ -188,9 +188,9 @@ Here is a quick summary of each GUI component within CampusCompanion
 
 ### Notes about the GUI
 
-In order to use any `assignment` commands, you must first switch to the assignment view (using list-a). Otherwise, you will receive an error message. 
+In order to use any `assignment` commands, you must first switch to the assignment view (using `list-a`). Otherwise, you will receive an error message. 
 
-In order to use any `internship` commands, you must first switch to the internship view (using list-i). Otherwise, you will receive an error message.
+In order to use any `internship` commands, you must first switch to the internship view (using `list-i`). Otherwise, you will receive an error message.
 
 While there are clickable buttons such as the calendar navigation button and the options on the menu bar, CampusCompanion is a CLI-focused application, and as such, implements commands to do the same thing.
 For example:
