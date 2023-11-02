@@ -14,6 +14,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
 import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Cycle;
+import seedu.address.model.fields.Description;
+import seedu.address.model.fields.Location;
+import seedu.address.model.fields.Pay;
 import seedu.address.model.internship.role.InternshipRole;
 
 /**
@@ -34,16 +38,25 @@ public class EditInternshipRoleCommand extends InternshipCommand {
     public static final String MESSAGE_INVALID_ROLE = "This internship role does not exist in the address book";
 
     private final Index index;
+    private final Cycle newCycle;
+    private final Description newDescription;
+    private final Pay newPay;
     private final ApplicationOutcome newOutcome;
+    private final Location newLocation;
 
     /**
      * The constructor for an EditInternshipRoleCommand
      * @param index The index of the InternshipRole to be edited
      * @param newOutcome The new outcome for the target InternshipRole
      */
-    public EditInternshipRoleCommand(Index index, ApplicationOutcome newOutcome) {
+    public EditInternshipRoleCommand(Index index, Cycle newCycle, Description newDescription, Pay newPay,
+                                     ApplicationOutcome newOutcome, Location newLocation) {
         this.index = index;
+        this.newCycle = newCycle;
+        this.newDescription = newDescription;
+        this.newPay = newPay;
         this.newOutcome = newOutcome;
+        this.newLocation = newLocation;
     }
 
     @Override
@@ -60,9 +73,25 @@ public class EditInternshipRoleCommand extends InternshipCommand {
             throw new CommandException(MESSAGE_INVALID_ROLE);
         }
 
-        InternshipRole roleWithNewOutcome = roleToEdit.getNewInternshipRoleWithOutcome(newOutcome);
-        model.setInternshipRole(roleToEdit, roleWithNewOutcome);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(roleWithNewOutcome)));
+        InternshipRole editedRole = roleToEdit;
+        if (newCycle != null) {
+            editedRole = editedRole.getNewInternshipRoleWithCycle(newCycle);
+        }
+        if (!newDescription.equals("")) {
+            editedRole = editedRole.getNewInternshipRoleWithDescription(newDescription);
+        }
+        if (newPay != null) {
+            editedRole = editedRole.getNewInternshipRoleWithPay(newPay);
+        }
+        if (newOutcome != null) {
+            editedRole = editedRole.getNewInternshipRoleWithOutcome(newOutcome);
+        }
+        if (newLocation != null) {
+            editedRole = editedRole.getNewInternshipRoleWithLocation(newLocation);
+        }
+
+        model.setInternshipRole(roleToEdit, editedRole);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(editedRole)));
     }
 
     @Override
