@@ -43,12 +43,6 @@ public class FindInternshipTaskCommand extends InternshipCommand {
 
         model.updateFilteredInternshipTaskList(predicate);
 
-        // List the roles of these tasks
-        List<InternshipRole> internshipRoles = new ArrayList<>();
-        for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
-            internshipRoles.add(internshipTask.getInternshipRole());
-        }
-
         model.updateFilteredInternshipRoleList(role -> {
             for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
                 if (internshipTask.getInternshipRole().equals(role)) {

@@ -100,6 +100,8 @@ public class EditInternshipRoleCommand extends InternshipCommand {
         }
 
 
+        // Order matters here
+        // This loop has to be called before setInternshipRole
         for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
             if (internshipTask.getInternshipRole().equals(roleToEdit)) {
                 model.setInternshipTask(internshipTask, internshipTask.editInternshipRole(editedRole));
