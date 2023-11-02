@@ -66,7 +66,7 @@ public class EditInternshipTaskCommand extends InternshipCommand {
 
         // this is kinda whacky, might change in v1.4
         if (newOutcome.getTaskOutcome().equals(Outcome.OFFERED)) {
-            Index roleIndex = Index.fromOneBased(model.getFilteredInternshipRoleList().indexOf(taskToEdit.getInternshipRole()) + 1);
+            Index roleIndex = Index.fromZeroBased(model.getFilteredInternshipRoleList().indexOf(taskToEdit.getInternshipRole()));
             EditInternshipRoleCommand editRoleCommand = new EditInternshipRoleCommand(roleIndex, null, null,
                     null, new ApplicationOutcome(Outcome.OFFERED), null);
             editRoleCommand.execute(model);
