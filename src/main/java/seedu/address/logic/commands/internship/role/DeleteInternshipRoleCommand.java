@@ -41,7 +41,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
         requireNonNull(model);
 
         List<InternshipRole> lastShownRoleList = model.getFilteredInternshipRoleList();
-        List<InternshipTask> lastShownTaskList = model.getFilteredInternshipTaskList();
+        List<InternshipTask> unfilteredTaskList = model.getUnfilteredInternshipTaskList();
         List<InternshipTask> taskListToDelete = new ArrayList<>();
 
         if (targetIndex.getZeroBased() >= lastShownRoleList.size()) {
@@ -49,7 +49,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
         }
         InternshipRole internshipRoleToDelete = lastShownRoleList.get(targetIndex.getZeroBased());
 
-        lastShownTaskList.stream()
+        unfilteredTaskList.stream()
                 .forEach(task -> {
                     if (new InternshipTaskHasSameInternshipRolePredicate(internshipRoleToDelete).test(task)) {
                         taskListToDelete.add(task);
