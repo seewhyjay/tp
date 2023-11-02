@@ -39,7 +39,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
             + "[" + PREFIX_PAY + "PAY " + "]"
             + "[" + PREFIX_OUTCOME + "OUTCOME " + "]"
             + "[" + PREFIX_LOCATION + "LOCATION " + "]\n"
-            + "Example: " + COMMAND_WORD + "i/ 1" + " o/ accepted" + " p/3000";
+            + "Example: " + COMMAND_WORD + " i/ 1" + " o/ accepted" + " p/3000";
 
     public static final String MESSAGE_SUCCESS = "Internship role outcome updated to: %1$s";
 
