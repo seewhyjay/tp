@@ -1,8 +1,12 @@
 package seedu.address.logic.commands.internship.role;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_CYCLE;
+import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_OUTCOME;
+import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_PAY;
 
 import java.util.List;
 
@@ -29,9 +33,13 @@ public class EditInternshipRoleCommand extends InternshipCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the application outcome of an InternshipRole. "
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX (must be a positive integer)" + "\n"
-            + PREFIX_OUTCOME + "OUTCOME" + "\n"
-            + "Example: " + COMMAND_WORD + "i/ 1" + " o/ accepted";
+            + PREFIX_INDEX + "INDEX (must be a positive integer) "
+            + "[" + PREFIX_CYCLE + "CYCLE " + "]"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION " + "]"
+            + "[" + PREFIX_PAY + "PAY " + "]"
+            + "[" + PREFIX_OUTCOME + "OUTCOME " + "]"
+            + "[" + PREFIX_LOCATION + "LOCATION " + "]\n"
+            + "Example: " + COMMAND_WORD + "i/ 1" + " o/ accepted" + " p/3000";
 
     public static final String MESSAGE_SUCCESS = "Internship role outcome updated to: %1$s";
 
@@ -77,7 +85,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
         if (newCycle != null) {
             editedRole = editedRole.getNewInternshipRoleWithCycle(newCycle);
         }
-        if (!newDescription.equals("")) {
+        if (newDescription != null) {
             editedRole = editedRole.getNewInternshipRoleWithDescription(newDescription);
         }
         if (newPay != null) {

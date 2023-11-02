@@ -5,13 +5,9 @@ import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_CYCLE;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_OUTCOME;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_PAY;
-import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -26,11 +22,7 @@ import seedu.address.model.fields.ApplicationOutcome;
 import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
 import seedu.address.model.fields.Location;
-import seedu.address.model.fields.Name;
-import seedu.address.model.fields.Outcome;
 import seedu.address.model.fields.Pay;
-import seedu.address.model.fields.Role;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parser to create an EditInternshipRoleCommand from the given input
@@ -55,8 +47,9 @@ public class EditInternshipRoleParser implements Parser<EditInternshipRoleComman
                 ? null
                 : ParserUtil.parseCycle(argumentMultimap.getValue(PREFIX_CYCLE).get());
 
-        Description newDescription = ParserUtil.parseDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION)
-                .orElse(""));
+        Description newDescription = argumentMultimap.getValue(PREFIX_DESCRIPTION).isEmpty()
+                ? null
+                : ParserUtil.parseDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
 
         Pay newPay = argumentMultimap.getValue(PREFIX_PAY).isEmpty()
                 ? null
