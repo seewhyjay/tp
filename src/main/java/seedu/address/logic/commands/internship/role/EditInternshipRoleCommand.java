@@ -110,6 +110,11 @@ public class EditInternshipRoleCommand extends InternshipCommand {
 
         model.setInternshipRole(roleToEdit, editedRole);
 
+        // Kinda hacky, but this is to force a Re render
+        for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
+            model.setInternshipTask(internshipTask, internshipTask);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(editedRole)));
     }
 
