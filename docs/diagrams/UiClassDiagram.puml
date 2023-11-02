@@ -11,10 +11,16 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class AssignmentListPanel
+Class AssignmentCard
 Class StatusBarFooter
 Class CommandBox
+Class InternPanel
+Class InternshipRolePanel
+Class InternshipTaskPanel
+Class InternshipRoleCard
+Class InternshipTaskCard
+Class Calendar
 }
 
 package Model <<Rectangle>> {
@@ -32,26 +38,42 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" AssignmentListPanel
+MainWindow *-down-> "1" InternPanel
+MainWindow *-down-> "1" Calendar
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+
+AssignmentListPanel -down-> "*" AssignmentCard
+InternPanel -down-> "1" InternshipRolePanel
+InternPanel -down-> "1" InternshipTaskPanel
+InternshipRolePanel -down-> "*" InternshipRoleCard
+InternshipTaskPanel -down-> "*" InternshipTaskCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+AssignmentListPanel --|> UiPart
+AssignmentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+InternPanel --|> UiPart
+InternshipRolePanel --|> UiPart
+InternshipTaskPanel --|> UiPart
+InternshipRoleCard --|> UiPart
+InternshipTaskCard --|> UiPart
+Calendar --|> UiPart
 
-PersonCard ..> Model
+AssignmentCard ..> Model
+InternshipRoleCard ..> Model
+InternshipTaskCard ..> Model
+Calendar ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+AssignmentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
