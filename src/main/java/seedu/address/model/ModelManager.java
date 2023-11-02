@@ -13,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
@@ -252,7 +251,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addInternshipTask(InternshipTask internshipTask) throws IllegalValueException {
+    public void addInternshipTask(InternshipTask internshipTask) {
         requireNonNull(internshipTask);
         addressBook.addInternshipTask(internshipTask);
     }
