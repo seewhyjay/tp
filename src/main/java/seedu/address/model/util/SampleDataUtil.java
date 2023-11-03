@@ -1,18 +1,29 @@
 package seedu.address.model.util;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.fields.ApplicationOutcome;
+import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
 import seedu.address.model.fields.IsoDate;
+import seedu.address.model.fields.Location;
 import seedu.address.model.fields.NoDate;
+import seedu.address.model.fields.Outcome;
+import seedu.address.model.fields.Pay;
+import seedu.address.model.fields.Role;
 import seedu.address.model.fields.Status;
+import seedu.address.model.fields.TaskOutcome;
+import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -64,6 +75,33 @@ public class SampleDataUtil {
         };
     }
 
+    private static InternshipRole getSampleRole1() {
+        return new InternshipRole(new seedu.address.model.fields.Name("Google"),
+                new Role("SWE"), new Cycle("Summer"), new Description(""),
+                new Pay(new BigDecimal("2000")), new ApplicationOutcome(Outcome.FOLLOW_UP),
+                new Location(""), new HashSet<>());
+    }
+
+    private static InternshipRole getSampleRole2() {
+        return  new InternshipRole(new seedu.address.model.fields.Name("Tiktok"),
+                new Role("SWE"), new Cycle("Summer"), new Description(""),
+                new Pay(new BigDecimal("1800")), new ApplicationOutcome(Outcome.FOLLOW_UP),
+                new Location(""), new HashSet<>());
+    }
+
+    private static InternshipRole[] getSampleInternshipRoles() {
+        return new InternshipRole[] { getSampleRole1(), getSampleRole2() };
+    }
+
+    private static InternshipTask[] getSampleInternshipTasks() {
+       return new InternshipTask[] {
+               new InternshipTask(getSampleRole1(), new seedu.address.model.fields.Name("OA"),
+                       new IsoDate(LocalDateTime.parse("2023-11-11 23:59",
+                       DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))), new Status(false),
+                       new TaskOutcome(Outcome.AWAITING), new HashSet<>())
+       };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -72,6 +110,15 @@ public class SampleDataUtil {
         for (Assignment assignment : getSampleAssignments()) {
             sampleAb.addAssignment(assignment);
         }
+
+        for (InternshipRole role : getSampleInternshipRoles()) {
+            sampleAb.addInternshipRole(role);
+        }
+
+        for (InternshipTask task : getSampleInternshipTasks()) {
+            sampleAb.addInternshipTask(task);
+        }
+
         return sampleAb;
     }
 
