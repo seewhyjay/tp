@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -78,14 +77,14 @@ public class SampleDataUtil {
     private static InternshipRole getSampleRole1() {
         return new InternshipRole(new seedu.address.model.fields.Name("Google"),
                 new Role("SWE"), new Cycle("Summer"), new Description(""),
-                new Pay(new BigDecimal("2000")), new ApplicationOutcome(Outcome.FOLLOW_UP),
+                new Pay(null), new ApplicationOutcome(Outcome.FOLLOW_UP),
                 new Location(""), new HashSet<>());
     }
 
     private static InternshipRole getSampleRole2() {
-        return  new InternshipRole(new seedu.address.model.fields.Name("Tiktok"),
+        return new InternshipRole(new seedu.address.model.fields.Name("Tiktok"),
                 new Role("SWE"), new Cycle("Summer"), new Description(""),
-                new Pay(new BigDecimal("1800")), new ApplicationOutcome(Outcome.FOLLOW_UP),
+                new Pay(null), new ApplicationOutcome(Outcome.FOLLOW_UP),
                 new Location(""), new HashSet<>());
     }
 
@@ -94,12 +93,10 @@ public class SampleDataUtil {
     }
 
     private static InternshipTask[] getSampleInternshipTasks() {
-       return new InternshipTask[] {
-               new InternshipTask(getSampleRole1(), new seedu.address.model.fields.Name("OA"),
-                       new IsoDate(LocalDateTime.parse("2023-11-11 23:59",
-                       DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))), new Status(false),
-                       new TaskOutcome(Outcome.AWAITING), new HashSet<>())
-       };
+        return new InternshipTask[] { new InternshipTask(getSampleRole1(), new seedu.address.model.fields.Name("OA"),
+                new IsoDate(LocalDateTime.parse("2023-11-11 23:59",
+                        DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT))),
+                new Status(false), new TaskOutcome(Outcome.AWAITING), new HashSet<>()) };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
