@@ -99,6 +99,9 @@ public class EditInternshipRoleCommand extends InternshipCommand {
             editedRole = editedRole.getNewInternshipRoleWithLocation(newLocation);
         }
 
+        if (model.hasInternshipRole(editedRole)) {
+            throw new CommandException("This will lead to duplicate internship roles existing!");
+        }
 
         // Order matters here
         // This loop has to be called before setInternshipRole
