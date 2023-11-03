@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.internship.role;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_EDITED_FIELDS_ARE_THE_SAME;
+import static seedu.address.logic.Messages.MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_CYCLE;
@@ -34,7 +36,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the application outcome of an InternshipRole. "
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX (must be a positive integer) "
+            + PREFIX_INDEX + "INDEX (must be a positive integer) and AT LEAST one of the following: "
             + "[" + PREFIX_CYCLE + "CYCLE " + "]"
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION " + "]"
             + "[" + PREFIX_PAY + "PAY " + "]"
@@ -84,23 +86,38 @@ public class EditInternshipRoleCommand extends InternshipCommand {
 
         InternshipRole editedRole = roleToEdit;
         if (newCycle != null) {
+            if (roleToEdit.getCycle().equals(newCycle)) {
+                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
+            }
             editedRole = editedRole.getNewInternshipRoleWithCycle(newCycle);
         }
         if (newDescription != null) {
+            if (roleToEdit.getCycle().equals(newCycle)) {
+                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
+            }
             editedRole = editedRole.getNewInternshipRoleWithDescription(newDescription);
         }
         if (newPay != null) {
+            if (roleToEdit.getCycle().equals(newCycle)) {
+                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
+            }
             editedRole = editedRole.getNewInternshipRoleWithPay(newPay);
         }
         if (newOutcome != null) {
+            if (roleToEdit.getCycle().equals(newCycle)) {
+                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
+            }
             editedRole = editedRole.getNewInternshipRoleWithOutcome(newOutcome);
         }
         if (newLocation != null) {
+            if (roleToEdit.getCycle().equals(newCycle)) {
+                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
+            }
             editedRole = editedRole.getNewInternshipRoleWithLocation(newLocation);
         }
 
         if (model.hasInternshipRole(editedRole)) {
-            throw new CommandException("This will lead to duplicate internship roles existing!");
+            throw new CommandException(MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES);
         }
 
         // Order matters here

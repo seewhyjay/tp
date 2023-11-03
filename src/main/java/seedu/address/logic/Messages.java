@@ -29,7 +29,10 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
-
+    public static final String MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES = "This will lead to duplicate internship roles"
+            + " existing!";
+    public static final String MESSAGE_EDITED_FIELDS_ARE_THE_SAME = "You do not have to specify fields if they are"
+            + " to remain the same";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

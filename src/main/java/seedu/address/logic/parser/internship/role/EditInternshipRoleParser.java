@@ -64,6 +64,11 @@ public class EditInternshipRoleParser implements Parser<EditInternshipRoleComman
                 ? null
                 : ParserUtil.parseLocation(argumentMultimap.getValue(PREFIX_LOCATION).get());
 
+        if (newCycle == null && newLocation == null && newDescription == null && newOutcome == null && newPay == null) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditInternshipRoleCommand.MESSAGE_USAGE));
+        }
+
         return new EditInternshipRoleCommand(index, newCycle, newDescription, newPay, newOutcome, newLocation);
     }
 
