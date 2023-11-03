@@ -551,7 +551,7 @@ To add an internship role into CampusCompanion.
 
 #### Editing an internship role
 
-```edit-i-role i/INDEX d/DESCRIPTION```
+```edit-i-role i/INDEX [c/CYCLE] [d/DESCRIPTION] [p/PAY] [o/OUTCOME] [l/LOCATION]```
 
 To view internship role parameter information, click [here](#internship-role-parameters)
 
