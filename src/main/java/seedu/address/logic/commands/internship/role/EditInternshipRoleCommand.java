@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.internship.role;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_EDITED_FIELDS_ARE_THE_SAME;
+import static seedu.address.logic.Messages.MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_CYCLE;
@@ -34,7 +36,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the application outcome of an InternshipRole. "
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX (must be a positive integer) "
+            + PREFIX_INDEX + "INDEX (must be a positive integer) and AT LEAST one of the following: "
             + "[" + PREFIX_CYCLE + "CYCLE " + "]"
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION " + "]"
             + "[" + PREFIX_PAY + "PAY " + "]"
@@ -55,7 +57,8 @@ public class EditInternshipRoleCommand extends InternshipCommand {
 
     /**
      * The constructor for an EditInternshipRoleCommand
-     * @param index The index of the InternshipRole to be edited
+     *
+     * @param index      The index of the InternshipRole to be edited
      * @param newOutcome The new outcome for the target InternshipRole
      */
     public EditInternshipRoleCommand(Index index, Cycle newCycle, Description newDescription, Pay newPay,
@@ -99,21 +102,26 @@ public class EditInternshipRoleCommand extends InternshipCommand {
             editedRole = editedRole.getNewInternshipRoleWithLocation(newLocation);
         }
 
-        if (model.hasInternshipRole(editedRole)) {
-            throw new CommandException("This will lead to duplicate internship roles existing!");
+        if (roleToEdit.equals(editedRole)) {
+            throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
         }
 
-        // Order matters here
-        // This loop has to be called before setInternshipRole
+        if (!editedRole.isDuplicate(roleToEdit) && model.hasInternshipRole(editedRole)) {
+            throw new CommandException(MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES);
+        }
+
+        model.setInternshipRole(roleToEdit, editedRole);
+
         for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
             if (internshipTask.getInternshipRole().equals(roleToEdit)) {
                 model.setInternshipTask(internshipTask, internshipTask.editInternshipRole(editedRole));
             }
         }
 
-        model.setInternshipRole(roleToEdit, editedRole);
+        // Force a Re render with updated values, by calling the set method
 
-        // Kinda hacky, but this is to force a Re render
+        model.setInternshipRole(editedRole, editedRole);
+
         for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
             model.setInternshipTask(internshipTask, internshipTask);
         }
