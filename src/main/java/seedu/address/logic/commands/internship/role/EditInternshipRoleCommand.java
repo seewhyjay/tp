@@ -106,11 +106,10 @@ public class EditInternshipRoleCommand extends InternshipCommand {
             throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
         }
 
-        if (model.hasInternshipRole(editedRole)) {
+        if (!editedRole.isDuplicate(roleToEdit) && model.hasInternshipRole(editedRole)) {
             throw new CommandException(MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES);
         }
 
-        // Order matters here
         model.setInternshipRole(roleToEdit, editedRole);
 
         for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
