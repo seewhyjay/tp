@@ -57,7 +57,8 @@ public class EditInternshipRoleCommand extends InternshipCommand {
 
     /**
      * The constructor for an EditInternshipRoleCommand
-     * @param index The index of the InternshipRole to be edited
+     *
+     * @param index      The index of the InternshipRole to be edited
      * @param newOutcome The new outcome for the target InternshipRole
      */
     public EditInternshipRoleCommand(Index index, Cycle newCycle, Description newDescription, Pay newPay,
@@ -86,34 +87,23 @@ public class EditInternshipRoleCommand extends InternshipCommand {
 
         InternshipRole editedRole = roleToEdit;
         if (newCycle != null) {
-            if (roleToEdit.getCycle().equals(newCycle)) {
-                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
-            }
             editedRole = editedRole.getNewInternshipRoleWithCycle(newCycle);
         }
         if (newDescription != null) {
-            if (roleToEdit.getCycle().equals(newCycle)) {
-                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
-            }
             editedRole = editedRole.getNewInternshipRoleWithDescription(newDescription);
         }
         if (newPay != null) {
-            if (roleToEdit.getCycle().equals(newCycle)) {
-                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
-            }
             editedRole = editedRole.getNewInternshipRoleWithPay(newPay);
         }
         if (newOutcome != null) {
-            if (roleToEdit.getCycle().equals(newCycle)) {
-                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
-            }
             editedRole = editedRole.getNewInternshipRoleWithOutcome(newOutcome);
         }
         if (newLocation != null) {
-            if (roleToEdit.getCycle().equals(newCycle)) {
-                throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
-            }
             editedRole = editedRole.getNewInternshipRoleWithLocation(newLocation);
+        }
+
+        if (roleToEdit.equals(editedRole)) {
+            throw new CommandException(MESSAGE_EDITED_FIELDS_ARE_THE_SAME);
         }
 
         if (model.hasInternshipRole(editedRole)) {
@@ -121,16 +111,18 @@ public class EditInternshipRoleCommand extends InternshipCommand {
         }
 
         // Order matters here
-        // This loop has to be called before setInternshipRole
+        model.setInternshipRole(roleToEdit, editedRole);
+
         for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
             if (internshipTask.getInternshipRole().equals(roleToEdit)) {
                 model.setInternshipTask(internshipTask, internshipTask.editInternshipRole(editedRole));
             }
         }
 
-        model.setInternshipRole(roleToEdit, editedRole);
+        // Force a Re render with updated values, by calling the set method
 
-        // Kinda hacky, but this is to force a Re render
+        model.setInternshipRole(editedRole, editedRole);
+
         for (InternshipTask internshipTask : model.getUnfilteredInternshipTaskList()) {
             model.setInternshipTask(internshipTask, internshipTask);
         }
