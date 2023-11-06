@@ -3,7 +3,7 @@ package seedu.address.logic.commands.assignment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.CommandAssignmentTestUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -55,7 +55,8 @@ public class MarkAssignmentCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
         MarkAssignmentCommand markCommand = new MarkAssignmentCommand(outOfBoundIndex);
-        CommandTestUtil.assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+        CommandAssignmentTestUtil.assertCommandFailure(markCommand, model,
+                Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -94,6 +95,6 @@ public class MarkAssignmentCommandTest {
     private void showNoAssignment(Model model) {
         model.updateFilteredAssignmentList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredAssignmentList().isEmpty());
     }
 }

@@ -28,7 +28,6 @@ import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class AddAssignmentCommandTest {
@@ -185,12 +184,6 @@ public class AddAssignmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        // Need this cus otherwise this is a abstract class - unless want to change the Model class
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override public void addAssignment(Assignment assignment) {
             throw new AssertionError("This method should not be called.");
         }
@@ -206,17 +199,7 @@ public class AddAssignmentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasAssignment(Assignment assignment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -225,25 +208,12 @@ public class AddAssignmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public ObservableList<Assignment> getFilteredAssignmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
@@ -301,7 +271,7 @@ public class AddAssignmentCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single assignment.
      */
     private class ModelStubWithAssignment extends ModelStub {
         private final Assignment assignment;

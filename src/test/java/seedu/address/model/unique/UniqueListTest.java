@@ -49,11 +49,11 @@ public class UniqueListTest {
 
     private final UniqueList<UniqueMock> uniqueUniqueMockList = new UniqueList<>();
 
-    private final UniqueMock u1 = new UniqueMock("Bob", "123");
+    private final UniqueMock u1 = new UniqueMock("MIH1101 OP", "123");
 
-    private final UniqueMock u2 = new UniqueMock("Bob", "321");
+    private final UniqueMock u2 = new UniqueMock("MIH1101 OP", "321");
 
-    private final UniqueMock u3 = new UniqueMock("Alice", "123");
+    private final UniqueMock u3 = new UniqueMock("CS2103T PE", "123");
 
     @Test
     public void contains_nullUniqueMock_throwsNullPointerException() {
@@ -61,18 +61,18 @@ public class UniqueListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_assignmentNotInList_returnsFalse() {
         assertFalse(uniqueUniqueMockList.contains(u1));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_assignmentInList_returnsTrue() {
         uniqueUniqueMockList.add(u1);
         assertTrue(uniqueUniqueMockList.contains(u1));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_assignmentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueUniqueMockList.add(u1);
         assertTrue(uniqueUniqueMockList.contains(u2));
     }
@@ -144,7 +144,7 @@ public class UniqueListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsUniqueMockNotFoundException() {
+    public void remove_assignmentDoesNotExist_throwsUniqueMockNotFoundException() {
         assertThrows(ElementNotFoundException.class, () -> uniqueUniqueMockList.remove(u1));
     }
 
@@ -178,8 +178,8 @@ public class UniqueListTest {
     @Test
     public void sets_list_replacesOwnListWithProvidedList() {
         uniqueUniqueMockList.add(u1);
-        List<UniqueMock> personList = Collections.singletonList(u3);
-        uniqueUniqueMockList.setList(personList);
+        List<UniqueMock> assignmentList = Collections.singletonList(u3);
+        uniqueUniqueMockList.setList(assignmentList);
         UniqueList<UniqueMock> expectedUniqueUniqueMockList = new UniqueList<UniqueMock>();
         expectedUniqueUniqueMockList.add(u3);
         assertEquals(expectedUniqueUniqueMockList, uniqueUniqueMockList);

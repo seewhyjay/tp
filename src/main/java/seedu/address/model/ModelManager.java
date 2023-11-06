@@ -16,7 +16,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,8 +26,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
 
     private final UserPrefs userPrefs;
-
-    private final FilteredList<Person> filteredPersons;
 
     private final FilteredList<Assignment> filteredAssignments;
 
@@ -49,7 +46,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
         filteredInternshipTasks = new FilteredList<>(this.addressBook.getInternshipTaskList());
         filteredInternshipRoles = new FilteredList<>(this.addressBook.getInternshipRoleList());
@@ -153,29 +149,6 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        addressBook.setPerson(target, editedPerson);
-    }
-
     //====== Filtered Assignment List Accessors==========================
 
     @Override
@@ -213,23 +186,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Assignment> getUnfilteredAssignmentList() {
         return addressBook.getAssignmentList();
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -321,7 +277,6 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredAssignments.equals(otherModelManager.filteredAssignments)
                 && filteredInternshipTasks.equals(otherModelManager.filteredInternshipTasks);
     }

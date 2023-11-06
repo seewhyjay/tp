@@ -48,6 +48,7 @@ public class TypicalAssignments {
             LocalDateTime.parse("2023-12-16 22:30", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
     private static final LocalDateTime exampleDate4 =
             LocalDateTime.parse("2023-12-15 21:30", DateTimeFormatter.ofPattern(IsoDate.DATE_FORMAT));
+
     public static final Assignment ASSIGNMENT1 = new AssignmentBuilder().withName("CS2100 Lab 7")
             .withStatus(false).withDescription("Draw diagrams")
             .withDeadline(exampleDate1)
@@ -63,11 +64,18 @@ public class TypicalAssignments {
             .withDeadline(exampleDate3)
             .withPlannedDate(exampleDate3)
             .withTags("Programming").build();
-    public static final Assignment ASSIGNMENT4 = new AssignmentBuilder().withName("CS2103T Milestone 2")
+    public static final Assignment ASSIGNMENT4 = new AssignmentBuilder().withName("CS2105 Milestone 2")
             .withStatus(false).withDescription("Add test cases")
             .withDeadline(exampleDate4)
             .withPlannedDate(exampleDate4)
             .withTags("Milestone").build();
+
+    //Manually added
+    public static final Assignment ASSIGNMENT7 = new AssignmentBuilder().withName("MIH1101 OP")
+            .withStatus(false).withDescription("Finish up slides")
+            .withDeadline(exampleDate1)
+            .withPlannedDate(exampleDate1)
+            .withTags("Healthcare").build();
 
     private TypicalAssignments() {} // prevents instantiation
 
@@ -84,6 +92,6 @@ public class TypicalAssignments {
 
     public static List<Assignment> getTypicalAssignment() {
         return new ArrayList<>(Arrays.asList(ASSIGNMENT1, ASSIGNMENT2, ASSIGNMENT3,
-                ASSIGNMENT4, ASSIGNMENT5, ASSIGNMENT6));
+                ASSIGNMENT4));
     }
 }

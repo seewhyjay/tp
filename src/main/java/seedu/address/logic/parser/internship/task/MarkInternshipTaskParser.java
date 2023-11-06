@@ -3,7 +3,6 @@ package seedu.address.logic.parser.internship.task;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.assignment.MarkAssignmentCommand;
 import seedu.address.logic.commands.internship.task.MarkInternshipTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -26,7 +25,8 @@ public class MarkInternshipTaskParser implements Parser<MarkInternshipTaskComman
             return new MarkInternshipTaskCommand(index);
         } catch (ParseException parseException) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAssignmentCommand.MESSAGE_USAGE), parseException);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            MarkInternshipTaskCommand.MESSAGE_USAGE), parseException);
         }
     }
 }
