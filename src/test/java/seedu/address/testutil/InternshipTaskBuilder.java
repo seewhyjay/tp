@@ -49,6 +49,19 @@ public class InternshipTaskBuilder {
     }
 
     /**
+     * Creates an InternshipTaskBuilder with specified role and other default fields
+     * @param role {@code InternshipRole} to use
+     */
+    public InternshipTaskBuilder(InternshipRole role) {
+        this.role = role;
+        taskName = new Name(defaultTaskName);
+        deadline = new IsoDate(defaultDate);
+        status = new Status(defaultStatus);
+        outcome = new TaskOutcome(defaultOutcome);
+        tags = new HashSet<>();
+    }
+
+    /**
      * Creates an InternshipTaskBuilder with the given input
      * @param taskToCopy over to the builder
      */
