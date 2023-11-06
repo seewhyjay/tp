@@ -110,6 +110,10 @@ public final class InternshipTask implements Comparable<InternshipTask>, UniqueM
         return new InternshipTask(role, taskName, deadline, status, newOutcome, tags);
     }
 
+    public InternshipTask editInternshipRole(InternshipRole newInternshipRole) {
+        return new InternshipTask(newInternshipRole, taskName, deadline, status, outcome, tags);
+    }
+
     /**
      * @param otherTask to be verifed
      * @return true if otherTask has the same task name
