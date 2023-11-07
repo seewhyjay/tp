@@ -30,7 +30,8 @@ public class DeleteInternshipRoleCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        InternshipRole internshipRoleToDelete = model.getFilteredInternshipRoleList().get(INDEX_FIRST_IN_LIST.getZeroBased());
+        InternshipRole internshipRoleToDelete =
+                model.getFilteredInternshipRoleList().get(INDEX_FIRST_IN_LIST.getZeroBased());
         DeleteInternshipRoleCommand deleteCommand = new DeleteInternshipRoleCommand(INDEX_FIRST_IN_LIST);
 
         String expectedMessage = String.format(DeleteInternshipRoleCommand.MESSAGE_DELETE_INTERNSHIP_ROLE_SUCCESS,
@@ -43,7 +44,8 @@ public class DeleteInternshipRoleCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        InternshipRole internshipRoleToDelete = model.getFilteredInternshipRoleList().get(INDEX_FIRST_IN_LIST.getZeroBased());
+        InternshipRole internshipRoleToDelete =
+                model.getFilteredInternshipRoleList().get(INDEX_FIRST_IN_LIST.getZeroBased());
         DeleteInternshipRoleCommand deleteCommand = new DeleteInternshipRoleCommand(INDEX_FIRST_IN_LIST);
 
         String expectedMessage = String.format(DeleteInternshipRoleCommand.MESSAGE_DELETE_INTERNSHIP_ROLE_SUCCESS,

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTaskHasSameInternshipRolePredicate;
 import seedu.address.testutil.InternshipTaskBuilder;
