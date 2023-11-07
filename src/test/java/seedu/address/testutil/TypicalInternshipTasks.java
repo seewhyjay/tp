@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
 import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.fields.Outcome;
 import seedu.address.model.internship.task.InternshipTask;
 
@@ -28,5 +33,24 @@ public class TypicalInternshipTasks {
                 .withDeadline(date2)
                 .withOutcome(Outcome.GHOSTED)
                 .build();
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical internship tasks.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        ab.addInternshipRole(getTypicalInternshipRole1());
+        ab.addInternshipRole(getTypicalInternshipRole2());
+        for (InternshipTask task : getTypicalInternshipTasks()) {
+            ab.addInternshipTask(task);
+        }
+        return ab;
+    }
+
+    public static List<InternshipTask> getTypicalInternshipTasks() {
+        InternshipTask task1 = getTypicalInternshipTask1();
+        InternshipTask task2 = getTypicalInternshipTask2();
+        return new ArrayList<>(Arrays.asList(task1, task2));
     }
 }

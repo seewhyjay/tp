@@ -80,7 +80,7 @@ public class TypicalAssignments {
     private TypicalAssignments() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical assignments.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
