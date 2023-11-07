@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.person;
+package seedu.address.logic.parser.common;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
