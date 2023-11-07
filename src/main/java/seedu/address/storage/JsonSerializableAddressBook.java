@@ -20,7 +20,7 @@ import seedu.address.model.internship.task.InternshipTask;
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "campuscompanion")
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_ASSIGNMENTS = "Assignments list contains duplicate assignment(s).";
