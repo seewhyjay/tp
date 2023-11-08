@@ -112,7 +112,7 @@ How the `Logic` component works:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete-a 1` Command](images/DeleteSequenceDiagram.png)
+<img src="images/DeleteAssignmentSeq.png" width="550"/>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAssignmentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
