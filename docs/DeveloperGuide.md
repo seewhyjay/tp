@@ -227,7 +227,7 @@ Step 3. The assignment is added to the model’s list of assignments if valid.
 
 The following sequence diagram illustrates how the add assignment operation works:
 
-<img src="images/AddAssignmentSeq.png" width="550" />
+<img src="images/AddAssignmentSeq.png" width="800" />
 
 * `args`: Refers to a valid sequence of arguments provided by the user.
 
@@ -264,7 +264,7 @@ Step 3. The assignment at this index is removed if the index provided is valid.
 
 The following sequence diagram illustrates how the delete assignment operation works:
 
-<img src="images/DeleteAssignmentSeq.png" width="550" />
+<img src="images/DeleteAssignmentSeq.png" width="800" />
 
 ### Edit Assignment Feature
 
@@ -290,7 +290,7 @@ provided are valid.
 
 The following activity diagram illustrates the user flow for editing an assignment:
 
-<img src="images/EditAssignmentActivityDiag.png.png" width="550" />
+<img src="images/EditAssignmentActivityDiag.png" width="800" />
 
 Given below is an example usage scenario of how the edit assignment command behaves at each step.
 
@@ -304,7 +304,7 @@ Step 4. filteredAssignmentList is updated so that the UI can display the edited 
 
 The following sequence diagram illustrates how the edit assignment operation works:
 
-<img src="images/EditAssignmentSeq.png.png" width="550" />
+<img src="images/EditAssignmentSeq.png" width="800" />
 
 ### Mark Assignment Feature
 
@@ -337,7 +337,7 @@ Step 3. If the index provided is valid and assignment is currently `incomplete`,
 
 The following sequence diagram illustrates how the mark assignment operation works:
 
-<img src="images/MarkAssignmentSeq.png" width="550" />
+<img src="images/MarkAssignmentSeq.png" width="800" />
 
 ### UnMark Assignment Feature
 
@@ -370,7 +370,7 @@ Step 3. If the index provided is valid and assignment is currently `complete`, t
 
 The following sequence diagram illustrates how the unmark assignment operation works:
 
-<img src="images/UnmarkAssignmentSeq.png" width="550" />
+<img src="images/UnmarkAssignmentSeq.png" width="800" />
 
 ### Find Assignment Feature
 
@@ -400,7 +400,7 @@ Step 3. The model's list of filtered assignment is updated.
 
 The following sequence diagram illustrates how the find assignment operation works:
 
-<img src="images/FindAssignmentSeq.png" width="550" />
+<img src="images/FindAssignmentSeq.png" width="800" />
 
 * `args`: Refers to a valid sequence of arguments provided by the user. 
 
@@ -434,7 +434,7 @@ Step 3. The model's list of filtered assignment is updated.
 
 The following sequence diagram illustrates how the list assignment operation works:
 
-<img src="images/ListAssignmentSeq.png" width="550" />
+<img src="images/ListAssignmentSeq.png" width="800" />
 
 * `args`: Refers to a valid sequence of arguments provided by the user.
 
