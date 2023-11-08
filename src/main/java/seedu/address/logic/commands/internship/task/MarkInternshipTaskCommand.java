@@ -79,7 +79,7 @@ public class MarkInternshipTaskCommand extends InternshipCommand {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("mark", targetIndex)
+                .add("mark-task", targetIndex)
                 .toString();
     }
 }
