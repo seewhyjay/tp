@@ -1,9 +1,10 @@
 package seedu.address.testutil;
 
 
-import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
-import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
+import static seedu.address.testutil.TypicalInternshipRoles.INTERNSHIP_ROLE_1;
 import static seedu.address.testutil.TypicalInternshipRoles.INTERNSHIP_ROLE_2;
+import static seedu.address.testutil.TypicalInternshipRoles.INTERNSHIP_ROLE_3;
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,7 +33,7 @@ public class TypicalInternshipTasks {
     public static final InternshipTask INTERNSHIP_TASK_1 = new InternshipTaskBuilder()
             .withInternshipRole(getTypicalInternshipRole1())
             .withTaskName("Leetcode")
-            .withStatus(true)
+            .withStatus(false)
             .withDeadline(DATE1)
             .withOutcome(Outcome.GHOSTED)
             .build();
@@ -59,15 +60,8 @@ public class TypicalInternshipTasks {
     public static InternshipTask getTypicalInternshipTask2() {
         return new InternshipTaskBuilder().build();
     }
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (InternshipTask internshipTask : getTypicalInternshipTask()) {
-            ab.addInternshipTask(internshipTask);
-        }
-        return ab;
-    }
 
-    public static List<InternshipTask> getTypicalInternshipTask() {
+    public static List<InternshipTask> getTypicalInternshipTasks() {
         return new ArrayList<>(Arrays.asList(INTERNSHIP_TASK_1, INTERNSHIP_TASK_2,
                 INTERNSHIP_TASK_3));
     }
@@ -77,17 +71,12 @@ public class TypicalInternshipTasks {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        ab.addInternshipRole(getTypicalInternshipRole1());
-        ab.addInternshipRole(getTypicalInternshipRole2());
+        ab.addInternshipRole(INTERNSHIP_ROLE_1);
+        ab.addInternshipRole(INTERNSHIP_ROLE_2);
+        ab.addInternshipRole(INTERNSHIP_ROLE_3);
         for (InternshipTask task : getTypicalInternshipTasks()) {
             ab.addInternshipTask(task);
         }
         return ab;
-    }
-
-    public static List<InternshipTask> getTypicalInternshipTasks() {
-        InternshipTask task1 = getTypicalInternshipTask1();
-        InternshipTask task2 = getTypicalInternshipTask2();
-        return new ArrayList<>(Arrays.asList(task1, task2));
     }
 }

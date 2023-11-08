@@ -79,7 +79,7 @@ public class TypicalInternshipRoles {
         for (InternshipRole internshipRole : getTypicalInternshipRole()) {
             ab.addInternshipRole(internshipRole);
         }
-        for (InternshipTask internshipTask : TypicalInternshipTasks.getTypicalInternshipTask()) {
+        for (InternshipTask internshipTask : TypicalInternshipTasks.getTypicalInternshipTasks()) {
             ab.addInternshipTask(internshipTask);
         }
         return ab;
