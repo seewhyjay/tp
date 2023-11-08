@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalInternshipRoles.INTERNSHIP_ROLE_2;
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -9,8 +12,6 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.fields.Outcome;
 import seedu.address.model.internship.task.InternshipTask;
-
-import static seedu.address.testutil.TypicalInternshipRoles.*;
 
 /**
  * A class to get typical internship tasks
@@ -34,7 +35,7 @@ public class TypicalInternshipTasks {
             .withOutcome(Outcome.GHOSTED)
             .build();
 
-    public static final InternshipTask INTERNSHIP_TASK_2 =  new InternshipTaskBuilder()
+    public static final InternshipTask INTERNSHIP_TASK_2 = new InternshipTaskBuilder()
             .withInternshipRole(INTERNSHIP_ROLE_2)
             .withTaskName("OA 1")
             .withStatus(true)
@@ -42,7 +43,7 @@ public class TypicalInternshipTasks {
             .withOutcome(Outcome.AWAITING)
             .build();
 
-    public static final InternshipTask INTERNSHIP_TASK_3 =  new InternshipTaskBuilder()
+    public static final InternshipTask INTERNSHIP_TASK_3 = new InternshipTaskBuilder()
             .withInternshipRole(INTERNSHIP_ROLE_2)
             .withTaskName("Interview")
             .withStatus(true)

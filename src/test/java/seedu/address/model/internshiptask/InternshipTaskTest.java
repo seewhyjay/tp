@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
-import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask2;
 import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask1;
+import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask2;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
