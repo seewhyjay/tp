@@ -110,7 +110,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an assignment).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete-a 1")` API call as an example.
 
 ![Interactions Inside the Logic Component for the `delete-a 1` Command](images/DeleteSequenceDiagram.png)
 

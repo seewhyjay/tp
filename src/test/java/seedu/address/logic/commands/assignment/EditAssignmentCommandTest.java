@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_IN_LIST;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,14 +28,14 @@ public class EditAssignmentCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        EditAssignmentCommand editCommand = new EditAssignmentCommand(INDEX_FIRST_ASSIGNMENT,
+        EditAssignmentCommand editCommand = new EditAssignmentCommand(INDEX_FIRST_IN_LIST,
                 new Description(desc1));
 
         String commandResult = editCommand.execute(model).getFeedbackToUser();
         assertTrue(commandResult.contains(desc1));
         assertEquals(desc1,
                 model.getFilteredAssignmentList()
-                        .get(INDEX_FIRST_ASSIGNMENT.getZeroBased())
+                        .get(INDEX_FIRST_IN_LIST.getZeroBased())
                         .getDescription().toString());
     }
 
@@ -49,16 +49,16 @@ public class EditAssignmentCommandTest {
 
     @Test
     public void equals() {
-        EditAssignmentCommand editFirstCommand = new EditAssignmentCommand(INDEX_FIRST_ASSIGNMENT,
+        EditAssignmentCommand editFirstCommand = new EditAssignmentCommand(INDEX_FIRST_IN_LIST,
                 new Description(desc1));
-        EditAssignmentCommand editSecondCommand = new EditAssignmentCommand(INDEX_SECOND_ASSIGNMENT,
+        EditAssignmentCommand editSecondCommand = new EditAssignmentCommand(INDEX_SECOND_IN_LIST,
                 new Description(desc2));
 
         // same object -> returns true
         assertEquals(editFirstCommand, editFirstCommand);
 
         // same values -> returns true
-        EditAssignmentCommand editFirstCommandCopy = new EditAssignmentCommand(INDEX_FIRST_ASSIGNMENT,
+        EditAssignmentCommand editFirstCommandCopy = new EditAssignmentCommand(INDEX_FIRST_IN_LIST,
                 new Description(desc1));
         assertEquals(editFirstCommand, editFirstCommandCopy);
 

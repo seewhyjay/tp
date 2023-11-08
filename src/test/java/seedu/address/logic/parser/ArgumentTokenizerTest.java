@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.person.Prefix;
+import seedu.address.logic.parser.common.Prefix;
 
 public class ArgumentTokenizerTest {
 

@@ -1,6 +1,6 @@
 package seedu.address.logic.parser.assignment;
 
-import seedu.address.logic.parser.person.Prefix;
+import seedu.address.logic.parser.common.Prefix;
 
 /**
  * Accepted syntax for adding a new assignment

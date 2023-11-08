@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_IN_LIST;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,19 +34,19 @@ public class UnMarkAssignmentCommandTest {
 
     @Test
     public void execute_unMark_success() throws CommandException {
-        Assignment assignmentToUnMark = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment assignmentToUnMark = getAtIndex(INDEX_FIRST_IN_LIST.getZeroBased());
         model.setAssignment(assignmentToUnMark, assignmentToUnMark.mark());
-        assertTrue(getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased())
+        assertTrue(getAtIndex(INDEX_FIRST_IN_LIST.getZeroBased())
                 .getStatus().toString().equals("complete"));
-        UnMarkAssignmentCommand cmd = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        UnMarkAssignmentCommand cmd = new UnMarkAssignmentCommand(INDEX_FIRST_IN_LIST);
         cmd.execute(model);
-        assertTrue(getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased()).getStatus().toString().equals("incomplete"));
+        assertTrue(getAtIndex(INDEX_FIRST_IN_LIST.getZeroBased()).getStatus().toString().equals("incomplete"));
     }
 
     @Test
     public void execute_unMarkIncompletAssignment_throwsCommandException() {
-        Assignment assignmentToUnMark = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        UnMarkAssignmentCommand markCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        Assignment assignmentToUnMark = model.getFilteredAssignmentList().get(INDEX_FIRST_IN_LIST.getZeroBased());
+        UnMarkAssignmentCommand markCommand = new UnMarkAssignmentCommand(INDEX_FIRST_IN_LIST);
         model.setAssignment(assignmentToUnMark, assignmentToUnMark.unMark());
         assertCommandFailure(markCommand, model,
                 String.format(UnMarkAssignmentCommand.MESSAGE_ASSIGNMENT_ALREADY_INCOMPLETE));
@@ -62,14 +62,14 @@ public class UnMarkAssignmentCommandTest {
     }
     @Test
     public void equals() {
-        UnMarkAssignmentCommand unMarkFirstCommand = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
-        UnMarkAssignmentCommand unMarkSecondCommand = new UnMarkAssignmentCommand(INDEX_SECOND_ASSIGNMENT);
+        UnMarkAssignmentCommand unMarkFirstCommand = new UnMarkAssignmentCommand(INDEX_FIRST_IN_LIST);
+        UnMarkAssignmentCommand unMarkSecondCommand = new UnMarkAssignmentCommand(INDEX_SECOND_IN_LIST);
 
         // same object -> returns true
         assertTrue(unMarkFirstCommand.equals(unMarkFirstCommand));
 
         // same values -> returns true
-        UnMarkAssignmentCommand unMarkFirstCommandCopy = new UnMarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        UnMarkAssignmentCommand unMarkFirstCommandCopy = new UnMarkAssignmentCommand(INDEX_FIRST_IN_LIST);
         assertTrue(unMarkFirstCommand.equals(unMarkFirstCommandCopy));
 
         // different types -> returns false
