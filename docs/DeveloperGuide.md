@@ -192,89 +192,251 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+The implementation for `InternshipRole` and `InternshipTask` are very similar to `Assignment`, hence we only detail the implementation for `Assignment` features.
 
-#### Proposed Implementation
+### Add Assignment feature
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### What it does 
+{: .no_toc}
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Adds a assignment to the list of currently existing assignments. Users are able to add any valid assignment to the list. 
+If a record of the same assignment already exists in the list, the command will not be allowed and an error will be thrown to alert user.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Example Use: `add-a n/Assignment 1 e/2023-11-11 16:00 d/Important Assignment s/complete p/2023-11-10 t/Individual`
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+#### Implementation 
+{: .no_toc}
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Upon entry of the add assignment command, an AddAssignmentCommand class is created. The AddAssignmentCommand class extends the abstract 
+Command class and implements the `execute()` method. 
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Before execution of this method, the `verifyView()` method is called, to verify that the user is in the `Assignment` view
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Upon execution of this method, an `Assignment` object is added to the model’s list of assignments if all the attributes provided are 
+valid and a duplicate instance does not exist.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+After the addition of the new assignment, the assignments are sorted by deadline automatically.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Given below is an example usage scenario of how the add assignment command behaves at each step.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Step 1. User launches the application
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Step 2. User executes `add-a n/Assignment 1 e/2023-11-11 16:00 d/Important Assignment s/complete p/2023-11-10 t/Individual` to save a new assignment.
 
-</div>
+Step 3. The assignment is added to the model’s list of assignments if valid.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The following sequence diagram illustrates how the add assignment operation works:
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<img src="images/AddAssignmentSeq.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+* `args`: Refers to a valid sequence of arguments provided by the user.
 
-</div>
+### Delete Assignment Feature
 
-The following sequence diagram shows how the undo operation works:
+#### What it does
+{: .no_toc}
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+Deletes a assignment at the specified **one-based index** of list of currently existing/found assignments. Users are able to
+delete any assignment in the list. If an index larger than or equal to the size of the assignment’s list is provided, the
+command will not be allowed and an error will be thrown to alert user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Example Use: `delete-a 1`
 
-</div>
+#### Implementation
+{: .no_toc}
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Upon entry of the delete assignment command, a `DeleteAssignmentCommand` class is created. The `DeleteAssignmentCommand` class
+extends the abstract `Command` class and implements the `execute()` method. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Before execution of this method, the `verifyView()` method is called, to verify that the user is in the `Assignment` view
 
-</div>
+Upon execution of this method, the assignment at specified **one-based index** is removed if the index provided is valid.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+After the deletion of the specified assignment, the assignments are sorted by deadline automatically.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Given below is an example usage scenario of how the delete assignment command behaves at each step.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 1. User launches the application
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 2. User executes `delete-a 1` to delete the assignment at index 1 (one-based indexing).
 
-The following activity diagram summarizes what happens when a user executes a new command:
+Step 3. The assignment at this index is removed if the index provided is valid.
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+The following sequence diagram illustrates how the delete assignment operation works:
 
-#### Design considerations:
+<img src="images/DeleteAssignmentSeq.png" width="550" />
 
-**Aspect: How undo & redo executes:**
+### Edit Assignment Feature
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+#### What it does
+{: .no_toc}
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+Users can edit the description of the specific assignments in the list by providing the new description. Existing `description` value will be
+updated to the new values. The assignment to be edited can be specified through the assignment's index.
 
-_{more aspects and alternatives to be added}_
+Example Use: `edit-a i/1 d/New description`
 
-### \[Proposed\] Data archiving
+#### Implementation
+{: .no_toc}
 
-_{Explain here how the data archiving feature will be implemented}_
+Upon entry of the edit assignment command, an `EditAssignmentCommand` class is created. The `EditAssignmentCommand` class extends
+the abstract `Command` class and implements the `execute()` method. A new `Assignment` object is created with the new description, 
+with the attributes of the old `Assignment` object copied over. 
+
+Before execution of this method, the `verifyView()` method is called, to verify that the user is in the `Assignment` view
+
+Upon execution of `EditAssignmentCommand`, an `Assignment` object is added to the model’s list of assignments if all the attributes 
+provided are valid.
+
+The following activity diagram illustrates the user flow for editing an assignment:
+
+<img src="images/EditAssignmentActivityDiag.png.png" width="550" />
+
+Given below is an example usage scenario of how the edit assignment command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `edit-a i/1 d/New description` to edit an assignment.
+
+Step 3. The assignment is edited and saved to the model’s list of assignments if valid.
+
+Step 4. filteredAssignmentList is updated so that the UI can display the edited assignments.
+
+The following sequence diagram illustrates how the edit assignment operation works:
+
+<img src="images/EditAssignmentSeq.png.png" width="550" />
+
+### Mark Assignment Feature
+
+#### What it does
+{: .no_toc}
+
+Changes the `status` of an assignment at the specified **one-based index** of the assignment list from `incomplete` to `complete`. 
+If the index provided are larger than size of the list, the command will not be allowed and an error will 
+be thrown. If specified assignment is already `complete`, the command will not be allowed and an error will be thrown.
+
+Example Use: `mark-a 1`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the mark assignment command, a `MarkAssignmentCommand` class is created. The `MarkAssignmentCommand` class extends the 
+abstract `Command` class and implements the `execute()` method. 
+
+Before execution of this method, the `verifyView()` method is called, to verify that the user is in the `Assignment` view.
+
+Upon execution of this method, the `status` assignment at specified **one-based index** is updated to `complete`.
+
+Given below is an example usage scenario of how the mark assignment command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `mark-a 1` to change the status of the assignment index 1 to `complete`.
+
+Step 3. If the index provided is valid and assignment is currently `incomplete`, the assignment at index 1 is updated to be `complete`
+
+The following sequence diagram illustrates how the mark assignment operation works:
+
+<img src="images/MarkAssignmentSeq.png" width="550" />
+
+### UnMark Assignment Feature
+
+#### What it does
+{: .no_toc}
+
+Changes the `status` of an assignment at the specified **one-based index** of the assignment list from `complete` to `incomplete`.
+If the index provided are larger than size of the list, the command will not be allowed and an error will
+be thrown. If specified assignment is already `incomplete`, the command will not be allowed and an error will be thrown.
+
+Example Use: `unmark-a 1`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the mark assignment command, a `UnMarkAssignmentCommand` class is created. The `UnMarkAssignmentCommand` class extends the
+abstract `Command` class and implements the `execute()` method.
+
+Before execution of this method, the `verifyView()` method is called, to verify that the user is in the `Assignment` view.
+
+Upon execution of this method, the `status` assignment at specified **one-based index** is updated to `incomplete`.
+
+Given below is an example usage scenario of how the unmark assignment command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `unmark-a 1` to change the status of the assignment index 1 to `incomplete`.
+
+Step 3. If the index provided is valid and assignment is currently `complete`, the assignment at index 1 is updated to be `incomplete`
+
+The following sequence diagram illustrates how the unmark assignment operation works:
+
+<img src="images/UnmarkAssignmentSeq.png" width="550" />
+
+### Find Assignment Feature
+
+#### What it does
+{: .no_toc}
+
+Finds a assignment with the specified parameters.
+
+Example Use: `find-a CS2100`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the find assignment command, a `FindAssignmentCommand` class is created. The `FindAssignmentCommand` class 
+takes a predicate created by `AssignmentContainsKeywordsPredicate` class. The `FindAssignmentCommand` class extends the abstract 
+`Command` class and implements the `execute()` method which updates the model's list of filtered assignments.
+
+Before execution of this method, the `verifyView()` method is called, to verify that the user is in the `Assignment` view
+
+Given below is an example usage scenario of how the find assignment command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `find-a CS2100` to find an assignment with `CS2100` in the name.
+
+Step 3. The model's list of filtered assignment is updated.
+
+The following sequence diagram illustrates how the find assignment operation works:
+
+<img src="images/FindAssignmentSeq.png" width="550" />
+
+* `args`: Refers to a valid sequence of arguments provided by the user. 
+
+### List Assignment Feature
+
+#### What it does
+{: .no_toc}
+
+Lists all assignments, if no parameters are specified, or lists only the assignment with deadline within the specified parameters.
+It will also change the view from `Internships` to `Assignments` (if applicable).
+
+Example Use: `list-a s/2024-01-01 12:00 e/2024-02-02 12:00`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the list assignment command, a `ListAssignmentCommand` class is created. The `ListAssignmentCommand` class
+takes a predicate created by `AssignmentBetweenStartandEndPredicate` class. The `ListAssignmentCommand` class extends the abstract
+`Command` class and implements the `execute()` method which updates the model's list of filtered assignments.
+
+On execution, the `ListAssignmentCommand` class calls the `setView()` method of the `Model` class, to change the view to `Assignments` (if necessary).
+
+Given below is an example usage scenario of how the list assignment command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `list-a s/2024-01-01 12:00 e/2024-02-02 12:00` to filter the assignment list to show assignments between 
+`2024-01-01 12:00` and `2024-02-02 12:00` inclusive.
+
+Step 3. The model's list of filtered assignment is updated.
+
+The following sequence diagram illustrates how the list assignment operation works:
+
+<img src="images/ListAssignmentSeq.png" width="550" />
+
+* `args`: Refers to a valid sequence of arguments provided by the user.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -622,22 +784,36 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with no data. On startup, the view is the `internship` view
 
-2. Saving window preferences
+2. Shutdown the application 
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Close the application or type in `exit` in the Command box. Expected: The GUI closes.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+### Adding an assignment
 
-3. _{ more test cases …​ }_
+1. Adding an assignment
+
+    1. Prerequisites: List all assignments using the `list-a` command. 
+
+    2. Test case: `add-a n/Assignment 1 d/description e/ 2024-06-18 20:00 p/ 2024-08-19 18:00 t/tag s/complete`<br>
+       Expected: New assignment added into the list. Assignment will appear on the calendar on the deadline. 
+       Details of the added assignment shown in the status message.
+
+    3. Test case: `add-a n/Assignment 1`<br> 
+       Expected: No assignment is added because there are mandatory fields not present. Error details shown in the status message.
+
+    4. Test case: `add-a n/Assignment 1 e/2020-01-01`<br>
+         Expected: No assignment is added because the deadline is after the current date. Error details shown in the status message.
+
+   5. Other incorrect delete commands to try: `add`, `adda`<br>
+       Expected: Similar to previous.
 
 ### Deleting an assignment
 
 1. Deleting an assignment while all assignments are being shown
 
-   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+   1. Prerequisites: List all assignments using the `list-a` command. Multiple assignments in the list.
 
    2. Test case: `delete-a 1`<br>
       Expected: First assignment is deleted from the list. Details of the deleted assignment shown in the status message. 
@@ -648,12 +824,20 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Listing all assignments
 
-### Saving data
+1. List all assignments while the current view is showing internships
 
-1. Dealing with missing/corrupted data files
+    1. Prerequisites: List all internships using the `list-i` command.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    2. Test case: `list-a`<br>
+       Expected: All assignments previously added is shown. Assignments are sorted in order of deadline. Calendar view changes to show assignments.
 
-2. _{ more test cases …​ }_
+    3. Test case: `list-a e/2024-01-01`<br>
+       Expected: All assignments with deadline before 2024-01-01 23:59 inclusive is shown.
+
+    4. Test case: `list-a s/2024-01-01`<br>
+         Expected: All assignments with deadline after 2024-01-01 00:00 inclusive is shown.
+
+   5. Other incorrect list commands to try: `list`, `list-a e/01-01-2023`, `list-a s/`
+
