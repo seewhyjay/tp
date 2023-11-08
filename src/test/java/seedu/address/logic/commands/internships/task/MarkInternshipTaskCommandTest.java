@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_IN_LIST;
 import static seedu.address.testutil.TypicalInternshipTasks.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -36,18 +36,18 @@ public class MarkInternshipTaskCommandTest {
 
     @Test
     public void execute_mark_success() throws CommandException {
-        InternshipTask taskToMark = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        InternshipTask taskToMark = getAtIndex(INDEX_FIRST_IN_LIST.getZeroBased());
         assertFalse(taskToMark.getStatus().isCompleted());
-        MarkInternshipTaskCommand cmd = new MarkInternshipTaskCommand(INDEX_FIRST_ASSIGNMENT);
+        MarkInternshipTaskCommand cmd = new MarkInternshipTaskCommand(INDEX_FIRST_IN_LIST);
         cmd.execute(model);
-        InternshipTask markedTask = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        InternshipTask markedTask = getAtIndex(INDEX_FIRST_IN_LIST.getZeroBased());
         assertTrue(markedTask.getStatus().toString().equals("complete"));
     }
 
 
     @Test
     public void execute_markAlreadyCompletedInternshipTask_throwsCommandException() throws CommandException {
-        MarkInternshipTaskCommand markCommand = new MarkInternshipTaskCommand(INDEX_FIRST_ASSIGNMENT);
+        MarkInternshipTaskCommand markCommand = new MarkInternshipTaskCommand(INDEX_FIRST_IN_LIST);
         markCommand.execute(model);
         assertCommandFailure(markCommand, model,
                 String.format(MarkInternshipTaskCommand.MESSAGE_TASK_ALREADY_COMPLETE));
@@ -63,14 +63,14 @@ public class MarkInternshipTaskCommandTest {
 
     @Test
     public void equals() {
-        MarkInternshipTaskCommand markFirstCommand = new MarkInternshipTaskCommand(INDEX_FIRST_ASSIGNMENT);
-        MarkInternshipTaskCommand markSecondCommand = new MarkInternshipTaskCommand(INDEX_SECOND_ASSIGNMENT);
+        MarkInternshipTaskCommand markFirstCommand = new MarkInternshipTaskCommand(INDEX_FIRST_IN_LIST);
+        MarkInternshipTaskCommand markSecondCommand = new MarkInternshipTaskCommand(INDEX_SECOND_IN_LIST);
 
         // same object -> returns true
         assertTrue(markFirstCommand.equals(markFirstCommand));
 
         // same values -> returns true
-        MarkInternshipTaskCommand markFirstCommandCopy = new MarkInternshipTaskCommand(INDEX_FIRST_ASSIGNMENT);
+        MarkInternshipTaskCommand markFirstCommandCopy = new MarkInternshipTaskCommand(INDEX_FIRST_IN_LIST);
         assertTrue(markFirstCommand.equals(markFirstCommandCopy));
 
         // different types -> returns false
