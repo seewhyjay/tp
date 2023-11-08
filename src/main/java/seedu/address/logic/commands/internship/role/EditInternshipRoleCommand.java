@@ -77,7 +77,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
 
         List<InternshipRole> lastShownList = model.getFilteredInternshipRoleList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_ROLE_DISPLAYED_INDEX);
         }
 
         InternshipRole roleToEdit = lastShownList.get(index.getZeroBased());
