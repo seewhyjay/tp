@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_OUTCOM
 import static seedu.address.logic.parser.internship.role.CliSyntax.PREFIX_PAY;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -69,6 +70,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
         this.newPay = newPay;
         this.newOutcome = newOutcome;
         this.newLocation = newLocation;
+
     }
 
     @Override
@@ -140,16 +142,25 @@ public class EditInternshipRoleCommand extends InternshipCommand {
             return false;
         }
 
+        // Using objects.equals() since fields can be null
         EditInternshipRoleCommand otherEditInternshipRoleCommand = (EditInternshipRoleCommand) other;
         return index.equals(otherEditInternshipRoleCommand.index)
-                && newOutcome.equals(otherEditInternshipRoleCommand.newOutcome);
+                && Objects.equals(newCycle, otherEditInternshipRoleCommand.newCycle)
+                && Objects.equals(newOutcome, otherEditInternshipRoleCommand.newOutcome)
+                && Objects.equals(newPay, otherEditInternshipRoleCommand.newPay)
+                && Objects.equals(newDescription, otherEditInternshipRoleCommand.newDescription)
+                && Objects.equals(newLocation, otherEditInternshipRoleCommand.newLocation);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("edit", index)
+                .add("cycle", newCycle)
                 .add("outcome", newOutcome)
+                .add("pay", newPay)
+                .add("description", newDescription)
+                .add("location", newLocation)
                 .toString();
     }
 }

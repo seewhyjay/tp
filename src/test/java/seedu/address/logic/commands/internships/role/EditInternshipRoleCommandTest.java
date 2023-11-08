@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.internships.role;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandSuccess;
 
 import java.math.BigDecimal;
@@ -228,4 +230,32 @@ public class EditInternshipRoleCommandTest {
         CommandAssignmentTestUtil.assertCommandFailure(editCommand, model,
                 Messages.MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES);
     }
+
+
+    @Test
+    public void equals() {
+        EditInternshipRoleCommand editFirstCommand = new EditInternshipRoleCommand(Index.fromOneBased(1),
+                new Cycle("cycle1"), null, null, null, null);
+        EditInternshipRoleCommand editSecondCommand = new EditInternshipRoleCommand(Index.fromOneBased(1),
+                new Cycle("cycle2"), null, null, null, null);
+
+        // same object -> returns true
+        assertEquals(editFirstCommand, editFirstCommand);
+
+        // same values -> returns true
+        EditInternshipRoleCommand editFirstCommandCopy = new EditInternshipRoleCommand(Index.fromOneBased(1),
+                new Cycle("cycle1"), null, null, null, null);
+        assertEquals(editFirstCommand, editFirstCommandCopy);
+
+        // different types -> returns false
+        assertNotEquals(1, editFirstCommand);
+
+        // null -> returns false
+        assertNotEquals(null, editFirstCommand);
+
+        // different edit cmd -> returns false
+        assertNotEquals(editFirstCommand, editSecondCommand);
+    }
+
+
 }
