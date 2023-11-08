@@ -37,9 +37,9 @@ public class AddInternshipTaskCommand extends InternshipCommand {
             + ": Adds an internship task to the app. "
             + "Parameters: "
             + PREFIX_TASK_NAME + "NAME "
-            + PREFIX_INDEX + "INDEX OF INTERNSHIP ROLE "
-            + PREFIX_DEADLINE + "YYYY-MM-DD HH:mm "
-            + "[" + PREFIX_STATUS + "STATUS " + "]\n"
+            + PREFIX_INDEX + "INDEX_OF_INTERNSHIP_ROLE "
+            + PREFIX_DEADLINE + "YYYY-MM-DD [HH:mm] "
+            + "[" + PREFIX_STATUS + "STATUS" + "]\n"
             + "[" + PREFIX_OUTCOME + "awaiting/follow-up/ghosted/rejected/offered" + "]\n"
             + "[" + PREFIX_TAG + "TAG" + "]\n"
             + "Example: " + COMMAND_WORD

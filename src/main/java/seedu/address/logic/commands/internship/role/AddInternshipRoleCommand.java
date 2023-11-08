@@ -16,8 +16,8 @@ import seedu.address.model.internship.role.InternshipRole;
 public class AddInternshipRoleCommand extends InternshipCommand {
     public static final String COMMAND_WORD = "add-i-role";
 
-    public static final String MESSAGE_USAGE = "add-i-role n/<name of company> r/<role name> c/<cycle> "
-            + "[d/<description>] [p/<pay>] [o/<outcome>] [l/<location>]";
+    public static final String MESSAGE_USAGE = "add-i-role n/NAME r/ROLE c/CYCLE "
+            + "[d/DESCRIPTION] [p/PAY] [o/awaiting/follow-up/ghosted/rejected/offered/accepted] [l/LOCATION] [t/TAG]";
 
     public static final String MESSAGE_SUCCESS = "New internship role added: %1$s";
 
