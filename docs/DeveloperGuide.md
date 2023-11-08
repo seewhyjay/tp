@@ -518,14 +518,14 @@ Such associated pairs of use cases are listed in the table below.
 
 | Assignment Use Case                   | Internship Role Use Case                | Internship Task Use Case                    |
 |---------------------------------------|-----------------------------------------|---------------------------------------------|
-| UC1 - Add Assignment                  | UCxx - Add Internship Role              | UCxx - Add Internship Task                  |
-| UC2 - Delete Assignment               | UCxx - Delete Internship Role           | UCxx - Delete Internship Task               |
-| UC3 - Mark Assignment as complete     | _Not Applicable_                        | UCxx - Mark Internship Task as complete     |
-| UC4 - UnMark Assignment as incomplete | _Not Applicable_                        | UCxx - UnMark Internship Task as incomplete |
-| UC5 - List Assignments                | UCxx - List Internship Role             | _Not Applicable_                            |
-| UC6 - Filter Assignments by deadline  | _Not Applicable_                        | UCxx - Filter Internship Task by deadline   |
-| UC7 - Edit Assignments information    | UCxx - Edit Internship Role information | UCxx - Edit Internship Task information     |
-| UC8 - Find Assignment by keyword      | UCxx - Find Internship Role by keyword  | ??                                          |
+| UC1 - Add Assignment                  | UC9 - Add Internship Role               | UC14 - Add Internship Task                  |
+| UC2 - Delete Assignment               | UC10 - Delete Internship Role           | UC15 - Delete Internship Task               |
+| UC3 - Mark Assignment as complete     | _Not Applicable_                        | UC16 - Mark Internship Task as complete     |
+| UC4 - UnMark Assignment as incomplete | _Not Applicable_                        | UC17 - UnMark Internship Task as incomplete |
+| UC5 - List Assignments                | UC11 - List Internship Role             | _Not Applicable_                            |
+| UC6 - Filter Assignments by deadline  | _Not Applicable_                        | _Not Applicable_                            |
+| UC7 - Edit Assignments information    | UC12 - Edit Internship Role information | UC18 - Edit Internship Task information     |
+| UC8 - Find Assignment by keyword      | UC13 - Find Internship Role by keyword  | UC19 - Find Internship Task by keyword      |
 
 
 **UC1: Add an assignment**
