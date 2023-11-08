@@ -221,15 +221,15 @@ public class EditInternshipRoleCommandTest {
                 new EditInternshipRoleCommand(index, new Cycle("Winter"), null,
                 null, null, null);
 
-        InternshipRole roleWithSameNameAndRole_1 = new InternshipRoleBuilder().withName("Company1")
+        InternshipRole roleWithSameNameAndRole1 = new InternshipRoleBuilder().withName("Company1")
                 .withRole("SWE").withCycle("Summer").build();
-        InternshipRole roleWithSameNameAndRole_2 = new InternshipRoleBuilder().withName("Company1")
+        InternshipRole roleWithSameNameAndRole2 = new InternshipRoleBuilder().withName("Company1")
                 .withRole("SWE").withCycle("Winter").build();
 
         ModelManager model = new ModelManager(new AddressBook(), new UserPrefs());
-        model.addInternshipRole(roleWithSameNameAndRole_1);
-        model.addInternshipRole(roleWithSameNameAndRole_2);
-        
+        model.addInternshipRole(roleWithSameNameAndRole1);
+        model.addInternshipRole(roleWithSameNameAndRole2);
+
         CommandAssignmentTestUtil.assertCommandFailure(editCommand, model,
                 Messages.MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES);
     }
