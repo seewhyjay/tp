@@ -29,7 +29,6 @@ import seedu.address.model.fields.Pay;
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.role.InternshipRoleNameContainsKeywordsPredicate;
 import seedu.address.model.internship.task.InternshipTask;
-import seedu.address.model.internship.task.InternshipTaskContainsInternshipRolesPredicate;
 import seedu.address.model.internship.task.InternshipTaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.InternshipRoleBuilder;
 import seedu.address.testutil.InternshipTaskBuilder;
@@ -38,7 +37,7 @@ public class EditInternshipRoleCommandTest {
     private final InternshipRole role1 = new InternshipRoleBuilder().withName("Company1")
             .withRole("SWE").withCycle("Summer").build();
 
-    private final InternshipRole role2 = new InternshipRoleBuilder().withName("Company1")
+    private final InternshipRole role2 = new InternshipRoleBuilder().withName("Company2")
             .withRole("SWE").withCycle("Winter").build();
 
     private final InternshipTask task1BelongingToRole1 = new InternshipTaskBuilder()
@@ -135,74 +134,62 @@ public class EditInternshipRoleCommandTest {
     @Test
     public void execute_afterFindTaskCommand_allRoleAndAssociatedTasksEdited() throws CommandException {
         Index index = Index.fromOneBased(1);
-
         EditInternshipRoleCommand editCommand =
                 new EditInternshipRoleCommand(index, new Cycle("newCycle"), new Description("newDesc"),
                 null, null, null);
 
         FindInternshipTaskCommand findTaskCommand = new FindInternshipTaskCommand(new
                 InternshipTaskNameContainsKeywordsPredicate(List.of("OA")));
-
         findTaskCommand.execute(model);
 
         InternshipRole editedRole = role1.getNewInternshipRoleWithDescription(new Description("newDesc"))
                 .getNewInternshipRoleWithCycle(new Cycle("newCycle"));
 
-        ModelManager expectedModel = new ModelManager(getAddressBook(), new UserPrefs());
+        editCommand.execute(model);
 
-        editRolesAndTask(role1, editedRole, expectedModel);
+        ModelManager expectedUnfilteredModel = new ModelManager(getAddressBook(), new UserPrefs());
 
-        expectedModel.updateFilteredInternshipTaskList(new InternshipTaskNameContainsKeywordsPredicate(
-                List.of("OA")));
+        editRolesAndTask(role1, editedRole, expectedUnfilteredModel);
 
-        expectedModel.updateFilteredInternshipRoleList(role -> {
-            for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
-                if (internshipTask.getInternshipRole().equals(role)) {
-                    return true;
-                }
-            }
-            return false;
-        });
-
-        String expectedMessage = String.format(EditInternshipRoleCommand.MESSAGE_SUCCESS,
-                Messages.format(editedRole));
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEquals(model.getUnfilteredInternshipRoleList(),
+                expectedUnfilteredModel.getUnfilteredInternshipRoleList());
+        assertEquals(model.getUnfilteredInternshipTaskList(),
+                expectedUnfilteredModel.getUnfilteredInternshipTaskList());
+        assertEquals(model.getFilteredInternshipRoleList(), List.of(editedRole, role2));
+        assertEquals(model.getFilteredInternshipTaskList(),
+                List.of(expectedUnfilteredModel.getUnfilteredInternshipTaskList().get(1),
+                        expectedUnfilteredModel.getUnfilteredInternshipTaskList().get(3)));
     }
 
     // Integration Test with Find Role Command
     @Test
     public void execute_afterFindRoleCommand_allRoleAndAssociatedTasksEdited() throws CommandException {
         Index index = Index.fromOneBased(1);
-
         EditInternshipRoleCommand editCommand =
                 new EditInternshipRoleCommand(index, new Cycle("newCycle"), new Description("newDesc"),
                 null, null, null);
 
         FindInternshipRoleCommand findRoleCommand = new FindInternshipRoleCommand(new
                 InternshipRoleNameContainsKeywordsPredicate(List.of("Company1")));
-
         findRoleCommand.execute(model);
 
         InternshipRole editedRole = role1.getNewInternshipRoleWithDescription(new Description("newDesc"))
                 .getNewInternshipRoleWithCycle(new Cycle("newCycle"));
 
-        ModelManager expectedModel = new ModelManager(getAddressBook(), new UserPrefs());
+        ModelManager expectedUnfilteredModel = new ModelManager(getAddressBook(), new UserPrefs());
 
-        editRolesAndTask(role1, editedRole, expectedModel);
+        editRolesAndTask(role1, editedRole, expectedUnfilteredModel);
 
-        expectedModel.updateFilteredInternshipRoleList(new
-                InternshipRoleNameContainsKeywordsPredicate(List.of("Company1")));
+        editCommand.execute(model);
 
-        InternshipTaskContainsInternshipRolesPredicate taskPredicate =
-                new InternshipTaskContainsInternshipRolesPredicate(expectedModel.getFilteredInternshipRoleList());
-
-        expectedModel.updateFilteredInternshipTaskList(taskPredicate);
-
-        String expectedMessage = String.format(EditInternshipRoleCommand.MESSAGE_SUCCESS,
-                Messages.format(editedRole));
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEquals(model.getUnfilteredInternshipRoleList(),
+                expectedUnfilteredModel.getUnfilteredInternshipRoleList());
+        assertEquals(model.getUnfilteredInternshipTaskList(),
+                expectedUnfilteredModel.getUnfilteredInternshipTaskList());
+        assertEquals(model.getFilteredInternshipRoleList(), List.of(editedRole));
+        assertEquals(model.getFilteredInternshipTaskList(),
+                List.of(expectedUnfilteredModel.getUnfilteredInternshipTaskList().get(0),
+                        expectedUnfilteredModel.getUnfilteredInternshipTaskList().get(1)));
     }
 
     @Test
@@ -233,6 +220,16 @@ public class EditInternshipRoleCommandTest {
         EditInternshipRoleCommand editCommand =
                 new EditInternshipRoleCommand(index, new Cycle("Winter"), null,
                 null, null, null);
+
+        InternshipRole roleWithSameNameAndRole_1 = new InternshipRoleBuilder().withName("Company1")
+                .withRole("SWE").withCycle("Summer").build();
+        InternshipRole roleWithSameNameAndRole_2 = new InternshipRoleBuilder().withName("Company1")
+                .withRole("SWE").withCycle("Winter").build();
+
+        ModelManager model = new ModelManager(new AddressBook(), new UserPrefs());
+        model.addInternshipRole(roleWithSameNameAndRole_1);
+        model.addInternshipRole(roleWithSameNameAndRole_2);
+        
         CommandAssignmentTestUtil.assertCommandFailure(editCommand, model,
                 Messages.MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES);
     }
