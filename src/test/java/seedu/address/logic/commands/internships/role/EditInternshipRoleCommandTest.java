@@ -80,6 +80,12 @@ public class EditInternshipRoleCommandTest {
         }
     }
 
+    private EditInternshipRoleCommand getSampleEditCommand() {
+        return new EditInternshipRoleCommand(Index.fromOneBased(1),
+                new Cycle("cycle1"), new Description("desc1"), new Pay(new BigDecimal("1000")),
+                new ApplicationOutcome(Outcome.ACCEPTED), new Location("location1"));
+    }
+
     @BeforeEach
     public void init() {
         model = new ModelManager(getAddressBook(), new UserPrefs());
@@ -234,17 +240,20 @@ public class EditInternshipRoleCommandTest {
 
     @Test
     public void equals() {
-        EditInternshipRoleCommand editFirstCommand = new EditInternshipRoleCommand(Index.fromOneBased(1),
-                new Cycle("cycle1"), null, null, null, null);
+        EditInternshipRoleCommand editFirstCommand = getSampleEditCommand();
         EditInternshipRoleCommand editSecondCommand = new EditInternshipRoleCommand(Index.fromOneBased(1),
-                new Cycle("cycle2"), null, null, null, null);
+                new Cycle("cycle2"), new Description("desc2"), new Pay(new BigDecimal("2000")),
+                new ApplicationOutcome(Outcome.FOLLOW_UP), new Location("location2"));
 
         // same object -> returns true
         assertEquals(editFirstCommand, editFirstCommand);
 
+        // same object -> returns true
+        assertNotEquals(editFirstCommand, null);
+
         // same values -> returns true
-        EditInternshipRoleCommand editFirstCommandCopy = new EditInternshipRoleCommand(Index.fromOneBased(1),
-                new Cycle("cycle1"), null, null, null, null);
+        EditInternshipRoleCommand editFirstCommandCopy = getSampleEditCommand();
+
         assertEquals(editFirstCommand, editFirstCommandCopy);
 
         // different types -> returns false
@@ -256,6 +265,4 @@ public class EditInternshipRoleCommandTest {
         // different edit cmd -> returns false
         assertNotEquals(editFirstCommand, editSecondCommand);
     }
-
-
 }
