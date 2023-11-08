@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="281" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -68,7 +68,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -81,9 +81,9 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Assignment`, `InternshipRole` or `InternshipTask`  objects residing in the `Model`.
 
-The Storage component is responsible for the following key features:
+The `UI` component is responsible for the following key features:
 
 ***View Changes***
 
@@ -97,7 +97,7 @@ The Storage component is responsible for the following key features:
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -106,9 +106,9 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `AddAssignmentCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddAssignmentCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add an assignment).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddAssignmentCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an assignment).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
@@ -122,23 +122,33 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddAssignmentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddAssignmentCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddAssignmentCommandParser`, `DeleteAssignmentCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` 
+(`XYZ` is a placeholder for the specific command name e.g., `AddAssignmentCommandParser`) which uses the other classes 
+shown above to parse the user command and create a `XYZCommand` object (e.g., `AddAssignmentCommand`) which the 
+`AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddAssignmentCommandParser`, `DeleteAssignmentCommandParser`, ...) inherit 
+from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+**Overall high level view of the Model component**
+<img src="images/Model_High_Level.png" width="450"/>
 
+**Assignment portion of the Model component**
+<img src="images/Model_Low_Level_Assignment.png" width="450"/>
 
-The `Assignment`, `InternshipRole`, `InternshipTask` component,
+**Internship portion of the Model component**
+<img src="images/Model_Low_Level_Internship.png" width="450"/>
+
+The `Assignment`, `InternshipRole`, `InternshipTask` components:
 
 * these components implement the Unique Interface.
 * stores the address book data i.e., all `Assignment`, `InternshipRole`, `InternshipTask` objects (are contained in a separate `UniqueList` object).
-* stores the currently 'selected' component objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' component objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an 
+unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as these components represent data entities of the domain, they should make sense on their own without depending on other components)
-
 
 
 
@@ -148,7 +158,9 @@ The `Assignment`, `InternshipRole`, `InternshipTask` component,
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component plays a crucial role in your application by handling the persistence of data, specifically address book data and user preference data, in JSON format. It provides methods to save this data and retrieve it, converting it into corresponding objects when needed. This section will provide an overview of the Storage component, its key features, dependencies, and the classes it interacts with.
+The `Storage` component plays a crucial role in your application by handling the persistence of data, specifically address book data and user preference data, in JSON format. 
+It provides methods to save this data and retrieve it, converting it into corresponding objects when needed. This section will provide an overview of the Storage component, 
+its key features, dependencies, and the classes it interacts with.
 
 The Storage component is responsible for the following key features:
 
@@ -337,7 +349,7 @@ For all use cases below, we assume the following unless specified otherwise
 - The **Actor** is the `user`
 - The following preconditions
   - The `user` has launched the `CampusCompanion` application.
-Furthermore, some of the use cases are similar when manipulating **assignments**, internship **roles** and internship **tasks**. 
+Furthermore, some use cases are similar when manipulating **assignments**, internship **roles** and internship **tasks**. 
 Therefore, to keep the developer guide concise, the use cases elaborated upon below are only detailed for assignments. 
 Nonetheless, they can be extrapolated for internships roles and tasks too, without changes to the major details within the use case. 
 Such associated pairs of use cases are listed in the table below.
@@ -454,7 +466,7 @@ Such associated pairs of use cases are listed in the table below.
 1.  User requests to list all assignments
 2.  CampusCompanion shows a list of assignments with their details
 3.  User requests to unmark a specific assignment in the list
-4.  CampusCompanion unmarks the assignment
+4.  CampusCompanion unmark the assignment
 
     Use case ends.
 
@@ -533,7 +545,7 @@ Such associated pairs of use cases are listed in the table below.
 
 1.  User requests to list all assignments
 2.  CampusCompanion shows a list of assignments with their details
-3.  User requests to edit a assignment's information by specifying the updated information. 
+3.  User requests to edit an assignment's information by specifying the updated information. 
 4.  CampusCompanion confirms the update of the assignment's information.
 
     Use case ends.
@@ -610,33 +622,33 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting an assignment
 
 1. Deleting an assignment while all assignments are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple assignments in the list.
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete-a 1`<br>
       Expected: First assignment is deleted from the list. Details of the deleted assignment shown in the status message. 
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete-a 0`<br>
       Expected: No assignment is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -644,4 +656,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
