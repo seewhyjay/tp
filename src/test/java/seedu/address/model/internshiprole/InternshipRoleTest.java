@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
 import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
 
 import java.math.BigDecimal;
 
@@ -16,9 +16,9 @@ import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.testutil.InternshipRoleBuilder;
 
 public class InternshipRoleTest {
-    private InternshipRole role1 = getTypicalInternshipRole1();
+    private InternshipRole role1 = getTypicalInternshipRole2();
 
-    private InternshipRole role2 = getTypicalInternshipRole2();
+    private InternshipRole role2 = getTypicalInternshipRole1();
 
     private final String obscureInput = "123";
 
@@ -63,7 +63,7 @@ public class InternshipRoleTest {
     @Test
     public void equals() {
         // same values -> returns true
-        InternshipRole internshipRoleCopy = getTypicalInternshipRole1();
+        InternshipRole internshipRoleCopy = getTypicalInternshipRole2();
         assertTrue(role1.equals(internshipRoleCopy));
 
         // same object -> returns true

@@ -29,7 +29,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_INTERNSHIP_ROLE_SUCCESS = "Deleted internship role: %1$s"
-            + "\n" + "And its associated tasks";
+            + "\n" + "and its associated tasks";
 
     private final Index targetIndex;
 

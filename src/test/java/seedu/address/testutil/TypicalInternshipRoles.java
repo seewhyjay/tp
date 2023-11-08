@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.fields.Outcome;
 import seedu.address.model.internship.role.InternshipRole;
+import seedu.address.model.internship.task.InternshipTask;
 
 /**
  * A class to get typical internship roles
@@ -55,20 +56,31 @@ public class TypicalInternshipRoles {
             .build();
 
     public static InternshipRole getTypicalInternshipRole1() {
-        return new InternshipRoleBuilder().build();
+        return INTERNSHIP_ROLE_1;
     }
 
     public static InternshipRole getTypicalInternshipRole2() {
-        return INTERNSHIP_ROLE_1;
+        return new InternshipRoleBuilder().build();
     }
 
     /**
      * Returns an {@code AddressBook} with all the typical internshipRoles.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBook_internshipRoleOnly() {
         AddressBook ab = new AddressBook();
         for (InternshipRole internshipRole : getTypicalInternshipRole()) {
             ab.addInternshipRole(internshipRole);
+        }
+        return ab;
+    }
+
+    public static AddressBook getTypicalAddressBook_internshipRoleAndTask() {
+        AddressBook ab = new AddressBook();
+        for (InternshipRole internshipRole : getTypicalInternshipRole()) {
+            ab.addInternshipRole(internshipRole);
+        }
+        for (InternshipTask internshipTask : TypicalInternshipTasks.getTypicalInternshipTask()) {
+            ab.addInternshipTask(internshipTask);
         }
         return ab;
     }

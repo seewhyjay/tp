@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
-import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask1;
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
 import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask2;
+import static seedu.address.testutil.TypicalInternshipTasks.getTypicalInternshipTask1;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,9 +18,9 @@ import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.testutil.InternshipTaskBuilder;
 
 public class InternshipTaskTest {
-    private final InternshipTask task1 = getTypicalInternshipTask1();
+    private final InternshipTask task1 = getTypicalInternshipTask2();
 
-    private final InternshipTask task2 = getTypicalInternshipTask2();
+    private final InternshipTask task2 = getTypicalInternshipTask1();
 
     private final String obscureInput = "123";
 
@@ -55,7 +55,7 @@ public class InternshipTaskTest {
         assertFalse(task1.isDuplicate(editedTask));
 
         // different role all other attributes same -> returns false
-        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2()).build();
+        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole1()).build();
         assertFalse(task1.isDuplicate(editedTask));
 
         // different taskName all other attributes same -> returns false
@@ -63,7 +63,7 @@ public class InternshipTaskTest {
         assertFalse(task1.isDuplicate(editedTask));
 
         // different companyName and taskName all other attributes same -> returns false
-        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2())
+        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole1())
                 .withTaskName(obscureInput).build();
         assertFalse(task1.isDuplicate(editedTask));
     }
@@ -71,7 +71,7 @@ public class InternshipTaskTest {
     @Test
     public void equals() {
         // same values -> returns true
-        InternshipTask internshipTaskCopy = getTypicalInternshipTask1();
+        InternshipTask internshipTaskCopy = getTypicalInternshipTask2();
         assertTrue(task1.equals(internshipTaskCopy));
 
         // same object -> returns true
@@ -91,7 +91,7 @@ public class InternshipTaskTest {
         assertFalse(task1.equals(editedTask));
 
         // different companyName -> returns false
-        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole2()).build();
+        editedTask = new InternshipTaskBuilder(task1).withInternshipRole(getTypicalInternshipRole1()).build();
         assertFalse(task1.equals(editedTask));
 
         // different status -> returns false
