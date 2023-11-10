@@ -12,20 +12,12 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class AssignmentListPanel
-Class AssignmentCard
 Class StatusBarFooter
 Class CommandBox
 Class InternPanel
-Class InternshipRolePanel
-Class InternshipTaskPanel
-Class InternshipRoleCard
-Class InternshipTaskCard
 Class Calendar
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
-}
 
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
@@ -45,31 +37,18 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 
-AssignmentListPanel -down-> "*" AssignmentCard
-InternPanel -down-> "1" InternshipRolePanel
-InternPanel -down-> "1" InternshipTaskPanel
-InternshipRolePanel -down-> "*" InternshipRoleCard
-InternshipTaskPanel -down-> "*" InternshipTaskCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 AssignmentListPanel --|> UiPart
-AssignmentCard --|> UiPart
+
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 InternPanel --|> UiPart
-InternshipRolePanel --|> UiPart
-InternshipTaskPanel --|> UiPart
-InternshipRoleCard --|> UiPart
-InternshipTaskCard --|> UiPart
 Calendar --|> UiPart
 
-AssignmentCard ..> Model
-InternshipRoleCard ..> Model
-InternshipTaskCard ..> Model
-Calendar ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

@@ -15,52 +15,12 @@ encounter in your university life.
 - Track the status of these assignments and internships
 - Overview of the tasks for the upcoming week and month
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Table of Contents
-- [How to use this guide](#how-to-use-this-guide)
-  - [Notations used in this guide](#notations-used-in-this-guide)
-  - [New Users](#new-users)
-  - [Experienced Users](#experienced-users)
-- [Getting started](#getting-started)
-- [Glossary](#glossary)
-- [Understanding the Graphical User Interface(GUI)](#understanding-the-graphical-user-interface--gui-)
-- [Command Format](#command-format)
-- [Tutorial (for new users)](#campuscompanion-tutorial--for-new-users-)
-- [Features](#features)
-  - [Assignment Features](#assignment-features)
-    - [Adding an assignment](#adding-an-assignment)
-    - [Editing an assignment](#editing-an-assignment)
-    - [Deleting an assignment](#deleting-an-assignment)
-    - [Marking an assignment as complete](#marking-an-assignment-as-complete)
-    - [Marking an assignment as incomplete](#marking-an-assignment-as-incomplete)
-    - [Listing and filtering assignments](#listing-and-filtering-assignments)
-    - [Finding an assignment by keywords](#finding-an-assignment-by-keywords)
-  - [Internship Features](#internship-features)
-    - [Common internship features](#common-internship-features)
-      - [Listing all internship information](#listing-all-internship-information)
-    - [Internship Role](#internship-role)
-      - [Adding an internship role](#adding-an-internship-role)
-      - [Editing an internship role](#editing-an-internship-role)
-      - [Deleting an internship role](#deleting-an-internship-role)
-      - [Finding an internship by keywords](#finding-an-internship-role-by-keywords)
-    - [Internship Task](#internship-task)
-      - [Adding an internship task](#adding-an-internship-task)
-      - [Editing an internship task](#editing-an-internship-task)
-      - [Deleting an internship task](#deleting-an-internship-task)
-      - [Marking an internship task as complete](#marking-an-internship-task-as-complete)
-      - [Marking an internship task as incomplete](#marking-an-internship-task-as-incomplete)
-      - [Finding an internship task by keywords](#finding-an-internship-task-by-keywords)
-- [Command Summary](#command-summary)
-  - [Assignment Commands](#assignment-commands)
-  - [Internship Commands](#internship-commands)
-    - [Common Internship Commands](#common-internship-commands)
-    - [Internship Role](#internship-role-commands)
-    - [Internship Task](#internship-task-commands)
-- [Parameter Summary](#parameter-summary)
-  - [Assignment Parameters](#assignment-parameters)
-  - [Internship Parameters](#internship-parameters)
-    - [Internship Role Parameters](#internship-role-parameters)
-    - [Internship Task Parameters](#internship-task-parameters)
-- [FAQ](#faq)
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -95,9 +55,9 @@ If you are new here, and need help with getting started with our application, vi
 [Getting Started](#getting-started) guide to onboard onto CampusCompanion smoothly!
 
 After setting up the application, if you are looking for a step-by-step walk-through on the various features 
-that CampusCompanion has, [click here](#campuscompanion-tutorial--for-new-users-) for a tutorial of CampusCompanion.
+that CampusCompanion has, [click here](#campuscompanion-tutorial-for-new-users) for a tutorial of CampusCompanion.
 
-If you are looking to understand the different parts of the Graphical User Interface, [click here](#understanding-the-graphical-user-interface--gui-)
+If you are looking to understand the different parts of the Graphical User Interface, [click here](#understanding-the-graphical-user-interface-gui)
 for a comprehensive look at our GUI. 
 
 If you want a detailed look into each of the features that CampusCompanion has, visit our [features section](#features).
@@ -149,15 +109,15 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 ### Definitions 
 Here are some descriptions of the words we use throughout the User Guide:
 
-| Term               | Definition                                                                                                                                                                                                          |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command            | An input from the user that tells CampusCompanion to perform an action (eg. ADD an assignment, DELETE an assignment).                                                                                               |
-| Parameter          | Parameters are the details you would include about the assignment/internship (eg. Name, Description). A command may include 1 or more parameters.                                                                   |
-| Required Parameter | These are parameters that **must** be included in the command, otherwise the command will fail, and an error message will be displayed to you.                                                                      |
-| Optional Parameter | These are parameters that can be omitted from the command with no errors. Such parameters provides you the flexibility of capturing or omitting additional, less important information.                             |
-| GUI                | Graphical User Interface (GUI) represents the visual display of CampusCompanion which you are looking at and interacting with.                                                                                      |
-| GUI component      | The GUI is made up of many GUI components such as the calendar component, the list component etc. For more information on specific GUI components, [click here](#understanding-the-graphical-user-interface--gui-). |
-| CLI                | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                                                                                                               |
+| Term               | Definition                                                                                                                                                                                                        |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command            | An input from the user that tells CampusCompanion to perform an action (eg. ADD an assignment, DELETE an assignment).                                                                                             |
+| Parameter          | Parameters are the details you would include about the assignment/internship (eg. Name, Description). A command may include 1 or more parameters.                                                                 |
+| Required Parameter | These are parameters that **must** be included in the command, otherwise the command will fail, and an error message will be displayed to you.                                                                    |
+| Optional Parameter | These are parameters that can be omitted from the command with no errors. Such parameters provides you the flexibility of capturing or omitting additional, less important information.                           |
+| GUI                | Graphical User Interface (GUI) represents the visual display of CampusCompanion which you are looking at and interacting with.                                                                                    |
+| GUI component      | The GUI is made up of many GUI components such as the calendar component, the list component etc. For more information on specific GUI components, [click here](#understanding-the-graphical-user-interface-gui). |
+| CLI                | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                                                                                                             |
 
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -213,6 +173,7 @@ For example:
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## CampusCompanion Tutorial (for new users)
 
 This is a tutorial for new CampusCompanion users. This tutorial will provide you step-by-step instructions for how to use each
@@ -435,7 +396,7 @@ This command also changes the view to assignments tab (if the view is not curren
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-- In order to use any of the assignment related commands below, you must be in the assignment view. Ie, you must use
+- In order to use any of the assignment related commands below, you must be in the assignment view. In particular, you must use
   list-a to switch to assignment view. This is to prevent you from performing commands while you are not looking at the correct list.
 - The start time and end time is optional. If not provided, start time will default to 00:00 and end time will default to 23:59.
 </div>
@@ -555,7 +516,7 @@ To add an internship role into CampusCompanion.
 
 To view internship role parameter information, click [here](#internship-role-parameters)
 
-**Purpose:** Edit the outcome of a specified internship role.
+**Purpose:** Edit the specified parameters of a specified internship role.
 
 **Examples:**
 - Use `list-i` to list all the internship information, followed by `edit-i-role i/1 o/rejected`
@@ -897,7 +858,7 @@ or [feature](#features) section, for detailed information about each feature.
 | Command       | What it does                                                                                         |
 |---------------|------------------------------------------------------------------------------------------------------|
 | add-i-role    | Adds an internship role into CampusCompanion                                                         |
-| edit-i-role   | Edits the existing outcome of the specified internship role                                          |
+| edit-i-role   | Edit the specified parameters of a specified internship role.                                        |
 | delete-i-role | Deletes the specified internship role and all its associated tasks from CampusCompanion              |
 | find-i-role   | Lists the internship role with comapna name matching the given keyword, and all the associated tasks |
 
