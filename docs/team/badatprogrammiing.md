@@ -10,19 +10,23 @@ CampusCompanion - your all-in-one solution to manage your university life.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=Badatprogrammiing&breakdown=true)
 
 * **Enhancements implemented**:
-    * To be added
+    * Models
+    * Add Assignment Command
+    * Add InternshipRole Command
+    * Calendar
 
 * **Documentation**:
     * User Guide:
-        * To be added
+        * Yes
     * Developer Guide:
-        * To be added
+        * Diagrams
 
 * **Team-based tasks**:
-    * To be added
+    * Set up Repo
+    * Manage Issues
+    * Releases
 
 * **Review and mentoring**:
-    * To be added
+    * [PR](https://github.com/AY2324S1-CS2103T-T12-3/tp/pull/131)
 
-* **Community**:
-    * To be added
+
