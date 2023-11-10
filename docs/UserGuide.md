@@ -55,9 +55,9 @@ If you are new here, and need help with getting started with our application, vi
 [Getting Started](#getting-started) guide to onboard onto CampusCompanion smoothly!
 
 After setting up the application, if you are looking for a step-by-step walk-through on the various features 
-that CampusCompanion has, [click here](#campuscompanion-tutorial--for-new-users-) for a tutorial of CampusCompanion.
+that CampusCompanion has, [click here](#campuscompanion-tutorial-for-new-users) for a tutorial of CampusCompanion.
 
-If you are looking to understand the different parts of the Graphical User Interface, [click here](#understanding-the-graphical-user-interface--gui-)
+If you are looking to understand the different parts of the Graphical User Interface, [click here](#understanding-the-graphical-user-interface-gui)
 for a comprehensive look at our GUI. 
 
 If you want a detailed look into each of the features that CampusCompanion has, visit our [features section](#features).
@@ -109,15 +109,15 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 ### Definitions 
 Here are some descriptions of the words we use throughout the User Guide:
 
-| Term               | Definition                                                                                                                                                                                                          |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command            | An input from the user that tells CampusCompanion to perform an action (eg. ADD an assignment, DELETE an assignment).                                                                                               |
-| Parameter          | Parameters are the details you would include about the assignment/internship (eg. Name, Description). A command may include 1 or more parameters.                                                                   |
-| Required Parameter | These are parameters that **must** be included in the command, otherwise the command will fail, and an error message will be displayed to you.                                                                      |
-| Optional Parameter | These are parameters that can be omitted from the command with no errors. Such parameters provides you the flexibility of capturing or omitting additional, less important information.                             |
-| GUI                | Graphical User Interface (GUI) represents the visual display of CampusCompanion which you are looking at and interacting with.                                                                                      |
-| GUI component      | The GUI is made up of many GUI components such as the calendar component, the list component etc. For more information on specific GUI components, [click here](#understanding-the-graphical-user-interface--gui-). |
-| CLI                | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                                                                                                               |
+| Term               | Definition                                                                                                                                                                                                        |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command            | An input from the user that tells CampusCompanion to perform an action (eg. ADD an assignment, DELETE an assignment).                                                                                             |
+| Parameter          | Parameters are the details you would include about the assignment/internship (eg. Name, Description). A command may include 1 or more parameters.                                                                 |
+| Required Parameter | These are parameters that **must** be included in the command, otherwise the command will fail, and an error message will be displayed to you.                                                                    |
+| Optional Parameter | These are parameters that can be omitted from the command with no errors. Such parameters provides you the flexibility of capturing or omitting additional, less important information.                           |
+| GUI                | Graphical User Interface (GUI) represents the visual display of CampusCompanion which you are looking at and interacting with.                                                                                    |
+| GUI component      | The GUI is made up of many GUI components such as the calendar component, the list component etc. For more information on specific GUI components, [click here](#understanding-the-graphical-user-interface-gui). |
+| CLI                | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                                                                                                             |
 
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -173,6 +173,7 @@ For example:
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## CampusCompanion Tutorial (for new users)
 
 This is a tutorial for new CampusCompanion users. This tutorial will provide you step-by-step instructions for how to use each
