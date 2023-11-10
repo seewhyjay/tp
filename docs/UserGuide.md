@@ -901,7 +901,7 @@ or [feature](#features) section, for detailed information about each feature.
 | add-i-role    | Adds an internship role into CampusCompanion                                                         |
 | edit-i-role   | Edits the existing outcome of the specified internship role                                          |
 | delete-i-role | Deletes the specified internship role and all its associated tasks from CampusCompanion              |
-| find-i-role   | Lists the internship role with comapna name matching the given keyword, and all the associated tasks |
+| find-i-role   | Lists the internship role with company name matching the given keyword, and all the associated tasks |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
