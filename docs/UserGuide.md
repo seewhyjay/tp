@@ -1027,9 +1027,9 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 
 ### How to use the internship outcome
 **Q**: What is the recommended usage of the internship outcomes 
-**A**: Outcome must be either one of the following only: `Follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting`. This is how we recommend using them: 
+**A**: Outcome must be either one of the following only: `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting`. This is how we recommend using them: 
 - Awaiting (Just finished with one stage and awaiting results of that stage)
-- Follow-up (Just received a follow-up - e.g. for an interview, but haven't finished that round yet.
+- follow-up (Just received a follow-up - e.g. for an interview, but haven't finished that round yet.
   Once finished with that round, the status should be updated to awaiting to indicate that you are awaiting results.)
 - Ghosted (If you did not receive any news after an appropriate amount of time.)
 - Rejected (If you received a rejection letter)
