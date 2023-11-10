@@ -396,7 +396,7 @@ This command also changes the view to assignments tab (if the view is not curren
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-- In order to use any of the assignment related commands below, you must be in the assignment view. Ie, you must use
+- In order to use any of the assignment related commands below, you must be in the assignment view. In particular, you must use
   list-a to switch to assignment view. This is to prevent you from performing commands while you are not looking at the correct list.
 - The start time and end time is optional. If not provided, start time will default to 00:00 and end time will default to 23:59.
 </div>
@@ -516,7 +516,7 @@ To add an internship role into CampusCompanion.
 
 To view internship role parameter information, click [here](#internship-role-parameters)
 
-**Purpose:** Edit the outcome of a specified internship role.
+**Purpose:** Edit the specified parameters of a specified internship role.
 
 **Examples:**
 - Use `list-i` to list all the internship information, followed by `edit-i-role i/1 o/rejected`
@@ -858,7 +858,7 @@ or [feature](#features) section, for detailed information about each feature.
 | Command       | What it does                                                                                         |
 |---------------|------------------------------------------------------------------------------------------------------|
 | add-i-role    | Adds an internship role into CampusCompanion                                                         |
-| edit-i-role   | Edits the existing outcome of the specified internship role                                          |
+| edit-i-role   | Edit the specified parameters of a specified internship role.                                        |
 | delete-i-role | Deletes the specified internship role and all its associated tasks from CampusCompanion              |
 | find-i-role   | Lists the internship role with comapna name matching the given keyword, and all the associated tasks |
 
