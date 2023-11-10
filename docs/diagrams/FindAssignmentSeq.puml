@@ -41,7 +41,7 @@ AssignmentContainsKeywordsPredicate --> FindAssignmentParser : predicate
 deactivate AssignmentContainsKeywordsPredicate
 
 create FindAssignmentCommand
-FindAssignmentParser -> FindAssignmentCommand : predicate
+FindAssignmentParser -> FindAssignmentCommand
 activate FindAssignmentCommand
 
 FindAssignmentCommand --> FindAssignmentParser : f

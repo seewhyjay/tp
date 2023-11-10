@@ -39,7 +39,7 @@ AssignmentBetweenStartandEndPredicate --> ListAssignmentParser : predicate
 deactivate AssignmentBetweenStartandEndPredicate
 
 create ListAssignmentCommand
-ListAssignmentParser -> ListAssignmentCommand : predicate
+ListAssignmentParser -> ListAssignmentCommand
 activate ListAssignmentCommand
 
 ListAssignmentCommand --> ListAssignmentParser : a
