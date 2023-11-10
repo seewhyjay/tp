@@ -11,15 +11,27 @@ CampusCompanion - your all-in-one solution to manage your university life.
 
 * **Enhancements implemented**:
     * Models
+      * Implement models for Assignment, InternshipRoles, InternshipsTasks
+      * Created fields for the relevant model
+      * Refactor UniquePersonList to a generic class to reduce code duplication
     * Add Assignment Command
+      * Allows user to add assignments.
     * Add InternshipRole Command
+      * Allows user to add internship roles.
     * Calendar
+      * Calendar that display all its related tasks
+      * Calendar navigation by month
+    * UI 
+      * Hook up assignment and internship with the UI
+      * FXML and CSS
+    * Storage
+      * Properly serialises and de-serialises InternshipRoles and Assignment for permanent storage.
 
 * **Documentation**:
     * User Guide:
         * Yes
     * Developer Guide:
-        * Diagrams
+        * UI, Model Diagrams
 
 * **Team-based tasks**:
     * Set up Repo
