@@ -76,7 +76,7 @@ This is a **partial diagram** of the UI component. This diagram gives a high lev
 
 We also have a **partial diagram** to show the dependencies between the higher level UI components (such as `InternPanel`), and the lower level components (such as `InternshipRolePanel` etc.).
 
-<img src="images/Ui_Low_Level.png" width="850" />
+<img src="images/Ui_Low_Level.png" width="500" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `selectedViewPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -91,7 +91,7 @@ The `UI` component,
 
 Below is a **partial diagram** to show the dependency on the `Model` class:
 
-<img src="images/Ui_Lower_Level_2.png" width="850" />
+<img src="images/Ui_Lower_Level_2.png" width="500" />
 
 The `UI` component is responsible for the following key features:
 

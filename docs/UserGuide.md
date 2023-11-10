@@ -15,6 +15,10 @@ encounter in your university life.
 - Track the status of these assignments and internships
 - Overview of the tasks for the upcoming week and month
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
