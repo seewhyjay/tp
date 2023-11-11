@@ -18,7 +18,7 @@ CampusCompanion - your all-in-one solution to manage your university life.
       * Allows user to add assignments.
     * Add InternshipRole Command
       * Allows user to add internship roles.
-    * Calendar
+    * Calendar UI
       * Calendar that display all its related tasks.
       * Calendar navigation by month.
       * Calendar will display tasks based on the selected tab.
