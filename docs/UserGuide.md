@@ -129,7 +129,7 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ![img.png](images/LabelledGUI.png)
 
-Here is a quick summary of each GUI component within CampusCompanion
+Here is a quick summary of each GUI component within CampusCompanion's assignments view.
 
 | Component                   | Description                                                                                                                                                                                                                                                                              |
 |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -143,6 +143,16 @@ Here is a quick summary of each GUI component within CampusCompanion
 | Calendar with Task Preview  | The calendar shows up to 2 tasks, be it ``assignment`` or ``internship`` for each day, if there are any. The current day is highlighted in purple.                                                                                                                                       |
 | Calendar Navigation Buttons | Used to change the month being shown on the calendar.                                                                                                                                                                                                                                    |
 | Footer                      | Shows the location of the saved data. This file can be used to move data to another computer.                                                                                                                                                                                            |
+
+
+![img.png](images/LabelledInternshipGUI.png)
+Here is a quick summary of the different GUI components within CampusCompanion's internships view.
+
+| Component            | Description                                                                                                  |
+|----------------------|--------------------------------------------------------------------------------------------------------------|
+| Sub-list Title       | Indicates if ``Internship roles`` or ``Internship tasks`` are being shown in that list                       |
+| Internship Role List | Shows all information of individual ``internship role`` that you're applying for.                            |
+| Internship Task List | Shows all information of individual ``internship task`` for an ``internship role`` that you're applying for. |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
