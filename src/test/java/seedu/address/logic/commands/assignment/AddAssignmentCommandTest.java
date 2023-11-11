@@ -51,7 +51,7 @@ public class AddAssignmentCommandTest {
     }
 
     @Test
-    public void execute_plannedFinishDateAfterDeadline_throwsParserException() throws Exception {
+    public void execute_plannedFinishDateAfterDeadline_throwsCommandException() throws Exception {
         ModelStubAcceptingAssignmentAdded modelStub = new ModelStubAcceptingAssignmentAdded();
         LocalDateTime deadline = LocalDateTime.now();
         LocalDateTime plannedFinishDate = deadline.plusHours(10);
