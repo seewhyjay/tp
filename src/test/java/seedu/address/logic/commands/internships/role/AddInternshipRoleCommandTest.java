@@ -22,9 +22,9 @@ import seedu.address.testutil.TypicalInternshipRoles;
 public class AddInternshipRoleCommandTest {
     private ModelManager manager = new ModelManager();
 
-    private final InternshipRole role1 = TypicalInternshipRoles.getTypicalInternshipRole1();
+    private final InternshipRole role1 = TypicalInternshipRoles.getTypicalInternshipRole2();
 
-    private final InternshipRole role2 = TypicalInternshipRoles.getTypicalInternshipRole2();
+    private final InternshipRole role2 = TypicalInternshipRoles.getTypicalInternshipRole1();
 
     @BeforeEach
     public void init() {
@@ -61,7 +61,7 @@ public class AddInternshipRoleCommandTest {
 
         // same values -> returns true
         AddInternshipRoleCommand addRole1CommandCopy =
-                new AddInternshipRoleCommand(TypicalInternshipRoles.getTypicalInternshipRole1());
+                new AddInternshipRoleCommand(TypicalInternshipRoles.getTypicalInternshipRole2());
         assertTrue(addRole1Command.equals(addRole1CommandCopy));
 
         // different types -> returns false

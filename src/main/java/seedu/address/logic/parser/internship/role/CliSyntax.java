@@ -1,6 +1,6 @@
 package seedu.address.logic.parser.internship.role;
 
-import seedu.address.logic.parser.person.Prefix;
+import seedu.address.logic.parser.common.Prefix;
 
 /**
  * Syntax for creating an InternshipRole

@@ -46,8 +46,6 @@ public class AddInternshipTaskCommandTest {
 
     private final InternshipRole role1 = TypicalInternshipRoles.getTypicalInternshipRole1();
 
-    private final InternshipRole role2 = TypicalInternshipRoles.getTypicalInternshipRole2();
-
     private final InternshipTask task1 = new InternshipTaskBuilder(role1).build();
 
     @BeforeEach
@@ -112,7 +110,7 @@ public class AddInternshipTaskCommandTest {
         // null -> returns false
         assertFalse(addTask1Command.equals(null));
 
-        // different person -> returns false
+        // different tasks -> returns false
         assertFalse(addTask1Command.equals(addTask2Command));
     }
 

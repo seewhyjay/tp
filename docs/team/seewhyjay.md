@@ -11,19 +11,48 @@ CampusCompanion - your all-in-one solution to manage your university life.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=seewhyjay&breakdown=true)
 
 * **Enhancements implemented**:
-  * To be added
+  #### Development
+  * Internships
+    * Listing
+      * Allows user to list all internship roles and tasks.
+  * Internship Tasks
+    * Commands
+      * Adding
+        * Allows user to add internship tasks.
+      * Deleting
+        * Allows user to delete internship tasks.
+      * Marking
+        * Allows user to mark internship tasks as complete.
+      * Un-marking
+        * Allows user to mark internship tasks as incomplete should they have accidentally marked them complete.
+      * Finding
+        * Allows user to find internship tasks with their associated roles by keyword.
+    * Storage
+      * Properly serialises and de-serialises internship tasks for permanent storage.
+  * Internship Roles
+    * Finding
+      * Allows user to find roles along with all its associated tasks by keyword.
+  * Assignments
+    * Listing
+      * Allows user to list all assignments
+    * Finding
+      * Allows user to find assignments by keyword.
+  #### CI/CD
+  * Implemented GitHub workflow to build and upload CampusCompanion's executable as an artifact on every PR for easy testing by reviewers.
+    * Example: [PR#193](https://github.com/AY2324S1-CS2103T-T12-3/tp/actions/runs/6815714173?pr=193)
 
 * **Documentation**:
   * User Guide:
-    * To be added
+    * Updated section on introducing the GUI for new users.
+    * Updated section on `Find` and `Sort` command for assignments
   * Developer Guide:
-    * To be added
+    * Updated sections relating to Storage
 
 * **Team-based tasks**:
-  * To be added
+  * Maintaining issue tracker
 
 * **Review and mentoring**:
-  * To be added
+  * Notable PRs reviewed: [#95](https://github.com/AY2324S1-CS2103T-T12-3/tp/pull/95),[#127](https://github.com/AY2324S1-CS2103T-T12-3/tp/pull/127),[#128](https://github.com/AY2324S1-CS2103T-T12-3/tp/pull/128),[#189](https://github.com/AY2324S1-CS2103T-T12-3/tp/pull/189)
 
 * **Community**:
-  * To be added
+  * Contributions during the PE-D to provide bug reports to other groups.
