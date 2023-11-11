@@ -248,6 +248,7 @@ To add an assignment into CampusCompanion.
 **Note:**
 - The start time and end time within the end date (e/) and planned end date (p/) is optional. 
 If not provided, start time will default to 00:00 and end time will default to 23:59.
+- The planned end date **MUST** be before end date.
 </div>
 
 **Examples:** 
