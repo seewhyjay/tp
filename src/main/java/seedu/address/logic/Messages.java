@@ -18,6 +18,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX = "The assignment index provided is invalid";
     public static final String MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW = "%1$d assignments listed!";
+    public static final String MESSAGE_ASSIGNMENT_PLANNED_DATE_AFTER_END_DATE =
+            "Planned end date cannot be after deadline, do your homework on time!";
     public static final String MESSAGE_INTERNSHIPS_LISTED_OVERVIEW = "%1$d internship roles and tasks listed!";
     public static final String MESSAGE_INVALID_INTERNSHIP_TASK_DISPLAYED_INDEX = "The internship task index"
             + " provided is invalid";

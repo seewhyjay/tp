@@ -27,10 +27,10 @@ public class AddAssignmentCommand extends AssignmentCommand {
             + ": Adds an assignment to the app. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_ENDDATE + "YYYY-MM-DD HH:mm "
+            + PREFIX_ENDDATE + "DEADLINE IN YYYY-MM-DD HH:mm FORMAT "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "]"
             + "[" + PREFIX_STATUS + "STATUS " + "]\n"
-            + "[" + PREFIX_PLANNEDFINISHDATE + "YYYY-MM-DD HH:mm" + "]"
+            + "[" + PREFIX_PLANNEDFINISHDATE + "FINISH BY IN YYYY-MM-DD HH:mm FORMAT" + "] "
             + "[" + PREFIX_TAG + "TAG" + "]\n"
             + "Example: " + COMMAND_WORD
             + " add-a n/Assignment 1 d/description e/2023-12-18 19:00 p/2023-08-19 18:00 t/group s/incomplete";

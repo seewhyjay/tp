@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.assignment;
 
+import static seedu.address.logic.Messages.MESSAGE_ASSIGNMENT_PLANNED_DATE_AFTER_END_DATE;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ParserUtil.parseTags;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
@@ -61,6 +62,13 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         Date plannedFinishDate = argumentMultimap.getValue(PREFIX_PLANNEDFINISHDATE).isEmpty()
                 ? new NoDate()
                 : ParserUtil.parseDateForAdd(argumentMultimap.getValue(PREFIX_PLANNEDFINISHDATE).get());
+
+        if (!plannedFinishDate.equals(new NoDate())) {
+            if (endDate.getDate().get().isBefore(plannedFinishDate.getDate().get())) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ASSIGNMENT_PLANNED_DATE_AFTER_END_DATE));
+            }
+        }
 
         Set<Tag> tagList = parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
 
