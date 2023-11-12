@@ -64,7 +64,7 @@ public class InternshipRoleCard extends UiPart<Region> {
                     container.getChildren().add(l);
                     l.setWrapText(true);
                     cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
-                        l.setMaxWidth(cardPane.getWidth() - 25);
+                        l.setMaxWidth(newVal.doubleValue() - 25);
                     });
                     tags.getChildren().add(container);
                 });
