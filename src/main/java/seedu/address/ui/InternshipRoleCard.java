@@ -5,6 +5,7 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.internship.role.InternshipRole;
 
@@ -37,6 +38,10 @@ public class InternshipRoleCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private HBox cardPane;
+
+
     /**
      * Represents an internship role gui card
      * @param internshipRole to display
@@ -53,8 +58,16 @@ public class InternshipRoleCard extends UiPart<Region> {
         internLocation.setText("Location: " + this.internshipRole.getLocation().toString());
         internshipRole.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    HBox container = new HBox();
+                    Label l = new Label(tag.tagName);
+                    container.getChildren().add(l);
+                    l.setWrapText(true);
+                    cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+                        l.setMaxWidth(cardPane.getWidth() - 25);
+                    });
+                    tags.getChildren().add(container);
+                });
     }
-
 
 }

@@ -5,6 +5,7 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.internship.task.InternshipTask;
 
@@ -37,6 +38,9 @@ public class InternshipTaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private HBox cardPane;
+
     /**
      * Crates an InternshipTask card with the given task
      * @param task to be displayed
@@ -53,6 +57,15 @@ public class InternshipTaskCard extends UiPart<Region> {
         outcome.setText("Outcome: " + task.getOutcome().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    HBox container = new HBox();
+                    Label l = new Label(tag.tagName);
+                    container.getChildren().add(l);
+                    l.setWrapText(true);
+                    cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+                        l.setMaxWidth(cardPane.getWidth() - 25);
+                    });
+                    tags.getChildren().add(container);
+                });
     }
 }

@@ -57,6 +57,15 @@ public class AssignmentCard extends UiPart<Region> {
         plannedFinishDate.setText("Plan to finish by: " + assignment.getPlannedFinishDate().toString());
         assignment.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    HBox container = new HBox();
+                    Label l = new Label(tag.tagName);
+                    container.getChildren().add(l);
+                    l.setWrapText(true);
+                    cardPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+                        l.setMaxWidth(cardPane.getWidth() - 25);
+                    });
+                    tags.getChildren().add(container);
+                });
     }
 }
