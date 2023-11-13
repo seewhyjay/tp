@@ -1,7 +1,8 @@
 package seedu.address.logic.commands.assignment;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 
