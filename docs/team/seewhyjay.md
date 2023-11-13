@@ -41,6 +41,7 @@ Given below are my contributions to the project.
       * Allows user to list all assignments
     * Finding
       * Allows user to find assignments by keyword.
+  
   #### CI/CD
   * Implemented GitHub workflow to build and upload CampusCompanion's executable as an artifact on every PR for easy testing by reviewers.
   * This is to circumvent the need to clone our teammates personal repositories to build the jar file then test their changes.
