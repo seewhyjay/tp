@@ -207,7 +207,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The implementation for `InternshipRole` and `InternshipTask` are very similar to `Assignment`, hence we only detail the implementation for `Assignment` features.
 We have included for reference which internship features are similar to the assignment feature. Please note this does not mean they are exactly identical, there 
-may be some nuance differences between the implementation. 
+may be some differences between the implementation. 
 
 ### Add Assignment feature
 
@@ -287,7 +287,7 @@ The following sequence diagram illustrates how the delete assignment operation w
 
 ### Edit Assignment Feature
 
-**Similar internship feature**: `Edit internship Role` feature and `Edit internship Task` feature
+**Similar internship feature**: `Edit internship Task` feature
 
 #### What it does
 {: .no_toc}
