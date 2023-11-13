@@ -60,12 +60,6 @@ public class EditInternshipTaskCommand extends InternshipCommand {
             throw new CommandException(MESSAGE_INVALID_TASK);
         }
 
-        /*if (newOutcome.getTaskOutcome() == Outcome.OFFERED) {
-            EditInternshipRoleCommand editRoleCommand = new EditInternshipRoleCommand(index,
-                    new ApplicationOutcome(Outcome.OFFERED));
-            editRoleCommand.execute(model);
-        }*/
-
         InternshipTask taskWithNewOutcome = taskToEdit.getNewInternshipTaskWithOutcome(newOutcome);
         model.setInternshipTask(taskToEdit, taskWithNewOutcome);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(taskWithNewOutcome)));

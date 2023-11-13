@@ -17,10 +17,21 @@ end box
 [-> LogicManager : execute("unmark-a 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("unmark-a 1")
+LogicManager -> AddressBookParser : parseCommand("unmark-a 1", model::isValidOperation)
 activate AddressBookParser
 
-AddressBookParser -> AddressBookParser : verifyView()
+AddressBookParser -> AddressBookParser : verifyView(model::isValidOperation, View.ASSIGNMENT)
+activate AddressBookParser
+
+AddressBookParser -> LogicManager : model.isValidOperation(View.ASSIGNMENT)
+activate LogicManager
+
+LogicManager --> AddressBookParser : isValid
+deactivate LogicManager
+
+AddressBookParser --> AddressBookParser
+
+deactivate AddressBookParser
 
 create UnmarkAssignmentParser
 AddressBookParser -> UnmarkAssignmentParser
