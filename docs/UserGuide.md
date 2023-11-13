@@ -77,7 +77,7 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 
 1. Ensure you have Java `11` or above installed in your Computer. [Click here](#checking-java-version) to learn how to check your java version 
 
-2. Download the latest `campuscompanion.jar` from [here](https://github.com/AY2324S1-CS2103T-T12-3/tp/releases).
+2. Download the latest `CampusCompanion.jar` from [here](https://github.com/AY2324S1-CS2103T-T12-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your CampusCompanion.
 
@@ -862,7 +862,7 @@ CampusCompanion data are saved in the hard disk automatically after any command 
 
 ### Editing the data file
 
-CampusCompanion data are saved automatically as a JSON file `[JAR file location]/data/campuscompanion.json`. 
+CampusCompanion data are saved automatically as a JSON file `[JAR file location]/data/CampusCompanion.json`. 
 
 Advanced users are welcome to update data directly by editing that data file. After editing that file, 
 when you re-run the application, the new data will automatically be shown. 
@@ -1021,16 +1021,16 @@ The information below specifies parameter description, constraints and usage thr
 Method 1: For users familiar with the command prompt
 1. Open the command prompt
 2. Navigate to the directory where the JAR file is located using `cd [JAR file location]`
-3. Type `java -jar campusCompanion.jar` and press enter
+3. Type `java -jar CampusCompanion.jar` and press enter
 4. CampusCompanion should launch
 
-Method 2: For users that wish to create a script to launch CampusCompanion (**Recommended**)
+Method 2: For users that wish to create a script to launch CampusCompanion 
 1. Create a new text file
 2. Copy and paste the following into the text file:
 ```
-java -jar [JAR file location]/campusCompanion.jar
+java -jar [JAR file location]/CampusCompanion.jar
 ```
-3. Save the text file as `campusCompanion.bat` (Windows) or `campusCompanion.sh` (MacOS/Linux)
+3. Save the text file as `CampusCompanion.bat` (Windows) or `CampusCompanion.sh` (MacOS/Linux)
 4. Change the admin settings of the script to allow it to run as a program:
   1. Windows: Right-click on the script and select `Properties`. Under `General`, check the box that says `Allow this file to run as a program`.
   2. MacOS/Linux: Open the terminal and navigate to the directory where the script is located. Type `chmod +x [script name]` and press enter. (`chmod +x` changes permissions of the script to allow it to be executed.)
