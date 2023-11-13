@@ -127,6 +127,13 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ### Quick Orientation
 
+<div markdown="block" class="alert alert-info">
+
+CampusCompanion's GUI has 2 main views, `Assignments` and `Internships`.
+
+</div>
+
+#### Assignments View
 ![img.png](images/LabelledGUI.png)
 
 Here is a quick summary of each GUI component within CampusCompanion's assignments view.
@@ -144,6 +151,8 @@ Here is a quick summary of each GUI component within CampusCompanion's assignmen
 | Calendar Navigation Buttons | Used to change the month being shown on the calendar.                                                                                                                                                                                                                                    |
 | Footer                      | Shows the location of the saved data. This file can be used to move data to another computer.                                                                                                                                                                                            |
 
+
+#### Internships View
 
 ![img.png](images/LabelledInternshipGUI.png)
 Here is a quick summary of the different GUI components within CampusCompanion's internships view.
