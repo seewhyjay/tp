@@ -58,9 +58,9 @@ public class EditInternshipTaskCommandTest {
         return ab;
     }
 
-    private void editTask(InternshipTask taskToBeEdited, InternshipTask editedTask, ModelManager model) {
+/*    private void editTask(InternshipTask taskToBeEdited, InternshipTask editedTask, ModelManager model) {
         model.setInternshipTask(taskToBeEdited, editedTask);
-    }
+    }*/
 
     private EditInternshipTaskCommand getSampleEditCommand() {
         return new EditInternshipTaskCommand(Index.fromOneBased(1),
@@ -75,16 +75,19 @@ public class EditInternshipTaskCommandTest {
     @Test
     public void execute_allFieldsProvided_taskEdited() {
         Index index = Index.fromOneBased(1);
+
+        //When executed, the InternshipTask at the specified index will be edited with the TaskOutcome
         EditInternshipTaskCommand editCommand =
                 new EditInternshipTaskCommand(index, new TaskOutcome(Outcome.ACCEPTED));
 
         ModelManager expectedModel = new ModelManager(getAddressBook(), new UserPrefs());
 
+        //An InternshipTask that is identical to the task after it has been edited
         InternshipTask editedTask = new InternshipTaskBuilder().withInternshipRole(role1)
                 .withTaskName("Interview Preparation_1")
                 .withOutcome(Outcome.ACCEPTED).build();
 
-        editTask(task1BelongingToRole1, editedTask, expectedModel);
+        expectedModel.setInternshipTask(task1BelongingToRole1, editedTask);
 
         String expectedMessage = String.format(EditInternshipTaskCommand.MESSAGE_SUCCESS, Messages.format(editedTask));
 
@@ -110,7 +113,7 @@ public class EditInternshipTaskCommandTest {
 
         ModelManager expectedUnfilteredModel = new ModelManager(getAddressBook(), new UserPrefs());
 
-        editTask(task2BelongingToRole1, editedTask, expectedUnfilteredModel);
+        expectedUnfilteredModel.setInternshipTask(task2BelongingToRole1, editedTask);
 
         assertEquals(model.getUnfilteredInternshipTaskList(),
                 expectedUnfilteredModel.getUnfilteredInternshipTaskList());

@@ -14,9 +14,6 @@ import seedu.address.model.fields.TaskOutcome;
 public class EditInternshipTaskParserTest {
     private final EditInternshipTaskParser parser = new EditInternshipTaskParser();
 
-    private final String multiplePrefixMsg = "Multiple values specified for the following single-valued field(s): ";
-
-
     @Test
     public void parse_allValidFieldsPresent_success() {
         String validInput = " i/1 o/offered";
