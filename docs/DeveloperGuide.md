@@ -164,6 +164,8 @@ unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as these components represent data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;">
+</div>
 
 ### Storage component
 
@@ -477,7 +479,7 @@ The following sequence diagram illustrates how the list assignment operation wor
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Appendix A: Product Scope**
 
 **Target user profile**:
