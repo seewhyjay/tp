@@ -18,7 +18,7 @@ end box
 [-> LogicManager : execute("list-a args")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("list-a args")
+LogicManager -> AddressBookParser : parseCommand("list-a args", model::isValidOperation)
 activate AddressBookParser
 
 create ListAssignmentParser
@@ -57,7 +57,7 @@ deactivate AddressBookParser
 LogicManager -> ListAssignmentCommand : execute()
 activate ListAssignmentCommand
 
-ListAssignmentCommand -> Model : setView()
+ListAssignmentCommand -> Model : setView(View.ASSIGNMENT)
 activate Model
 
 Model --> ListAssignmentCommand

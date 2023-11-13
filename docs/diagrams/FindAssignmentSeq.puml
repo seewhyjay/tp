@@ -18,10 +18,21 @@ end box
 [-> LogicManager : execute("find-a args")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("find-a args")
+LogicManager -> AddressBookParser : parseCommand("find-a args", model::isValidOperation)
 activate AddressBookParser
 
-AddressBookParser -> AddressBookParser : verifyView()
+AddressBookParser -> AddressBookParser : verifyView(model::isValidOperation, View.ASSIGNMENT)
+activate AddressBookParser
+
+AddressBookParser -> LogicManager : model.isValidOperation(View.ASSIGNMENT)
+activate LogicManager
+
+LogicManager --> AddressBookParser : isValid
+deactivate LogicManager
+
+AddressBookParser --> AddressBookParser
+
+deactivate AddressBookParser
 
 create FindAssignmentParser
 AddressBookParser -> FindAssignmentParser
