@@ -82,15 +82,15 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 3. Copy the file to the folder you want to use as the _home folder_ for your CampusCompanion.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CampusCompanion.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list-a` : Lists all assignments.
+   * `list-a` : Lists all assignments, and changes the view to assignments view (if you are currently at internships view).
 
-   * `list-i` : Lists all internships.
+   * `list-i` : Lists all internships, and changes the view to internships view (if you are currently at assignments view).
 
    * `add-a n/CS2100 Assignment 1 e/2023-12-29` : Adds an assignment named `CS2100 Assignment 1` with a deadline of `29 Dec 2023 23:59` to the Campus Companion.
 
@@ -127,6 +127,8 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ### Quick Orientation
 
+#### Assignment GUI
+
 ![img.png](images/LabelledGUI.png)
 
 Here is a quick summary of each GUI component within CampusCompanion's assignments view.
@@ -144,15 +146,16 @@ Here is a quick summary of each GUI component within CampusCompanion's assignmen
 | Calendar Navigation Buttons | Used to change the month being shown on the calendar.                                                                                                                                                                                                                                    |
 | Footer                      | Shows the location of the saved data. This file can be used to move data to another computer.                                                                                                                                                                                            |
 
+#### Internship GUI
 
 ![img.png](images/LabelledInternshipGUI.png)
 Here is a quick summary of the different GUI components within CampusCompanion's internships view.
 
-| Component            | Description                                                                                                  |
-|----------------------|--------------------------------------------------------------------------------------------------------------|
-| Sub-list Title       | Indicates if ``Internship roles`` or ``Internship tasks`` are being shown in that list                       |
-| Internship Role List | Shows all information of individual ``internship role`` that you're applying for.                            |
-| Internship Task List | Shows all information of individual ``internship task`` for an ``internship role`` that you're applying for. |
+| Component            | Description                                                                                                                                                                                      |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Sub-list Title       | Indicates if ``Internship roles`` or ``Internship tasks`` are being shown in that list                                                                                                           |
+| Internship Role List | Shows the information of individual ``internship role`` that you're applying for. For example: `Google, Backend Engineer, Summer 2024` can be an internship role                                 |
+| Internship Task List | Shows the information of individual ``internship task`` for an ``internship role`` that you're applying for. For example: `live interview for Google Backend engineer` can be an internship task |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -160,12 +163,12 @@ Here is a quick summary of the different GUI components within CampusCompanion's
 
 In order to use any `assignment` commands, you must first switch to the assignment view (using `list-a`). Otherwise, you will receive an error message. 
 
-In order to use any `internship` commands, you must first switch to the internship view (using `list-i`). Otherwise, you will receive an error message.
+Similarly, in order to use any `internship` commands, you must first switch to the internship view (using `list-i`). Otherwise, you will receive an error message.
 
 The calendar will only display tasks for the selected month, up to a maximum of 2 for each day. Names that are too long will be truncated.
 
 While there are clickable buttons such as the calendar navigation button and the options on the menu bar, CampusCompanion is a CLI-focused application, and as such, implements commands to do the same thing.
-For example:
+For example, clicking:
 - ``Help`` can be achieved using the ``help`` command.
 - ``File -> Exit`` can be achieved using the ``exit`` command.
 
@@ -192,13 +195,15 @@ This is a tutorial for new CampusCompanion users. This tutorial will provide you
 command for both assignments and internships. 
 
 1. Launch CampusCompanion. You may refer to the instructions [here](#getting-started).
+
 2. Let's change the view to see assignments first. Enter the command `list-a`
 ![NewUserTutListA.png](images%2FNewUserTutListA.png)
+
 3. Let's try **adding an assignment** to CampusCompanion. Enter the command
 `add-a n/CC tutorial 1 e/2023-11-29`
 ![NewUserTutAdd1.png](images%2FNewUserTutAdd1.png)
 
-4. Add a few more assignments. Try out filling optional parameters as well, etc
+4. Add a few more assignments. Try out filling optional parameters as well, eg:
  - `add-a n/CS2100 Assignment 1 e/2023-11-30 13:00 t/Coding`
  - `add-a n/CC optional 1 e/2023-11-29 16:00 d/try this out! s/complete p/2023-11-27 t/Optional`
    - Note: On adding assignments, they will automatically be sorted by their deadlines.
@@ -262,6 +267,40 @@ To view all our features, you may visit out [features section](#features).
 
 ## Assignment Features
 
+### Listing and Filtering assignments
+
+```list-a [s/YYYY-MM-DD [HH:mm]] [e/YYYY-MM-DD [HH:mm]]```
+
+To view assignment parameter information, click [here](#assignment-parameters).
+
+**Purpose:** To list all the assignments with deadline between the given start date and end date.
+This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
+
+<div markdown="block" class="alert alert-info">
+
+**Note:**
+- **In order to use any of the assignment related commands below, you must be in the assignment view**. In particular, you must use
+  list-a to switch to assignment view. This is to prevent you from performing commands while you are not looking at the correct list.
+- The start time and end timing is optional. If not provided, start time will default to 00:00 and end time will default to 23:59.
+</div>
+
+**Examples:**
+
+| Combination                                                                                                           | Example                                          | What is displayed to you                                                          |
+|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------|
+| **None** present                                                                                                      | ``list-a``                                       | **All** assignments that are saved in CampusCompanion.                            |
+| **Only** _start date with time_ present                                                                               | ``list-a s/2023-12-10 18:00``                    | **All** assignments with deadline **later** than or equal 10 Dec 2023 18:00       |
+| **Only** _start date without time_ present                                                                            | ``list-a s/2023-12-10``                          | **All** assignments with deadline **later** than or equal 10 Dec 2023 00:00       |
+| **Only** _end date with time_ present                                                                                 | ``list-a e/2023-12-10 18:00``                    | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 18:00  |
+| **Only** _end date without time_ present                                                                              | ``list-a e/2023-12-10``                          | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 23:59  |
+| **Both** _start date_ and _end date_ present (Example not shown for this combination without timing, but it is valid) | ``list-a s/2023-12-10 18:00 e/2023-12-17 18:00`` | **All** assignments with deadline between 10 Dec 2023 18:00 and 17 Dec 2023 18:00 |
+
+**When you might use it**:
+- If you want to see all your current assignments.
+- If you want to filter your current assignments by date, and view the assignments only within a specified time frame.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Adding an assignment
 
 ```add-a n/NAME e/YYYY-MM-DD [HH:mm] [d/DESCRIPTION] [s/STATUS] [p/YYYY-MM-DD [HH:mm]] [t/TAG]…```
@@ -273,7 +312,7 @@ To view all our features, you may visit out [features section](#features).
 - `n/`: name of the assignment
 - `e/`: end date (deadline) of the assignment
 - `d/`: description of assignment
-- `s/`: complete or incomplete
+- `s/`: complete or incomplete ONLY (case sensitive)
 - `p/`: planned completion date of the assignment
 - `t/`: tags for the assignment
 
@@ -287,9 +326,10 @@ To add an assignment into CampusCompanion.
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-- The start time and end time within the end date (e/) and planned end date (p/) is optional. 
-If not provided, start time will default to 00:00 and end time will default to 23:59.
+- The end time within the end date (e/) and planned end date (p/) is optional. 
+If not provided, timing will default to 23:59.
 - The planned end date **MUST** be before end date.
+- Both dates **MUST** be after the current date and time.
 </div>
 
 **Examples:** 
@@ -320,8 +360,8 @@ the index of the assignment you want to edit, use the ``list-a`` command.
 **Examples:**
 - Use `list-a` to list all the assignments, followed by `edit-a i/1 d/This is my new description`
 to edit the description of the assignment at **index** 1.
-- Use `find-a CS2103T` to find the assignment with "CS2103T" in the name. Assuming that this assignment
-- is at **index** 1, use `edit-a i/1 d/Create test cases` to edit its description to "Create test cases".
+- Use `find-a CS2103T` to find the assignment with "CS2103T" in the name. Assuming that this assignment 
+is at **index** 1, use `edit-a i/1 d/Create test cases` to edit its description to "Create test cases".
 
 **When you might use it:** 
 - If the assignment was originally added with a wrong description.
@@ -380,8 +420,8 @@ To mark a specific assignment in CampusCompanion as complete.
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-- The index refers to the index number in the displayed assignments list. If you want to find out the index of the
-  assignment you want to mark, you can use ``list-a`` to view all the current assignments you have.
+- The index refers to the position of the assignment in the assignment list. To find out
+  the index of the assignment you want to edit, use the ``list-a`` command.
 </div>
 
 **Examples:**
@@ -406,8 +446,8 @@ To mark a specific assignment in CampusCompanion as incomplete.
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-- The index refers to the index number in the displayed assignments list. If you want to find out the index of the
-  assignment you want to unmark, you can use ``list-a`` to view all the current assignments you have.
+- The index refers to the position of the assignment in the assignment list. To find out
+  the index of the assignment you want to edit, use the ``list-a`` command.
 </div>
 
 **Examples:**
@@ -425,47 +465,12 @@ regarding the assignment and want to continue working on it.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-
-### Listing and Filtering assignments
-
-```list-a [s/YYYY-MM-DD [HH:mm]] [e/YYYY-MM-DD [HH:mm]]```
-
-To view assignment parameter information, click [here](#assignment-parameters).
-
-**Purpose:** To list all the assignments with deadline between the given start date and end date.
-This command also changes the view to assignments tab (if the view is not currently at the assignments tab).
-
-<div markdown="block" class="alert alert-info">
-
-**Note:**
-- In order to use any of the assignment related commands below, you must be in the assignment view. In particular, you must use
-  list-a to switch to assignment view. This is to prevent you from performing commands while you are not looking at the correct list.
-- The start time and end time is optional. If not provided, start time will default to 00:00 and end time will default to 23:59.
-</div>
-
-**Examples:**
-
-| Combination                                                                                                           | Example                                          | What is displayed to you                                                          |
-|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------|
-| **None** present                                                                                                      | ``list-a``                                       | **All** assignments that are saved in CampusCompanion.                            |
-| **Only** _start date with time_ present                                                                               | ``list-a s/2023-12-10 18:00``                    | **All** assignments with deadline **later** than or equal 10 Dec 2023 18:00       |
-| **Only** _start date without time_ present                                                                            | ``list-a s/2023-12-10``                          | **All** assignments with deadline **later** than or equal 10 Dec 2023 00:00       |
-| **Only** _end date with time_ present                                                                                 | ``list-a e/2023-12-10 18:00``                    | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 18:00  |
-| **Only** _end date without time_ present                                                                              | ``list-a e/2023-12-10``                          | **All** assignments with deadline **earlier** than or equal to 10 Dec 2023 23:59  |
-| **Both** _start date_ and _end date_ present (Example not shown for this combination without timing, but it is valid) | ``list-a s/2023-12-10 18:00 e/2023-12-17 18:00`` | **All** assignments with deadline between 10 Dec 2023 18:00 and 17 Dec 2023 18:00 |
-
-**When you might use it**:
-- If you want to see all your current assignments.
-- If you want to filter your current assignments by date, and view the assignments only within a specified time frame.
-
-[Scroll back to Table of Contents](#table-of-contents)
-
 ### Finding an assignment by keywords
 
 ```find-a KEYWORD```
 
 **Purpose:**
-To find all assignments whose name contains the keyword.
+To find all assignments whose name contains the given keyword.
 
 <div markdown="block" class="alert alert-info">
 
@@ -505,8 +510,8 @@ This command also changes the view to internships tab (if the view is not curren
 
 **Note:**
 
-- In order to use any of the internship related commands, you must be in the internship view. Ie, you must use 
-list-i to switch to internship view. This is to prevent you from performing commands while you are not looking at the correct list.
+- **In order to use any of the internship related commands below, you must be in the internships view**. In particular, you must use
+  list-i to switch to internships view. This is to prevent you from performing commands while you are not looking at the correct list.
 
 </div>
 
@@ -560,11 +565,20 @@ To view internship role parameter information, click [here](#internship-role-par
 
 **Purpose:** Edit the specified parameters of a specified internship role.
 
+<div markdown="block" class="alert alert-info">
+
+**Note:**
+
+- The index refers to the index number in the displayed internship role list. If you want to find out the index of the
+  internship role you want to delete, you can use ``list-i`` to view all the current internship roles you have.
+
+</div>
+
 **Examples:**
 - Use `list-i` to list all the internship information, followed by `edit-i-role i/1 o/rejected`
   to edit the outcome of the internship role at **index** 1.
 - Use `find-i-role Google` to find the internship information with "Google" in the name. Assuming that this internship role
-- is at **index** 1, use `edit-i-role i/1 o/rejected` to edit its outcome to "rejected".
+is at **index** 1, use `edit-i-role i/1 o/rejected p/1000` to edit its outcome to "rejected" and pay to `$1000`.
 
 **When you might use it:**
 - Once you have an update about the overall outcome of an existing application in CampusCompanion. 
@@ -623,7 +637,7 @@ To find all internship role and their associated tasks whose **company** name co
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-The keyword is case-insensitive and does not require the whole word to match, 
+- The keyword is case-insensitive and does not require the whole word to match, 
 for example, if you had an internship role with the name "TikTok", using the command 
 ``find-i-role tiktok`` or ``find-i-role tik`` will match with this internship role
 
@@ -704,7 +718,7 @@ To view internship task parameter information, click [here](#internship-task-par
 <div markdown="block" class="alert alert-danger">
 
 **ALERT**
-This command cannot be undone. If you remove the wrong internship task, you will have to add it back using ``add-i-task``.
+- This command cannot be undone. If you remove the wrong internship task, you will have to add it back using ``add-i-task``.
 
 </div>
 
@@ -784,7 +798,7 @@ To mark a specific internship task in CampusCompanion as incomplete.
 ```find-i-task KEYWORD```
 
 **Purpose:**
-To find all internship tasks whose name contains the keyword. This will also display all the internship role associated to the tasks.
+- To find all internship tasks whose name contains the keyword. This will also display all the internship role associated to the tasks.
 
 <div markdown="block" class="alert alert-info">
 
@@ -847,8 +861,8 @@ when you re-run the application, the new data will automatically be shown.
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-We do not recommend editing the file directly, because if the data is entered in the wrong format, it would corrupt the
-application, and the application may not be able to load subsequently.
+- We do not recommend editing the file directly, because if the data is entered in the wrong format, it would corrupt the
+application, and certain information within the application may not be able to load subsequently.
 
 </div>
 
@@ -875,12 +889,12 @@ or [feature](#features) section, for detailed information about each feature.
 
 | Command  | What it does                                                                                                                                                   |
 |----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| list-a   | Changes the view to assignments tab (if the view is not already at the assignments tab), and lists the assignments with deadline within a specified time frame |
 | add-a    | Adds an assignment into CampusCompanion                                                                                                                        |
 | edit-a   | Edits the existing information of the specified assignment                                                                                                     |
 | delete-a | Deletes the specified assignment from CampusCompanion                                                                                                          |
 | mark-a   | Changes the status of the specified assignment to completed                                                                                                    |
 | unmark-a | Changes the status of the specified assignment to incomplete                                                                                                   |
-| list-a   | Changes the view to assignments tab (if the view is not already at the assignments tab), and lists the assignments with deadline within a specified time frame |
 | find-a   | Lists the assignments with name matching the given keyword                                                                                                     |
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -900,7 +914,7 @@ or [feature](#features) section, for detailed information about each feature.
 | Command       | What it does                                                                                         |
 |---------------|------------------------------------------------------------------------------------------------------|
 | add-i-role    | Adds an internship role into CampusCompanion                                                         |
-| edit-i-role   | Edit the specified parameters of a specified internship role.                                        |
+| edit-i-role   | Edits the specified parameters of a specified internship role.                                       |
 | delete-i-role | Deletes the specified internship role and all its associated tasks from CampusCompanion              |
 | find-i-role   | Lists the internship role with company name matching the given keyword, and all the associated tasks |
 
@@ -933,10 +947,10 @@ The information below specifies parameter description, constraints and usage thr
 | n/        | `add-a`                                    | Name of the assignment                                                              | NA                                                                                                                                      | CS2100 Assignment, Tutorial 2           | NA                        |
 | e/        | `add-a`                                    | Deadline of the assignment                                                          | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
 | d/        | `add-a`                                    | Description of the assignment (optional parameter)                                  | NA                                                                                                                                      | Complete UML diagram, Finish question 2 | NA                        |
-| s/        | `add-a`                                    | Status (optional parameter)                                                         | Either `complete` or `incomplete`                                                                                                       | complete, incomplete                    | done, finished, completed |
+| s/        | `add-a`                                    | Status (optional parameter)                                                         | Either `complete` or `incomplete` ONLY (case sensitive)                                                                                 | complete, incomplete                    | done, finished, completed |
 | p/        | `add-a`                                    | Planned finish date of assignment (optional parameter)                              | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
-| t/        | `add-a`                                    | Tag for the assignment created                                                      | One word only with no space in between                                                                                                  | Assignment, 1                           | Group work                |
-| i/        | `edit-a`, `delete-a`, `mark-a`, `unmark-a` | Index in assignments list                                                           | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                           | -1, 2147483649            |
+| t/        | `add-a`                                    | Tag for the assignment created (optional parameter)                                 | One word only with no space in between                                                                                                  | Assignment, 1                           | Group work                |
+| i/        | `edit-a`, `delete-a`, `mark-a`, `unmark-a` | Index in assignments list.                                                          | Positive integer less than or equal to 2147483649. The index **must exist in the current list**.                                        | 1, 2147483647                           | -1, 2147483649            |
 | s/        | `list-a`                                   | Start date to filter assignments with deadlines after the date (optional parameter) | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 00:00 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
 | e/        | `list-a`                                   | End date to filter assignments with deadlines before the date (optional parameter)  | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after start date.**   | 2023-12-12, 2023-12-10 15:00            | 12-12-2023, 30/12/2023    |
 
@@ -950,16 +964,16 @@ The information below specifies parameter description, constraints and usage thr
 
 The information below specifies parameter description, constraints and usage through valid and invalid examples.
 
-| Parameter | Command                        | Description                                                                        | Constraints                                                                                                                                                               | Valid Examples                                        | Invalid Examples   |
-|-----------|--------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|--------------------|
-| n/        | `add-i-role`                   | Name of the company you are applying to                                            | NA                                                                                                                                                                        | Google, Tiktok                                        | NA                 |
-| r/        | `add-i-role`                   | Name of the role you are applying for                                              | NA                                                                                                                                                                        | Software Engineer, Backend Engineer                   | NA                 |
-| c/        | `add-i-role`                   | Cycle of the internship you are applying for                                       | NA                                                                                                                                                                        | Winter 2023, Summer 2024, Spring                      | NA                 |
-| d/        | `add-i-role`                   | Description of the internship role (optional parameter)                            | NA                                                                                                                                                                        | Very important internship                             | NA                 |
-| p/        | `add-i-role`                   | Pay of the internship role (optional parameter)                                    | Only numbers with up to one decimal point allowed. Must be a non-negative number. Input will be formatted to 2 decimal places, longer inputs will be truncated as needed. | 1000, 1000.00, 1000.000000 (will be shown as 1000.00) | $1000, -1, -0      |
-| o/        | `add-i-role`, `edit-i-role`    | Outcome of the internship role application (optional parameter - for `add-i-role`) | `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                                                                               | offered, accepted                                     | REJECTED, no reply |
-| l/        | `add-i-role`                   | Location of the internship role (optional parameter)                               | NA                                                                                                                                                                        | Singapore, remote                                     | NA                 |
-| i/        | `edit-i-role`, `delete-i-role` | Index in internship role list                                                      | Positive integer less than or equal to 2147483649                                                                                                                         | 1, 2147483647                                         | -1, 2147483649     |
+| Parameter | Command                        | Description                                                     | Constraints                                                                                                                                                               | Valid Examples                                        | Invalid Examples   |
+|-----------|--------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|--------------------|
+| n/        | `add-i-role`                   | Name of the company you are applying to                         | NA                                                                                                                                                                        | Google, Tiktok                                        | NA                 |
+| r/        | `add-i-role`                   | Name of the role you are applying for                           | NA                                                                                                                                                                        | Software Engineer, Backend Engineer                   | NA                 |
+| c/        | `add-i-role`, `edit-i-role`    | Cycle of the internship you are applying for                    | NA                                                                                                                                                                        | Winter 2023, Summer 2024, Spring                      | NA                 |
+| d/        | `add-i-role`, `edit-i-role`    | Description of the internship role (optional parameter)         | NA                                                                                                                                                                        | Very important internship                             | NA                 |
+| p/        | `add-i-role`, `edit-i-role`    | Pay of the internship role (optional parameter)                 | Only numbers with up to one decimal point allowed. Must be a non-negative number. Input will be formatted to 2 decimal places, longer inputs will be truncated as needed. | 1000, 1000.00, 1000.000000 (will be shown as 1000.00) | $1000, -1, -0      |
+| o/        | `add-i-role`, `edit-i-role`    | Outcome of the internship role application (optional parameter) | `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                                                                               | offered, accepted                                     | REJECTED, no reply |
+| l/        | `add-i-role`, `edit-i-role`    | Location of the internship role (optional parameter)            | NA                                                                                                                                                                        | Singapore, remote                                     | NA                 |
+| i/        | `edit-i-role`, `delete-i-role` | Index in internship role list.                                  | Positive integer less than or equal to 2147483649. The index **must exist in the current list**.                                                                              | 1, 2147483647                                         | -1, 2147483649     |
 
 [Scroll back to Internship Role features](#internship-role)
 
@@ -969,17 +983,17 @@ The information below specifies parameter description, constraints and usage thr
 
 The information below specifies parameter description, constraints and usage through valid and invalid examples.
 
-| Parameter | Command                        | Description                                                            | Constraints                                                                                                                             | Valid Examples               | Invalid Examples          |
-|-----------|--------------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|------------------------------|---------------------------|
-| n/        | `add-i-task`                   | Name of the task you have to complete                                  | NA                                                                                                                                      | Google, Tiktok               | NA                        |
-| i/        | `add-i-task`                   | Index of the internship role, which is associated to this task         | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
-| e/        | `add-i-task`                   | Deadline of the internship task                                        | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00 | 12-12-2023, 30/12/2023    |
-| s/        | `add-i-task`                   | Status of the internship task (optional parameter)                     | Either `complete` or `incomplete`                                                                                                       | complete, incomplete         | done, finished, completed |
-| o/        | `add-i-task`, `edit-i-task`    | Outcome of the internship task (optional parameter - for `add-i-task`) | `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                                             | offered, accepted            | REJECTED, no reply        |
-| t/        | `add-i-task`                   | Tag for the internship task (optional parameter)                       | One word only with no space in between                                                                                                  | Assignment, 1                | Group work                |
-| l/        | `add-i-task`                   | Location (optional parameter)                                          | NA                                                                                                                                      | Singapore, remote            | NA                        |
-| i/        | `add-i-task`                   | Index in internship **role** list                                      | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
-| i/        | `edit-i-task`, `delete-i-task` | Index in internship **task** list                                      | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
+| Parameter | Command                        | Description                                                    | Constraints                                                                                                                             | Valid Examples               | Invalid Examples          |
+|-----------|--------------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|------------------------------|---------------------------|
+| n/        | `add-i-task`                   | Name of the task you have to complete                          | NA                                                                                                                                      | Google, Tiktok               | NA                        |
+| i/        | `add-i-task`                   | Index of the internship role, which is associated to this task | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
+| e/        | `add-i-task`                   | Deadline of the internship task                                | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00 | 12-12-2023, 30/12/2023    |
+| s/        | `add-i-task`                   | Status of the internship task (optional parameter)             | Either `complete` or `incomplete`                                                                                                       | complete, incomplete         | done, finished, completed |
+| o/        | `add-i-task`, `edit-i-task`    | Outcome of the internship task (optional  for `add-i-task`)    | `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                                             | offered, accepted            | REJECTED, no reply        |
+| t/        | `add-i-task`                   | Tag for the internship task (optional parameter)               | One word only with no space in between                                                                                                  | Assignment, 1                | Group work                |
+| l/        | `add-i-task`                   | Location (optional parameter)                                  | NA                                                                                                                                      | Singapore, remote            | NA                        |
+| i/        | `add-i-task`                   | Index in internship **role** list                              | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
+| i/        | `edit-i-task`, `delete-i-task` | Index in internship **task** list                              | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
 
 
 [Scroll back to Internship Task features](#internship-task)
@@ -992,6 +1006,7 @@ The information below specifies parameter description, constraints and usage thr
 
 ### Launching CampusCompanion
 **Q**: How can I launch CampusCompanion if the clicking on the JAR file does not work?
+
 **A**: There are two possible methods to launch CampusCompanion.
 
 Method 1: For users familiar with the command prompt
@@ -1021,20 +1036,21 @@ java -jar [JAR file location]/campusCompanion.jar
 
 For Mac Users you may wish to follow the instructions listed [here](https://nus-cs2103-ay2324s1.github.io/website/admin/programmingLanguages.html)
 
+### Transferring data to another computer
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Campus Companion home folder.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### How to use the internship outcome
-**Q**: What is the recommended usage of the internship outcomes 
+**Q**: What is the recommended usage of the internship outcomes <br>
 **A**: Outcome must be either one of the following only: `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting`. This is how we recommend using them: 
-- Awaiting (Just finished with one stage and awaiting results of that stage)
-- follow-up (Just received a follow-up - e.g. for an interview, but haven't finished that round yet.
+- `awaiting` (Just finished with one stage and awaiting results of that stage)
+- `follow-up` (Just received a follow-up - e.g. for an interview, but haven't finished that round yet.
   Once finished with that round, the status should be updated to awaiting to indicate that you are awaiting results.)
-- Ghosted (If you did not receive any news after an appropriate amount of time.)
-- Rejected (If you received a rejection letter)
-- Offered (If you are offered the internship)
+- `ghosted` (If you did not receive any news after an appropriate amount of time.)
+- `rejected` (If you received a rejection letter)
+- `offered` (If you are offered the internship)
 
 [Scroll back to Internship Features](#internship-features)
 
