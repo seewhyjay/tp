@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.ASSIGNMENT1;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -47,6 +48,18 @@ public class AddAssignmentCommandTest {
         assertEquals(String.format(AddAssignmentCommand.MESSAGE_SUCCESS, Messages.format(validAssignment)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAssignment), modelStub.assignmentsAdded);
+    }
+
+    @Test
+    public void execute_plannedFinishDateAfterDeadline_throwsCommandException() throws Exception {
+        ModelStubAcceptingAssignmentAdded modelStub = new ModelStubAcceptingAssignmentAdded();
+        LocalDateTime deadline = LocalDateTime.now();
+        LocalDateTime plannedFinishDate = deadline.plusHours(10);
+        Assignment invalidAssignment =
+                new AssignmentBuilder().withDeadline(deadline).withPlannedDate(plannedFinishDate).build();
+        AddAssignmentCommand addCommand = new AddAssignmentCommand(invalidAssignment);
+
+        assertThrows(CommandException.class, () -> addCommand.execute(modelStub));
     }
 
     @Test

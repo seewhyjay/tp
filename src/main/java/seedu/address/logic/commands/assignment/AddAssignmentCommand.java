@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.assignment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_ASSIGNMENT_PLANNED_DATE_AFTER_END_DATE;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_NAME;
@@ -8,12 +10,15 @@ import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_PLANNEDFINI
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDateTime;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+
 
 /**
  * Adds an assignment to the
@@ -27,10 +32,10 @@ public class AddAssignmentCommand extends AssignmentCommand {
             + ": Adds an assignment to the app. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_ENDDATE + "YYYY-MM-DD [HH:mm] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "] "
-            + "[" + PREFIX_STATUS + "STATUS" + "]\n"
-            + "[" + PREFIX_PLANNEDFINISHDATE + "YYYY-MM-DD [HH:mm]" + "] "
+            + PREFIX_ENDDATE + "DEADLINE IN YYYY-MM-DD [HH:mm] FORMAT "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "]"
+            + "[" + PREFIX_STATUS + "STATUS " + "]\n"
+            + "[" + PREFIX_PLANNEDFINISHDATE + "PLAN TO FINISH BY IN YYYY-MM-DD [HH:mm] FORMAT" + "] "
             + "[" + PREFIX_TAG + "TAG" + "]\n"
             + "Example: " + COMMAND_WORD
             + " add-a n/Assignment 1 d/description e/2023-12-18 19:00 p/2023-08-19 18:00 t/group s/incomplete";
@@ -55,6 +60,15 @@ public class AddAssignmentCommand extends AssignmentCommand {
 
         if (model.hasAssignment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+        }
+
+        if (toAdd.getPlannedFinishDate().getDate().isPresent()) {
+            LocalDateTime endDate = toAdd.getEnd().getDate().get();
+            LocalDateTime plannedFinishDate = toAdd.getPlannedFinishDate().getDate().get();
+            if (endDate.isBefore(plannedFinishDate)) {
+                throw new CommandException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ASSIGNMENT_PLANNED_DATE_AFTER_END_DATE));
+            }
         }
 
         model.addAssignment(toAdd);
