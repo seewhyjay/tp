@@ -207,7 +207,7 @@ public class EditInternshipRoleCommandTest {
                 null, null, null);
 
         CommandAssignmentTestUtil.assertCommandFailure(editCommand, model,
-                Messages.MESSAGE_EDITED_ROLE_ARE_THE_SAME);
+                Messages.MESSAGE_EDITED_ROLE_IS_THE_SAME);
     }
 
     @Test

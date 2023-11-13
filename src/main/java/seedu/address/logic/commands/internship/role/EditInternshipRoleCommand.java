@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.internship.role;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_EDITED_ROLE_ARE_THE_SAME;
+import static seedu.address.logic.Messages.MESSAGE_EDITED_ROLE_IS_THE_SAME;
 import static seedu.address.logic.Messages.MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.assignment.CliSyntax.PREFIX_INDEX;
@@ -105,7 +105,7 @@ public class EditInternshipRoleCommand extends InternshipCommand {
         }
 
         if (roleToEdit.equals(editedRole)) {
-            throw new CommandException(MESSAGE_EDITED_ROLE_ARE_THE_SAME);
+            throw new CommandException(MESSAGE_EDITED_ROLE_IS_THE_SAME);
         }
 
         if (!editedRole.isDuplicate(roleToEdit) && model.hasInternshipRole(editedRole)) {

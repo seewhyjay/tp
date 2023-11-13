@@ -28,7 +28,7 @@ public class Messages {
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_EDIT_LEADS_TO_DUPLICATE_ROLES = "This will lead to duplicate internship roles"
             + " existing!";
-    public static final String MESSAGE_EDITED_ROLE_ARE_THE_SAME = "This does not result in any changes to the role!";
+    public static final String MESSAGE_EDITED_ROLE_IS_THE_SAME = "This does not result in any changes to the role!";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
