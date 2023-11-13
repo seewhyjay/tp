@@ -152,6 +152,8 @@ In order to use any `assignment` commands, you must first switch to the assignme
 
 In order to use any `internship` commands, you must first switch to the internship view (using `list-i`). Otherwise, you will receive an error message.
 
+The calendar will only display tasks for the selected month, up to a maximum of 2 for each day. Names that are too long will be truncated.
+
 While there are clickable buttons such as the calendar navigation button and the options on the menu bar, CampusCompanion is a CLI-focused application, and as such, implements commands to do the same thing.
 For example:
 - ``Help`` can be achieved using the ``help`` command.
@@ -162,13 +164,13 @@ For example:
 --------------------------------------------------------------------------------------------------------------------
 ## Command format
 
-| Format                                                                                 | Explanation                                                                  | Examples                                                                                            |
-|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Words in `UPPER_CASE`                                                                  | These are parameter values that are supplied by the user                     | `add-a n/NAME...` can be used as `add-a n/CS2103T TP...`                                            |
-| Items in square brackets                                                               | These are optional parameters (can be left empty by user)                    | `add-a n/NAME ... [t/TAG]` can be used as `add-a n/CS2103T TP t/milestone2` or `add-a n/CS2103T TP` |
-| Items with `…` after them                                                              | These are parameters that can be used multiple times (or omitted completely) | `add-a ... [t/TAG]…` can be used as `add-a ... t/groupProject t/milestone2` or `add-a ...`          |
-| Parameters can be in any order.                                                        | N/A                                                                          | `add-a n/NAME e/DEADLINE ...` is equivalent to `add-a e/DEADLINE n/NAME`                            |
-| Extraneous parameters for commands that do not take in parameters will not be ignored. | N/A                                                                          | `list-i 123` will be equivalent to `list-i`                                                         |
+| Format                                                                             | Explanation                                                                  | Examples                                                                                            |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                              | These are parameter values that are supplied by the user                     | `add-a n/NAME...` can be used as `add-a n/CS2103T TP...`                                            |
+| Items in square brackets                                                           | These are optional parameters (can be left empty by user)                    | `add-a n/NAME ... [t/TAG]` can be used as `add-a n/CS2103T TP t/milestone2` or `add-a n/CS2103T TP` |
+| Items with `…` after them                                                          | These are parameters that can be used multiple times (or omitted completely) | `add-a ... [t/TAG]…` can be used as `add-a ... t/groupProject t/milestone2` or `add-a ...`          |
+| Parameters can be in any order.                                                    | N/A                                                                          | `add-a n/NAME e/DEADLINE ...` is equivalent to `add-a e/DEADLINE n/NAME`                            |
+| Extraneous parameters for commands that do not take in parameters will be ignored. | N/A                                                                          | `list-i 123` will be equivalent to `list-i`                                                         |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -507,7 +509,7 @@ list-i to switch to internship view. This is to prevent you from performing comm
 
 #### Adding an internship role
 
-```add-i-role n/NAME OF COMPANY r/ROLE NAME c/INTERNSHIP CYCLE [d/DESCRIPTION] [p/PAY] [o/OUTCOME] [l/LOCATION]```
+```add-i-role n/NAME OF COMPANY r/ROLE NAME c/INTERNSHIP CYCLE [d/DESCRIPTION] [p/PAY] [o/OUTCOME] [l/LOCATION] [t/TAG]…```
 
 <div markdown="block" class="alert alert-block alert-warning">
 
@@ -530,7 +532,7 @@ To view detailed internship role parameter information, click [here](#internship
 To add an internship role into CampusCompanion. 
 
 **Examples:**
-- `add-i-role n/Google r/Software Engineer`
+- `add-i-role n/Google r/Software Engineer c/Winter 2024`
 - `add-i-role n/TikTok r/Backend Engineer c/Summer 2024 d/Very important internship p/2000 o/awaiting l/remote`
 
 **When you might use it:**
@@ -889,7 +891,7 @@ or [feature](#features) section, for detailed information about each feature.
 | add-i-role    | Adds an internship role into CampusCompanion                                                         |
 | edit-i-role   | Edit the specified parameters of a specified internship role.                                        |
 | delete-i-role | Deletes the specified internship role and all its associated tasks from CampusCompanion              |
-| find-i-role   | Lists the internship role with comapna name matching the given keyword, and all the associated tasks |
+| find-i-role   | Lists the internship role with company name matching the given keyword, and all the associated tasks |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -937,16 +939,16 @@ The information below specifies parameter description, constraints and usage thr
 
 The information below specifies parameter description, constraints and usage through valid and invalid examples.
 
-| Parameter | Command                        | Description                                                                        | Constraints                                                                                                        | Valid Examples                                        | Invalid Examples   |
-|-----------|--------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|--------------------|
-| n/        | `add-i-role`                   | Name of the company you are applying to                                            | NA                                                                                                                 | Google, Tiktok                                        | NA                 |
-| r/        | `add-i-role`                   | Name of the role you are applying for                                              | NA                                                                                                                 | Software Engineer, Backend Engineer                   | NA                 |
-| c/        | `add-i-role`                   | Cycle of the internship you are applying for                                       | NA                                                                                                                 | Winter 2023, Summer 2024, Spring                      | NA                 |
-| d/        | `add-i-role`                   | Description of the internship role (optional parameter)                            | NA                                                                                                                 | Very important internship                             | NA                 |
-| p/        | `add-i-role`                   | Pay of the internship role (optional parameter)                                    | Only numbers with one decimal point allowed. Must be positive number. Display will be up to 2 decimal points only. | 1000, 1000.00, 1000.000000 (will be shown as 1000.00) | $1000, -1          |
-| o/        | `add-i-role`, `edit-i-role`    | Outcome of the internship role application (optional parameter - for `add-i-role`) | `Follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                        | offered, accepted                                     | REJECTED, no reply |
-| l/        | `add-i-role`                   | Location of the internship role (optional parameter)                               | NA                                                                                                                 | Singapore, remote                                     | NA                 |
-| i/        | `edit-i-role`, `delete-i-role` | Index in internship role list                                                      | Positive integer less than or equal to 2147483649                                                                  | 1, 2147483647                                         | -1, 2147483649     |
+| Parameter | Command                        | Description                                                                        | Constraints                                                                                                                                                               | Valid Examples                                        | Invalid Examples   |
+|-----------|--------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|--------------------|
+| n/        | `add-i-role`                   | Name of the company you are applying to                                            | NA                                                                                                                                                                        | Google, Tiktok                                        | NA                 |
+| r/        | `add-i-role`                   | Name of the role you are applying for                                              | NA                                                                                                                                                                        | Software Engineer, Backend Engineer                   | NA                 |
+| c/        | `add-i-role`                   | Cycle of the internship you are applying for                                       | NA                                                                                                                                                                        | Winter 2023, Summer 2024, Spring                      | NA                 |
+| d/        | `add-i-role`                   | Description of the internship role (optional parameter)                            | NA                                                                                                                                                                        | Very important internship                             | NA                 |
+| p/        | `add-i-role`                   | Pay of the internship role (optional parameter)                                    | Only numbers with up to one decimal point allowed. Must be a non-negative number. Input will be formatted to 2 decimal places, longer inputs will be truncated as needed. | 1000, 1000.00, 1000.000000 (will be shown as 1000.00) | $1000, -1, -0      |
+| o/        | `add-i-role`, `edit-i-role`    | Outcome of the internship role application (optional parameter - for `add-i-role`) | `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                                                                               | offered, accepted                                     | REJECTED, no reply |
+| l/        | `add-i-role`                   | Location of the internship role (optional parameter)                               | NA                                                                                                                                                                        | Singapore, remote                                     | NA                 |
+| i/        | `edit-i-role`, `delete-i-role` | Index in internship role list                                                      | Positive integer less than or equal to 2147483649                                                                                                                         | 1, 2147483647                                         | -1, 2147483649     |
 
 [Scroll back to Internship Role features](#internship-role)
 
@@ -962,7 +964,7 @@ The information below specifies parameter description, constraints and usage thr
 | i/        | `add-i-task`                   | Index of the internship role, which is associated to this task         | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
 | e/        | `add-i-task`                   | Deadline of the internship task                                        | Has to be in YYYY-MM-DD HH:mm format, HH:mm is optional, and set as 23:59 by default<br/> Date inputted **MUST be after current date.** | 2023-12-12, 2023-12-10 15:00 | 12-12-2023, 30/12/2023    |
 | s/        | `add-i-task`                   | Status of the internship task (optional parameter)                     | Either `complete` or `incomplete`                                                                                                       | complete, incomplete         | done, finished, completed |
-| o/        | `add-i-task`, `edit-i-task`    | Outcome of the internship task (optional parameter - for `add-i-task`) | `Follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                                             | offered, accepted            | REJECTED, no reply        |
+| o/        | `add-i-task`, `edit-i-task`    | Outcome of the internship task (optional parameter - for `add-i-task`) | `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting` only (case sensitive)                                             | offered, accepted            | REJECTED, no reply        |
 | t/        | `add-i-task`                   | Tag for the internship task (optional parameter)                       | One word only with no space in between                                                                                                  | Assignment, 1                | Group work                |
 | l/        | `add-i-task`                   | Location (optional parameter)                                          | NA                                                                                                                                      | Singapore, remote            | NA                        |
 | i/        | `add-i-task`                   | Index in internship **role** list                                      | Positive integer less than or equal to 2147483649                                                                                       | 1, 2147483647                | -1, 2147483649            |
@@ -1015,9 +1017,9 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 
 ### How to use the internship outcome
 **Q**: What is the recommended usage of the internship outcomes 
-**A**: Outcome must be either one of the following only: `Follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting`. This is how we recommend using them: 
+**A**: Outcome must be either one of the following only: `follow-up`, `ghosted`, `rejected`, `offered`, `accepted`, `awaiting`. This is how we recommend using them: 
 - Awaiting (Just finished with one stage and awaiting results of that stage)
-- Follow-up (Just received a follow-up - e.g. for an interview, but haven't finished that round yet.
+- follow-up (Just received a follow-up - e.g. for an interview, but haven't finished that round yet.
   Once finished with that round, the status should be updated to awaiting to indicate that you are awaiting results.)
 - Ghosted (If you did not receive any news after an appropriate amount of time.)
 - Rejected (If you received a rejection letter)

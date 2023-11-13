@@ -27,7 +27,7 @@ public class EditAssignmentCommand extends AssignmentCommand {
             + "Parameters: "
             + "[" + PREFIX_INDEX + "INDEX (must be a positive integer)" + "]\n"
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION" + "]\n"
-            + "Example: " + COMMAND_WORD + "i/ 1" + " /d This is the new description";
+            + "Example: " + COMMAND_WORD + " i/1" + " /d This is the new description";
 
     public static final String MESSAGE_SUCCESS = "Assignment has been edited: %1$s";
 

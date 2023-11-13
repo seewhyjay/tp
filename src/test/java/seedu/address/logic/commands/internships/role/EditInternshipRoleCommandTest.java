@@ -66,11 +66,7 @@ public class EditInternshipRoleCommandTest {
     }
 
     private void editRolesAndTask(InternshipRole roleToBeEdited, InternshipRole editedRole, ModelManager model) {
-        for (InternshipRole r : model.getFilteredInternshipRoleList()) {
-            if (r.equals(roleToBeEdited)) {
-                model.setInternshipRole(r, editedRole);
-            }
-        }
+        model.setInternshipRole(roleToBeEdited, editedRole);
 
         for (InternshipTask t : model.getUnfilteredInternshipTaskList()) {
             if (t.getInternshipRole().equals(roleToBeEdited)) {
