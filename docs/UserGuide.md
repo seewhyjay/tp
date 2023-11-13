@@ -555,7 +555,7 @@ To view internship role parameter information, click [here](#internship-role-par
 
 - The index refers to the index number in the displayed internship role list. If you want to find out the index of the
   internship role you want to edit, you can use ``list-i`` to view all the current internship roles you have.
-- While the various parameters `[c/CYCLE] [d/DESCRIPTION] [p/PAY] [o/OUTCOME] [l/LOCATION]` are optional, you should 
+- While the various parameters `[c/CYCLE] [d/DESCRIPTION] [p/PAY] [o/OUTCOME] [l/LOCATION]` are optional, you need to 
   include at least one of them or an error message will be displayed.
 
 </div>
