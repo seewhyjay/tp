@@ -45,7 +45,7 @@ Given below are my contributions to the project.
   #### CI/CD
   * Implemented GitHub workflow to build and upload CampusCompanion's executable as an artifact on every PR for easy testing by reviewers.
   * This is to circumvent the need to clone our teammates personal repositories to build the jar file then test their changes.
-    * Example: [PR#193](https://github.com/AY2324S1-CS2103T-T12-3/tp/actions/runs/6815714173?pr=193)
+    * Example: Scroll down to `Artifcats` on [PR#193](https://github.com/AY2324S1-CS2103T-T12-3/tp/actions/runs/6815714173?pr=193)
 
 * **Documentation**:
   * User Guide:
