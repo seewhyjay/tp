@@ -545,7 +545,7 @@ To add an internship role into CampusCompanion.
 
 **Examples:**
 - `add-i-role n/Google r/Software Engineer c/Winter 2024`
-- `add-i-role n/TikTok r/Backend Engineer c/Summer 2024 d/Very important internship p/2000 o/awaiting l/remote t/May-Aug`
+- `add-i-role n/TikTok r/Backend Engineer c/Summer 2024 d/Very important internship p/2000 o/awaiting l/remote`
 
 **When you might use it:**
 - After you first applied for an internship position, and you want to keep track of it.
