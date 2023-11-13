@@ -570,6 +570,17 @@ To view internship role parameter information, click [here](#internship-role-par
 
 **Purpose:** Edit the specified parameters of a specified internship role.
 
+<div markdown="block" class="alert alert-info">
+
+**Note:**
+
+- The index refers to the index number in the displayed internship role list. If you want to find out the index of the
+  internship role you want to edit, you can use ``list-i`` to view all the current internship roles you have.
+- While the various parameters `[c/CYCLE] [d/DESCRIPTION] [p/PAY] [o/OUTCOME] [l/LOCATION]` are optional, you need to 
+  include at least one of them or an error message will be displayed.
+
+</div>
+
 **Examples:**
 - Use `list-i` to list all the internship information, followed by `edit-i-role i/1 o/rejected`
   to edit the outcome of the internship role at **index** 1.
