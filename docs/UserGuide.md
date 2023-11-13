@@ -533,6 +533,7 @@ list-i to switch to internship view. This is to prevent you from performing comm
 - `p/`: expected pay of the internship
 - `o/`: outcome of the internship application for that role. To see more information about `outcome` parameter, [click here](#how-to-use-the-internship-outcome)
 - `l/`: location of the internship role
+- `t/`: tags for the internship role
 
 To view detailed internship role parameter information, click [here](#internship-role-parameters)
 
@@ -544,7 +545,7 @@ To add an internship role into CampusCompanion.
 
 **Examples:**
 - `add-i-role n/Google r/Software Engineer c/Winter 2024`
-- `add-i-role n/TikTok r/Backend Engineer c/Summer 2024 d/Very important internship p/2000 o/awaiting l/remote`
+- `add-i-role n/TikTok r/Backend Engineer c/Summer 2024 d/Very important internship p/2000 o/awaiting l/remote t/May-Aug`
 
 **When you might use it:**
 - After you first applied for an internship position, and you want to keep track of it.
