@@ -58,10 +58,6 @@ public class EditInternshipTaskCommandTest {
         return ab;
     }
 
-/*    private void editTask(InternshipTask taskToBeEdited, InternshipTask editedTask, ModelManager model) {
-        model.setInternshipTask(taskToBeEdited, editedTask);
-    }*/
-
     private EditInternshipTaskCommand getSampleEditCommand() {
         return new EditInternshipTaskCommand(Index.fromOneBased(1),
                 new TaskOutcome(Outcome.AWAITING));
