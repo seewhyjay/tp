@@ -67,7 +67,7 @@ For any other queries that you might have, visit the [FAQ section](#faq) to find
 ### Experienced users
 
 If you have some experience with our application, and would like an overview of the keywords, 
-visit our [command summary page](#command-summary) or [parameter summary page](#parameter-summary).
+visit our [command summary section](#command-summary) or [parameter summary section](#parameter-summary).
 
 If you want a detailed look into each of the features that CampusCompanion has, visit our [features section](#features).
 
@@ -820,7 +820,7 @@ will match with this internship task.
 
 ``help``
 
-**Purpose:** Shows a message explaining how to access the help page, which is the CampusCompanion User Guide. 
+**Purpose:** Shows a message explaining how to access the help page, which is this CampusCompanion User Guide. 
 
 **When you might use it**
 - If you have forgotten what is the structure for a certain command and its parameters.
