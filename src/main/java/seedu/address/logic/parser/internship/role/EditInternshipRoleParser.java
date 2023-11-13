@@ -16,8 +16,8 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.common.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.person.Prefix;
 import seedu.address.model.fields.ApplicationOutcome;
 import seedu.address.model.fields.Cycle;
 import seedu.address.model.fields.Description;
@@ -63,6 +63,11 @@ public class EditInternshipRoleParser implements Parser<EditInternshipRoleComman
         Location newLocation = argumentMultimap.getValue(PREFIX_LOCATION).isEmpty()
                 ? null
                 : ParserUtil.parseLocation(argumentMultimap.getValue(PREFIX_LOCATION).get());
+
+        if (newCycle == null && newLocation == null && newDescription == null && newOutcome == null && newPay == null) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditInternshipRoleCommand.MESSAGE_USAGE));
+        }
 
         return new EditInternshipRoleCommand(index, newCycle, newDescription, newPay, newOutcome, newLocation);
     }

@@ -3,16 +3,16 @@ package seedu.address.logic.commands.assignment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandAssignmentTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_IN_LIST;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.CommandAssignmentTestUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -34,18 +34,18 @@ public class MarkAssignmentCommandTest {
 
     @Test
     public void execute_mark_success() throws CommandException {
-        Assignment assignmentToMark = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment assignmentToMark = getAtIndex(INDEX_FIRST_IN_LIST.getZeroBased());
         assertFalse(assignmentToMark.getStatus().isCompleted());
-        MarkAssignmentCommand cmd = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        MarkAssignmentCommand cmd = new MarkAssignmentCommand(INDEX_FIRST_IN_LIST);
         cmd.execute(model);
-        Assignment markedAssignment = getAtIndex(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment markedAssignment = getAtIndex(INDEX_FIRST_IN_LIST.getZeroBased());
         assertTrue(markedAssignment.getStatus().toString().equals("complete"));
     }
 
 
     @Test
     public void execute_markAlreadyCompletedAssignment_throwsCommandException() throws CommandException {
-        MarkAssignmentCommand markCommand = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        MarkAssignmentCommand markCommand = new MarkAssignmentCommand(INDEX_FIRST_IN_LIST);
         markCommand.execute(model);
         assertCommandFailure(markCommand, model,
                 String.format(MarkAssignmentCommand.MESSAGE_ASSIGNMENT_ALREADY_COMPLETE));
@@ -55,19 +55,20 @@ public class MarkAssignmentCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
         MarkAssignmentCommand markCommand = new MarkAssignmentCommand(outOfBoundIndex);
-        CommandTestUtil.assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+        CommandAssignmentTestUtil.assertCommandFailure(markCommand, model,
+                Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        MarkAssignmentCommand markFirstCommand = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
-        MarkAssignmentCommand markSecondCommand = new MarkAssignmentCommand(INDEX_SECOND_ASSIGNMENT);
+        MarkAssignmentCommand markFirstCommand = new MarkAssignmentCommand(INDEX_FIRST_IN_LIST);
+        MarkAssignmentCommand markSecondCommand = new MarkAssignmentCommand(INDEX_SECOND_IN_LIST);
 
         // same object -> returns true
         assertTrue(markFirstCommand.equals(markFirstCommand));
 
         // same values -> returns true
-        MarkAssignmentCommand markFirstCommandCopy = new MarkAssignmentCommand(INDEX_FIRST_ASSIGNMENT);
+        MarkAssignmentCommand markFirstCommandCopy = new MarkAssignmentCommand(INDEX_FIRST_IN_LIST);
         assertTrue(markFirstCommand.equals(markFirstCommandCopy));
 
         // different types -> returns false
@@ -94,6 +95,6 @@ public class MarkAssignmentCommandTest {
     private void showNoAssignment(Model model) {
         model.updateFilteredAssignmentList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredAssignmentList().isEmpty());
     }
 }

@@ -2,16 +2,12 @@ package seedu.address.logic.commands.internship.task;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.internship.InternshipCommand;
 import seedu.address.model.Model;
-import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
 import seedu.address.model.internship.task.InternshipTaskNameContainsKeywordsPredicate;
 
@@ -42,12 +38,15 @@ public class FindInternshipTaskCommand extends InternshipCommand {
 
         model.updateFilteredInternshipTaskList(predicate);
 
-        // List the roles of these tasks
-        List<InternshipRole> internshipRoles = new ArrayList<>();
-        for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
-            internshipRoles.add(internshipTask.getInternshipRole());
-        }
-        model.updateFilteredInternshipRoleList(internshipRoles::contains);
+        model.updateFilteredInternshipRoleList(role -> {
+            for (InternshipTask internshipTask : model.getFilteredInternshipTaskList()) {
+                if (internshipTask.getInternshipRole().equals(role)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_INTERNSHIPS_LISTED_OVERVIEW,
                         model.getFilteredInternshipTaskList().size()));

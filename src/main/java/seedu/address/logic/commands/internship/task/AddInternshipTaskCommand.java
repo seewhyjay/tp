@@ -38,8 +38,8 @@ public class AddInternshipTaskCommand extends InternshipCommand {
             + "Parameters: "
             + PREFIX_TASK_NAME + "NAME "
             + PREFIX_INDEX + "INDEX OF INTERNSHIP ROLE "
-            + PREFIX_DEADLINE + "YYYY-MM-DD HH:mm "
-            + "[" + PREFIX_STATUS + "STATUS " + "]\n"
+            + PREFIX_DEADLINE + "YYYY-MM-DD [HH:mm] "
+            + "[" + PREFIX_STATUS + "STATUS" + "]\n"
             + "[" + PREFIX_OUTCOME + "awaiting/follow-up/ghosted/rejected/offered" + "]\n"
             + "[" + PREFIX_TAG + "TAG" + "]\n"
             + "Example: " + COMMAND_WORD

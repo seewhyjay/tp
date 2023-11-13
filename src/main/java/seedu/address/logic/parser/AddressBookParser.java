@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -33,11 +32,6 @@ import seedu.address.logic.commands.internship.task.EditInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.FindInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.MarkInternshipTaskCommand;
 import seedu.address.logic.commands.internship.task.UnMarkInternshipTaskCommand;
-import seedu.address.logic.commands.person.AddCommand;
-import seedu.address.logic.commands.person.DeleteCommand;
-import seedu.address.logic.commands.person.EditCommand;
-import seedu.address.logic.commands.person.FindCommand;
-import seedu.address.logic.commands.person.ListCommand;
 import seedu.address.logic.parser.assignment.AddAssignmentParser;
 import seedu.address.logic.parser.assignment.DeleteAssignmentParser;
 import seedu.address.logic.parser.assignment.EditAssignmentParser;
@@ -56,10 +50,6 @@ import seedu.address.logic.parser.internship.task.EditInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.FindInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.MarkInternshipTaskParser;
 import seedu.address.logic.parser.internship.task.UnMarkInternshipTaskParser;
-import seedu.address.logic.parser.person.AddCommandParser;
-import seedu.address.logic.parser.person.DeleteCommandParser;
-import seedu.address.logic.parser.person.EditCommandParser;
-import seedu.address.logic.parser.person.FindCommandParser;
 import seedu.address.model.View;
 
 /**
@@ -102,27 +92,6 @@ public class AddressBookParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
-            verifyView(viewVerifier, View.PERSONS);
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            verifyView(viewVerifier, View.PERSONS);
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            verifyView(viewVerifier, View.PERSONS);
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            verifyView(viewVerifier, View.PERSONS);
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

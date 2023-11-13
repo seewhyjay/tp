@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole1;
+import static seedu.address.testutil.TypicalInternshipRoles.getTypicalInternshipRole2;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +22,7 @@ import seedu.address.model.util.SampleDataUtil;
  * A class to create new InternshipTask objects
  */
 public class InternshipTaskBuilder {
-    private final InternshipRole defaultRole = getTypicalInternshipRole1();
+    private final InternshipRole defaultRole = getTypicalInternshipRole2();
     private final String defaultTaskName = "Grind Leetcode";
     private final LocalDateTime defaultDate = LocalDateTime.parse("2024-04-01 23:59",
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
@@ -41,6 +41,19 @@ public class InternshipTaskBuilder {
      */
     public InternshipTaskBuilder() {
         role = defaultRole;
+        taskName = new Name(defaultTaskName);
+        deadline = new IsoDate(defaultDate);
+        status = new Status(defaultStatus);
+        outcome = new TaskOutcome(defaultOutcome);
+        tags = new HashSet<>();
+    }
+
+    /**
+     * Creates an InternshipTaskBuilder with specified role and other default fields
+     * @param role {@code InternshipRole} to use
+     */
+    public InternshipTaskBuilder(InternshipRole role) {
+        this.role = role;
         taskName = new Name(defaultTaskName);
         deadline = new IsoDate(defaultDate);
         status = new Status(defaultStatus);

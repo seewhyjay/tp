@@ -28,7 +28,8 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_INTERNSHIP_ROLE_SUCCESS = "Deleted internship role: %1$s";
+    public static final String MESSAGE_DELETE_INTERNSHIP_ROLE_SUCCESS = "Deleted internship role: %1$s"
+            + "\n" + "and its associated tasks";
 
     private final Index targetIndex;
 
@@ -41,7 +42,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
         requireNonNull(model);
 
         List<InternshipRole> lastShownRoleList = model.getFilteredInternshipRoleList();
-        List<InternshipTask> lastShownTaskList = model.getFilteredInternshipTaskList();
+        List<InternshipTask> unfilteredTaskList = model.getUnfilteredInternshipTaskList();
         List<InternshipTask> taskListToDelete = new ArrayList<>();
 
         if (targetIndex.getZeroBased() >= lastShownRoleList.size()) {
@@ -49,7 +50,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
         }
         InternshipRole internshipRoleToDelete = lastShownRoleList.get(targetIndex.getZeroBased());
 
-        lastShownTaskList.stream()
+        unfilteredTaskList.stream()
                 .forEach(task -> {
                     if (new InternshipTaskHasSameInternshipRolePredicate(internshipRoleToDelete).test(task)) {
                         taskListToDelete.add(task);
@@ -60,7 +61,7 @@ public class DeleteInternshipRoleCommand extends InternshipCommand {
         model.deleteInternshipRole(internshipRoleToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_ROLE_SUCCESS,
-                Messages.format(internshipRoleToDelete)) + "\n" + "And its associated tasks");
+                Messages.format(internshipRoleToDelete)));
     }
 
     @Override

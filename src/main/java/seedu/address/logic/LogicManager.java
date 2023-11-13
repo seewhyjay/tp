@@ -20,7 +20,6 @@ import seedu.address.model.View;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.internship.role.InternshipRole;
 import seedu.address.model.internship.task.InternshipTask;
-import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -69,11 +68,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     @Override
