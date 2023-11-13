@@ -862,7 +862,7 @@ CampusCompanion data are saved in the hard disk automatically after any command 
 
 ### Editing the data file
 
-CampusCompanion data are saved automatically as a JSON file `[JAR file location]/data/CampusCompanion.json`. 
+CampusCompanion data are saved automatically as a JSON file `[JAR file location]/data/campuscompanion.json`. 
 
 Advanced users are welcome to update data directly by editing that data file. After editing that file, 
 when you re-run the application, the new data will automatically be shown. 
