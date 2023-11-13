@@ -67,7 +67,7 @@ For any other queries that you might have, visit the [FAQ section](#faq) to find
 ### Experienced users
 
 If you have some experience with our application, and would like an overview of the keywords, 
-visit our [command summary page](#command-summary) or [parameter summary page](#parameter-summary).
+visit our [command summary section](#command-summary) or [parameter summary section](#parameter-summary).
 
 If you want a detailed look into each of the features that CampusCompanion has, visit our [features section](#features).
 
@@ -127,6 +127,13 @@ Here are some descriptions of the words we use throughout the User Guide:
 
 ### Quick Orientation
 
+<div markdown="block" class="alert alert-info">
+
+CampusCompanion's GUI has 2 main views, `Assignments` and `Internships`.
+
+</div>
+
+#### Assignments View
 ![img.png](images/LabelledGUI.png)
 
 Here is a quick summary of each GUI component within CampusCompanion's assignments view.
@@ -144,6 +151,8 @@ Here is a quick summary of each GUI component within CampusCompanion's assignmen
 | Calendar Navigation Buttons | Used to change the month being shown on the calendar.                                                                                                                                                                                                                                    |
 | Footer                      | Shows the location of the saved data. This file can be used to move data to another computer.                                                                                                                                                                                            |
 
+
+#### Internships View
 
 ![img.png](images/LabelledInternshipGUI.png)
 Here is a quick summary of the different GUI components within CampusCompanion's internships view.
@@ -821,7 +830,7 @@ will match with this internship task.
 
 ``help``
 
-**Purpose:** Shows a message explaining how to access the help page, which is the CampusCompanion User Guide. 
+**Purpose:** Shows a message explaining how to access the help page, which is this CampusCompanion User Guide. 
 
 **When you might use it**
 - If you have forgotten what is the structure for a certain command and its parameters.
