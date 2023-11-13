@@ -92,7 +92,7 @@ If you want a detailed look into each of the features that CampusCompanion has, 
 
    * `list-i` : Lists all internships.
 
-   * `add-a n/CS2100 Assignment 1 e/2023-10-29` : Adds an assignment named `CS2100 Assignment 1` with a deadline of `29 Oct 2023 23:59` to the Campus Companion.
+   * `add-a n/CS2100 Assignment 1 e/2023-12-29` : Adds an assignment named `CS2100 Assignment 1` with a deadline of `29 Dec 2023 23:59` to the Campus Companion.
 
    * `delete-a 3` : Deletes the assignment with index 3 in the current list.
 
@@ -654,8 +654,8 @@ To view detailed internship task parameter information, click [here](#internship
 To add an internship task, associated to an internship role into CampusCompanion.
 
 **Examples:**
-- `add-i-task i/1 n/Tiktok OA e/2023-10-29 13:00`
-- `add-i-task i/1 n/Google Behavioural interview e/2023-10-28 s/incomplete o/awaiting t/Video`
+- `add-i-task i/1 n/Tiktok OA e/2023-12-29 13:00`
+- `add-i-task i/1 n/Google Behavioural interview e/2023-12-28 s/incomplete o/awaiting t/Video`
 
 **When you might use it:**
 - When you first receive news of a new task related to your internship role, and you want to keep track of it.
